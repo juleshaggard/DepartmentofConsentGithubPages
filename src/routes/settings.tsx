@@ -23,8 +23,10 @@ function SettingsPage() {
     <Layout>
       <div className="space-y-5">
         <div className="text-center space-y-1">
-          <h1 className="font-display text-4xl text-plum">Profile</h1>
-          <p className="text-sm text-muted-foreground">Saved locally in this browser.</p>
+          <h1 className="font-display text-[2.6rem] text-plum leading-[1]">Profile</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">
+            Saved locally in this browser.
+          </p>
         </div>
 
         <Sticker className="space-y-2">
@@ -43,8 +45,10 @@ function SettingsPage() {
         </Sticker>
 
         <Sticker variant="coral" className="space-y-2">
-          <h2 className="font-display text-plum text-center font-normal text-3xl">Your data</h2>
-          <p className="text-xs text-muted-foreground">
+          <h2 className="font-display text-plum text-center font-normal text-3xl leading-[1.05]">
+            Your data
+          </h2>
+          <p className="text-xs text-muted-foreground leading-[1.45]">
             This static version saves data only in this browser. Share and response links carry
             scene data for people you send them to.
           </p>
@@ -72,10 +76,8 @@ function SettingsPage() {
 function Row({ label, value }: { label: string; value?: string }) {
   return (
     <div className="border-b border-border/40 py-2 last:border-b-0">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-        {label}
-      </div>
-      <div className="text-sm whitespace-pre-wrap">{value?.trim() || "Not set"}</div>
+      <div className="text-[11px] text-muted-foreground font-semibold">{label}</div>
+      <div className="text-sm whitespace-pre-wrap leading-[1.45]">{value?.trim() || "Not set"}</div>
     </div>
   );
 }

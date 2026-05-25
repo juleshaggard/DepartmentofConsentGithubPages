@@ -33,7 +33,7 @@ export function SceneShareCard({
 
   return (
     <Sticker className={cn("text-center space-y-3", className)}>
-      <h2 className="font-display text-2xl text-plum text-center">{title}</h2>
+      <h2 className="font-display text-[1.75rem] text-plum text-center leading-[1.05]">{title}</h2>
       <div className="flex justify-center rounded-xl bg-card p-3 sm:p-4">
         <QRCodeSVG
           value={url || " "}
@@ -51,7 +51,11 @@ export function SceneShareCard({
           {copied ? copiedLabel : copyLabel}
         </CloudButton>
       </div>
-      {description && <p className="text-xs text-muted-foreground">{description}</p>}
+      {description && (
+        <p className="text-xs text-muted-foreground leading-[1.45] max-w-[52ch] mx-auto">
+          {description}
+        </p>
+      )}
     </Sticker>
   );
 }

@@ -144,13 +144,11 @@ function Index() {
       <section className="px-5 sm:px-10 pt-6 sm:pt-8 pb-8 sm:pb-12 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[5fr_6fr] gap-9 md:gap-12 items-center">
           <div className="order-2 md:order-1 text-left">
-            <p className="text-xs font-bold uppercase tracking-wide text-plum">
-              Plan the scene before you're in it.
-            </p>
-            <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02] mt-3 max-w-[15ch] sm:max-w-none">
+            <p className="text-sm font-semibold text-coral">Plan the scene before you're in it.</p>
+            <h1 className="font-display text-[2.6rem] sm:text-6xl text-plum leading-[1] mt-3 max-w-[15ch] sm:max-w-none">
               Build the kink scene you both actually want.
             </h1>
-            <p className="text-base sm:text-lg text-foreground/75 leading-snug mt-4 max-w-md">
+            <p className="text-base sm:text-lg text-foreground/75 leading-[1.48] mt-4 max-w-md">
               Compare boundaries, kinks, sex expectations, and dealbreakers before things get
               awkward, intense, or unsafe.
             </p>
@@ -161,7 +159,7 @@ function Index() {
             </div>
 
             <div className="mt-7">
-              <p className="text-xs font-bold uppercase tracking-wide text-plum mb-3">
+              <p className="text-sm font-semibold text-plum mb-3">
                 Trusted by communities worldwide
               </p>
               <ul className="grid grid-cols-5 gap-2 sm:gap-3 max-w-md">
@@ -195,7 +193,7 @@ function Index() {
               />
               <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-card/95 rounded-xl p-3 sm:p-6 space-y-2.5 sm:space-y-4 shadow-[0_18px_55px_oklch(0.22_0.04_20_/_0.12)]">
                 <div>
-                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-yes mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold text-yes mb-1">
                     Both want to play
                   </div>
 
@@ -211,15 +209,13 @@ function Index() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-maybe mb-1.5">
-                    Discuss
-                  </div>
+                  <div className="text-[10px] sm:text-xs font-bold text-maybe mb-1.5">Discuss</div>
                   <span className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-maybe/20 border border-maybe/40 text-plum inline-block">
                     Hand stuff
                   </span>
                 </div>
                 <div>
-                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-no mb-1.5">
+                  <div className="text-[10px] sm:text-xs font-bold text-no mb-1.5">
                     Hard limit from one side
                   </div>
                   <span className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-no/15 border border-no/30 text-plum inline-block">
@@ -234,7 +230,7 @@ function Index() {
 
       {/* 1b. Testimonials */}
       <section className="px-5 sm:px-10 py-8 sm:py-12 max-w-5xl mx-auto">
-        <h2 className="font-sans text-xs font-bold uppercase tracking-wide text-plum text-center max-w-2xl mx-auto mb-6">
+        <h2 className="font-sans text-sm font-semibold text-plum/80 text-center max-w-2xl mx-auto mb-6">
           People are tired of guessing about sex and kink.
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
@@ -260,7 +256,7 @@ function Index() {
             },
           ].map((t) => (
             <figure key={t.author} className="feature-card p-4 sm:p-5 flex flex-col">
-              <blockquote className="font-sans italic text-xs sm:text-sm text-plum leading-snug">
+              <blockquote className="font-sans italic text-sm text-plum leading-[1.45]">
                 “{t.quote}”
               </blockquote>
               <figcaption className="flex items-center gap-2 mt-auto pt-3">
@@ -273,7 +269,7 @@ function Index() {
                     style={{ objectPosition: t.pos }}
                   />
                 </span>
-                <span className="font-sans text-[11px] text-muted-foreground">— {t.author}</span>
+                <span className="font-sans text-xs text-muted-foreground">by {t.author}</span>
               </figcaption>
             </figure>
           ))}
@@ -290,13 +286,13 @@ function Index() {
               <br />
               is not enough.
             </h2>
-            <p className="text-base text-foreground/75 leading-snug mt-4">
+            <p className="text-base text-foreground/75 leading-[1.5] mt-4">
               Good sex needs more than vibes.
               <br />
               It needs shared expectations.
             </p>
             <hr className="my-7 border-plum/10" />
-            <p className="text-sm font-bold text-plum mb-4">Before play, you need to know:</p>
+            <p className="text-sm font-semibold text-plum mb-4">Before play, you need to know:</p>
             <ul className="space-y-3 text-left">
               {QUESTIONS.map((q) => (
                 <li key={q} className="flex items-start gap-3 text-sm text-plum">
@@ -392,11 +388,9 @@ function Index() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {STEPS.map((s) => (
                 <div key={s.n}>
-                  <div className="text-xs font-bold uppercase tracking-wide text-plum mb-2">
-                    {s.n}
-                  </div>
+                  <div className="text-xs font-semibold text-coral mb-2">{s.n}</div>
                   <h3 className="font-display text-2xl text-plum leading-tight mb-3">{s.title}</h3>
-                  <p className="text-sm text-foreground/75 leading-snug">{s.body}</p>
+                  <p className="text-sm text-foreground/75 leading-[1.5]">{s.body}</p>
                 </div>
               ))}
             </div>
@@ -481,13 +475,13 @@ function Index() {
                   <br />
                   kink menu
                 </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-snug max-w-xs mx-auto">
+                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
                   Save your own interests, boundaries, and notes so you do not have to rebuild the
                   conversation from scratch every time.
                 </p>
               </div>
               <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-bold text-plum mb-2">Good for:</p>
+              <p className="text-sm font-semibold text-plum mb-2">Good for:</p>
               <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
                 <li>New partners</li>
                 <li>Dungeon pickup play</li>
@@ -500,7 +494,7 @@ function Index() {
             {/* Scene cards */}
             <div className="feature-card p-6 md:p-7 order-3 md:order-none">
               <div className="font-mono text-xs leading-relaxed text-plum mb-2">
-                <div className="text-no font-bold uppercase tracking-wide mb-2">Safewords</div>
+                <div className="text-no font-semibold mb-2">Safewords</div>
                 <div>Verbal:</div>
                 <div>Red — stop the scene, something is wrong and we can't continue.</div>
                 <div>Yellow — check in.</div>
@@ -521,13 +515,13 @@ function Index() {
                   <br />
                   brains stop working
                 </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-snug max-w-xs mx-auto">
+                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
                   During play, details can get blurry. The scene card keeps the important stuff
                   readable.
                 </p>
               </div>
               <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-bold text-plum mb-2">Include:</p>
+              <p className="text-sm font-semibold text-plum mb-2">Include:</p>
               <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
                 <li>Safewords</li>
                 <li>Nonverbal signals</li>
@@ -547,7 +541,7 @@ function Index() {
             <div className="feature-card p-6 md:p-7 order-2 md:order-none">
               <div className="space-y-3 mb-2">
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-plum mb-1.5">
+                  <div className="text-xs font-semibold text-plum/75 mb-1.5">
                     Last STD test date
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -560,9 +554,7 @@ function Index() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-plum mb-1.5">
-                    STD test results
-                  </div>
+                  <div className="text-xs font-semibold text-plum/75 mb-1.5">STD test results</div>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-xs px-2.5 py-0.5 rounded-full border border-plum/15 text-plum">
                       <span className="font-semibold">Maddie:</span> All Clear
@@ -573,9 +565,7 @@ function Index() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-plum mb-1.5">
-                    On PrEP / DoxyPEP
-                  </div>
+                  <div className="text-xs font-semibold text-plum/75 mb-1.5">On PrEP / DoxyPEP</div>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-xs px-2.5 py-0.5 rounded-full bg-yes/20 border border-yes/40 text-plum">
                       <span className="font-semibold">Maddie:</span> Yes
@@ -592,14 +582,14 @@ function Index() {
                   <br />
                   one-way permission
                 </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-snug max-w-xs mx-auto">
+                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
                   Both people fill out their own side. The goal is not to pressure someone into
                   agreement. The goal is to make overlap obvious and mismatches impossible to
                   ignore.
                 </p>
               </div>
               <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-bold text-plum mb-2">Use it to clarify:</p>
+              <p className="text-sm font-semibold text-plum mb-2">Use it to clarify:</p>
               <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
                 <li>Yes / maybe / no</li>
                 <li>Hard limits</li>
@@ -642,11 +632,11 @@ function Index() {
                   <br />
                   to be improvised
                 </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-snug max-w-xs mx-auto">
+                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
                   Water, food, blankets, shower, silence, cuddling, space, check-ins, reassurance,
                   grounding, or anything else each person needs to come down safely.
                 </p>
-                <p className="text-sm text-foreground/75 mt-3 leading-snug max-w-xs mx-auto">
+                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
                   You can also keep private reflection notes afterward, so future scenes get better
                   instead of messier.
                 </p>
@@ -672,7 +662,7 @@ function Index() {
               Built for kinky people who take consent seriously.
             </h2>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mt-10">
-              <div className="text-sm text-white/90 leading-snug max-w-sm space-y-4">
+              <div className="text-sm text-white/90 leading-[1.5] max-w-sm space-y-4">
                 <p>
                   Department of Consent is for adults who want play to feel hotter because it is
                   clearer.
@@ -690,7 +680,7 @@ function Index() {
               </div>
               <div className="flex items-center gap-3 shrink-0">
                 <img src={flag} alt="Trans pride flag" className="h-5 w-auto" />
-                <p className="text-sm text-white/90 max-w-[16rem] leading-snug">
+                <p className="text-sm text-white/90 max-w-[16rem] leading-[1.45]">
                   Department of Consent is proudly
                   <br />
                   trans owned and operated.
@@ -730,7 +720,7 @@ function Index() {
             ].map((f) => (
               <div key={f.title} className="p-6 sm:p-8 lg:border-r lg:border-b lg:border-plum/10">
                 <h3 className="font-display text-xl text-plum">{f.title}</h3>
-                <p className="text-sm text-foreground/75 mt-2 leading-snug">{f.body}</p>
+                <p className="text-sm text-foreground/75 mt-2 leading-[1.5]">{f.body}</p>
               </div>
             ))}
           </div>
@@ -761,7 +751,7 @@ function Index() {
             ].map((f) => (
               <div key={f.title}>
                 <h3 className="font-display text-xl text-plum">{f.title}</h3>
-                <p className="text-sm text-foreground/75 mt-2 leading-snug">{f.body}</p>
+                <p className="text-sm text-foreground/75 mt-2 leading-[1.5]">{f.body}</p>
               </div>
             ))}
           </div>
@@ -786,7 +776,7 @@ function Index() {
           <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] max-w-2xl mx-auto text-white">
             Your sex life deserves better communication
           </h2>
-          <div className="text-base text-white/90 mt-4 max-w-md mx-auto leading-snug space-y-3">
+          <div className="text-base text-white/90 mt-4 max-w-md mx-auto leading-[1.5] space-y-3">
             <p>
               Most people wait until they're already naked, pressured, emotionally attached, or
               halfway through a hookup to communicate clearly.

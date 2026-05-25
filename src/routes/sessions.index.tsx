@@ -23,8 +23,8 @@ function SessionsList() {
     <Layout>
       <div className="space-y-5">
         <div className="text-center">
-          <h1 className="font-display text-5xl text-plum">Scenes</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="font-display text-[2.8rem] sm:text-5xl text-plum leading-[1]">Scenes</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">
             Active and past play saved in this browser.
           </p>
         </div>
@@ -38,8 +38,8 @@ function SessionsList() {
         {!isLoading && sorted.length === 0 && (
           <Sticker className="text-center space-y-4 py-10 sm:py-12">
             <img src={emptySessionsImg} alt="" className="h-32 w-32 mx-auto object-contain" />
-            <p className="font-display text-lg text-plum">No scenes yet</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="font-display text-2xl text-plum">No scenes yet</p>
+            <p className="text-sm text-muted-foreground leading-[1.45]">
               Your first negotiation is just a tap away.
             </p>
             <div className="flex justify-center pt-1">
@@ -61,7 +61,7 @@ function SessionsList() {
               <Sticker className="hover:scale-[1.01] transition-transform">
                 <div className="flex justify-between items-start gap-3">
                   <div className="min-w-0">
-                    <div className="font-display text-lg text-plum truncate">
+                    <div className="font-display text-xl text-plum truncate">
                       {generateSceneTitle(s.ownerSide, kinkMap) ||
                         s.partnerHandle ||
                         "Untitled scene"}
@@ -71,7 +71,7 @@ function SessionsList() {
                       {s.date}
                     </div>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full font-semibold bg-blush text-plum">
+                  <span className="text-[10px] uppercase px-2 py-1 rounded-full font-semibold bg-blush text-plum">
                     {s.role === "partner" ? "Joined" : "Creator"}
                   </span>
                 </div>

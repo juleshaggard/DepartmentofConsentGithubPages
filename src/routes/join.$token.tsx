@@ -295,9 +295,7 @@ function JoinPage() {
             <h2 className="font-display text-2xl text-plum">{creatorName}'s vibe</h2>
 
             <div className="rounded-2xl bg-blush/50 border-2 border-coral/30 p-4 space-y-3">
-              <div className="text-[10px] uppercase tracking-wider text-plum font-bold">
-                {creatorName} picked
-              </div>
+              <div className="text-[10px] uppercase text-plum font-bold">{creatorName} picked</div>
               <div className="flex flex-wrap gap-1.5">
                 {ownerVibe.moods.length > 0 ? (
                   ownerVibe.moods.map((m) => (
@@ -410,7 +408,7 @@ function JoinPage() {
             />
             {ownerSide.music?.trim() && (
               <div className="space-y-1">
-                <div className="text-[10px] uppercase tracking-wider text-plum/60 font-semibold">
+                <div className="text-[10px] uppercase text-plum/60 font-semibold">
                   {creatorName}'s music
                 </div>
                 <div className="inline-block bg-blush text-plum text-sm rounded-lg rounded-bl-none px-3 py-1.5 font-medium">
@@ -441,7 +439,7 @@ function JoinPage() {
               onChange={setSubstanceChips}
             />
             {ownerSide.substancesHardLimit && (
-              <div className="text-[11px] uppercase tracking-wider text-no font-bold">
+              <div className="text-[11px] uppercase text-no font-bold">
                 ⚠ Substance use is a hard limit for {creatorName}
               </div>
             )}
@@ -567,7 +565,7 @@ function JoinPage() {
 
             {(ownerSide.aftercareItems?.length ?? 0) > 0 && (
               <div className="space-y-1.5">
-                <div className="text-[10px] uppercase tracking-wider text-plum font-bold">
+                <div className="text-[10px] uppercase text-plum font-bold">
                   {creatorName} wants for aftercare
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -592,9 +590,7 @@ function JoinPage() {
 
             {(ownerSide.safewordItems?.length ?? 0) > 0 && (
               <div className="space-y-1.5">
-                <div className="text-[10px] uppercase tracking-wider text-plum font-bold">
-                  {creatorName} uses
-                </div>
+                <div className="text-[10px] uppercase text-plum font-bold">{creatorName} uses</div>
                 <div className="flex flex-wrap gap-1.5">
                   {ownerSide.safewordItems!.map((item) => (
                     <span
@@ -711,9 +707,7 @@ function ReactiveChipField({
       <Label className="doc-label">{label}</Label>
       {hasCreatorPicks && (
         <div className="rounded-xl bg-blush/40 border border-coral/30 p-2.5 space-y-1">
-          <div className="text-[10px] uppercase tracking-wider text-plum/70 font-bold">
-            {creatorName}
-          </div>
+          <div className="text-[10px] uppercase text-plum/70 font-bold">{creatorName}</div>
           <div className="flex flex-wrap gap-1.5">
             {creatorChips.map((c) => (
               <span

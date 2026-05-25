@@ -148,6 +148,14 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-kerning: normal;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "calt" 1;
   }
   h1,
   h2,
@@ -155,8 +163,21 @@
   h4,
   .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     font-weight: 400;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  p,
+  li {
+    text-wrap: pretty;
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    letter-spacing: 0;
   }
 }
 
@@ -180,7 +201,8 @@
     border-radius: 0.6rem;
     padding: 0.7rem 0.9rem;
     font-family: var(--font-sans);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.4;
     color: var(--color-foreground);
     transition:
       border-color 0.15s ease,
@@ -196,19 +218,21 @@
   }
   .doc-label {
     font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 0.95rem;
+    font-weight: 650;
+    font-size: 0.875rem;
+    line-height: 1.25;
     color: var(--color-foreground);
     display: block;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.4rem;
   }
   /* Consistent uppercase section eyebrow label */
   .section-label {
     font-family: var(--font-sans);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     font-weight: 700;
+    line-height: 1.2;
     color: var(--color-plum);
     margin-bottom: 0.35rem;
   }
@@ -225,9 +249,9 @@
     max-width: 28rem; /* match bottom nav (max-w-md) */
     height: 64px;
     color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.01em;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0;
     background-image: url("/button_fill.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -272,7 +296,7 @@
     height: 52px;
     aspect-ratio: 150 / 72;
     padding: 0.4rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.8125rem;
     background-image: url("/smallbuttongreen.svg");
     background-size: 100% 100%;
   }
@@ -311,7 +335,7 @@
     font-weight: 400;
     font-size: clamp(4.5rem, 22vw, 18rem);
     line-height: 0.85;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     text-align: center;
   }
   .lt-blue {

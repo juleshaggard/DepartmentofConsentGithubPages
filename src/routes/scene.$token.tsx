@@ -63,15 +63,14 @@ function SceneRecap() {
   const o = session.ownerSide;
   const partners = session.partnerSides ?? (session.partnerSide ? [session.partnerSide] : []);
   const ownerName = o.name?.trim() || "Creator";
+  const sceneMeta = [session.partnerHandle, session.date].filter(Boolean).join(" · ");
 
   return (
     <Layout>
       <div className="space-y-5">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-plum">Scene recap</h1>
-          <p className="text-sm text-muted-foreground">
-            {session.partnerHandle} · {session.date}
-          </p>
+          <h1 className="font-display text-[2rem] text-plum leading-[1.05]">Scene recap</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">{sceneMeta}</p>
         </div>
 
         <SceneShareCard
@@ -122,10 +121,10 @@ function SideRecap({
 
   return (
     <Sticker className="space-y-3">
-      <div className="font-display text-lg text-plum">{title}</div>
+      <div className="font-display text-xl text-plum leading-[1.05]">{title}</div>
       {side.vision && (
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-plum font-bold">Vibe</div>
+          <div className="text-[11px] text-plum/70 font-semibold">Vibe</div>
           <VibePills raw={side.vision} />
         </div>
       )}
@@ -157,10 +156,8 @@ function Detail({ title, value }: { title: string; value: string }) {
   if (!value?.trim()) return null;
   return (
     <div className="border-b border-border/40 pb-2">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-        {title}
-      </div>
-      <div className="text-sm whitespace-pre-wrap">{value}</div>
+      <div className="text-[11px] text-muted-foreground font-semibold">{title}</div>
+      <div className="text-sm whitespace-pre-wrap leading-[1.45]">{value}</div>
     </div>
   );
 }
@@ -168,7 +165,7 @@ function Detail({ title, value }: { title: string; value: string }) {
 function Pills({ label, items, cls }: { label: string; items: string[]; cls: string }) {
   return (
     <div>
-      <div className="text-xs font-semibold uppercase mt-3 mb-1">{label}</div>
+      <div className="text-xs font-semibold mt-3 mb-1">{label}</div>
       <div className="flex flex-wrap gap-1">
         {items.map((n) => (
           <span key={n} className={`text-xs ${cls} px-2 py-0.5 rounded-full`}>
