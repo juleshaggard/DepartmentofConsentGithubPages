@@ -5,6 +5,7 @@ import { WhipLoader } from "@/components/WhipLoader";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
 import { CloudButton } from "@/components/CloudButton";
+import { SceneShareCard } from "@/components/SceneShareCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,7 +61,6 @@ function JoinPage() {
   const [submitting, setSubmitting] = useState(false);
   const [step, setStep] = useState(0);
   const [responseUrl, setResponseUrl] = useState("");
-  const [copiedResponse, setCopiedResponse] = useState(false);
 
   // Decoded creator state
   const ownerSide = session?.ownerSide;
@@ -225,18 +225,11 @@ function JoinPage() {
       const updated = await addPartner(buildSideForSave());
       if (updated) {
         setResponseUrl(await sceneUrl(`/sessions/${token}`, updated));
-        setCopiedResponse(false);
         if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const copyResponse = async () => {
-    await navigator.clipboard.writeText(responseUrl);
-    setCopiedResponse(true);
-    setTimeout(() => setCopiedResponse(false), 1500);
   };
 
   const goNext = () => {
@@ -253,24 +246,24 @@ function JoinPage() {
   if (responseUrl) {
     return (
       <Layout>
-        <Sticker className="text-center space-y-4">
-          <h1 className="font-display text-3xl text-plum">Your side is ready</h1>
-          <p className="text-sm text-muted-foreground">
-            Copy this response link and send it back to {creatorName}. It contains the updated scene
-            data.
-          </p>
-          <div className="rounded-xl bg-card border border-border p-3 text-xs break-all text-left">
-            {responseUrl}
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <CloudButton onClick={copyResponse}>
-              {copiedResponse ? "Copied!" : "Copy response link"}
-            </CloudButton>
+        <div className="space-y-4">
+          <SceneShareCard
+            title="Your side is ready"
+            url={responseUrl}
+            copyLabel="Copy response link"
+            description={
+              <>
+                Copy or scan this merged scene link and send it back to {creatorName}. It contains
+                the updated scene data.
+              </>
+            }
+          />
+          <div className="flex justify-center">
             <CloudButton variant="outline" to={`/sessions/${token}`}>
               View merged scene
             </CloudButton>
           </div>
-        </Sticker>
+        </div>
       </Layout>
     );
   }

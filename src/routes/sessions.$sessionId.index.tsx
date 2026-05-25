@@ -14,9 +14,9 @@ import { decodeVibe } from "@/lib/sceneVocab";
 import { VibePills } from "@/components/scene/VibePills";
 import { useCloudSession } from "@/lib/useCloudSession";
 import { sceneUrl } from "@/lib/sceneLinks";
-import { QRCodeSVG } from "qrcode.react";
 import { Heart, Trash2 } from "lucide-react";
 import { CloudButton } from "@/components/CloudButton";
+import { SceneShareCard } from "@/components/SceneShareCard";
 import {
   Accordion,
   AccordionItem,
@@ -36,7 +36,6 @@ function SessionDetail() {
   const [kinks] = useKinks();
   const [profile] = useProfile();
   const navigate = useNavigate();
-  const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
   const { session, error, remove: removeSession } = useCloudSession(sessionId);
 
@@ -73,12 +72,6 @@ function SessionDetail() {
     );
   }
 
-  const copy = async () => {
-    await navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
   const remove = async () => {
     if (!confirm("Delete this scene? This removes it from this browser.")) return;
     await removeSession();
@@ -104,32 +97,17 @@ function SessionDetail() {
           </span>
         </div>
 
-        <Sticker className="text-center space-y-3">
-          <h2 className="font-display text-2xl text-plum text-center">
-            Share with your play partner
-          </h2>
-          <div className="flex justify-center bg-card p-3 sm:p-4 rounded-xl">
-            <QRCodeSVG
-              value={shareUrl || " "}
-              size={260}
-              className="h-auto w-full max-w-[260px]"
-              level="L"
-              boostLevel={false}
-              marginSize={3}
-              fgColor="#2b1213"
-              bgColor="#fffdfb"
-            />
-          </div>
-          <div className="flex justify-center pt-1">
-            <CloudButton variant="mint" onClick={shareUrl ? copy : undefined}>
-              {copied ? "Copied!" : "Copy invite link"}
-            </CloudButton>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            This static version stores scene data in the link. Your play partner submits by copying
-            a response link back to you.
-          </p>
-        </Sticker>
+        <SceneShareCard
+          title="Share with your play partner"
+          url={shareUrl}
+          copyLabel="Copy invite link"
+          description={
+            <>
+              This static version stores scene data in the link. Your play partner submits by
+              copying a response link back to you.
+            </>
+          }
+        />
 
         <ParticipantsSection
           participants={[

@@ -3,12 +3,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/ui/button";
+import { SceneShareCard } from "@/components/SceneShareCard";
 import { useCloudSession } from "@/lib/useCloudSession";
 import { useKinks, type SessionSide } from "@/lib/storage";
 import { sceneUrl } from "@/lib/sceneLinks";
 import { VibePills } from "@/components/scene/VibePills";
 import { useEffect, useMemo, useState } from "react";
-import { Copy } from "lucide-react";
 
 export const Route = createFileRoute("/scene/$token")({
   head: () => ({
@@ -35,7 +35,6 @@ function SceneRecap() {
   const { token } = Route.useParams();
   const { session } = useCloudSession(token);
   const [kinks] = useKinks();
-  const [copied, setCopied] = useState(false);
   const [url, setUrl] = useState("");
   const kinkMap = useMemo(() => Object.fromEntries(kinks.map((k) => [k.id, k.name])), [kinks]);
 
@@ -65,12 +64,6 @@ function SceneRecap() {
   const partners = session.partnerSides ?? (session.partnerSide ? [session.partnerSide] : []);
   const ownerName = o.name?.trim() || "Creator";
 
-  const copy = async () => {
-    await navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
   return (
     <Layout>
       <div className="space-y-5">
@@ -81,17 +74,12 @@ function SceneRecap() {
           </p>
         </div>
 
-        <Sticker variant="coral" className="text-center space-y-2">
-          <div className="font-display text-base text-plum">Permalink</div>
-          <button
-            onClick={copy}
-            className="text-xs flex items-center gap-1 mx-auto text-muted-foreground hover:text-primary break-all"
-          >
-            <Copy className="h-3 w-3 shrink-0" />
-            {copied ? "Copied!" : url}
-          </button>
-          <p className="text-[11px] text-muted-foreground">Share this with anyone in the scene.</p>
-        </Sticker>
+        <SceneShareCard
+          title="Share this scene recap"
+          url={url}
+          copyLabel="Copy recap link"
+          description="Share this with anyone in the scene."
+        />
 
         <SideRecap title={`${ownerName}'s side`} side={o} kinkMap={kinkMap} />
         {partners.map((ps, i) => (
