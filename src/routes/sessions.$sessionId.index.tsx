@@ -108,8 +108,17 @@ function SessionDetail() {
           <h2 className="font-display text-2xl text-plum text-center">
             Share with your play partner
           </h2>
-          <div className="flex justify-center bg-card p-3 rounded-xl">
-            <QRCodeSVG value={shareUrl || " "} size={180} fgColor="#c2185b" bgColor="transparent" />
+          <div className="flex justify-center bg-card p-3 sm:p-4 rounded-xl">
+            <QRCodeSVG
+              value={shareUrl || " "}
+              size={260}
+              className="h-auto w-full max-w-[260px]"
+              level="L"
+              boostLevel={false}
+              marginSize={3}
+              fgColor="#2b1213"
+              bgColor="#fffdfb"
+            />
           </div>
           <div className="flex justify-center pt-1">
             <CloudButton variant="mint" onClick={shareUrl ? copy : undefined}>
