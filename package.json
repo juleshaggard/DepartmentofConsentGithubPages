@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "build:pages": "DOC_DEPLOY_TARGET=github-pages vite build && node scripts/prepare-pages.mjs",
+    "build:pages": "DOC_DEPLOY_TARGET=github-pages DOC_PAGES_CUSTOM_DOMAIN=departmentofconsent.com VITE_SITE_URL=https://departmentofconsent.com npm run build:pages:inner",
+    "build:pages:inner": "vite build && node scripts/prepare-pages.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",

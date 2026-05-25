@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://juleshaggard.github.io/DepartmentofConsentGithubPages";
+const DEFAULT_SITE_URL = "https://departmentofconsent.com";
 
 export const siteUrl = (import.meta.env.VITE_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
 

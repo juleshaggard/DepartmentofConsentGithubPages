@@ -10,6 +10,10 @@ Static, guest-only GitHub Pages build of Department of Consent.
 
 Live site:
 
+https://departmentofconsent.com/
+
+GitHub Pages fallback:
+
 https://juleshaggard.github.io/DepartmentofConsentGithubPages/
 
 ## Development

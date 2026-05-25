@@ -36,7 +36,8 @@ jobs:
       - name: Build Pages artifact
         run: npm run build:pages
         env:
-          VITE_SITE_URL: https://juleshaggard.github.io/DepartmentofConsentGithubPages
+          DOC_PAGES_CUSTOM_DOMAIN: departmentofconsent.com
+          VITE_SITE_URL: https://departmentofconsent.com
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
