@@ -146,14 +146,14 @@ function NewSession() {
     };
   };
 
-  const save = async (status: "draft" | "shared" = "shared") => {
+  const save = async () => {
     setSaving(true);
     try {
       const created = await apiCreateSession({
         shareToken: session.shareToken,
         partnerHandle: "",
         date,
-        status,
+        status: "shared",
         ownerSide: buildSideForSave(),
       });
       navigate({ to: "/sessions/$sessionId", params: { sessionId: created.shareToken } });
@@ -514,11 +514,8 @@ function NewSession() {
               }}
             />
             <div className="flex flex-col items-center gap-3 pt-2">
-              <CloudButton onClick={saving ? undefined : () => save("shared")}>
+              <CloudButton onClick={saving ? undefined : save}>
                 {saving ? "Saving..." : "Save & get share link"}
-              </CloudButton>
-              <CloudButton variant="outline" onClick={saving ? undefined : () => save("draft")}>
-                Save as draft
               </CloudButton>
             </div>
           </Sticker>
