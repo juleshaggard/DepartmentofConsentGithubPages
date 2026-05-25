@@ -36,12 +36,6 @@ function SettingsPage() {
             <Button asChild>
               <Link to="/onboarding">Edit profile</Link>
             </Button>
-            <Link
-              to="/kinks"
-              className="text-sm text-link underline underline-offset-4 hover:opacity-80"
-            >
-              Edit kinks
-            </Link>
           </div>
         </Sticker>
 

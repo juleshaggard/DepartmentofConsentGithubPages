@@ -122,7 +122,7 @@ function Onboarding() {
           <CloudButton
             onClick={() => {
               setProfile(draft);
-              navigate({ to: "/kinks" });
+              navigate({ to: "/sessions/new" });
             }}
             className="cloud-btn-fluid"
           >

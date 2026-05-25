@@ -12,6 +12,5 @@
 ## Optional
 
 - [Onboarding](/onboarding): Set up your local profile.
-- [Your kinks & limits](/kinks): Rate kinks as yes / maybe / no.
 - [Your scenes](/sessions): List scenes saved in this browser.
 - [Profile & settings](/settings): Manage your local profile and clear browser data.

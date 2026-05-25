@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { useCloudSession } from "@/lib/useCloudSession";
-import { useKinks, useRatings, type SessionSide } from "@/lib/storage";
+import { useKinks, type SessionSide } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -22,7 +22,6 @@ function EditScene() {
   const { sessionId } = Route.useParams();
   const { session, update } = useCloudSession(sessionId);
   const [kinks] = useKinks();
-  const [ratings] = useRatings();
   const navigate = useNavigate();
 
   const [side, setSide] = useState<SessionSide | null>(null);
@@ -38,10 +37,7 @@ function EditScene() {
     }
   }, [session, side]);
 
-  const interestedKinks = useMemo(
-    () => kinks.filter((k) => ratings[k.id] === "yes" || ratings[k.id] === "maybe"),
-    [kinks, ratings],
-  );
+  const cravingKinks = useMemo(() => kinks, [kinks]);
 
   if (session === undefined || !side) {
     return (
@@ -120,17 +116,13 @@ function EditScene() {
           </Field>
           <div className="space-y-2">
             <Label className="doc-label">Pick what you're craving for this scene</Label>
-            {interestedKinks.length === 0 ? (
+            {cravingKinks.length === 0 ? (
               <p className="text-xs text-muted-foreground italic">
-                Rate some kinks on your{" "}
-                <Link to="/kinks" className="underline text-link">
-                  kinks page
-                </Link>
-                .
+                Add a custom craving from the new scene screen first.
               </p>
             ) : (
               <div className="flex flex-wrap gap-2 pt-1">
-                {interestedKinks.map((k) => {
+                {cravingKinks.map((k) => {
                   const selected = side.selectedKinks.includes(k.id);
                   return (
                     <button
