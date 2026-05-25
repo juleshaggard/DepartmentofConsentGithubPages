@@ -141,16 +141,16 @@ function Index() {
       </header>
 
       {/* 1. Hero */}
-      <section className="px-5 sm:px-10 pt-4 sm:pt-6 pb-6 sm:pb-8 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[5fr_6fr] gap-8 md:gap-10 items-center">
+      <section className="px-5 sm:px-10 pt-6 sm:pt-8 pb-8 sm:pb-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-[5fr_6fr] gap-9 md:gap-12 items-center">
           <div className="order-2 md:order-1 text-left">
             <p className="text-xs font-bold uppercase tracking-wide text-plum">
               Plan the scene before you're in it.
             </p>
-            <h1 className="font-display text-4xl sm:text-5xl text-plum leading-[1.05] mt-3">
+            <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02] mt-3 max-w-[15ch] sm:max-w-none">
               Build the kink scene you both actually want.
             </h1>
-            <p className="text-base text-foreground/75 leading-snug mt-4 max-w-md">
+            <p className="text-base sm:text-lg text-foreground/75 leading-snug mt-4 max-w-md">
               Compare boundaries, kinks, sex expectations, and dealbreakers before things get
               awkward, intense, or unsafe.
             </p>
@@ -164,7 +164,7 @@ function Index() {
               <p className="text-xs font-bold uppercase tracking-wide text-plum mb-3">
                 Trusted by communities worldwide
               </p>
-              <ul className="grid grid-cols-5 gap-3 max-w-md">
+              <ul className="grid grid-cols-5 gap-2 sm:gap-3 max-w-md">
                 {COMMUNITIES.map((c) => (
                   <li key={c.label} className="flex flex-col items-center text-center gap-1.5">
                     <img
@@ -173,7 +173,7 @@ function Index() {
                       aria-hidden
                       className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
                     />
-                    <span className="text-xs text-muted-foreground leading-tight whitespace-pre-line">
+                    <span className="text-[11px] sm:text-xs text-muted-foreground leading-tight whitespace-pre-line">
                       {c.label}
                     </span>
                   </li>
@@ -183,7 +183,7 @@ function Index() {
           </div>
 
           <div className="relative order-1 md:order-2">
-            <div className="relative rounded-xl overflow-hidden aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[5/4] bg-blush">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[5/4] bg-blush shadow-[0_22px_80px_oklch(0.22_0.04_20_/_0.08)]">
               <img
                 src={heroImg}
                 alt="Two partners resting together on soft sheets"
@@ -193,7 +193,7 @@ function Index() {
                 decoding="async"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-white rounded-md p-3 sm:p-6 space-y-2.5 sm:space-y-4">
+              <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-card/95 rounded-xl p-3 sm:p-6 space-y-2.5 sm:space-y-4 shadow-[0_18px_55px_oklch(0.22_0.04_20_/_0.12)]">
                 <div>
                   <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-yes mb-1">
                     Both want to play
@@ -233,11 +233,11 @@ function Index() {
       </section>
 
       {/* 1b. Testimonials */}
-      <section className="px-5 sm:px-10 py-6 sm:py-10 max-w-4xl mx-auto">
+      <section className="px-5 sm:px-10 py-8 sm:py-12 max-w-5xl mx-auto">
         <h2 className="font-sans text-xs font-bold uppercase tracking-wide text-plum text-center max-w-2xl mx-auto mb-6">
           People are tired of guessing about sex and kink.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
           {[
             {
               quote: "This removed so much awkwardness from kink negotiation.",
@@ -259,7 +259,7 @@ function Index() {
               pos: "center",
             },
           ].map((t) => (
-            <figure key={t.author} className="rounded-xl bg-white p-4 flex flex-col">
+            <figure key={t.author} className="feature-card p-4 sm:p-5 flex flex-col">
               <blockquote className="font-sans italic text-xs sm:text-sm text-plum leading-snug">
                 “{t.quote}”
               </blockquote>
@@ -281,101 +281,99 @@ function Index() {
       </section>
 
       {/* 2. "What are you into?" is not enough */}
-      <section className="px-4 sm:px-8 py-10 sm:py-14 max-w-7xl mx-auto">
-        <div className="bg-white rounded-xl px-5 sm:px-10 py-10 sm:py-14">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
-            {/* Left card */}
-            <div className="bg-white rounded-xl p-5 md:p-6 lg:p-10">
-              <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.05]">
-                <span className="italic">"What are you into?"</span>
-                <br />
-                is not enough.
-              </h2>
-              <p className="text-base text-foreground/75 leading-snug mt-4">
-                Good sex needs more than vibes.
-                <br />
-                It needs shared expectations.
-              </p>
-              <hr className="my-7 border-plum/10" />
-              <p className="text-sm font-bold text-plum mb-4">Before play, you need to know:</p>
-              <ul className="space-y-3 text-left">
-                {QUESTIONS.map((q) => (
-                  <li key={q} className="flex items-start gap-3 text-sm text-plum">
-                    <HelpCircle className="shrink-0 mt-0.5 w-5 h-5 text-coral" strokeWidth={2.25} />
-                    <span>{q}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-[0.95fr_1.05fr] gap-6 md:gap-10 items-stretch">
+          {/* Left card */}
+          <div className="feature-card p-6 md:p-8 lg:p-10">
+            <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.05]">
+              <span className="italic">"What are you into?"</span>
+              <br />
+              is not enough.
+            </h2>
+            <p className="text-base text-foreground/75 leading-snug mt-4">
+              Good sex needs more than vibes.
+              <br />
+              It needs shared expectations.
+            </p>
+            <hr className="my-7 border-plum/10" />
+            <p className="text-sm font-bold text-plum mb-4">Before play, you need to know:</p>
+            <ul className="space-y-3 text-left">
+              {QUESTIONS.map((q) => (
+                <li key={q} className="flex items-start gap-3 text-sm text-plum">
+                  <HelpCircle className="shrink-0 mt-0.5 w-5 h-5 text-coral" strokeWidth={2.25} />
+                  <span>{q}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Right pink box containing the kink menu screenshot */}
-            <div className="relative rounded-xl bg-blush/70 p-4 md:p-5 lg:p-8 flex items-center overflow-hidden">
-              <div className="relative z-0 bg-white rounded-xl p-4 md:p-4 lg:p-6 w-full flex flex-col">
-                <div className="flex flex-wrap gap-1.5">
-                  {KINK_CHIPS.map((c) => {
-                    if (!c.selected) {
-                      return (
-                        <span
-                          key={c.label}
-                          className="text-[10px] md:text-[10px] lg:text-[12px] px-2 md:px-2 lg:px-2.5 py-0.5 sm:py-1 rounded-full border border-plum/15 text-plum/80 bg-white whitespace-nowrap"
-                        >
-                          + {c.label}
-                        </span>
-                      );
-                    }
+          {/* Right pink box containing the kink menu screenshot */}
+          <div className="relative rounded-2xl bg-blush/70 p-4 md:p-5 lg:p-8 flex items-center overflow-hidden border border-coral/10">
+            <div className="relative z-0 bg-card/95 rounded-xl p-4 md:p-4 lg:p-6 w-full flex flex-col shadow-[0_16px_55px_oklch(0.22_0.04_20_/_0.05)]">
+              <div className="flex flex-wrap gap-1.5">
+                {KINK_CHIPS.map((c) => {
+                  if (!c.selected) {
                     return (
                       <span
                         key={c.label}
-                        className="inline-flex flex-wrap items-center gap-1 max-w-full text-[10px] md:text-[10px] lg:text-[12px] pl-2 md:pl-2 lg:pl-2.5 pr-1 py-0.5 rounded-full border border-yes/40 bg-yes/15 text-plum"
+                        className="text-[10px] md:text-[10px] lg:text-[12px] px-2 md:px-2 lg:px-2.5 py-0.5 sm:py-1 rounded-full border border-plum/15 text-plum/80 bg-white whitespace-nowrap"
                       >
-                        <span className="flex items-center gap-1 whitespace-nowrap">
-                          <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" strokeWidth={3} />
-                          {c.label}
-                        </span>
-                        <span className="flex items-center gap-0.5 ml-1">
-                          {(["give", "receive", "both"] as const).map((opt) => (
-                            <span
-                              key={opt}
-                              className={`text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded-full capitalize ${
-                                c.selected === opt
-                                  ? "bg-yes/60 text-plum font-semibold"
-                                  : "text-plum/60"
-                              }`}
-                            >
-                              {opt}
-                            </span>
-                          ))}
-                        </span>
+                        + {c.label}
                       </span>
                     );
-                  })}
-                </div>
-                <div className="mt-6 flex items-center gap-2">
-                  <input
-                    type="text"
-                    placeholder="Add your own kink..."
-                    readOnly
-                    className="flex-1 min-w-0 text-[13px] px-3 py-2 rounded-full border border-plum/15 bg-white text-plum/60 placeholder:text-plum/40 focus:outline-none"
-                  />
-                  <button
-                    type="button"
-                    disabled
-                    className="shrink-0 text-[13px] px-5 py-2 rounded-full bg-yes/40 text-plum/70 font-semibold"
-                  >
-                    Add
-                  </button>
-                </div>
+                  }
+                  return (
+                    <span
+                      key={c.label}
+                      className="inline-flex flex-wrap items-center gap-1 max-w-full text-[10px] md:text-[10px] lg:text-[12px] pl-2 md:pl-2 lg:pl-2.5 pr-1 py-0.5 rounded-full border border-yes/40 bg-yes/15 text-plum"
+                    >
+                      <span className="flex items-center gap-1 whitespace-nowrap">
+                        <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" strokeWidth={3} />
+                        {c.label}
+                      </span>
+                      <span className="flex items-center gap-0.5 ml-1">
+                        {(["give", "receive", "both"] as const).map((opt) => (
+                          <span
+                            key={opt}
+                            className={`text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded-full capitalize ${
+                              c.selected === opt
+                                ? "bg-yes/60 text-plum font-semibold"
+                                : "text-plum/60"
+                            }`}
+                          >
+                            {opt}
+                          </span>
+                        ))}
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
+              <div className="mt-6 flex items-center gap-2">
+                <input
+                  type="text"
+                  placeholder="Add your own kink..."
+                  readOnly
+                  className="flex-1 min-w-0 text-[13px] px-3 py-2 rounded-full border border-plum/15 bg-white text-plum/60 placeholder:text-plum/40 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  disabled
+                  className="shrink-0 text-[13px] px-5 py-2 rounded-full bg-yes/40 text-plum/70 font-semibold"
+                >
+                  Add
+                </button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Know before row */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-foreground/75">
-            <span className="font-bold text-plum">Know before:</span>
-            {KNOW_BEFORE.map((k) => (
-              <span key={k}>{k}</span>
-            ))}
-          </div>
+        {/* Know before row */}
+        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-foreground/75">
+          <span className="font-bold text-plum">Know before:</span>
+          {KNOW_BEFORE.map((k) => (
+            <span key={k}>{k}</span>
+          ))}
         </div>
       </section>
 
@@ -708,8 +706,8 @@ function Index() {
         <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] text-plum text-center max-w-2xl mx-auto">
           Everything you'd rather know beforehand.
         </h2>
-        <div className="rounded-xl overflow-hidden bg-white mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="feature-card overflow-hidden mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y divide-plum/10 sm:divide-y-0 sm:divide-x lg:divide-x-0">
             {[
               { title: "Hard limits", body: "Communicate non-negotiables clearly before meeting." },
               {
@@ -730,7 +728,7 @@ function Index() {
               },
               { title: "Revocable anytime", body: "Boundaries can change at any moment." },
             ].map((f) => (
-              <div key={f.title} className="p-6 sm:p-8">
+              <div key={f.title} className="p-6 sm:p-8 lg:border-r lg:border-b lg:border-plum/10">
                 <h3 className="font-display text-xl text-plum">{f.title}</h3>
                 <p className="text-sm text-foreground/75 mt-2 leading-snug">{f.body}</p>
               </div>
@@ -741,7 +739,7 @@ function Index() {
 
       {/* 5c. Trust / Safety */}
       <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-5xl mx-auto">
-        <div className="rounded-xl bg-white p-8 sm:p-12">
+        <div className="feature-card p-8 sm:p-12">
           <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] text-plum text-center max-w-2xl mx-auto">
             Built for privacy and clarity.
           </h2>

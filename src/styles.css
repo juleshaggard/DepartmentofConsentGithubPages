@@ -4,8 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
-
 /*
  * Department of Consent — coquette + cloud-button design.
  * Cream + soft pink surfaces, hot-pink + coral red borders, mint accent CTA.
@@ -97,13 +95,13 @@
   --input: oklch(0.9 0.04 12);
   --ring: oklch(0.66 0.23 22);
 
-  --blush: oklch(0.93 0.045 5);          /* soft pink card */
-  --pinkbg: oklch(0.965 0.018 50);       /* matches cream background */
-  --coral: oklch(0.66 0.23 22);          /* coral-red border */
-  --plum: oklch(0.22 0.04 20);           /* near-black text */
+  --blush: oklch(0.93 0.045 5); /* soft pink card */
+  --pinkbg: oklch(0.965 0.018 50); /* matches cream background */
+  --coral: oklch(0.66 0.23 22); /* coral-red border */
+  --plum: oklch(0.22 0.04 20); /* near-black text */
   --cream: oklch(0.965 0.018 50);
-  --mint: oklch(0.78 0.12 165);          /* CTA mint/teal */
-  --link: #2b1213;                        /* default link color */
+  --mint: oklch(0.78 0.12 165); /* CTA mint/teal */
+  --link: #2b1213; /* default link color */
 
   --yes: oklch(0.78 0.12 165);
   --maybe: oklch(0.82 0.13 75);
@@ -145,12 +143,17 @@
   * {
     border-color: var(--color-border);
   }
-  html, body {
+  html,
+  body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3, h4, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
     font-weight: 400;
@@ -159,14 +162,16 @@
 
 @layer utilities {
   .sticker {
-    background: #ffffff;
-    border: 0;
+    background: oklch(0.995 0.006 35);
+    border: 1px solid oklch(0.88 0.035 20 / 0.28);
     border-radius: var(--radius-2xl);
+    box-shadow: 0 14px 55px oklch(0.22 0.04 20 / 0.045);
   }
   .sticker-coral {
-    background: #ffffff;
-    border: 0;
+    background: oklch(0.995 0.006 35);
+    border: 1px solid oklch(0.66 0.18 22 / 0.18);
     border-radius: var(--radius-2xl);
+    box-shadow: 0 14px 55px oklch(0.22 0.04 20 / 0.045);
   }
   .doc-input {
     width: 100%;
@@ -177,9 +182,13 @@
     font-family: var(--font-sans);
     font-size: 0.95rem;
     color: var(--color-foreground);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
   }
-  .doc-input::placeholder { color: oklch(0.65 0.03 20); }
+  .doc-input::placeholder {
+    color: oklch(0.65 0.03 20);
+  }
   .doc-input:focus {
     outline: none;
     border-color: var(--color-coral);
@@ -227,7 +236,9 @@
     cursor: pointer;
     text-align: center;
     line-height: 1.1;
-    transition: filter 0.3s ease, transform 0.2s ease;
+    transition:
+      filter 0.3s ease,
+      transform 0.2s ease;
     white-space: nowrap;
   }
   .cloud-btn > span {
@@ -303,14 +314,24 @@
     letter-spacing: -0.02em;
     text-align: center;
   }
-  .lt-blue   { color: #3b3ad6; }
-  .lt-coral  { color: #ec5b46; }
-  .lt-teal   { color: #1f8a7a; }
-  .lt-purple { color: #6b3ebf; }
+  .lt-blue {
+    color: #3b3ad6;
+  }
+  .lt-coral {
+    color: #ec5b46;
+  }
+  .lt-teal {
+    color: #1f8a7a;
+  }
+  .lt-purple {
+    color: #6b3ebf;
+  }
 
   .feature-card {
-    background: #ffffff;
+    background: oklch(0.995 0.006 35);
+    border: 1px solid oklch(0.88 0.035 20 / 0.28);
     border-radius: 0.75rem;
+    box-shadow: 0 16px 65px oklch(0.22 0.04 20 / 0.04);
   }
 }
 
@@ -322,14 +343,32 @@
     animation: whip-loop 0.9s steps(1) infinite;
   }
   @keyframes whip-loop {
-    0%    { background-position: 0%   0%; }
-    12.5% { background-position: 33.333% 0%; }
-    25%   { background-position: 66.666% 0%; }
-    37.5% { background-position: 100% 0%; }
-    50%   { background-position: 0%   100%; }
-    62.5% { background-position: 33.333% 100%; }
-    75%   { background-position: 66.666% 100%; }
-    87.5% { background-position: 100% 100%; }
-    100%  { background-position: 0%   0%; }
+    0% {
+      background-position: 0% 0%;
+    }
+    12.5% {
+      background-position: 33.333% 0%;
+    }
+    25% {
+      background-position: 66.666% 0%;
+    }
+    37.5% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 0% 100%;
+    }
+    62.5% {
+      background-position: 33.333% 100%;
+    }
+    75% {
+      background-position: 66.666% 100%;
+    }
+    87.5% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
   }
 }

@@ -1,7 +1,7 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
-import { Button } from "@/components/ui/button";
+import { CloudButton } from "@/components/CloudButton";
 import { clearGuestData, emptyProfile, useProfile } from "@/lib/storage";
 
 export const Route = createFileRoute("/settings")({
@@ -22,7 +22,10 @@ function SettingsPage() {
   return (
     <Layout>
       <div className="space-y-5">
-        <h1 className="font-display text-3xl text-plum text-center">Profile</h1>
+        <div className="text-center space-y-1">
+          <h1 className="font-display text-4xl text-plum">Profile</h1>
+          <p className="text-sm text-muted-foreground">Saved locally in this browser.</p>
+        </div>
 
         <Sticker className="space-y-2">
           <Row label="Name" value={profile.name} />
@@ -32,10 +35,10 @@ function SettingsPage() {
           <Row label="Healthcare" value={profile.healthcare} />
           <Row label="Emergency contact" value={profile.emergencyContact} />
           <Row label="Default aftercare" value={profile.defaultAftercare} />
-          <div className="flex flex-col items-center gap-3 pt-2">
-            <Button asChild>
-              <Link to="/onboarding">Edit profile</Link>
-            </Button>
+          <div className="flex flex-col items-center gap-3 pt-3">
+            <CloudButton to="/onboarding" variant="outline" className="cloud-btn-sm">
+              Edit profile
+            </CloudButton>
           </div>
         </Sticker>
 
@@ -46,9 +49,13 @@ function SettingsPage() {
             scene data for people you send them to.
           </p>
           <div className="flex flex-col items-center gap-2 pt-2">
-            <Button variant="outline" onClick={() => setProfile(emptyProfile)}>
+            <CloudButton
+              variant="outline"
+              onClick={() => setProfile(emptyProfile)}
+              className="cloud-btn-sm"
+            >
               Reset profile
-            </Button>
+            </CloudButton>
             <button
               onClick={clearAll}
               className="text-sm font-semibold text-destructive underline underline-offset-4 hover:opacity-80"

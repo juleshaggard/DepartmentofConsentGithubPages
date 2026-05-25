@@ -29,7 +29,9 @@ export function Layout({
         </header>
       )}
       <main
-        className={fullBleed ? "flex-1 pb-28" : "flex-1 max-w-2xl w-full mx-auto px-5 pt-4 pb-32"}
+        className={
+          fullBleed ? "flex-1 pb-24" : "flex-1 max-w-2xl w-full mx-auto px-5 pt-5 pb-40 sm:pt-6"
+        }
       >
         {children}
       </main>
@@ -47,7 +49,7 @@ function BottomNav() {
     { to: "/settings", label: "Profile", Icon: User, exact: false },
   ] as const;
   return (
-    <nav className="fixed bottom-4 left-4 right-4 z-40 bg-white rounded-full shadow-lg max-w-md mx-auto">
+    <nav className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md rounded-full border border-coral/10 bg-card/95 shadow-[0_14px_45px_oklch(0.22_0.04_20_/_0.14)] backdrop-blur-sm">
       <ul className="grid grid-cols-3">
         {items.map(({ to, label, Icon, exact }) => (
           <li key={to}>

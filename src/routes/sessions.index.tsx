@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
-import { Button } from "@/components/ui/button";
 import { CloudButton } from "@/components/CloudButton";
 import { useMySessions, useKinks, generateSceneTitle } from "@/lib/storage";
 import { Calendar } from "lucide-react";
@@ -37,15 +36,17 @@ function SessionsList() {
         )}
 
         {!isLoading && sorted.length === 0 && (
-          <Sticker className="text-center space-y-3 py-10">
+          <Sticker className="text-center space-y-4 py-10 sm:py-12">
             <img src={emptySessionsImg} alt="" className="h-32 w-32 mx-auto object-contain" />
             <p className="font-display text-lg text-plum">No scenes yet</p>
             <p className="text-sm text-muted-foreground">
               Your first negotiation is just a tap away.
             </p>
-            <Button asChild className="rounded-full">
-              <Link to="/sessions/new">Create one</Link>
-            </Button>
+            <div className="flex justify-center pt-1">
+              <CloudButton to="/sessions/new" className="cloud-btn-sm">
+                Create one
+              </CloudButton>
+            </div>
           </Sticker>
         )}
 
