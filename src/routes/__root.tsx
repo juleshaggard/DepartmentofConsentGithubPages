@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
   createRootRouteWithContext,
+  useLocation,
   useRouter,
   HeadContent,
   Scripts,
@@ -11,6 +13,32 @@ import { Toaster } from "@/components/ui/sonner";
 import { publicSiteUrl, withBasePath } from "@/lib/app-url";
 
 import appCss from "../styles.css?url";
+
+const GOOGLE_ANALYTICS_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+
+const googleAnalyticsScripts = GOOGLE_ANALYTICS_ID
+  ? [
+      {
+        async: true,
+        src: `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`,
+      },
+      {
+        children: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });
+`,
+      },
+    ]
+  : [];
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 function NotFoundComponent() {
   return (
@@ -120,6 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      ...googleAnalyticsScripts,
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -167,8 +196,26 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AnalyticsPageView />
       <Outlet />
       <Toaster />
     </QueryClientProvider>
   );
+}
+
+function AnalyticsPageView() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!GOOGLE_ANALYTICS_ID || typeof window.gtag !== "function") return;
+
+    const pagePath = `${location.pathname}${location.searchStr}`;
+    window.gtag("event", "page_view", {
+      page_title: document.title,
+      page_location: `${window.location.origin}${pagePath}`,
+      page_path: pagePath,
+    });
+  }, [location.pathname, location.searchStr]);
+
+  return null;
 }

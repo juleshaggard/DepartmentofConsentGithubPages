@@ -38,6 +38,7 @@ jobs:
         env:
           DOC_PAGES_CUSTOM_DOMAIN: departmentofconsent.com
           VITE_SITE_URL: https://departmentofconsent.com
+          VITE_GOOGLE_ANALYTICS_ID: G-GYYJEDCDTZ
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
