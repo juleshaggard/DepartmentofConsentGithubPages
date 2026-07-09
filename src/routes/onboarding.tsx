@@ -42,10 +42,10 @@ function Onboarding() {
     <Layout>
       <div className="space-y-6">
         <div className="text-center pt-2">
-          <h1 className="font-display text-5xl text-foreground tracking-tight">
+          <h1 className="font-display text-[2.8rem] sm:text-5xl text-foreground leading-[1]">
             Tell us about you
           </h1>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-sm text-muted-foreground mt-2 leading-[1.45]">
             Saved in this browser. You can change anything later.
           </p>
         </div>
@@ -107,14 +107,14 @@ function Onboarding() {
 
         <Sticker className="space-y-2">
           <div className="doc-label">Your default safewords</div>
-          <p className="text-xs text-muted-foreground -mt-1">
+          <p className="text-xs text-muted-foreground -mt-1 leading-[1.45]">
             Pre-filled with a common set. Edit to taste.
           </p>
           <Textarea
             value={draft.defaultSafewords}
             onChange={(e) => update("defaultSafewords", e.target.value)}
             rows={14}
-            className="font-mono text-xs"
+            className="font-mono text-xs leading-[1.45]"
           />
         </Sticker>
 
@@ -122,7 +122,7 @@ function Onboarding() {
           <CloudButton
             onClick={() => {
               setProfile(draft);
-              navigate({ to: "/kinks" });
+              navigate({ to: "/sessions/new" });
             }}
             className="cloud-btn-fluid"
           >

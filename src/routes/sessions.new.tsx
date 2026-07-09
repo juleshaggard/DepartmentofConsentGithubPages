@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { nanoid } from "nanoid";
 import { toast } from "sonner";
@@ -23,9 +23,7 @@ import { cn } from "@/lib/utils";
 
 import {
   useProfile,
-  useRatings,
   useKinks,
-  useDirections,
   newSession,
   DEFAULT_SAFEWORD_ITEMS,
   type SessionSide,
@@ -55,12 +53,10 @@ const STEPS = ["Vibe", "Cravings", "Logistics", "Boundaries", "Care", "Review"];
 
 function NewSession() {
   const [profile] = useProfile();
-  const [ratings, setRatings] = useRatings();
-  const [directions] = useDirections();
   const [kinks, setKinks] = useKinks();
   const navigate = useNavigate();
 
-  const [session] = useState(() => newSession(profile, ratings, "", directions));
+  const [session] = useState(() => newSession(profile, {}, ""));
   const [side, setSide] = useState<SessionSide>(session.ownerSide);
   const [date, setDate] = useState(session.date);
   const [step, setStep] = useState(0);
@@ -80,10 +76,7 @@ function NewSession() {
   const [extraNote, setExtraNote] = useState("");
 
   // Chip-based cravings selection
-  const interestedKinks = useMemo(
-    () => kinks.filter((k) => ratings[k.id] === "yes" || ratings[k.id] === "maybe"),
-    [kinks, ratings],
-  );
+  const cravingKinks = useMemo(() => kinks, [kinks]);
   const [hellYesIds, setHellYesIds] = useState<string[]>([]);
   const [newKink, setNewKink] = useState("");
 
@@ -114,7 +107,6 @@ function NewSession() {
     if (!name) return;
     const id = "c_" + nanoid(8);
     setKinks((p) => [...p, { id, name, category: "Custom", custom: true }]);
-    setRatings((p) => ({ ...p, [id]: "yes" }));
     setSide((p) => ({ ...p, selectedKinks: [...p.selectedKinks, id] }));
     setNewKink("");
   };
@@ -154,14 +146,14 @@ function NewSession() {
     };
   };
 
-  const save = async (status: "draft" | "shared" = "shared") => {
+  const save = async () => {
     setSaving(true);
     try {
       const created = await apiCreateSession({
         shareToken: session.shareToken,
         partnerHandle: "",
         date,
-        status,
+        status: "shared",
         ownerSide: buildSideForSave(),
       });
       navigate({ to: "/sessions/$sessionId", params: { sessionId: created.shareToken } });
@@ -263,17 +255,13 @@ function NewSession() {
             <p className="text-xs text-muted-foreground">
               Tap to add to your scene. Then choose give / receive / both. Star a hell-yes.
             </p>
-            {interestedKinks.length === 0 ? (
+            {cravingKinks.length === 0 ? (
               <div className="rounded-2xl border-2 border-dashed border-border/40 p-6 text-center text-sm text-muted-foreground">
-                Rate some kinks on your{" "}
-                <Link to="/kinks" className="underline text-link">
-                  kinks page
-                </Link>{" "}
-                first.
+                Add a custom craving below to start building your scene.
               </div>
             ) : (
               <CravingsPicker
-                items={interestedKinks.map((k) => ({ id: k.id, name: k.name }))}
+                items={cravingKinks.map((k) => ({ id: k.id, name: k.name }))}
                 selectedIds={side.selectedKinks}
                 directions={side.directions || {}}
                 onToggle={toggleKink}
@@ -526,11 +514,8 @@ function NewSession() {
               }}
             />
             <div className="flex flex-col items-center gap-3 pt-2">
-              <CloudButton onClick={saving ? undefined : () => save("shared")}>
+              <CloudButton onClick={saving ? undefined : save}>
                 {saving ? "Saving..." : "Save & get share link"}
-              </CloudButton>
-              <CloudButton variant="outline" onClick={saving ? undefined : () => save("draft")}>
-                Save as draft
               </CloudButton>
             </div>
           </Sticker>

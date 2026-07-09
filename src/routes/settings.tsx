@@ -1,7 +1,7 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
-import { Button } from "@/components/ui/button";
+import { CloudButton } from "@/components/CloudButton";
 import { clearGuestData, emptyProfile, useProfile } from "@/lib/storage";
 
 export const Route = createFileRoute("/settings")({
@@ -22,7 +22,12 @@ function SettingsPage() {
   return (
     <Layout>
       <div className="space-y-5">
-        <h1 className="font-display text-3xl text-plum text-center">Profile</h1>
+        <div className="text-center space-y-1">
+          <h1 className="font-display text-[2.6rem] text-plum leading-[1]">Profile</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">
+            Saved locally in this browser.
+          </p>
+        </div>
 
         <Sticker className="space-y-2">
           <Row label="Name" value={profile.name} />
@@ -32,29 +37,29 @@ function SettingsPage() {
           <Row label="Healthcare" value={profile.healthcare} />
           <Row label="Emergency contact" value={profile.emergencyContact} />
           <Row label="Default aftercare" value={profile.defaultAftercare} />
-          <div className="flex flex-col items-center gap-3 pt-2">
-            <Button asChild>
-              <Link to="/onboarding">Edit profile</Link>
-            </Button>
-            <Link
-              to="/kinks"
-              className="text-sm text-link underline underline-offset-4 hover:opacity-80"
-            >
-              Edit kinks
-            </Link>
+          <div className="flex flex-col items-center gap-3 pt-3">
+            <CloudButton to="/onboarding" variant="outline" className="cloud-btn-sm">
+              Edit profile
+            </CloudButton>
           </div>
         </Sticker>
 
         <Sticker variant="coral" className="space-y-2">
-          <h2 className="font-display text-plum text-center font-normal text-3xl">Your data</h2>
-          <p className="text-xs text-muted-foreground">
+          <h2 className="font-display text-plum text-center font-normal text-3xl leading-[1.05]">
+            Your data
+          </h2>
+          <p className="text-xs text-muted-foreground leading-[1.45]">
             This static version saves data only in this browser. Share and response links carry
             scene data for people you send them to.
           </p>
           <div className="flex flex-col items-center gap-2 pt-2">
-            <Button variant="outline" onClick={() => setProfile(emptyProfile)}>
+            <CloudButton
+              variant="outline"
+              onClick={() => setProfile(emptyProfile)}
+              className="cloud-btn-sm"
+            >
               Reset profile
-            </Button>
+            </CloudButton>
             <button
               onClick={clearAll}
               className="text-sm font-semibold text-destructive underline underline-offset-4 hover:opacity-80"
@@ -71,10 +76,8 @@ function SettingsPage() {
 function Row({ label, value }: { label: string; value?: string }) {
   return (
     <div className="border-b border-border/40 py-2 last:border-b-0">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-        {label}
-      </div>
-      <div className="text-sm whitespace-pre-wrap">{value?.trim() || "Not set"}</div>
+      <div className="text-[11px] text-muted-foreground font-semibold">{label}</div>
+      <div className="text-sm whitespace-pre-wrap leading-[1.45]">{value?.trim() || "Not set"}</div>
     </div>
   );
 }

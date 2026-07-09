@@ -14,9 +14,9 @@ import { decodeVibe } from "@/lib/sceneVocab";
 import { VibePills } from "@/components/scene/VibePills";
 import { useCloudSession } from "@/lib/useCloudSession";
 import { sceneUrl } from "@/lib/sceneLinks";
-import { QRCodeSVG } from "qrcode.react";
 import { Heart, Trash2 } from "lucide-react";
 import { CloudButton } from "@/components/CloudButton";
+import { SceneShareCard } from "@/components/SceneShareCard";
 import {
   Accordion,
   AccordionItem,
@@ -36,7 +36,6 @@ function SessionDetail() {
   const [kinks] = useKinks();
   const [profile] = useProfile();
   const navigate = useNavigate();
-  const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
   const { session, error, remove: removeSession } = useCloudSession(sessionId);
 
@@ -73,12 +72,6 @@ function SessionDetail() {
     );
   }
 
-  const copy = async () => {
-    await navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
   const remove = async () => {
     if (!confirm("Delete this scene? This removes it from this browser.")) return;
     await removeSession();
@@ -94,33 +87,27 @@ function SessionDetail() {
       <div className="space-y-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h1 className="font-display text-3xl text-plum">
+            <h1 className="font-display text-[2rem] text-plum leading-[1.05]">
               {generateSceneTitle(o, kinkMap) || session.partnerHandle || "Untitled scene"}
             </h1>
-            <p className="text-sm text-muted-foreground">{session.date}</p>
+            <p className="text-sm text-muted-foreground leading-[1.45]">{session.date}</p>
           </div>
-          <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-blush text-plum font-semibold">
+          <span className="text-[10px] px-2 py-1 rounded-full bg-blush text-plum font-semibold">
             {session.status}
           </span>
         </div>
 
-        <Sticker className="text-center space-y-3">
-          <h2 className="font-display text-2xl text-plum text-center">
-            Share with your play partner
-          </h2>
-          <div className="flex justify-center bg-card p-3 rounded-xl">
-            <QRCodeSVG value={shareUrl || " "} size={180} fgColor="#c2185b" bgColor="transparent" />
-          </div>
-          <div className="flex justify-center pt-1">
-            <CloudButton variant="mint" onClick={shareUrl ? copy : undefined}>
-              {copied ? "Copied!" : "Copy invite link"}
-            </CloudButton>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            This static version stores scene data in the link. Your play partner submits by copying
-            a response link back to you.
-          </p>
-        </Sticker>
+        <SceneShareCard
+          title="Share with your play partner"
+          url={shareUrl}
+          copyLabel="Copy invite link"
+          description={
+            <>
+              This static version stores scene data in the link. Your play partner submits by
+              copying a response link back to you.
+            </>
+          }
+        />
 
         <ParticipantsSection
           participants={[
@@ -229,9 +216,7 @@ function SideDetail({ title, value }: { title: string; value: string | undefined
   if (!value?.trim()) return null;
   return (
     <div className="border-b border-border/40 pb-2">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-        {title}
-      </div>
+      <div className="text-[10px] uppercase text-muted-foreground font-semibold">{title}</div>
       <div className="text-sm whitespace-pre-wrap">{value}</div>
     </div>
   );
@@ -387,7 +372,7 @@ function VisionBlock({
   if (!hasVibe && (!side.selectedKinks || side.selectedKinks.length === 0)) return null;
   return (
     <div className="space-y-2">
-      <div className="text-[11px] uppercase tracking-wider text-plum font-bold">{name}</div>
+      <div className="text-[11px] uppercase text-plum font-bold">{name}</div>
       {hasVibe && (
         <div className="flex flex-wrap gap-1.5">
           {v.moods.map((m) => (
@@ -472,9 +457,7 @@ function PrivacySexConsensus({
       <div className="space-y-3">
         {rows.map((r) => (
           <div key={r.label} className="space-y-1">
-            <div className="text-[11px] uppercase tracking-wider text-plum/70 font-bold">
-              {r.label}
-            </div>
+            <div className="text-[11px] uppercase text-plum/70 font-bold">{r.label}</div>
             {r.allAgree ? (
               <div className="flex items-center gap-2 flex-wrap">
                 <span
@@ -482,7 +465,7 @@ function PrivacySexConsensus({
                 >
                   {r.agreedValue}
                 </span>
-                <span className="text-[10px] uppercase tracking-wider text-plum/60 font-semibold">
+                <span className="text-[10px] uppercase text-plum/60 font-semibold">
                   Everyone agrees
                 </span>
               </div>
@@ -536,7 +519,7 @@ function SafewordsSection({
       {allSameDefaults
         ? perPerson[0].defaults.length > 0 && (
             <div className="space-y-1.5">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+              <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                 Everyone agreed
               </div>
               <ul className="space-y-1">
@@ -551,7 +534,7 @@ function SafewordsSection({
         : perPerson.map((p, i) =>
             p.defaults.length > 0 ? (
               <div key={`d-${i}`} className="space-y-1.5">
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                <div className="text-[10px] uppercase text-muted-foreground font-semibold">
                   {p.name}
                 </div>
                 <ul className="space-y-1">
@@ -568,7 +551,7 @@ function SafewordsSection({
       {perPerson.map((p, i) =>
         p.customs.length > 0 ? (
           <div key={`c-${i}`} className="space-y-1.5 pt-1">
-            <div className="text-[10px] uppercase tracking-wider text-destructive font-semibold">
+            <div className="text-[10px] uppercase text-destructive font-semibold">
               {p.name}'s custom safeword{p.customs.length > 1 ? "s" : ""}
             </div>
             <ul className="space-y-1">
@@ -617,13 +600,13 @@ function ParticipantsSection({
               {hasContact && (
                 <Accordion type="single" collapsible className="pt-1">
                   <AccordionItem value="contact" className="border-none">
-                    <AccordionTrigger className="py-1.5 text-[10px] uppercase tracking-wider text-plum/70 font-semibold hover:no-underline">
+                    <AccordionTrigger className="py-1.5 text-[10px] uppercase text-plum/70 font-semibold hover:no-underline">
                       Emergency contact
                     </AccordionTrigger>
                     <AccordionContent className="space-y-2 pt-1">
                       {p.side.healthcare?.trim() && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wider text-plum/70 font-semibold">
+                          <div className="text-[10px] uppercase text-plum/70 font-semibold">
                             Health insurance
                           </div>
                           <div className="text-sm whitespace-pre-wrap">{p.side.healthcare}</div>
@@ -631,7 +614,7 @@ function ParticipantsSection({
                       )}
                       {p.side.emergencyContact?.trim() && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wider text-plum/70 font-semibold">
+                          <div className="text-[10px] uppercase text-plum/70 font-semibold">
                             Emergency contact
                           </div>
                           <div className="text-sm whitespace-pre-wrap">
@@ -731,7 +714,7 @@ function SideChat({
             key={`${s.kind}-${s.label}`}
             className={`px-3 py-2 space-y-1 ${idx % 2 === 0 ? "bg-plum/[0.04]" : "bg-transparent"}`}
           >
-            <div className="text-[10px] uppercase tracking-wider text-plum/60 font-bold text-center">
+            <div className="text-[10px] uppercase text-plum/60 font-bold text-center">
               {s.label}
             </div>
             <div className="space-y-1">
@@ -778,11 +761,9 @@ function ChatBubble({
 }) {
   return (
     <div className={`flex flex-col ${isOwner ? "items-start" : "items-end"}`}>
-      <div className="text-[8px] uppercase tracking-wide text-plum/60 font-semibold mb-0.5 px-1">
-        {name}
-      </div>
+      <div className="text-[8px] uppercase text-plum/60 font-semibold mb-0.5 px-1">{name}</div>
       <div
-        className={`max-w-[82%] text-[11px] leading-snug px-2.5 py-1 border border-plum/20 ${
+        className={`max-w-[82%] text-[11px] leading-[1.35] px-2.5 py-1 border border-plum/20 ${
           isOwner ? "bg-card rounded-2xl rounded-bl-sm" : "bg-blush rounded-2xl rounded-br-sm"
         }`}
       >

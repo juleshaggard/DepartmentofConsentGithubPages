@@ -13,7 +13,7 @@ export function IntensitySlider({
 }) {
   return (
     <div className="space-y-2">
-      <div className="flex justify-between text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
+      <div className="flex justify-between text-[11px] text-muted-foreground font-semibold">
         <span>Cozy</span>
         <span>Edge</span>
       </div>
@@ -27,7 +27,7 @@ export function IntensitySlider({
               type="button"
               onClick={() => onChange(n)}
               className={cn(
-                "flex-1 h-12 rounded-xl border-2 font-display text-xl transition flex items-center justify-center",
+                "flex-1 h-12 rounded-xl border-2 font-sans text-base font-semibold transition flex items-center justify-center tabular-nums",
                 active
                   ? "bg-coral text-white border-coral"
                   : ghost

@@ -17,16 +17,7 @@ const siteUrl = (
   process.env.VITE_SITE_URL || "https://juleshaggard.github.io/DepartmentofConsentGithubPages"
 ).replace(/\/$/, "");
 
-const paths = [
-  "/",
-  "/privacy",
-  "/terms",
-  "/sessions",
-  "/sessions/new",
-  "/onboarding",
-  "/kinks",
-  "/settings",
-];
+const paths = ["/", "/privacy", "/terms", "/sessions", "/sessions/new", "/onboarding", "/settings"];
 
 const urls = paths
   .map(

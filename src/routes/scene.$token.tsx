@@ -3,12 +3,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/ui/button";
+import { SceneShareCard } from "@/components/SceneShareCard";
 import { useCloudSession } from "@/lib/useCloudSession";
 import { useKinks, type SessionSide } from "@/lib/storage";
 import { sceneUrl } from "@/lib/sceneLinks";
 import { VibePills } from "@/components/scene/VibePills";
 import { useEffect, useMemo, useState } from "react";
-import { Copy } from "lucide-react";
 
 export const Route = createFileRoute("/scene/$token")({
   head: () => ({
@@ -35,7 +35,6 @@ function SceneRecap() {
   const { token } = Route.useParams();
   const { session } = useCloudSession(token);
   const [kinks] = useKinks();
-  const [copied, setCopied] = useState(false);
   const [url, setUrl] = useState("");
   const kinkMap = useMemo(() => Object.fromEntries(kinks.map((k) => [k.id, k.name])), [kinks]);
 
@@ -64,34 +63,22 @@ function SceneRecap() {
   const o = session.ownerSide;
   const partners = session.partnerSides ?? (session.partnerSide ? [session.partnerSide] : []);
   const ownerName = o.name?.trim() || "Creator";
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
+  const sceneMeta = [session.partnerHandle, session.date].filter(Boolean).join(" · ");
 
   return (
     <Layout>
       <div className="space-y-5">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-plum">Scene recap</h1>
-          <p className="text-sm text-muted-foreground">
-            {session.partnerHandle} · {session.date}
-          </p>
+          <h1 className="font-display text-[2rem] text-plum leading-[1.05]">Scene recap</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">{sceneMeta}</p>
         </div>
 
-        <Sticker variant="coral" className="text-center space-y-2">
-          <div className="font-display text-base text-plum">Permalink</div>
-          <button
-            onClick={copy}
-            className="text-xs flex items-center gap-1 mx-auto text-muted-foreground hover:text-primary break-all"
-          >
-            <Copy className="h-3 w-3 shrink-0" />
-            {copied ? "Copied!" : url}
-          </button>
-          <p className="text-[11px] text-muted-foreground">Share this with anyone in the scene.</p>
-        </Sticker>
+        <SceneShareCard
+          title="Share this scene recap"
+          url={url}
+          copyLabel="Copy recap link"
+          description="Share this with anyone in the scene."
+        />
 
         <SideRecap title={`${ownerName}'s side`} side={o} kinkMap={kinkMap} />
         {partners.map((ps, i) => (
@@ -134,10 +121,10 @@ function SideRecap({
 
   return (
     <Sticker className="space-y-3">
-      <div className="font-display text-lg text-plum">{title}</div>
+      <div className="font-display text-xl text-plum leading-[1.05]">{title}</div>
       {side.vision && (
         <div>
-          <div className="text-[10px] uppercase tracking-wider text-plum font-bold">Vibe</div>
+          <div className="text-[11px] text-plum/70 font-semibold">Vibe</div>
           <VibePills raw={side.vision} />
         </div>
       )}
@@ -169,10 +156,8 @@ function Detail({ title, value }: { title: string; value: string }) {
   if (!value?.trim()) return null;
   return (
     <div className="border-b border-border/40 pb-2">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-        {title}
-      </div>
-      <div className="text-sm whitespace-pre-wrap">{value}</div>
+      <div className="text-[11px] text-muted-foreground font-semibold">{title}</div>
+      <div className="text-sm whitespace-pre-wrap leading-[1.45]">{value}</div>
     </div>
   );
 }
@@ -180,7 +165,7 @@ function Detail({ title, value }: { title: string; value: string }) {
 function Pills({ label, items, cls }: { label: string; items: string[]; cls: string }) {
   return (
     <div>
-      <div className="text-xs font-semibold uppercase mt-3 mb-1">{label}</div>
+      <div className="text-xs font-semibold mt-3 mb-1">{label}</div>
       <div className="flex flex-wrap gap-1">
         {items.map((n) => (
           <span key={n} className={`text-xs ${cls} px-2 py-0.5 rounded-full`}>

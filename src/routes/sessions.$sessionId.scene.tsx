@@ -59,6 +59,7 @@ function ScenePage() {
       role: "Partner",
     })),
   ];
+  const sceneMeta = [session.partnerHandle, session.date].filter(Boolean).join(" · ");
 
   const sceneSides = [
     { name: ownerName, side: o },
@@ -97,10 +98,8 @@ function ScenePage() {
     <Layout>
       <div className="space-y-4">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-plum">In-scene card</h1>
-          <p className="text-sm text-muted-foreground">
-            {session.partnerHandle} · {session.date}
-          </p>
+          <h1 className="font-display text-[2rem] text-plum leading-[1.05]">In-scene card</h1>
+          <p className="text-sm text-muted-foreground leading-[1.45]">{sceneMeta}</p>
         </div>
 
         {(() => {
@@ -138,9 +137,7 @@ function ScenePage() {
             <Sticker className="space-y-5">
               {bothPlay.length > 0 && (
                 <div className="space-y-2">
-                  <div className="text-base font-bold uppercase tracking-wider text-yes">
-                    Both want to play
-                  </div>
+                  <div className="text-base font-bold uppercase text-yes">Both want to play</div>
                   <p className="text-sm text-muted-foreground">
                     Cravings everyone picked for this scene.
                   </p>
@@ -155,9 +152,7 @@ function ScenePage() {
               )}
               {discuss.length > 0 && (
                 <div className="space-y-2">
-                  <div className="text-base font-bold uppercase tracking-wider text-maybe">
-                    Discuss
-                  </div>
+                  <div className="text-base font-bold uppercase text-maybe">Discuss</div>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {discuss.map((n) => (
                       <span key={n} className={`${pillBase} bg-maybe/25 border-maybe text-plum`}>
@@ -169,7 +164,7 @@ function ScenePage() {
               )}
               {hardLimit.length > 0 && (
                 <div className="space-y-2">
-                  <div className="text-base font-bold uppercase tracking-wider text-plum">
+                  <div className="text-base font-bold uppercase text-plum">
                     Hard limit from one side
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">

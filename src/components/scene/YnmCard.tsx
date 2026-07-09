@@ -25,14 +25,12 @@ export function YnmCard({
   return (
     <div className="rounded-2xl border-2 border-border/40 bg-white p-4 space-y-3">
       <div>
-        <div className="font-display text-xl text-plum leading-tight">{label}</div>
-        {hint && <p className="text-xs text-muted-foreground mt-1">{hint}</p>}
+        <div className="font-sans text-base font-semibold text-plum leading-[1.25]">{label}</div>
+        {hint && <p className="text-xs text-muted-foreground mt-1 leading-[1.45]">{hint}</p>}
       </div>
       {theirValue?.trim() && theirName && (
         <div className="space-y-1">
-          <div className="text-[10px] uppercase tracking-wider text-plum/60 font-semibold">
-            {theirName}
-          </div>
+          <div className="text-[11px] text-plum/60 font-semibold">{theirName}</div>
           <div className="inline-block bg-blush text-plum text-sm rounded-lg rounded-bl-none px-3 py-1.5 font-medium capitalize">
             {theirValue}
           </div>
@@ -46,7 +44,9 @@ export function YnmCard({
             onClick={() => onChange(o.v)}
             className={cn(
               "h-12 rounded-xl text-sm font-semibold border-2 transition",
-              value === o.v ? o.cls : "border-border/60 text-muted-foreground hover:text-foreground",
+              value === o.v
+                ? o.cls
+                : "border-border/60 text-muted-foreground hover:text-foreground",
             )}
           >
             {o.label}

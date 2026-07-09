@@ -19,14 +19,9 @@ export function VibePills({
 }) {
   if (!raw?.trim()) return null;
   const v = decodeVibe(raw);
-  const moodCls =
-    size === "sm"
-      ? "text-[10px] px-1.5 py-0.5"
-      : "text-xs px-2.5 py-1";
+  const moodCls = size === "sm" ? "text-[10px] px-1.5 py-0.5" : "text-xs px-2.5 py-1";
   const intensityCls =
-    size === "sm"
-      ? "text-[10px] px-1.5 py-0.5 border"
-      : "text-xs px-2.5 py-1 border-2";
+    size === "sm" ? "text-[10px] px-1.5 py-0.5 border" : "text-xs px-2.5 py-1 border-2";
   return (
     <div className="space-y-1">
       <div className="flex flex-wrap gap-1.5">
@@ -45,7 +40,9 @@ export function VibePills({
         </span>
       </div>
       {showNote && v.note.trim() && (
-        <p className="text-sm italic text-plum/80 whitespace-pre-wrap">"{v.note.trim()}"</p>
+        <p className="text-sm italic text-plum/80 whitespace-pre-wrap leading-[1.45]">
+          "{v.note.trim()}"
+        </p>
       )}
     </div>
   );
