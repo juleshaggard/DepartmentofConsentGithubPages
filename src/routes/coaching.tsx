@@ -88,7 +88,7 @@ function CoachingPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Coaching</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Private coaching for the questions you are not ready to ask publicly.
           </h1>
           <p className="prose-doc mt-6">
@@ -102,16 +102,11 @@ function CoachingPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          Coaching options
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Coaching options</h2>
         <div className="mt-9 grid gap-5 sm:grid-cols-2">
           {OPTIONS.map((o) => (
-            <div
-              key={o.title}
-              className="rounded-2xl border border-plum/15 bg-card px-6 py-7 flex flex-col"
-            >
-              <h3 className="font-display text-2xl text-plum leading-tight">{o.title}</h3>
+            <div key={o.title} className="rounded-3xl bg-pinkcard px-6 py-7 flex flex-col">
+              <h3 className="display-condensed text-2xl text-coral">{o.title}</h3>
               <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground/75 flex-1">
                 {o.body}
               </p>
@@ -124,7 +119,7 @@ function CoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           What a coaching session looks like
         </h2>
         <div className="prose-doc mt-6">
@@ -141,13 +136,11 @@ function CoachingPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          Ways to begin
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Ways to begin</h2>
         <div className="mt-9 grid gap-5 md:grid-cols-3">
           {OFFERS.map((o) => (
             <div key={o.title} className="border-t-2 border-coral pt-5">
-              <h3 className="font-display text-2xl text-plum leading-tight">{o.title}</h3>
+              <h3 className="display-condensed text-2xl text-coral">{o.title}</h3>
               <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground/75">{o.body}</p>
               <p className="mt-4 text-sm font-semibold text-plum">{priceLine(o.price)}</p>
             </div>

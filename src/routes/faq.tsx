@@ -43,7 +43,7 @@ function FaqPage() {
 
       <Section className="!pt-2">
         <Eyebrow>FAQ</Eyebrow>
-        <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+        <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
           Frequently asked questions
         </h1>
         <div className="mt-10">

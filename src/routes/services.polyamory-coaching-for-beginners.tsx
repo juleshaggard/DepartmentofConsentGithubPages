@@ -55,7 +55,7 @@ function PolyCoachingPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Beginner polyamory and open-relationship coaching</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Opening a relationship is not a settings change.
           </h1>
           <div className="prose-doc mt-6">
@@ -72,7 +72,7 @@ function PolyCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Start with the actual question
         </h2>
         <div className="prose-doc mt-6">
@@ -91,7 +91,7 @@ function PolyCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Coaching can help with
         </h2>
         <ul className="prose-doc mt-6 !max-w-2xl columns-1 sm:columns-2 gap-10 [&>li]:break-inside-avoid list-disc pl-5">
@@ -102,7 +102,7 @@ function PolyCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           For individuals and partners
         </h2>
         <div className="prose-doc mt-6">
@@ -116,7 +116,7 @@ function PolyCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Consent includes the freedom to say no
         </h2>
         <div className="prose-doc mt-6">
@@ -132,9 +132,7 @@ function PolyCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          What coaching is not
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">What coaching is not</h2>
         <div className="prose-doc mt-6">
           <p>
             Polyamory coaching is educational and practical. It is not psychotherapy, mediation,

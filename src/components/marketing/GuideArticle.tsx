@@ -67,7 +67,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
           />
           <header>
             <Eyebrow>Beginner guide</Eyebrow>
-            <h1 className="font-display text-4xl sm:text-5xl text-plum leading-[1.05] max-w-[24ch]">
+            <h1 className="display-condensed text-coral text-4xl sm:text-5xl max-w-[22ch]">
               {guide.h1}
             </h1>
             <p className="mt-5 text-sm text-muted-foreground">
@@ -99,7 +99,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
             </section>
           ))}
 
-          <aside className="mt-14 rounded-2xl border border-plum/15 bg-card px-6 py-8 sm:px-10 sm:py-10">
+          <aside className="mt-14 rounded-3xl bg-pinkcard px-6 py-8 sm:px-10 sm:py-10">
             <h2 className="font-display text-2xl sm:text-3xl text-plum leading-tight">
               {guide.cta.headline}
             </h2>

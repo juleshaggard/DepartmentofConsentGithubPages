@@ -172,22 +172,27 @@ export function CtaBlock({
 }) {
   return (
     <Section wide>
-      <div className="rounded-2xl bg-plum text-cream px-6 py-12 sm:px-14 sm:py-16 text-center">
-        <h2 className="font-display text-3xl sm:text-4xl leading-[1.08] max-w-2xl mx-auto">
+      <div className="rounded-3xl bg-mint text-white px-6 py-12 sm:px-14 sm:py-16 text-center">
+        <h2 className="font-display text-3xl sm:text-5xl leading-[1.05] max-w-2xl mx-auto">
           {headline}
         </h2>
         {body && (
-          <p className="mt-4 text-base opacity-85 max-w-xl mx-auto leading-relaxed">{body}</p>
+          <p className="mt-4 font-display text-lg opacity-90 max-w-xl mx-auto leading-normal">
+            {body}
+          </p>
         )}
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink to={primaryTo} className="!bg-cream !text-plum !border-cream hover:!bg-white">
+          <ButtonLink
+            to={primaryTo}
+            className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
+          >
             {primaryLabel}
           </ButtonLink>
           {secondaryLabel && secondaryTo && (
             <ButtonLink
               to={secondaryTo}
               variant="outline"
-              className="!text-cream !border-cream/50 hover:!bg-cream hover:!text-plum"
+              className="!text-white !border-white/60 hover:!bg-white hover:!text-coral"
             >
               {secondaryLabel}
             </ButtonLink>
@@ -195,6 +200,47 @@ export function CtaBlock({
         </div>
       </div>
     </Section>
+  );
+}
+
+/**
+ * Pale pink card from the artboard: condensed coral title, optional serif
+ * body, arrow chip in the bottom-right corner.
+ */
+export function PinkCard({
+  to,
+  title,
+  body,
+  centered = false,
+  className,
+  children,
+}: {
+  to: LinkProps["to"];
+  title: string;
+  body?: string;
+  centered?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <Link
+      to={to}
+      className={cn(
+        "group relative flex min-h-[16rem] flex-col overflow-hidden rounded-3xl bg-pinkcard px-6 pb-16 pt-7 transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+        centered && "items-center text-center",
+        className,
+      )}
+    >
+      <h3 className="display-condensed relative z-10 text-2xl text-coral">{title}</h3>
+      {body && <p className="prose-doc relative z-10 mt-3 !text-[0.95rem] !leading-snug">{body}</p>}
+      {children}
+      <span
+        aria-hidden
+        className="absolute bottom-4 right-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-plum shadow-sm transition-colors group-hover:bg-coral group-hover:text-white"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </span>
+    </Link>
   );
 }
 

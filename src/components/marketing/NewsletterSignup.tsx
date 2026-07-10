@@ -17,15 +17,11 @@ export function NewsletterSignup({ compact = false }: { compact?: boolean }) {
   const showError = touched && !emailValid;
 
   return (
-    <div
-      className={
-        compact ? "" : "rounded-2xl border border-plum/15 bg-blush/40 px-6 py-8 sm:px-10 sm:py-10"
-      }
-    >
+    <div className={compact ? "" : "rounded-3xl bg-pinkcard px-6 py-8 sm:px-10 sm:py-10"}>
       {!compact && (
         <>
           <p className="eyebrow mb-2">Free email guide</p>
-          <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+          <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
             Before Your First Kink Event
           </h2>
           <p className="prose-doc mt-3">

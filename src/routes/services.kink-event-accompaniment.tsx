@@ -103,7 +103,7 @@ function AccompanimentPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Nonsexual event support in San Francisco</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Want someone knowledgeable to accompany you to a kink event?
           </h1>
           <div className="prose-doc mt-6">
@@ -123,7 +123,7 @@ function AccompanimentPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Why people ask for accompaniment
         </h2>
         <div className="prose-doc mt-6">
@@ -141,7 +141,7 @@ function AccompanimentPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           What event accompaniment may include
         </h2>
         <div className="mt-9 grid gap-8 md:grid-cols-3">
@@ -163,7 +163,7 @@ function AccompanimentPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           What it does not include
         </h2>
         <div className="prose-doc mt-6">
@@ -179,7 +179,7 @@ function AccompanimentPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">Availability</h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Availability</h2>
         <div className="prose-doc mt-6">
           <p>Availability depends on:</p>
           <ul>

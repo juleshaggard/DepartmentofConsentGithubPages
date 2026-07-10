@@ -33,7 +33,7 @@ function BookPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Book</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Tell me what you are trying to figure out.
           </h1>
           <p className="prose-doc mt-6">

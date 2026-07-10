@@ -60,7 +60,7 @@ function WorkshopsPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Workshops</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             The conversations people should have before things get complicated.
           </h1>
           <p className="prose-doc mt-6">
@@ -71,9 +71,7 @@ function WorkshopsPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          Workshop topics
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Workshop topics</h2>
         <div className="mt-9 divide-y divide-plum/10 border-y border-plum/10">
           {TOPICS.map((t) => (
             <div key={t.title} className="py-6 grid gap-2 md:grid-cols-[1fr_2fr]">
@@ -89,18 +87,21 @@ function WorkshopsPage() {
       </Section>
 
       <Section wide>
-        <div className="rounded-2xl bg-plum text-cream px-6 py-12 sm:px-14 sm:py-16 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl leading-[1.08] max-w-2xl mx-auto">
+        <div className="rounded-3xl bg-mint text-white px-6 py-12 sm:px-14 sm:py-16 text-center">
+          <h2 className="font-display text-3xl sm:text-5xl leading-[1.05] max-w-2xl mx-auto">
             Bring Department of Consent to your group.
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ButtonLink to="/book" className="!bg-cream !text-plum !border-cream hover:!bg-white">
+            <ButtonLink
+              to="/book"
+              className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
+            >
               Inquire about a private workshop
             </ButtonLink>
             {waitlist ? (
               <a
                 href={waitlist}
-                className="btn-editorial btn-editorial-outline !text-cream !border-cream/50 hover:!bg-cream hover:!text-plum"
+                className="btn-editorial btn-editorial-outline !text-white !border-white/60 hover:!bg-white hover:!text-coral"
               >
                 Join the public workshop list
               </a>
@@ -108,7 +109,7 @@ function WorkshopsPage() {
               <ButtonLink
                 to="/book"
                 variant="outline"
-                className="!text-cream !border-cream/50 hover:!bg-cream hover:!text-plum"
+                className="!text-white !border-white/60 hover:!bg-white hover:!text-coral"
               >
                 Join the public workshop list
               </ButtonLink>

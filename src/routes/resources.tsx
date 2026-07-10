@@ -42,7 +42,7 @@ function ResourcesPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Guides</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             The instruction manual nobody handed you.
           </h1>
           <p className="prose-doc mt-6">
@@ -53,20 +53,16 @@ function ResourcesPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          Featured guides
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Featured guides</h2>
         <div className="mt-9 grid gap-5 sm:grid-cols-2">
           {allGuides.map((g) => (
             <Link
               key={g.slug}
               to={g.path}
-              className="group rounded-2xl border border-plum/15 bg-card px-6 py-7 hover:border-coral/50 transition-colors"
+              className="group relative rounded-3xl bg-pinkcard px-6 py-7 transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
             >
               <p className="section-label">Beginner guide</p>
-              <h3 className="font-display text-2xl text-plum leading-tight mt-1 group-hover:text-coral transition-colors">
-                {g.crumbLabel}
-              </h3>
+              <h3 className="display-condensed text-2xl text-coral mt-1">{g.crumbLabel}</h3>
               <p className="mt-3 text-sm leading-relaxed text-foreground/70">{g.description}</p>
             </Link>
           ))}

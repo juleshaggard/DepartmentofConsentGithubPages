@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import wordmark from "@/assets/site-logo.svg";
+import footerWordmark from "@/assets/footer-wordmark.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
@@ -29,19 +29,33 @@ const FOOTER_LINKS = [
   { label: "Disclaimer", to: "/disclaimer" },
 ] as const;
 
+/** Black "DOC — Department of Consent" lockup from the artboard nav. */
+function Lockup() {
+  return (
+    <span className="flex items-center gap-2">
+      <span className="display-condensed text-[1.7rem] leading-none text-plum">DOC</span>
+      <span className="label-condensed text-[0.55rem] leading-[1.15] text-plum">
+        Department
+        <br />
+        of Consent
+      </span>
+    </span>
+  );
+}
+
 export function MarketingLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen grain bg-background flex flex-col overflow-x-hidden">
+    <div className="min-h-screen grain bg-white flex flex-col overflow-x-hidden">
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
 
-      <header className="w-full border-b border-plum/10">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4">
+      <header className="w-full border-b border-plum/10 bg-white">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Department of Consent — Home" className="block shrink-0">
-            <img src={wordmark} alt="Department of Consent" className="h-7 sm:h-8 w-auto" />
+            <Lockup />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:flex items-center gap-7">
@@ -49,14 +63,14 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
               <Link
                 key={item.to}
                 to={item.to}
-                className="text-sm font-semibold text-plum/80 hover:text-plum underline-offset-4 hover:underline"
-                activeProps={{ className: "text-sm font-semibold text-coral" }}
+                className="label-condensed text-[0.8125rem] text-plum hover:text-coral"
+                activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
               >
                 {item.label}
               </Link>
             ))}
-            <Link to="/book" className="btn-editorial !px-5 !py-2.5 text-sm">
-              Book a session
+            <Link to="/book" className="btn-editorial !px-5 !py-2.5">
+              Book an intro session
             </Link>
           </nav>
 
@@ -76,7 +90,7 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
           <nav
             id="mobile-nav"
             aria-label="Main"
-            className="lg:hidden border-t border-plum/10 bg-card px-5 py-4"
+            className="lg:hidden border-t border-plum/10 bg-white px-5 py-4"
           >
             <ul className="flex flex-col gap-1">
               {NAV_ITEMS.map((item) => (
@@ -84,7 +98,7 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
                   <Link
                     to={item.to}
                     onClick={() => setMenuOpen(false)}
-                    className="block py-2.5 text-base font-semibold text-plum"
+                    className="label-condensed block py-2.5 text-base text-plum"
                   >
                     {item.label}
                   </Link>
@@ -96,7 +110,7 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
                   onClick={() => setMenuOpen(false)}
                   className="btn-editorial w-full"
                 >
-                  Book a session
+                  Book an intro session
                 </Link>
               </li>
             </ul>
@@ -115,24 +129,24 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
 
 function MarketingFooter() {
   return (
-    <footer className="bg-plum text-cream mt-16">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+    <footer className="mt-20 border-t border-plum/10 bg-white">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-12 pb-8">
+        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr]">
           <div className="space-y-4 max-w-md">
-            <p className="font-display text-2xl leading-snug">Department of Consent</p>
-            <p className="text-sm leading-relaxed opacity-85">
+            <Lockup />
+            <p className="prose-doc !text-base">
               Practical kink and polyamory coaching for adults ready to move from curiosity into
               real-world exploration.
             </p>
-            <p className="text-sm leading-relaxed opacity-85">
+            <p className="prose-doc !text-base">
               Virtual coaching and selected in-person services in San Francisco and the greater Bay
               Area.
             </p>
-            <p className="text-sm font-semibold opacity-95">For adults aged 18 and older.</p>
-            <p className="text-sm opacity-85">
+            <p className="label-condensed text-xs text-coral">For adults aged 18 and older.</p>
+            <p className="text-sm">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="underline underline-offset-4 hover:opacity-80"
+                className="underline underline-offset-4 text-plum hover:text-coral"
               >
                 {siteConfig.contactEmail}
               </a>
@@ -140,12 +154,12 @@ function MarketingFooter() {
           </div>
 
           <nav aria-label="Footer">
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
               {FOOTER_LINKS.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="opacity-85 hover:opacity-100 hover:underline underline-offset-4"
+                    className="label-condensed text-[0.75rem] text-plum/75 hover:text-coral"
                   >
                     {item.label}
                   </Link>
@@ -154,13 +168,18 @@ function MarketingFooter() {
             </ul>
           </nav>
         </div>
+      </div>
 
-        <div className="hairline !border-cream/20 mt-10 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs opacity-75">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.legalName}. Coaching is educational and
-            practical — not therapy, medical care, legal advice, or crisis support.
-          </p>
-        </div>
+      {/* Giant multicolor wordmark from the artboard footer */}
+      <div className="px-4 sm:px-8 max-w-[960px] mx-auto">
+        <img src={footerWordmark} alt="" aria-hidden className="w-full h-auto block" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-6 text-center">
+        <p className="text-xs text-muted-foreground">
+          © {new Date().getFullYear()} {siteConfig.legalName}. Coaching is educational and practical
+          — not therapy, medical care, legal advice, or crisis support.
+        </p>
       </div>
     </footer>
   );

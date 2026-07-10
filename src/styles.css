@@ -43,6 +43,7 @@
   --color-ring-offset-background: var(--background);
 
   --color-blush: var(--blush);
+  --color-pinkcard: var(--pinkcard);
   --color-pinkbg: var(--pinkbg);
   --color-coral: var(--coral);
   --color-plum: var(--plum);
@@ -75,8 +76,8 @@
   --popover: oklch(0.99 0.01 30);
   --popover-foreground: oklch(0.22 0.04 20);
 
-  /* coral red (logo + buttons) */
-  --primary: oklch(0.66 0.23 22);
+  /* coral red (logo + buttons) — sampled from the approved Figma artboard */
+  --primary: #fc5142;
   --primary-foreground: oklch(0.99 0.01 20);
 
   --secondary: oklch(0.92 0.05 10);
@@ -95,9 +96,10 @@
   --input: oklch(0.9 0.04 12);
   --ring: oklch(0.66 0.23 22);
 
-  --blush: oklch(0.93 0.045 5); /* soft pink card */
+  --blush: oklch(0.93 0.045 5); /* soft pink card (app) */
+  --pinkcard: #ffe8ef; /* pale pink marketing card (Figma artboard) */
   --pinkbg: oklch(0.965 0.018 50); /* matches cream background */
-  --coral: oklch(0.66 0.23 22); /* coral-red border */
+  --coral: #fc5142; /* brand coral (Figma artboard) */
   --plum: oklch(0.22 0.04 20); /* near-black text */
   --cream: oklch(0.965 0.018 50);
   --mint: oklch(0.78 0.12 165); /* CTA mint/teal */
@@ -359,22 +361,42 @@
   }
 }
 
-/* --- Marketing site (editorial layer) ------------------------------------ */
+/* --- Marketing site (Figma "Positioning" artboard design language) ------- */
 @layer utilities {
+  /* Heavy condensed all-caps display (Anton) */
+  .display-condensed {
+    font-family: "Anton", "Arial Narrow", var(--font-sans);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+  /* Condensed caps label (Oswald) — nav, buttons, eyebrows, card meta */
+  .label-condensed {
+    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+    line-height: 1.2;
+  }
+
   .btn-editorial {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     border-radius: 999px;
-    padding: 0.85rem 1.75rem;
-    font-family: var(--font-sans);
-    font-weight: 650;
-    font-size: 0.9375rem;
-    line-height: 1.1;
-    background: var(--color-plum);
-    color: var(--color-cream);
-    border: 1px solid var(--color-plum);
+    padding: 0.8rem 1.7rem;
+    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8125rem;
+    line-height: 1.15;
+    background: var(--color-coral);
+    color: white;
+    border: 1px solid var(--color-coral);
     cursor: pointer;
     text-align: center;
     transition:
@@ -383,20 +405,31 @@
       transform 0.18s ease;
   }
   .btn-editorial:hover {
-    background: var(--color-coral);
-    border-color: var(--color-coral);
+    background: var(--color-plum);
+    border-color: var(--color-plum);
     color: white;
     transform: translateY(-1px);
   }
   .btn-editorial-outline {
     background: transparent;
     color: var(--color-plum);
-    border-color: oklch(0.22 0.04 20 / 0.35);
+    border-color: oklch(0.22 0.04 20 / 0.4);
   }
   .btn-editorial-outline:hover {
     background: var(--color-plum);
     border-color: var(--color-plum);
-    color: var(--color-cream);
+    color: white;
+  }
+
+  /* Rotated all-caps strip along the hero's bottom edge */
+  .hero-ticker {
+    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transform: rotate(-2.5deg);
+    transform-origin: left bottom;
   }
   @media (prefers-reduced-motion: reduce) {
     .btn-editorial,
@@ -411,18 +444,20 @@
   }
 
   .eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-size: 0.8125rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-weight: 600;
     color: var(--color-coral);
   }
 
+  /* Serif reading text — the artboard sets body copy in the brand serif */
   .prose-doc {
-    font-size: 1.0625rem;
-    line-height: 1.65;
-    color: oklch(0.28 0.04 20);
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: oklch(0.24 0.02 20);
     max-width: 42rem;
   }
   .prose-doc p + p {

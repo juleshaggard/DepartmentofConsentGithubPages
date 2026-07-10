@@ -74,7 +74,7 @@ function SfCoachPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>San Francisco kink coaching</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             A kink coach for people who are ready to stop guessing.
           </h1>
           <div className="prose-doc mt-6">
@@ -98,7 +98,7 @@ function SfCoachPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[24ch]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl max-w-[24ch]">
           The Bay Area has options. That does not make it easy to begin.
         </h2>
         <div className="prose-doc mt-6">
@@ -116,9 +116,7 @@ function SfCoachPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          What we can work on
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">What we can work on</h2>
         <ul className="prose-doc mt-6 !max-w-2xl columns-1 sm:columns-2 gap-10 [&>li]:break-inside-avoid list-disc pl-5">
           {WORK_ON.map((w) => (
             <li key={w}>{w}</li>
@@ -127,9 +125,7 @@ function SfCoachPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          Ways to work together
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Ways to work together</h2>
         <div className="mt-9 grid gap-8 sm:grid-cols-2">
           {WAYS.map((w) => (
             <div key={w.title} className="border-t-2 border-coral pt-5">
@@ -146,7 +142,7 @@ function SfCoachPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Clear support. Clear boundaries.
         </h2>
         <div className="prose-doc mt-6">

@@ -23,7 +23,7 @@ export function LegalPage({
             { label: title, path },
           ]}
         />
-        <h1 className="font-display text-4xl sm:text-5xl text-plum leading-[1.05]">{title}</h1>
+        <h1 className="display-condensed text-coral text-4xl sm:text-5xl">{title}</h1>
         <p className="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</p>
         {draftNotice && (
           <p className="mt-5 max-w-2xl rounded-xl border border-maybe bg-maybe/10 px-5 py-3.5 text-sm text-plum">

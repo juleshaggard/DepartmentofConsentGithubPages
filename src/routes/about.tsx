@@ -56,7 +56,7 @@ function AboutPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>About</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             I help people enter the scene without pretending they already know the rules.
           </h1>
         </div>
@@ -87,7 +87,7 @@ function AboutPage() {
       </Section>
 
       <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">Values</h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Values</h2>
         <div className="mt-9 grid gap-8 sm:grid-cols-2">
           {VALUES.map((v) => (
             <div key={v.title} className="border-t-2 border-coral pt-5">

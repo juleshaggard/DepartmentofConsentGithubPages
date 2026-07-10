@@ -56,7 +56,7 @@ function BdsmCoachingPage() {
       <Section wide className="!pt-2">
         <div className="max-w-3xl">
           <Eyebrow>Private coaching for kink beginners</Eyebrow>
-          <h1 className="font-display text-4xl sm:text-6xl text-plum leading-[1.02]">
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Learn BDSM before experience is the only teacher.
           </h1>
           <div className="prose-doc mt-6">
@@ -76,7 +76,7 @@ function BdsmCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           What beginner BDSM coaching is
         </h2>
         <div className="prose-doc mt-6">
@@ -95,7 +95,7 @@ function BdsmCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Coaching can help with
         </h2>
         <ul className="prose-doc mt-6 !max-w-2xl columns-1 sm:columns-2 gap-10 [&>li]:break-inside-avoid list-disc pl-5">
@@ -106,7 +106,7 @@ function BdsmCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           You do not need to prove anything
         </h2>
         <div className="prose-doc mt-6">
@@ -119,7 +119,7 @@ function BdsmCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           What a session looks like
         </h2>
         <div className="prose-doc mt-6">
@@ -141,9 +141,7 @@ function BdsmCoachingPage() {
       </Section>
 
       <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
-          What coaching is not
-        </h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">What coaching is not</h2>
         <div className="prose-doc mt-6">
           <p>
             Coaching is educational and practical. It is not psychotherapy, medical treatment, legal
