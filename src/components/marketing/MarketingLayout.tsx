@@ -29,12 +29,13 @@ const FOOTER_LINKS = [
   { label: "Disclaimer", to: "/disclaimer" },
 ] as const;
 
-/** Black "DOC — Department of Consent" lockup from the artboard nav. */
-function Lockup() {
+/** "DOC — Department of Consent" lockup from the artboard nav. */
+export function Lockup({ light = false }: { light?: boolean }) {
+  const color = light ? "text-white" : "text-plum";
   return (
     <span className="flex items-center gap-2">
-      <span className="display-condensed text-[1.7rem] leading-none text-plum">DOC</span>
-      <span className="label-condensed text-[0.55rem] leading-[1.15] text-plum">
+      <span className={`display-condensed text-[1.7rem] leading-none ${color}`}>DOC</span>
+      <span className={`label-condensed text-[0.55rem] leading-[1.15] ${color}`}>
         Department
         <br />
         of Consent
@@ -43,7 +44,17 @@ function Lockup() {
   );
 }
 
-export function MarketingLayout({ children }: { children: React.ReactNode }) {
+export function MarketingLayout({
+  children,
+  hero,
+}: {
+  children: React.ReactNode;
+  /**
+   * Optional full-bleed hero rendered ABOVE the nav bar — the artboard puts
+   * the homepage photo hero first, with the sticky nav below it.
+   */
+  hero?: React.ReactNode;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -52,7 +63,9 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
         Skip to main content
       </a>
 
-      <header className="w-full border-b border-plum/10 bg-white">
+      {hero}
+
+      <header className="sticky top-0 z-40 w-full border-b border-plum/10 bg-white">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Department of Consent — Home" className="block shrink-0">
             <Lockup />

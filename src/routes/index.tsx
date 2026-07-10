@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MarketingLayout } from "@/components/marketing/MarketingLayout";
+import { Lockup, MarketingLayout } from "@/components/marketing/MarketingLayout";
 import {
   ButtonLink,
   CtaBlock,
@@ -10,6 +10,7 @@ import {
   type Faq,
 } from "@/components/marketing/primitives";
 import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
+import { RevealText } from "@/components/marketing/RevealText";
 import { pageHead } from "@/lib/seo";
 import { allGuides } from "@/content/guides";
 import heroImg from "@/assets/hero-friends.jpg";
@@ -109,68 +110,83 @@ const HOME_FAQS: Faq[] = [
   },
 ];
 
+/** Full-bleed photo hero — sits ABOVE the nav bar, per the artboard. */
+function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-plum">
+      <img
+        src={heroImg}
+        alt="Four friends sitting close together, laughing"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_25%]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/25" />
+
+      {/* Mini-header overlaid on the photo */}
+      <div className="relative flex items-start justify-between px-5 sm:px-8 pt-5">
+        <Link to="/" aria-label="Department of Consent — Home" className="block">
+          <Lockup light />
+        </Link>
+        <Link to="/book" className="btn-editorial !px-5 !py-2.5">
+          Book an intro session
+        </Link>
+      </div>
+
+      {/* Headline — two full-width lines, en-dashes, mid-photo */}
+      <div className="relative max-w-6xl mx-auto px-5 sm:px-10 pt-28 sm:pt-44 lg:pt-56 pb-20 sm:pb-28">
+        <h1 className="display-condensed text-white text-[13vw] sm:text-[7.2vw] leading-[0.98] drop-shadow-sm">
+          From kink&#8211;curious
+          <br />
+          to kink&#8211;confident.
+        </h1>
+        <p className="font-display text-white text-2xl sm:text-[2.6vw] mt-3 drop-shadow-sm">
+          Kink and polyamory coaching for beginners
+        </p>
+      </div>
+
+      {/* Crossing ticker strips along the bottom edge */}
+      <div
+        aria-label="Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area. For adults 18 and older."
+        className="relative -mx-2 flex items-end justify-between gap-6 overflow-hidden pb-6"
+      >
+        <p aria-hidden className="hero-ticker hero-ticker-up pl-2 text-sm text-white sm:text-base">
+          In San Francisco and the greater Bay Area. For adults 18+. &nbsp;·&nbsp; Virtual coaching.
+        </p>
+        <p
+          aria-hidden
+          className="hero-ticker hero-ticker-down hidden pr-2 text-sm text-white sm:text-base md:block"
+        >
+          Selected in&#8211;person services in San Francisco.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function HomePage() {
   return (
-    <MarketingLayout>
-      {/* 1. Hero — full-bleed photo with condensed display headline */}
-      <section className="relative overflow-hidden bg-plum">
-        <img
-          src={heroImg}
-          alt="Four friends sitting close together, laughing"
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-black/20" />
-        <div className="relative max-w-6xl mx-auto px-5 sm:px-10 pt-40 sm:pt-64 pb-16 sm:pb-20">
-          <h1 className="display-condensed text-white text-[3.2rem] sm:text-[5.5rem] lg:text-[6.5rem] max-w-[14ch] drop-shadow-sm">
-            From kink&#8209;curious to kink&#8209;confident.
-          </h1>
-          <p className="font-display text-white text-2xl sm:text-4xl mt-4 drop-shadow-sm">
-            Kink and polyamory coaching for beginners
-          </p>
-        </div>
-        <p
-          aria-label="Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area. For adults 18 and older."
-          className="hero-ticker relative text-white/95 text-xs sm:text-sm pb-5 pl-4 sm:pl-8"
-        >
-          In San Francisco and the greater Bay Area. For adults 18+. &nbsp;·&nbsp; Virtual coaching.
-          &nbsp;·&nbsp; Selected in-person services in San Francisco. &nbsp;·&nbsp; From
-          kink-curious to kink-confident.
-        </p>
-      </section>
-
-      {/* 2. Recognition — coral serif statement */}
+    <MarketingLayout hero={<Hero />}>
+      {/* 2. Coral serif statement with scroll reveal */}
       <Section wide className="!py-16 sm:!py-24">
-        <div className="max-w-xl sm:ml-[14%]">
-          <div className="font-display text-coral text-2xl sm:text-[2rem] leading-[1.3] space-y-7">
+        <RevealText className="max-w-xl sm:ml-[14%]">
+          <div className="font-display text-coral text-2xl sm:text-[2rem] leading-[1.35] space-y-7">
             <p>
-              You have done the wondering. Now you want to know how to explore kink or polyamory
-              without walking in blind.
+              You have done the wondering.
+              <br />
+              Now you want to know how to explore kink or polyamory without walking in blind.
             </p>
             <p>
               Department of Consent offers practical education, private coaching, and nonsexual
               event support for adults ready to take their first real steps.
             </p>
           </div>
-          <div className="prose-doc mt-10 space-y-4">
-            <p>
-              You may already know what interests you. The harder part is knowing what happens next.
-              Where do you meet people? What should you ask before playing with someone? How do you
-              know whether an event welcomes beginners? What is normal nervousness, and what is an
-              actual warning sign?
-            </p>
-            <p>
-              The internet can give you a thousand conflicting answers. Coaching gives you a private
-              place to ask the questions that actually apply to you.
-            </p>
-          </div>
-        </div>
+        </RevealText>
       </Section>
 
-      {/* 3. Services — giant coral display + card row */}
-      <Section wide className="!pt-4">
-        <h2 className="display-condensed text-coral text-center text-5xl sm:text-7xl lg:text-[5.5rem] max-w-4xl mx-auto">
+      {/* 3. Services — giant coral display + one row of tall cards */}
+      <Section wide className="!pt-4 !pb-20">
+        <h2 className="display-condensed text-coral text-center text-5xl sm:text-7xl lg:text-[5.8rem] max-w-4xl mx-auto">
           Start where you actually are.
         </h2>
         <p className="prose-doc mx-auto mt-6 text-center !max-w-2xl">
@@ -178,38 +194,43 @@ function HomePage() {
           interests. We can begin with the questions you already have.
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <PinkCard to="/services/beginner-bdsm-coaching" title="Beginner BDSM Coaching" centered>
+        <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 mx-[calc(50%-50vw)] px-[max(1.25rem,calc(50vw-50%))]">
+          <PinkCard
+            to="/services/beginner-bdsm-coaching"
+            title="Beginner BDSM Coaching"
+            centered
+            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
+          >
             <img
               src={stickerFeather}
               alt=""
               aria-hidden
-              className="pointer-events-none absolute -left-6 bottom-2 w-32 rotate-[-18deg]"
+              className="pointer-events-none absolute -left-7 bottom-14 w-36 rotate-[-15deg]"
             />
             <img
               src={stickerWandPink}
               alt=""
               aria-hidden
-              className="pointer-events-none absolute -right-4 -bottom-4 w-28 rotate-[15deg]"
+              className="pointer-events-none absolute right-2 bottom-2 w-28 rotate-[12deg]"
             />
           </PinkCard>
 
           <Link
-            to="/guides/preparing-for-your-first-kink-event"
-            className="group relative flex min-h-[16rem] flex-col items-center justify-center overflow-hidden rounded-3xl bg-plum px-6 py-7 text-center transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            to="/guides/how-to-negotiate-your-first-scene"
+            className="group relative flex w-[80vw] min-h-[26rem] shrink-0 snap-start flex-col items-center justify-center overflow-hidden rounded-3xl bg-plum px-6 py-7 text-center transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-[320px]"
           >
             <img
               src={photoCardBg}
               alt=""
               aria-hidden
-              className="absolute inset-0 h-full w-full object-cover opacity-45"
+              className="absolute inset-0 h-full w-full object-cover opacity-40"
             />
-            <h3 className="display-condensed relative text-4xl text-coral drop-shadow-sm">
+            <h3 className="display-condensed relative text-[3.2rem] leading-[0.95] text-coral drop-shadow-sm">
               First
               <br />
               Kink
               <br />
-              Event
+              Scene
               <br />
               Prep
             </h3>
@@ -225,26 +246,47 @@ function HomePage() {
             to="/services/kink-event-accompaniment"
             title="Kink Event Accompaniment"
             body="For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can help you understand the space and find your footing."
+            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
+          />
+
+          <PinkCard
+            to="/workshops"
+            title="Private Workshops"
+            centered
+            className="w-[80vw] shrink-0 snap-start justify-center sm:w-[320px] !min-h-[26rem]"
           />
 
           <PinkCard
             to="/services/polyamory-coaching-for-beginners"
             title="Polyamory Coaching for Beginners"
             body="Practical support for individuals and partners considering consensual nonmonogamy — agreements, dating, jealousy, time, and course correction."
-          />
-
-          <PinkCard to="/workshops" title="Private Workshops" centered />
-
-          <PinkCard
-            to="/coaching"
-            title="Not sure where to start?"
-            body="Explore every coaching option, session formats, and ways to begin."
-            centered
+            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
           />
         </div>
       </Section>
 
-      {/* 4. Pillars */}
+      {/* 4. Recognition */}
+      <Section ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.15] max-w-[22ch]">
+          You do not need more random internet advice.
+        </h2>
+        <div className="prose-doc mt-6">
+          <p>
+            You may already know what interests you. The harder part is knowing what happens next.
+          </p>
+          <p>
+            Where do you meet people? What should you ask before playing with someone? How do you
+            know whether an event welcomes beginners? What is normal nervousness, and what is an
+            actual warning sign?
+          </p>
+          <p>
+            The internet can give you a thousand conflicting answers. Coaching gives you a private
+            place to ask the questions that actually apply to you.
+          </p>
+        </div>
+      </Section>
+
+      {/* 5. Pillars */}
       <Section wide ruled>
         <h2 className="display-condensed text-coral text-4xl sm:text-6xl max-w-3xl">
           Kink is easier to explore when someone explains the room.
@@ -262,7 +304,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 5. What coaching can help with */}
+      {/* 6. What coaching can help with */}
       <Section ruled>
         <h2 className="display-condensed text-coral text-4xl sm:text-6xl">
           Bring the questions you cannot solve with a glossary.
@@ -279,7 +321,7 @@ function HomePage() {
         </ul>
       </Section>
 
-      {/* 6. First-event support feature */}
+      {/* 7. First-event support feature */}
       <Section wide ruled>
         <div className="relative overflow-hidden rounded-3xl bg-pinkcard px-6 py-12 sm:px-14 sm:py-16">
           <img
@@ -320,7 +362,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 7. Process */}
+      {/* 8. Process */}
       <Section wide ruled>
         <h2 className="font-display text-3xl sm:text-4xl text-plum text-center leading-[1.08]">
           No grand initiation. Just a useful next step.
@@ -336,7 +378,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 8. About preview */}
+      {/* 9. About preview */}
       <Section ruled>
         <p className="label-condensed text-coral text-sm">About</p>
         <h2 className="font-display text-3xl sm:text-[2.4rem] text-plum leading-[1.15] mt-3 max-w-[24ch]">
@@ -359,7 +401,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 9. Guide cards */}
+      {/* 10. Guide cards */}
       <Section wide ruled>
         <h2 className="display-condensed text-coral text-center text-4xl sm:text-6xl max-w-3xl mx-auto">
           Read this before asking strangers on the internet.
@@ -381,7 +423,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 10. FAQ */}
+      {/* 11. FAQ */}
       <Section ruled>
         <h2 className="display-condensed text-coral text-4xl sm:text-6xl">Common questions</h2>
         <div className="mt-7">
@@ -392,12 +434,12 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* 11. Email guide capture */}
+      {/* 12. Email guide capture */}
       <Section wide ruled>
         <NewsletterSignup />
       </Section>
 
-      {/* 12. Final CTA — mint panel */}
+      {/* 13. Final CTA — mint panel */}
       <CtaBlock
         headline="You do not need to become an expert before you begin."
         body="You need enough knowledge, support, and confidence to make your next decision deliberately."

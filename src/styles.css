@@ -421,15 +421,39 @@
     color: white;
   }
 
-  /* Rotated all-caps strip along the hero's bottom edge */
+  /* Rotated all-caps strips crossing the hero's bottom edge */
   .hero-ticker {
     font-family: "Oswald", "Arial Narrow", var(--font-sans);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
-    transform: rotate(-2.5deg);
+  }
+  .hero-ticker-up {
+    transform: rotate(-3deg);
     transform-origin: left bottom;
+  }
+  .hero-ticker-down {
+    transform: rotate(2deg);
+    transform-origin: right bottom;
+  }
+
+  /* Scroll reveal: paragraphs start pale pink and fill to coral as they
+     enter the viewport (the artboard's mid-reveal state). JS adds/removes
+     .reveal-pending; without JS or with reduced motion, text stays coral. */
+  .reveal-scope p {
+    transition: color 0.9s ease;
+  }
+  .reveal-scope p.reveal-pending {
+    color: #fbd3da;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-scope p {
+      transition: none;
+    }
+    .reveal-scope p.reveal-pending {
+      color: inherit;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .btn-editorial,
