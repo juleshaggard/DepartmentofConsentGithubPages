@@ -33,3 +33,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# oh-my-claudecode state
+.omc/
+**/.omc/

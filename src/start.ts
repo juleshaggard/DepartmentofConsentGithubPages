@@ -22,6 +22,9 @@ const errorMiddleware = createMiddleware().server(async ({ next, request }) => {
 });
 
 export const startInstance = createStart(() => ({
-  defaultSsr: false,
+  // Marketing pages are fully server-rendered/prerendered for SEO.
+  // Scene Negotiator opts out via `ssr: false` on its layout route -
+  // it is a localStorage-only client app.
+  defaultSsr: true,
   requestMiddleware: [errorMiddleware],
 }));

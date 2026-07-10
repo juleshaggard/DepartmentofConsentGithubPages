@@ -8,8 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useProfile } from "@/lib/storage";
 import { useEffect, useRef, useState } from "react";
 
-export const Route = createFileRoute("/onboarding")({
-  head: () => ({ meta: [{ title: "Set up your profile — Department of Consent" }] }),
+export const Route = createFileRoute("/scene-negotiator/onboarding")({
+  head: () => ({ meta: [{ title: "Set up your profile — Scene Negotiator" }] }),
   component: Onboarding,
 });
 
@@ -122,7 +122,7 @@ function Onboarding() {
           <CloudButton
             onClick={() => {
               setProfile(draft);
-              navigate({ to: "/sessions/new" });
+              navigate({ to: "/scene-negotiator/sessions/new" });
             }}
             className="cloud-btn-fluid"
           >

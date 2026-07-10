@@ -13,7 +13,7 @@ import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/sessions/$sessionId/edit")({
+export const Route = createFileRoute("/scene-negotiator/sessions/$sessionId/edit")({
   head: () => ({ meta: [{ title: "Edit scene" }] }),
   component: EditScene,
 });
@@ -78,7 +78,7 @@ function EditScene() {
         owner_side: { ...side, filledAt: new Date().toISOString() },
       });
       toast.success("Scene updated");
-      navigate({ to: "/sessions/$sessionId", params: { sessionId } });
+      navigate({ to: "/scene-negotiator/sessions/$sessionId", params: { sessionId } });
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to save");
     } finally {
@@ -92,7 +92,7 @@ function EditScene() {
         <div className="flex items-center justify-between">
           <h1 className="font-display text-3xl text-plum">Edit scene</h1>
           <Link
-            to="/sessions/$sessionId"
+            to="/scene-negotiator/sessions/$sessionId"
             params={{ sessionId }}
             className="text-xs text-link underline"
           >

@@ -4,7 +4,7 @@ import { Sticker } from "@/components/Sticker";
 import { CloudButton } from "@/components/CloudButton";
 import { clearGuestData, emptyProfile, useProfile } from "@/lib/storage";
 
-export const Route = createFileRoute("/settings")({
+export const Route = createFileRoute("/scene-negotiator/settings")({
   head: () => ({ meta: [{ title: "Profile & settings" }] }),
   component: SettingsPage,
 });
@@ -16,7 +16,7 @@ function SettingsPage() {
   const clearAll = () => {
     if (!confirm("Clear all profile, kink, and scene data saved in this browser?")) return;
     clearGuestData();
-    navigate({ to: "/" });
+    navigate({ to: "/scene-negotiator" });
   };
 
   return (
@@ -38,7 +38,11 @@ function SettingsPage() {
           <Row label="Emergency contact" value={profile.emergencyContact} />
           <Row label="Default aftercare" value={profile.defaultAftercare} />
           <div className="flex flex-col items-center gap-3 pt-3">
-            <CloudButton to="/onboarding" variant="outline" className="cloud-btn-sm">
+            <CloudButton
+              to="/scene-negotiator/onboarding"
+              variant="outline"
+              className="cloud-btn-sm"
+            >
               Edit profile
             </CloudButton>
           </div>

@@ -359,6 +359,131 @@
   }
 }
 
+/* --- Marketing site (editorial layer) ------------------------------------ */
+@layer utilities {
+  .btn-editorial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--font-sans);
+    font-weight: 650;
+    font-size: 0.9375rem;
+    line-height: 1.1;
+    background: var(--color-plum);
+    color: var(--color-cream);
+    border: 1px solid var(--color-plum);
+    cursor: pointer;
+    text-align: center;
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      transform 0.18s ease;
+  }
+  .btn-editorial:hover {
+    background: var(--color-coral);
+    border-color: var(--color-coral);
+    color: white;
+    transform: translateY(-1px);
+  }
+  .btn-editorial-outline {
+    background: transparent;
+    color: var(--color-plum);
+    border-color: oklch(0.22 0.04 20 / 0.35);
+  }
+  .btn-editorial-outline:hover {
+    background: var(--color-plum);
+    border-color: var(--color-plum);
+    color: var(--color-cream);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-editorial,
+    .btn-editorial:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  .hairline {
+    border-top: 1px solid oklch(0.22 0.04 20 / 0.14);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--color-coral);
+  }
+
+  .prose-doc {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: oklch(0.28 0.04 20);
+    max-width: 42rem;
+  }
+  .prose-doc p + p {
+    margin-top: 1em;
+  }
+  .prose-doc ul {
+    list-style: disc;
+    padding-left: 1.4rem;
+    margin-top: 1em;
+  }
+  .prose-doc ol {
+    list-style: decimal;
+    padding-left: 1.4rem;
+    margin-top: 1em;
+  }
+  .prose-doc li + li {
+    margin-top: 0.45em;
+  }
+  .prose-doc strong {
+    font-weight: 650;
+    color: var(--color-plum);
+  }
+  .prose-doc a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: var(--color-plum);
+    color: var(--color-cream);
+    padding: 0.7rem 1.2rem;
+    border-radius: 0 0 0.5rem 0;
+    font-weight: 650;
+    font-size: 0.875rem;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-coral);
+    outline-offset: 2px;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  .grain::before {
+    display: none;
+  }
+}
+
 @layer utilities {
   .whip-loader {
     background-repeat: no-repeat;

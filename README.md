@@ -1,26 +1,69 @@
-# Department of Consent GitHub Pages
+# Department of Consent
 
-Static, guest-only GitHub Pages build of Department of Consent.
+Marketing site for Department of Consent — beginner-focused kink and polyamory
+coaching by Jules Holloway — plus **Scene Negotiator**, the original consent /
+scene-planning app, preserved as a hidden product at `/scene-negotiator`.
 
-- No accounts
-- No Supabase runtime
-- No Stripe runtime
-- Profile, kinks, and recent scenes are stored in browser localStorage
-- Invite and response links carry compressed scene data in the URL hash
+- Framework: TanStack Start (React 19), fully prerendered to static HTML
+- Styling: Tailwind CSS v4 + shadcn/Radix components
+- Hosting: GitHub Pages via GitHub Actions (`.github/workflows/deploy-pages.yml`)
+- Editorial source of truth: [`copy.md`](copy.md)
+- Site configuration: [`src/config/site.ts`](src/config/site.ts) + `.env` (see `.env.example`)
+- Architecture and migration decisions: [`docs/DECISIONS.md`](docs/DECISIONS.md)
 
-Live site:
+## Scene Negotiator
 
-https://juleshaggard.github.io/DepartmentofConsentGithubPages/
+The original app lives at `/scene-negotiator` (and child routes). It is:
+
+- fully client-side — profiles, kinks, and scenes live in browser localStorage;
+  invite/response links carry compressed scene data in the URL hash
+- unlinked from all public navigation, sitemaps, feeds, and structured data
+- marked `noindex, nofollow`
+- **not** access-controlled — anyone with the URL can use it
+
+Old app URLs (`/sessions/*`, `/join/:token`, `/scene/:token`, `/kinks`,
+`/onboarding`, `/settings`, …) redirect client-side to their
+`/scene-negotiator/*` equivalents, preserving the URL hash so previously
+shared scene links keep working.
 
 ## Development
 
 ```bash
 npm install
-npm run dev
+npm run dev          # dev server
+npm run build:pages  # static GitHub Pages build → dist/client
+npm run preview      # preview a build
+npm run test         # smoke tests (Scene Negotiator)
+npm run lint         # eslint
 ```
 
-## GitHub Pages Build
+## Environment variables
 
-```bash
-npm run build:pages
-```
+All browser-safe (`VITE_*`) — see `.env.example` for full documentation:
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_SITE_URL` | Public base URL (canonical/sitemap/OG) |
+| `VITE_BOOKING_URL` | External scheduler (Cal.com/Calendly). Empty → inquiry form only |
+| `VITE_INQUIRY_FORM_ENDPOINT` | Form POST endpoint (e.g. Formspree). Empty → form disabled with honest notice |
+| `VITE_CONTACT_EMAIL` | Contact email shown on the site |
+| `VITE_NEWSLETTER_PROVIDER` / `VITE_NEWSLETTER_ENDPOINT` | Email-guide signup (Buttondown/Kit/Mailchimp/Loops). Empty → dev state, no fake success |
+| `VITE_WORKSHOP_WAITLIST_URL` | Public workshop list signup |
+| `VITE_PLAUSIBLE_DOMAIN` / `VITE_PLAUSIBLE_SRC` | Privacy-friendly analytics. Empty → no analytics script at all |
+| `VITE_LEGAL_NAME` | Legal entity name once confirmed |
+
+There are no server-side secrets in this project.
+
+## Deployment
+
+Pushing to `main` triggers the Pages workflow: `npm ci`, `npm run build:pages`,
+deploy `dist/client`. Set repository **Actions variables** for any `VITE_*`
+values you want baked into the build (at minimum keep `VITE_SITE_URL` correct
+— when the custom domain is connected, change it to `https://departmentofconsent.com`
+and the base path in `vite.config.ts` to `/`).
+
+## Before launch (requires Jules's sign-off)
+
+See the "Remaining launch tasks" section of `docs/DECISIONS.md` — legal pages
+are drafts pending attorney review; prices, credentials, booking/newsletter/
+analytics providers, and the exact in-person service area are placeholders.

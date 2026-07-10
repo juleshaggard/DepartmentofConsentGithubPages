@@ -1,16 +1,27 @@
 # Department of Consent
 
-> A consent and scene planning app for kink negotiation: pickup play, first-time partners, and ongoing partners. Compare boundaries, kinks, expectations, and aftercare before things get awkward, intense, or unsafe.
+> Beginner-focused kink and polyamory coaching by Jules Holloway. Practical education, one-to-one coaching, and nonsexual event support for adults (18+) moving from curiosity to informed, confident real-world exploration. Virtual coaching, with selected in-person services in San Francisco and the greater Bay Area.
 
 ## Pages
 
-- [Home](/): Overview of how Department of Consent helps partners plan kink scenes safely.
-- [Start a scene](/sessions/new): Build a scene locally in your browser.
-- [Privacy Policy](/privacy): How we collect, store, and protect your data.
-- [Terms of Service](/terms): Terms governing use of the app.
+- [Home](/): From kink-curious to kink-confident — services overview.
+- [Coaching](/coaching): Beginner kink and polyamory coaching options and session format.
+- [Kink Coach in San Francisco](/services/kink-coach-san-francisco): Local coaching, event preparation, and Bay Area availability.
+- [Beginner BDSM Coaching](/services/beginner-bdsm-coaching): Private coaching for kink beginners.
+- [Polyamory Coaching for Beginners](/services/polyamory-coaching-for-beginners): Support for individuals and partners considering consensual nonmonogamy.
+- [Kink Event Accompaniment](/services/kink-event-accompaniment): Nonsexual event support in San Francisco.
+- [Workshops](/workshops): Beginner kink, consent, and polyamory workshops.
+- [Guides](/resources): Free beginner guides index.
+- [Preparing for Your First Kink Event](/guides/preparing-for-your-first-kink-event)
+- [How to Enter the Kink Scene](/guides/how-to-enter-the-kink-scene)
+- [How to Negotiate Your First Scene](/guides/how-to-negotiate-your-first-scene)
+- [Kink Red Flags for Beginners](/guides/kink-red-flags-for-beginners)
+- [About Jules Holloway](/about)
+- [FAQ](/faq)
+- [Book](/book): Booking and inquiries.
 
-## Optional
+## Notes
 
-- [Onboarding](/onboarding): Set up your local profile.
-- [Your scenes](/sessions): List scenes saved in this browser.
-- [Profile & settings](/settings): Manage your local profile and clear browser data.
+- Coaching is educational and practical — not therapy, medical care, legal advice, or crisis support.
+- Event accompaniment is nonsexual. Services never include kink play, dating, or physical intimacy.
+- All services are for adults aged 18 and older.

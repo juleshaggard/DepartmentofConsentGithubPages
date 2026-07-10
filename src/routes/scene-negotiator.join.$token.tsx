@@ -43,7 +43,7 @@ import {
   type Vibe,
 } from "@/lib/sceneVocab";
 
-export const Route = createFileRoute("/join/$token")({
+export const Route = createFileRoute("/scene-negotiator/join/$token")({
   head: () => ({ meta: [{ title: "Join a scene" }] }),
   component: JoinPage,
 });
@@ -224,7 +224,7 @@ function JoinPage() {
     try {
       const updated = await addPartner(buildSideForSave());
       if (updated) {
-        setResponseUrl(await sceneUrl(`/sessions/${token}`, updated));
+        setResponseUrl(await sceneUrl(`/scene-negotiator/sessions/${token}`, updated));
         if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } finally {
@@ -632,7 +632,7 @@ function JoinPage() {
               Back
             </CloudButton>
           )}
-          <Link to="/" className="text-xs text-muted-foreground underline pt-1">
+          <Link to="/scene-negotiator" className="text-xs text-muted-foreground underline pt-1">
             Cancel
           </Link>
         </div>

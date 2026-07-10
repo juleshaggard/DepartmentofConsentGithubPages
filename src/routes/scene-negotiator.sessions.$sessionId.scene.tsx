@@ -11,7 +11,7 @@ import { Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/sessions/$sessionId/scene")({
+export const Route = createFileRoute("/scene-negotiator/sessions/$sessionId/scene")({
   head: () => ({ meta: [{ title: "In-scene reference" }] }),
   component: ScenePage,
 });
@@ -274,7 +274,7 @@ function ScenePage() {
 
         <div className="flex justify-center pt-2">
           <Button asChild variant="outline" className="rounded-full">
-            <Link to="/sessions/$sessionId" params={{ sessionId }}>
+            <Link to="/scene-negotiator/sessions/$sessionId" params={{ sessionId }}>
               Back
             </Link>
           </Button>

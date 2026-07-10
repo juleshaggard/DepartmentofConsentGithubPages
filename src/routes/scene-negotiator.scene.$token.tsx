@@ -10,16 +10,16 @@ import { sceneUrl } from "@/lib/sceneLinks";
 import { VibePills } from "@/components/scene/VibePills";
 import { useEffect, useMemo, useState } from "react";
 
-export const Route = createFileRoute("/scene/$token")({
+export const Route = createFileRoute("/scene-negotiator/scene/$token")({
   head: () => ({
     meta: [
-      { title: "Scene recap — Department of Consent" },
+      { title: "Scene recap — Scene Negotiator" },
       {
         name: "description",
         content:
           "A shared kink scene recap: limits, cravings, safewords, and aftercare agreements between play partners.",
       },
-      { property: "og:title", content: "Scene recap — Department of Consent" },
+      { property: "og:title", content: "Scene recap — Scene Negotiator" },
       {
         property: "og:description",
         content:
@@ -40,7 +40,7 @@ function SceneRecap() {
 
   useEffect(() => {
     if (!session) return;
-    sceneUrl(`/scene/${token}`, session)
+    sceneUrl(`/scene-negotiator/scene/${token}`, session)
       .then(setUrl)
       .catch(() => setUrl(""));
   }, [session, token]);
@@ -92,7 +92,7 @@ function SceneRecap() {
 
         <div className="flex justify-center">
           <Button asChild variant="outline">
-            <Link to="/">Home</Link>
+            <Link to="/scene-negotiator">Home</Link>
           </Button>
         </div>
       </div>

@@ -9,43 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkshopsRouteImport } from './routes/workshops'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SubscribeRouteImport } from './routes/subscribe'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SceneNegotiatorRouteImport } from './routes/scene-negotiator'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as KinksRouteImport } from './routes/kinks'
-import { Route as AuthRouteImport } from './routes/auth'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as CoachingRouteImport } from './routes/coaching'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SessionsIndexRouteImport } from './routes/sessions.index'
-import { Route as SessionsNewRouteImport } from './routes/sessions.new'
-import { Route as SceneTokenRouteImport } from './routes/scene.$token'
-import { Route as JoinTokenRouteImport } from './routes/join.$token'
-import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
-import { Route as SessionsSessionIdIndexRouteImport } from './routes/sessions.$sessionId.index'
-import { Route as SessionsSessionIdSceneRouteImport } from './routes/sessions.$sessionId.scene'
-import { Route as SessionsSessionIdEditRouteImport } from './routes/sessions.$sessionId.edit'
-import { Route as SessionsSessionIdAftercareRouteImport } from './routes/sessions.$sessionId.aftercare'
+import { Route as SceneNegotiatorIndexRouteImport } from './routes/scene-negotiator.index'
+import { Route as ServicesPolyamoryCoachingForBeginnersRouteImport } from './routes/services.polyamory-coaching-for-beginners'
+import { Route as ServicesKinkEventAccompanimentRouteImport } from './routes/services.kink-event-accompaniment'
+import { Route as ServicesKinkCoachSanFranciscoRouteImport } from './routes/services.kink-coach-san-francisco'
+import { Route as ServicesBeginnerBdsmCoachingRouteImport } from './routes/services.beginner-bdsm-coaching'
+import { Route as SceneNegotiatorSettingsRouteImport } from './routes/scene-negotiator.settings'
+import { Route as SceneNegotiatorOnboardingRouteImport } from './routes/scene-negotiator.onboarding'
+import { Route as SceneNegotiatorKinksRouteImport } from './routes/scene-negotiator.kinks'
+import { Route as GuidesPreparingForYourFirstKinkEventRouteImport } from './routes/guides.preparing-for-your-first-kink-event'
+import { Route as GuidesKinkRedFlagsForBeginnersRouteImport } from './routes/guides.kink-red-flags-for-beginners'
+import { Route as GuidesHowToNegotiateYourFirstSceneRouteImport } from './routes/guides.how-to-negotiate-your-first-scene'
+import { Route as GuidesHowToEnterTheKinkSceneRouteImport } from './routes/guides.how-to-enter-the-kink-scene'
+import { Route as SceneNegotiatorSessionsIndexRouteImport } from './routes/scene-negotiator.sessions.index'
+import { Route as SceneNegotiatorSessionsNewRouteImport } from './routes/scene-negotiator.sessions.new'
+import { Route as SceneNegotiatorSceneTokenRouteImport } from './routes/scene-negotiator.scene.$token'
+import { Route as SceneNegotiatorJoinTokenRouteImport } from './routes/scene-negotiator.join.$token'
+import { Route as SceneNegotiatorSessionsSessionIdIndexRouteImport } from './routes/scene-negotiator.sessions.$sessionId.index'
+import { Route as SceneNegotiatorSessionsSessionIdSceneRouteImport } from './routes/scene-negotiator.sessions.$sessionId.scene'
+import { Route as SceneNegotiatorSessionsSessionIdEditRouteImport } from './routes/scene-negotiator.sessions.$sessionId.edit'
+import { Route as SceneNegotiatorSessionsSessionIdAftercareRouteImport } from './routes/scene-negotiator.sessions.$sessionId.aftercare'
 
+const WorkshopsRoute = WorkshopsRouteImport.update({
+  id: '/workshops',
+  path: '/workshops',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SubscribeRoute = SubscribeRouteImport.update({
-  id: '/subscribe',
-  path: '/subscribe',
+const SceneNegotiatorRoute = SceneNegotiatorRouteImport.update({
+  id: '/scene-negotiator',
+  path: '/scene-negotiator',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -53,19 +66,29 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KinksRoute = KinksRouteImport.update({
-  id: '/kinks',
-  path: '/kinks',
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const CoachingRoute = CoachingRouteImport.update({
+  id: '/coaching',
+  path: '/coaching',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -73,200 +96,355 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SessionsIndexRoute = SessionsIndexRouteImport.update({
-  id: '/sessions/',
-  path: '/sessions/',
-  getParentRoute: () => rootRouteImport,
+const SceneNegotiatorIndexRoute = SceneNegotiatorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SceneNegotiatorRoute,
 } as any)
-const SessionsNewRoute = SessionsNewRouteImport.update({
-  id: '/sessions/new',
-  path: '/sessions/new',
-  getParentRoute: () => rootRouteImport,
+const ServicesPolyamoryCoachingForBeginnersRoute =
+  ServicesPolyamoryCoachingForBeginnersRouteImport.update({
+    id: '/services/polyamory-coaching-for-beginners',
+    path: '/services/polyamory-coaching-for-beginners',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesKinkEventAccompanimentRoute =
+  ServicesKinkEventAccompanimentRouteImport.update({
+    id: '/services/kink-event-accompaniment',
+    path: '/services/kink-event-accompaniment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesKinkCoachSanFranciscoRoute =
+  ServicesKinkCoachSanFranciscoRouteImport.update({
+    id: '/services/kink-coach-san-francisco',
+    path: '/services/kink-coach-san-francisco',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesBeginnerBdsmCoachingRoute =
+  ServicesBeginnerBdsmCoachingRouteImport.update({
+    id: '/services/beginner-bdsm-coaching',
+    path: '/services/beginner-bdsm-coaching',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SceneNegotiatorSettingsRoute = SceneNegotiatorSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => SceneNegotiatorRoute,
 } as any)
-const SceneTokenRoute = SceneTokenRouteImport.update({
-  id: '/scene/$token',
-  path: '/scene/$token',
-  getParentRoute: () => rootRouteImport,
+const SceneNegotiatorOnboardingRoute =
+  SceneNegotiatorOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorKinksRoute = SceneNegotiatorKinksRouteImport.update({
+  id: '/kinks',
+  path: '/kinks',
+  getParentRoute: () => SceneNegotiatorRoute,
 } as any)
-const JoinTokenRoute = JoinTokenRouteImport.update({
-  id: '/join/$token',
-  path: '/join/$token',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
-  id: '/checkout/return',
-  path: '/checkout/return',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SessionsSessionIdIndexRoute = SessionsSessionIdIndexRouteImport.update({
-  id: '/sessions/$sessionId/',
-  path: '/sessions/$sessionId/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SessionsSessionIdSceneRoute = SessionsSessionIdSceneRouteImport.update({
-  id: '/sessions/$sessionId/scene',
-  path: '/sessions/$sessionId/scene',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SessionsSessionIdEditRoute = SessionsSessionIdEditRouteImport.update({
-  id: '/sessions/$sessionId/edit',
-  path: '/sessions/$sessionId/edit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SessionsSessionIdAftercareRoute =
-  SessionsSessionIdAftercareRouteImport.update({
+const GuidesPreparingForYourFirstKinkEventRoute =
+  GuidesPreparingForYourFirstKinkEventRouteImport.update({
+    id: '/guides/preparing-for-your-first-kink-event',
+    path: '/guides/preparing-for-your-first-kink-event',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GuidesKinkRedFlagsForBeginnersRoute =
+  GuidesKinkRedFlagsForBeginnersRouteImport.update({
+    id: '/guides/kink-red-flags-for-beginners',
+    path: '/guides/kink-red-flags-for-beginners',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GuidesHowToNegotiateYourFirstSceneRoute =
+  GuidesHowToNegotiateYourFirstSceneRouteImport.update({
+    id: '/guides/how-to-negotiate-your-first-scene',
+    path: '/guides/how-to-negotiate-your-first-scene',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GuidesHowToEnterTheKinkSceneRoute =
+  GuidesHowToEnterTheKinkSceneRouteImport.update({
+    id: '/guides/how-to-enter-the-kink-scene',
+    path: '/guides/how-to-enter-the-kink-scene',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SceneNegotiatorSessionsIndexRoute =
+  SceneNegotiatorSessionsIndexRouteImport.update({
+    id: '/sessions/',
+    path: '/sessions/',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSessionsNewRoute =
+  SceneNegotiatorSessionsNewRouteImport.update({
+    id: '/sessions/new',
+    path: '/sessions/new',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSceneTokenRoute =
+  SceneNegotiatorSceneTokenRouteImport.update({
+    id: '/scene/$token',
+    path: '/scene/$token',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorJoinTokenRoute =
+  SceneNegotiatorJoinTokenRouteImport.update({
+    id: '/join/$token',
+    path: '/join/$token',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSessionsSessionIdIndexRoute =
+  SceneNegotiatorSessionsSessionIdIndexRouteImport.update({
+    id: '/sessions/$sessionId/',
+    path: '/sessions/$sessionId/',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSessionsSessionIdSceneRoute =
+  SceneNegotiatorSessionsSessionIdSceneRouteImport.update({
+    id: '/sessions/$sessionId/scene',
+    path: '/sessions/$sessionId/scene',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSessionsSessionIdEditRoute =
+  SceneNegotiatorSessionsSessionIdEditRouteImport.update({
+    id: '/sessions/$sessionId/edit',
+    path: '/sessions/$sessionId/edit',
+    getParentRoute: () => SceneNegotiatorRoute,
+  } as any)
+const SceneNegotiatorSessionsSessionIdAftercareRoute =
+  SceneNegotiatorSessionsSessionIdAftercareRouteImport.update({
     id: '/sessions/$sessionId/aftercare',
     path: '/sessions/$sessionId/aftercare',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => SceneNegotiatorRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/kinks': typeof KinksRoute
-  '/onboarding': typeof OnboardingRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/coaching': typeof CoachingRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/settings': typeof SettingsRoute
-  '/subscribe': typeof SubscribeRoute
+  '/resources': typeof ResourcesRoute
+  '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
   '/terms': typeof TermsRoute
-  '/checkout/return': typeof CheckoutReturnRoute
-  '/join/$token': typeof JoinTokenRoute
-  '/scene/$token': typeof SceneTokenRoute
-  '/sessions/new': typeof SessionsNewRoute
-  '/sessions/': typeof SessionsIndexRoute
-  '/sessions/$sessionId/aftercare': typeof SessionsSessionIdAftercareRoute
-  '/sessions/$sessionId/edit': typeof SessionsSessionIdEditRoute
-  '/sessions/$sessionId/scene': typeof SessionsSessionIdSceneRoute
-  '/sessions/$sessionId/': typeof SessionsSessionIdIndexRoute
+  '/workshops': typeof WorkshopsRoute
+  '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
+  '/guides/how-to-negotiate-your-first-scene': typeof GuidesHowToNegotiateYourFirstSceneRoute
+  '/guides/kink-red-flags-for-beginners': typeof GuidesKinkRedFlagsForBeginnersRoute
+  '/guides/preparing-for-your-first-kink-event': typeof GuidesPreparingForYourFirstKinkEventRoute
+  '/scene-negotiator/kinks': typeof SceneNegotiatorKinksRoute
+  '/scene-negotiator/onboarding': typeof SceneNegotiatorOnboardingRoute
+  '/scene-negotiator/settings': typeof SceneNegotiatorSettingsRoute
+  '/services/beginner-bdsm-coaching': typeof ServicesBeginnerBdsmCoachingRoute
+  '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
+  '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
+  '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
+  '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
+  '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
+  '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/scene-negotiator/sessions/': typeof SceneNegotiatorSessionsIndexRoute
+  '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
+  '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
+  '/scene-negotiator/sessions/$sessionId/scene': typeof SceneNegotiatorSessionsSessionIdSceneRoute
+  '/scene-negotiator/sessions/$sessionId/': typeof SceneNegotiatorSessionsSessionIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/kinks': typeof KinksRoute
-  '/onboarding': typeof OnboardingRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/coaching': typeof CoachingRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/settings': typeof SettingsRoute
-  '/subscribe': typeof SubscribeRoute
+  '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
-  '/checkout/return': typeof CheckoutReturnRoute
-  '/join/$token': typeof JoinTokenRoute
-  '/scene/$token': typeof SceneTokenRoute
-  '/sessions/new': typeof SessionsNewRoute
-  '/sessions': typeof SessionsIndexRoute
-  '/sessions/$sessionId/aftercare': typeof SessionsSessionIdAftercareRoute
-  '/sessions/$sessionId/edit': typeof SessionsSessionIdEditRoute
-  '/sessions/$sessionId/scene': typeof SessionsSessionIdSceneRoute
-  '/sessions/$sessionId': typeof SessionsSessionIdIndexRoute
+  '/workshops': typeof WorkshopsRoute
+  '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
+  '/guides/how-to-negotiate-your-first-scene': typeof GuidesHowToNegotiateYourFirstSceneRoute
+  '/guides/kink-red-flags-for-beginners': typeof GuidesKinkRedFlagsForBeginnersRoute
+  '/guides/preparing-for-your-first-kink-event': typeof GuidesPreparingForYourFirstKinkEventRoute
+  '/scene-negotiator/kinks': typeof SceneNegotiatorKinksRoute
+  '/scene-negotiator/onboarding': typeof SceneNegotiatorOnboardingRoute
+  '/scene-negotiator/settings': typeof SceneNegotiatorSettingsRoute
+  '/services/beginner-bdsm-coaching': typeof ServicesBeginnerBdsmCoachingRoute
+  '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
+  '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
+  '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/scene-negotiator': typeof SceneNegotiatorIndexRoute
+  '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
+  '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
+  '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/scene-negotiator/sessions': typeof SceneNegotiatorSessionsIndexRoute
+  '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
+  '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
+  '/scene-negotiator/sessions/$sessionId/scene': typeof SceneNegotiatorSessionsSessionIdSceneRoute
+  '/scene-negotiator/sessions/$sessionId': typeof SceneNegotiatorSessionsSessionIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/kinks': typeof KinksRoute
-  '/onboarding': typeof OnboardingRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/coaching': typeof CoachingRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/settings': typeof SettingsRoute
-  '/subscribe': typeof SubscribeRoute
+  '/resources': typeof ResourcesRoute
+  '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
   '/terms': typeof TermsRoute
-  '/checkout/return': typeof CheckoutReturnRoute
-  '/join/$token': typeof JoinTokenRoute
-  '/scene/$token': typeof SceneTokenRoute
-  '/sessions/new': typeof SessionsNewRoute
-  '/sessions/': typeof SessionsIndexRoute
-  '/sessions/$sessionId/aftercare': typeof SessionsSessionIdAftercareRoute
-  '/sessions/$sessionId/edit': typeof SessionsSessionIdEditRoute
-  '/sessions/$sessionId/scene': typeof SessionsSessionIdSceneRoute
-  '/sessions/$sessionId/': typeof SessionsSessionIdIndexRoute
+  '/workshops': typeof WorkshopsRoute
+  '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
+  '/guides/how-to-negotiate-your-first-scene': typeof GuidesHowToNegotiateYourFirstSceneRoute
+  '/guides/kink-red-flags-for-beginners': typeof GuidesKinkRedFlagsForBeginnersRoute
+  '/guides/preparing-for-your-first-kink-event': typeof GuidesPreparingForYourFirstKinkEventRoute
+  '/scene-negotiator/kinks': typeof SceneNegotiatorKinksRoute
+  '/scene-negotiator/onboarding': typeof SceneNegotiatorOnboardingRoute
+  '/scene-negotiator/settings': typeof SceneNegotiatorSettingsRoute
+  '/services/beginner-bdsm-coaching': typeof ServicesBeginnerBdsmCoachingRoute
+  '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
+  '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
+  '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
+  '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
+  '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
+  '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/scene-negotiator/sessions/': typeof SceneNegotiatorSessionsIndexRoute
+  '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
+  '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
+  '/scene-negotiator/sessions/$sessionId/scene': typeof SceneNegotiatorSessionsSessionIdSceneRoute
+  '/scene-negotiator/sessions/$sessionId/': typeof SceneNegotiatorSessionsSessionIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/auth'
-    | '/kinks'
-    | '/onboarding'
+    | '/about'
+    | '/book'
+    | '/coaching'
+    | '/disclaimer'
+    | '/faq'
     | '/privacy'
-    | '/reset-password'
-    | '/settings'
-    | '/subscribe'
+    | '/resources'
+    | '/scene-negotiator'
     | '/terms'
-    | '/checkout/return'
-    | '/join/$token'
-    | '/scene/$token'
-    | '/sessions/new'
-    | '/sessions/'
-    | '/sessions/$sessionId/aftercare'
-    | '/sessions/$sessionId/edit'
-    | '/sessions/$sessionId/scene'
-    | '/sessions/$sessionId/'
+    | '/workshops'
+    | '/guides/how-to-enter-the-kink-scene'
+    | '/guides/how-to-negotiate-your-first-scene'
+    | '/guides/kink-red-flags-for-beginners'
+    | '/guides/preparing-for-your-first-kink-event'
+    | '/scene-negotiator/kinks'
+    | '/scene-negotiator/onboarding'
+    | '/scene-negotiator/settings'
+    | '/services/beginner-bdsm-coaching'
+    | '/services/kink-coach-san-francisco'
+    | '/services/kink-event-accompaniment'
+    | '/services/polyamory-coaching-for-beginners'
+    | '/scene-negotiator/'
+    | '/scene-negotiator/join/$token'
+    | '/scene-negotiator/scene/$token'
+    | '/scene-negotiator/sessions/new'
+    | '/scene-negotiator/sessions/'
+    | '/scene-negotiator/sessions/$sessionId/aftercare'
+    | '/scene-negotiator/sessions/$sessionId/edit'
+    | '/scene-negotiator/sessions/$sessionId/scene'
+    | '/scene-negotiator/sessions/$sessionId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/auth'
-    | '/kinks'
-    | '/onboarding'
+    | '/about'
+    | '/book'
+    | '/coaching'
+    | '/disclaimer'
+    | '/faq'
     | '/privacy'
-    | '/reset-password'
-    | '/settings'
-    | '/subscribe'
+    | '/resources'
     | '/terms'
-    | '/checkout/return'
-    | '/join/$token'
-    | '/scene/$token'
-    | '/sessions/new'
-    | '/sessions'
-    | '/sessions/$sessionId/aftercare'
-    | '/sessions/$sessionId/edit'
-    | '/sessions/$sessionId/scene'
-    | '/sessions/$sessionId'
+    | '/workshops'
+    | '/guides/how-to-enter-the-kink-scene'
+    | '/guides/how-to-negotiate-your-first-scene'
+    | '/guides/kink-red-flags-for-beginners'
+    | '/guides/preparing-for-your-first-kink-event'
+    | '/scene-negotiator/kinks'
+    | '/scene-negotiator/onboarding'
+    | '/scene-negotiator/settings'
+    | '/services/beginner-bdsm-coaching'
+    | '/services/kink-coach-san-francisco'
+    | '/services/kink-event-accompaniment'
+    | '/services/polyamory-coaching-for-beginners'
+    | '/scene-negotiator'
+    | '/scene-negotiator/join/$token'
+    | '/scene-negotiator/scene/$token'
+    | '/scene-negotiator/sessions/new'
+    | '/scene-negotiator/sessions'
+    | '/scene-negotiator/sessions/$sessionId/aftercare'
+    | '/scene-negotiator/sessions/$sessionId/edit'
+    | '/scene-negotiator/sessions/$sessionId/scene'
+    | '/scene-negotiator/sessions/$sessionId'
   id:
     | '__root__'
     | '/'
-    | '/auth'
-    | '/kinks'
-    | '/onboarding'
+    | '/about'
+    | '/book'
+    | '/coaching'
+    | '/disclaimer'
+    | '/faq'
     | '/privacy'
-    | '/reset-password'
-    | '/settings'
-    | '/subscribe'
+    | '/resources'
+    | '/scene-negotiator'
     | '/terms'
-    | '/checkout/return'
-    | '/join/$token'
-    | '/scene/$token'
-    | '/sessions/new'
-    | '/sessions/'
-    | '/sessions/$sessionId/aftercare'
-    | '/sessions/$sessionId/edit'
-    | '/sessions/$sessionId/scene'
-    | '/sessions/$sessionId/'
+    | '/workshops'
+    | '/guides/how-to-enter-the-kink-scene'
+    | '/guides/how-to-negotiate-your-first-scene'
+    | '/guides/kink-red-flags-for-beginners'
+    | '/guides/preparing-for-your-first-kink-event'
+    | '/scene-negotiator/kinks'
+    | '/scene-negotiator/onboarding'
+    | '/scene-negotiator/settings'
+    | '/services/beginner-bdsm-coaching'
+    | '/services/kink-coach-san-francisco'
+    | '/services/kink-event-accompaniment'
+    | '/services/polyamory-coaching-for-beginners'
+    | '/scene-negotiator/'
+    | '/scene-negotiator/join/$token'
+    | '/scene-negotiator/scene/$token'
+    | '/scene-negotiator/sessions/new'
+    | '/scene-negotiator/sessions/'
+    | '/scene-negotiator/sessions/$sessionId/aftercare'
+    | '/scene-negotiator/sessions/$sessionId/edit'
+    | '/scene-negotiator/sessions/$sessionId/scene'
+    | '/scene-negotiator/sessions/$sessionId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthRoute: typeof AuthRoute
-  KinksRoute: typeof KinksRoute
-  OnboardingRoute: typeof OnboardingRoute
+  AboutRoute: typeof AboutRoute
+  BookRoute: typeof BookRoute
+  CoachingRoute: typeof CoachingRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  FaqRoute: typeof FaqRoute
   PrivacyRoute: typeof PrivacyRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
-  SettingsRoute: typeof SettingsRoute
-  SubscribeRoute: typeof SubscribeRoute
+  ResourcesRoute: typeof ResourcesRoute
+  SceneNegotiatorRoute: typeof SceneNegotiatorRouteWithChildren
   TermsRoute: typeof TermsRoute
-  CheckoutReturnRoute: typeof CheckoutReturnRoute
-  JoinTokenRoute: typeof JoinTokenRoute
-  SceneTokenRoute: typeof SceneTokenRoute
-  SessionsNewRoute: typeof SessionsNewRoute
-  SessionsIndexRoute: typeof SessionsIndexRoute
-  SessionsSessionIdAftercareRoute: typeof SessionsSessionIdAftercareRoute
-  SessionsSessionIdEditRoute: typeof SessionsSessionIdEditRoute
-  SessionsSessionIdSceneRoute: typeof SessionsSessionIdSceneRoute
-  SessionsSessionIdIndexRoute: typeof SessionsSessionIdIndexRoute
+  WorkshopsRoute: typeof WorkshopsRoute
+  GuidesHowToEnterTheKinkSceneRoute: typeof GuidesHowToEnterTheKinkSceneRoute
+  GuidesHowToNegotiateYourFirstSceneRoute: typeof GuidesHowToNegotiateYourFirstSceneRoute
+  GuidesKinkRedFlagsForBeginnersRoute: typeof GuidesKinkRedFlagsForBeginnersRoute
+  GuidesPreparingForYourFirstKinkEventRoute: typeof GuidesPreparingForYourFirstKinkEventRoute
+  ServicesBeginnerBdsmCoachingRoute: typeof ServicesBeginnerBdsmCoachingRoute
+  ServicesKinkCoachSanFranciscoRoute: typeof ServicesKinkCoachSanFranciscoRoute
+  ServicesKinkEventAccompanimentRoute: typeof ServicesKinkEventAccompanimentRoute
+  ServicesPolyamoryCoachingForBeginnersRoute: typeof ServicesPolyamoryCoachingForBeginnersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/workshops': {
+      id: '/workshops'
+      path: '/workshops'
+      fullPath: '/workshops'
+      preLoaderRoute: typeof WorkshopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -274,25 +452,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/subscribe': {
-      id: '/subscribe'
-      path: '/subscribe'
-      fullPath: '/subscribe'
-      preLoaderRoute: typeof SubscribeRouteImport
+    '/scene-negotiator': {
+      id: '/scene-negotiator'
+      path: '/scene-negotiator'
+      fullPath: '/scene-negotiator'
+      preLoaderRoute: typeof SceneNegotiatorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -302,25 +473,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/kinks': {
-      id: '/kinks'
-      path: '/kinks'
-      fullPath: '/kinks'
-      preLoaderRoute: typeof KinksRouteImport
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
+    '/coaching': {
+      id: '/coaching'
+      path: '/coaching'
+      fullPath: '/coaching'
+      preLoaderRoute: typeof CoachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -330,91 +515,210 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sessions/': {
-      id: '/sessions/'
+    '/scene-negotiator/': {
+      id: '/scene-negotiator/'
+      path: '/'
+      fullPath: '/scene-negotiator/'
+      preLoaderRoute: typeof SceneNegotiatorIndexRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
+    }
+    '/services/polyamory-coaching-for-beginners': {
+      id: '/services/polyamory-coaching-for-beginners'
+      path: '/services/polyamory-coaching-for-beginners'
+      fullPath: '/services/polyamory-coaching-for-beginners'
+      preLoaderRoute: typeof ServicesPolyamoryCoachingForBeginnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/kink-event-accompaniment': {
+      id: '/services/kink-event-accompaniment'
+      path: '/services/kink-event-accompaniment'
+      fullPath: '/services/kink-event-accompaniment'
+      preLoaderRoute: typeof ServicesKinkEventAccompanimentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/kink-coach-san-francisco': {
+      id: '/services/kink-coach-san-francisco'
+      path: '/services/kink-coach-san-francisco'
+      fullPath: '/services/kink-coach-san-francisco'
+      preLoaderRoute: typeof ServicesKinkCoachSanFranciscoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/beginner-bdsm-coaching': {
+      id: '/services/beginner-bdsm-coaching'
+      path: '/services/beginner-bdsm-coaching'
+      fullPath: '/services/beginner-bdsm-coaching'
+      preLoaderRoute: typeof ServicesBeginnerBdsmCoachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scene-negotiator/settings': {
+      id: '/scene-negotiator/settings'
+      path: '/settings'
+      fullPath: '/scene-negotiator/settings'
+      preLoaderRoute: typeof SceneNegotiatorSettingsRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
+    }
+    '/scene-negotiator/onboarding': {
+      id: '/scene-negotiator/onboarding'
+      path: '/onboarding'
+      fullPath: '/scene-negotiator/onboarding'
+      preLoaderRoute: typeof SceneNegotiatorOnboardingRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
+    }
+    '/scene-negotiator/kinks': {
+      id: '/scene-negotiator/kinks'
+      path: '/kinks'
+      fullPath: '/scene-negotiator/kinks'
+      preLoaderRoute: typeof SceneNegotiatorKinksRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
+    }
+    '/guides/preparing-for-your-first-kink-event': {
+      id: '/guides/preparing-for-your-first-kink-event'
+      path: '/guides/preparing-for-your-first-kink-event'
+      fullPath: '/guides/preparing-for-your-first-kink-event'
+      preLoaderRoute: typeof GuidesPreparingForYourFirstKinkEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/kink-red-flags-for-beginners': {
+      id: '/guides/kink-red-flags-for-beginners'
+      path: '/guides/kink-red-flags-for-beginners'
+      fullPath: '/guides/kink-red-flags-for-beginners'
+      preLoaderRoute: typeof GuidesKinkRedFlagsForBeginnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/how-to-negotiate-your-first-scene': {
+      id: '/guides/how-to-negotiate-your-first-scene'
+      path: '/guides/how-to-negotiate-your-first-scene'
+      fullPath: '/guides/how-to-negotiate-your-first-scene'
+      preLoaderRoute: typeof GuidesHowToNegotiateYourFirstSceneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/how-to-enter-the-kink-scene': {
+      id: '/guides/how-to-enter-the-kink-scene'
+      path: '/guides/how-to-enter-the-kink-scene'
+      fullPath: '/guides/how-to-enter-the-kink-scene'
+      preLoaderRoute: typeof GuidesHowToEnterTheKinkSceneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scene-negotiator/sessions/': {
+      id: '/scene-negotiator/sessions/'
       path: '/sessions'
-      fullPath: '/sessions/'
-      preLoaderRoute: typeof SessionsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/'
+      preLoaderRoute: typeof SceneNegotiatorSessionsIndexRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/sessions/new': {
-      id: '/sessions/new'
+    '/scene-negotiator/sessions/new': {
+      id: '/scene-negotiator/sessions/new'
       path: '/sessions/new'
-      fullPath: '/sessions/new'
-      preLoaderRoute: typeof SessionsNewRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/new'
+      preLoaderRoute: typeof SceneNegotiatorSessionsNewRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/scene/$token': {
-      id: '/scene/$token'
+    '/scene-negotiator/scene/$token': {
+      id: '/scene-negotiator/scene/$token'
       path: '/scene/$token'
-      fullPath: '/scene/$token'
-      preLoaderRoute: typeof SceneTokenRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/scene/$token'
+      preLoaderRoute: typeof SceneNegotiatorSceneTokenRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/join/$token': {
-      id: '/join/$token'
+    '/scene-negotiator/join/$token': {
+      id: '/scene-negotiator/join/$token'
       path: '/join/$token'
-      fullPath: '/join/$token'
-      preLoaderRoute: typeof JoinTokenRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/join/$token'
+      preLoaderRoute: typeof SceneNegotiatorJoinTokenRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/checkout/return': {
-      id: '/checkout/return'
-      path: '/checkout/return'
-      fullPath: '/checkout/return'
-      preLoaderRoute: typeof CheckoutReturnRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sessions/$sessionId/': {
-      id: '/sessions/$sessionId/'
+    '/scene-negotiator/sessions/$sessionId/': {
+      id: '/scene-negotiator/sessions/$sessionId/'
       path: '/sessions/$sessionId'
-      fullPath: '/sessions/$sessionId/'
-      preLoaderRoute: typeof SessionsSessionIdIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/$sessionId/'
+      preLoaderRoute: typeof SceneNegotiatorSessionsSessionIdIndexRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/sessions/$sessionId/scene': {
-      id: '/sessions/$sessionId/scene'
+    '/scene-negotiator/sessions/$sessionId/scene': {
+      id: '/scene-negotiator/sessions/$sessionId/scene'
       path: '/sessions/$sessionId/scene'
-      fullPath: '/sessions/$sessionId/scene'
-      preLoaderRoute: typeof SessionsSessionIdSceneRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/$sessionId/scene'
+      preLoaderRoute: typeof SceneNegotiatorSessionsSessionIdSceneRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/sessions/$sessionId/edit': {
-      id: '/sessions/$sessionId/edit'
+    '/scene-negotiator/sessions/$sessionId/edit': {
+      id: '/scene-negotiator/sessions/$sessionId/edit'
       path: '/sessions/$sessionId/edit'
-      fullPath: '/sessions/$sessionId/edit'
-      preLoaderRoute: typeof SessionsSessionIdEditRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/$sessionId/edit'
+      preLoaderRoute: typeof SceneNegotiatorSessionsSessionIdEditRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
-    '/sessions/$sessionId/aftercare': {
-      id: '/sessions/$sessionId/aftercare'
+    '/scene-negotiator/sessions/$sessionId/aftercare': {
+      id: '/scene-negotiator/sessions/$sessionId/aftercare'
       path: '/sessions/$sessionId/aftercare'
-      fullPath: '/sessions/$sessionId/aftercare'
-      preLoaderRoute: typeof SessionsSessionIdAftercareRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/scene-negotiator/sessions/$sessionId/aftercare'
+      preLoaderRoute: typeof SceneNegotiatorSessionsSessionIdAftercareRouteImport
+      parentRoute: typeof SceneNegotiatorRoute
     }
   }
 }
 
+interface SceneNegotiatorRouteChildren {
+  SceneNegotiatorKinksRoute: typeof SceneNegotiatorKinksRoute
+  SceneNegotiatorOnboardingRoute: typeof SceneNegotiatorOnboardingRoute
+  SceneNegotiatorSettingsRoute: typeof SceneNegotiatorSettingsRoute
+  SceneNegotiatorIndexRoute: typeof SceneNegotiatorIndexRoute
+  SceneNegotiatorJoinTokenRoute: typeof SceneNegotiatorJoinTokenRoute
+  SceneNegotiatorSceneTokenRoute: typeof SceneNegotiatorSceneTokenRoute
+  SceneNegotiatorSessionsNewRoute: typeof SceneNegotiatorSessionsNewRoute
+  SceneNegotiatorSessionsIndexRoute: typeof SceneNegotiatorSessionsIndexRoute
+  SceneNegotiatorSessionsSessionIdAftercareRoute: typeof SceneNegotiatorSessionsSessionIdAftercareRoute
+  SceneNegotiatorSessionsSessionIdEditRoute: typeof SceneNegotiatorSessionsSessionIdEditRoute
+  SceneNegotiatorSessionsSessionIdSceneRoute: typeof SceneNegotiatorSessionsSessionIdSceneRoute
+  SceneNegotiatorSessionsSessionIdIndexRoute: typeof SceneNegotiatorSessionsSessionIdIndexRoute
+}
+
+const SceneNegotiatorRouteChildren: SceneNegotiatorRouteChildren = {
+  SceneNegotiatorKinksRoute: SceneNegotiatorKinksRoute,
+  SceneNegotiatorOnboardingRoute: SceneNegotiatorOnboardingRoute,
+  SceneNegotiatorSettingsRoute: SceneNegotiatorSettingsRoute,
+  SceneNegotiatorIndexRoute: SceneNegotiatorIndexRoute,
+  SceneNegotiatorJoinTokenRoute: SceneNegotiatorJoinTokenRoute,
+  SceneNegotiatorSceneTokenRoute: SceneNegotiatorSceneTokenRoute,
+  SceneNegotiatorSessionsNewRoute: SceneNegotiatorSessionsNewRoute,
+  SceneNegotiatorSessionsIndexRoute: SceneNegotiatorSessionsIndexRoute,
+  SceneNegotiatorSessionsSessionIdAftercareRoute:
+    SceneNegotiatorSessionsSessionIdAftercareRoute,
+  SceneNegotiatorSessionsSessionIdEditRoute:
+    SceneNegotiatorSessionsSessionIdEditRoute,
+  SceneNegotiatorSessionsSessionIdSceneRoute:
+    SceneNegotiatorSessionsSessionIdSceneRoute,
+  SceneNegotiatorSessionsSessionIdIndexRoute:
+    SceneNegotiatorSessionsSessionIdIndexRoute,
+}
+
+const SceneNegotiatorRouteWithChildren = SceneNegotiatorRoute._addFileChildren(
+  SceneNegotiatorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthRoute: AuthRoute,
-  KinksRoute: KinksRoute,
-  OnboardingRoute: OnboardingRoute,
+  AboutRoute: AboutRoute,
+  BookRoute: BookRoute,
+  CoachingRoute: CoachingRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  FaqRoute: FaqRoute,
   PrivacyRoute: PrivacyRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
-  SettingsRoute: SettingsRoute,
-  SubscribeRoute: SubscribeRoute,
+  ResourcesRoute: ResourcesRoute,
+  SceneNegotiatorRoute: SceneNegotiatorRouteWithChildren,
   TermsRoute: TermsRoute,
-  CheckoutReturnRoute: CheckoutReturnRoute,
-  JoinTokenRoute: JoinTokenRoute,
-  SceneTokenRoute: SceneTokenRoute,
-  SessionsNewRoute: SessionsNewRoute,
-  SessionsIndexRoute: SessionsIndexRoute,
-  SessionsSessionIdAftercareRoute: SessionsSessionIdAftercareRoute,
-  SessionsSessionIdEditRoute: SessionsSessionIdEditRoute,
-  SessionsSessionIdSceneRoute: SessionsSessionIdSceneRoute,
-  SessionsSessionIdIndexRoute: SessionsSessionIdIndexRoute,
+  WorkshopsRoute: WorkshopsRoute,
+  GuidesHowToEnterTheKinkSceneRoute: GuidesHowToEnterTheKinkSceneRoute,
+  GuidesHowToNegotiateYourFirstSceneRoute:
+    GuidesHowToNegotiateYourFirstSceneRoute,
+  GuidesKinkRedFlagsForBeginnersRoute: GuidesKinkRedFlagsForBeginnersRoute,
+  GuidesPreparingForYourFirstKinkEventRoute:
+    GuidesPreparingForYourFirstKinkEventRoute,
+  ServicesBeginnerBdsmCoachingRoute: ServicesBeginnerBdsmCoachingRoute,
+  ServicesKinkCoachSanFranciscoRoute: ServicesKinkCoachSanFranciscoRoute,
+  ServicesKinkEventAccompanimentRoute: ServicesKinkEventAccompanimentRoute,
+  ServicesPolyamoryCoachingForBeginnersRoute:
+    ServicesPolyamoryCoachingForBeginnersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

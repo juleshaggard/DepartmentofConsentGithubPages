@@ -10,7 +10,7 @@ import { useCloudSession } from "@/lib/useCloudSession";
 import type { SessionSide } from "@/lib/storage";
 import bunnyIcon from "@/assets/icon-bunny-cuddle.png";
 
-export const Route = createFileRoute("/sessions/$sessionId/aftercare")({
+export const Route = createFileRoute("/scene-negotiator/sessions/$sessionId/aftercare")({
   head: () => ({ meta: [{ title: "Aftercare" }] }),
   component: AftercarePage,
 });
@@ -117,7 +117,7 @@ function AftercarePage() {
           <CloudButton
             onClick={async () => {
               await update({ status: "completed" });
-              navigate({ to: "/sessions" });
+              navigate({ to: "/scene-negotiator/sessions" });
             }}
           >
             Mark scene completed

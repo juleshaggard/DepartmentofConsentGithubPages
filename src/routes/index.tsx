@@ -1,820 +1,390 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Layout } from "@/components/Layout";
-import { CloudButton } from "@/components/CloudButton";
-import { useProfile } from "@/lib/storage";
-import { Check, HelpCircle } from "lucide-react";
-import heroImg from "@/assets/hero-couple.jpg";
-import sectionBg from "@/assets/built-for-bg.png";
-import wordmark from "@/assets/site-logo.svg";
-import footerWordmark from "@/assets/footer-wordmark.svg";
-import flag from "@/assets/trans-flag.svg";
-import stickerWhip from "@/assets/sticker-whip.png";
-import stickerHandcuffs from "@/assets/sticker-handcuffs.png";
-import stickerWand from "@/assets/sticker-wand.png";
-import stickerGag from "@/assets/sticker-gag.png";
-import stickerCollar from "@/assets/sticker-collar.png";
-import stickerBoundHands from "@/assets/sticker-bound-hands.png";
-import stickerRope from "@/assets/sticker-rope.png";
-import stickerFeather from "@/assets/sticker-feather.png";
-import stickerWandPink from "@/assets/sticker-wand-pink.png";
-import iconFlogger from "@/assets/icon-flogger.png";
-import iconBunnies from "@/assets/icon-bunnies.png";
-import iconPup from "@/assets/icon-pup.png";
-import iconMartini from "@/assets/icon-martini.png";
-import iconRing from "@/assets/icon-ring.png";
-import avatarJ from "@/assets/avatar-j.png";
-import avatarR from "@/assets/avatar-r.png";
-import avatarA from "@/assets/avatar-a.png";
-
-const COMMUNITIES = [
-  { icon: iconFlogger, label: "Kink\npractitioners" },
-  { icon: iconBunnies, label: "Polyamorous\npartners" },
-  { icon: iconPup, label: "Queer\ncommunities" },
-  { icon: iconMartini, label: "Casual daters" },
-  { icon: iconRing, label: "Long term\ncouples" },
-];
+import { MarketingLayout } from "@/components/marketing/MarketingLayout";
+import {
+  ButtonLink,
+  Container,
+  CtaBlock,
+  Eyebrow,
+  FaqAccordion,
+  Section,
+  TextLink,
+  type Faq,
+} from "@/components/marketing/primitives";
+import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
+import { pageHead } from "@/lib/seo";
+import { allGuides } from "@/content/guides";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Department of Consent — Plan Kink Scenes Together" },
-      {
-        name: "description",
-        content:
-          "A soft place to negotiate the spicy stuff. For dungeon pickup play, first-time scenes, and growing with longer-term partners.",
-      },
-      { property: "og:title", content: "Department of Consent — Plan Kink Scenes Together" },
-      {
-        property: "og:description",
-        content:
-          "A soft place to negotiate the spicy stuff. For dungeon pickup play, first-time scenes, and growing with longer-term partners.",
-      },
-    ],
-  }),
-  component: Index,
+  head: () =>
+    pageHead({
+      title: "Kink and Poly Coaching for Beginners | Department of Consent",
+      description:
+        "Practical kink and polyamory coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.",
+      path: "/",
+    }),
+  component: HomePage,
 });
 
-const QUESTIONS = [
-  "What is enthusiastically on the table.",
-  "What is a maybe.",
-  "What is completely off limits.",
-  "What needs discussion or aftercare.",
-  "What words, signals, or boundaries stop the scene immediately.",
-];
+const PILLARS = [
+  {
+    n: "01",
+    headline: "You do not have to figure this out alone.",
+    body: "Being new does not mean you need to fake confidence or quietly follow whoever seems most experienced. Get clear, judgment-free guidance before your first conversation, event, scene, or open relationship.",
+  },
+  {
+    n: "02",
+    headline: "Kink has an instruction manual.",
+    body: "The rules are rarely written down, but the important parts can be learned. Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare should not be secrets people discover only after something goes wrong.",
+  },
+  {
+    n: "03",
+    headline: "Consent is only the beginning.",
+    body: "A clear yes matters. It does not automatically create a good experience. Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.",
+  },
+] as const;
 
-const KINK_CHIPS: { label: string; selected?: "give" | "receive" | "both" }[] = [
-  { label: "Hand stuff" },
-  { label: "Kissing" },
-  { label: "Cock sucking" },
-  { label: "Pussy eating", selected: "both" },
-  { label: "Fucking" },
-  { label: "Anal play" },
-  { label: "Toys" },
-  { label: "Sensation" },
-  { label: "Temperature play (ice/wax)" },
-  { label: "Scratching" },
-  { label: "Nails and scratching", selected: "give" },
-  { label: "Biting" },
-  { label: "Tickling" },
-  { label: "Ear licking" },
-  { label: "Electro" },
-  { label: "Impact" },
-  { label: "Spanking (hand)" },
-  { label: "Paddling" },
-  { label: "Flogging" },
-  { label: "Caning" },
-  { label: "Face slapping" },
-  { label: "Whipping" },
-  { label: "Rope bondage", selected: "receive" },
-  { label: "Cuffs / restraints" },
-  { label: "Blindfold" },
-  { label: "Grabbing / restraining" },
-  { label: "Hand over mouth" },
-  { label: "Saran Wrap" },
-];
+const SERVICES = [
+  {
+    title: "Beginner BDSM Coaching",
+    body: "Private coaching for understanding your interests, learning the language, evaluating potential partners, negotiating clearly, and preparing for real-world experiences.",
+    cta: "Explore beginner BDSM coaching",
+    to: "/services/beginner-bdsm-coaching",
+  },
+  {
+    title: "Polyamory Coaching for Beginners",
+    body: "Practical support for individuals and partners considering consensual nonmonogamy, from the first conversation through agreements, dating, jealousy, time, and course correction.",
+    cta: "Explore polyamory coaching",
+    to: "/services/polyamory-coaching-for-beginners",
+  },
+  {
+    title: "First Kink Event Preparation",
+    body: "Learn what kind of event you are attending, what the rules mean, what to wear, what participation is expected, and how to protect your boundaries.",
+    cta: "Prepare for your first kink event",
+    to: "/guides/preparing-for-your-first-kink-event",
+  },
+  {
+    title: "Kink Event Accompaniment",
+    body: "For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can help you understand the space and find your footing.",
+    cta: "Ask about event accompaniment",
+    to: "/services/kink-event-accompaniment",
+  },
+  {
+    title: "Private Workshops",
+    body: "Clear, beginner-friendly education for partners, small groups, organizations, and community spaces.",
+    cta: "Inquire about a workshop",
+    to: "/workshops",
+  },
+] as const;
 
-const KNOW_BEFORE = [
-  "Things get weird",
-  "Assumptions get made",
-  "Boundaries get crossed",
-  "Feelings get hurt",
+const HELP_ITEMS = [
+  "I know what I fantasize about, but I do not know how to begin.",
+  "I want to attend an event, but I am nervous about going alone.",
+  "I do not know how to tell whether someone is trustworthy.",
+  "I want to negotiate without sounding robotic or inexperienced.",
+  "My partner and I are discussing opening our relationship.",
+  "I am unsure whether I am dominant, submissive, a switch, or none of the above.",
+  "I had an experience that left me confused, and I want to understand it.",
+  "I want to learn community etiquette before accidentally breaking it.",
+  "I need help separating pressure from genuine consent.",
+  "I want to feel prepared without pretending that every risk can be eliminated.",
 ];
 
 const STEPS = [
   {
-    n: "Step 1",
-    title: "Choose your interests and limits",
-    body: "Mark kinks, activities, roles, intensity, and boundaries as yes, maybe, or no.",
+    n: "Step one",
+    title: "Tell me what you are considering.",
+    body: "You do not need the perfect language. Explain what interests you, what concerns you, and what you are thinking about doing next.",
   },
   {
-    n: "Step 2",
-    title: "Share with your play partner",
-    body: "Send a private link or QR code. They fill out their side separately, so nobody has to negotiate under pressure.",
+    n: "Step two",
+    title: "Get a plan built around your situation.",
+    body: "We identify the information, skills, boundaries, and practical preparation most relevant to you.",
   },
   {
-    n: "Step 3",
-    title: "Compare and plan the scene",
-    body: "See where you match, where you need to talk, and what should stay off the table.",
+    n: "Step three",
+    title: "Explore with better judgment.",
+    body: "You leave with specific next steps, useful questions, and a clearer understanding of what you do and do not want.",
+  },
+] as const;
+
+const HOME_FAQS: Faq[] = [
+  {
+    question: "Do I need previous kink experience?",
+    answer:
+      "No. Department of Consent is designed for people who are new, uncertain, or preparing to explore kink in real life for the first time.",
+    answerText:
+      "No. Department of Consent is designed for people who are new, uncertain, or preparing to explore kink in real life for the first time.",
   },
   {
-    n: "Step 4",
-    title: "Keep the scene card nearby",
-    body: "Safewords, hard limits, soft limits, medical notes, aftercare needs, and scene agreements stay easy to check.",
+    question: "Do I need to know exactly what I am into?",
+    answer:
+      "No. Coaching can help you separate fantasy, curiosity, identity, and real-world interest without forcing you into a label.",
+    answerText:
+      "No. Coaching can help you separate fantasy, curiosity, identity, and real-world interest without forcing you into a label.",
+  },
+  {
+    question: "Is this therapy?",
+    answer:
+      "No. Coaching is educational and practical. It does not diagnose or treat mental-health conditions and is not a substitute for a licensed therapist, medical provider, attorney, or crisis service.",
+    answerText:
+      "No. Coaching is educational and practical. It does not diagnose or treat mental-health conditions and is not a substitute for a licensed therapist, medical provider, attorney, or crisis service.",
+  },
+  {
+    question: "Do you offer in-person sessions?",
+    answer:
+      "Virtual coaching is available. Selected in-person coaching and nonsexual event support may be available in San Francisco and the greater Bay Area.",
+    answerText:
+      "Virtual coaching is available. Selected in-person coaching and nonsexual event support may be available in San Francisco and the greater Bay Area.",
   },
 ];
 
-function Index() {
-  const [profile] = useProfile();
-  const hasProfile = !!profile.name;
-  const startTo = hasProfile ? "/sessions/new" : "/onboarding";
-
+function HomePage() {
   return (
-    <Layout fullBleed>
-      {/* Top header */}
-      <header className="w-full px-5 sm:px-10 pt-6 sm:pt-8 pb-2 flex items-center justify-between max-w-6xl mx-auto">
-        <Link to="/" aria-label="Dept of Consent — Home" className="block">
-          <img src={wordmark} alt="Dept of Consent" className="h-7 sm:h-8 w-auto" />
-        </Link>
-        <CloudButton to="/sessions" variant="outline" className="cloud-btn-sm">
-          Get started
-        </CloudButton>
-      </header>
-
+    <MarketingLayout>
       {/* 1. Hero */}
-      <section className="px-5 sm:px-10 pt-6 sm:pt-8 pb-8 sm:pb-12 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[5fr_6fr] gap-9 md:gap-12 items-center">
-          <div className="order-2 md:order-1 text-left">
-            <p className="text-sm font-semibold text-coral">Plan the scene before you're in it.</p>
-            <h1 className="font-display text-[2.6rem] sm:text-6xl text-plum leading-[1] mt-3 max-w-[15ch] sm:max-w-none">
-              Build the kink scene you both actually want.
-            </h1>
-            <p className="text-base sm:text-lg text-foreground/75 leading-[1.48] mt-4 max-w-md">
-              Compare boundaries, kinks, sex expectations, and dealbreakers before things get
-              awkward, intense, or unsafe.
-            </p>
-            <div className="mt-5">
-              <CloudButton to={startTo} className="!max-w-full sm:!max-w-[18rem]">
-                Start playing safer
-              </CloudButton>
-            </div>
-
-            <div className="mt-7">
-              <p className="text-sm font-semibold text-plum mb-3">
-                Trusted by communities worldwide
-              </p>
-              <ul className="grid grid-cols-5 gap-2 sm:gap-3 max-w-md">
-                {COMMUNITIES.map((c) => (
-                  <li key={c.label} className="flex flex-col items-center text-center gap-1.5">
-                    <img
-                      src={c.icon}
-                      alt=""
-                      aria-hidden
-                      className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
-                    />
-                    <span className="text-[11px] sm:text-xs text-muted-foreground leading-tight whitespace-pre-line">
-                      {c.label}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="relative order-1 md:order-2">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[5/4] bg-blush shadow-[0_22px_80px_oklch(0.22_0.04_20_/_0.08)]">
-              <img
-                src={heroImg}
-                alt="Two partners resting together on soft sheets"
-                width={1200}
-                height={1500}
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-card/95 rounded-xl p-3 sm:p-6 space-y-2.5 sm:space-y-4 shadow-[0_18px_55px_oklch(0.22_0.04_20_/_0.12)]">
-                <div>
-                  <div className="text-[10px] sm:text-xs font-bold text-yes mb-1">
-                    Both want to play
-                  </div>
-
-                  <div className="flex flex-wrap gap-1 sm:gap-1.5">
-                    {["Paddling", "Whipping", "Cuffs / restraints"].map((c) => (
-                      <span
-                        key={c}
-                        className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-yes/20 border border-yes/40 text-plum"
-                      >
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-[10px] sm:text-xs font-bold text-maybe mb-1.5">Discuss</div>
-                  <span className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-maybe/20 border border-maybe/40 text-plum inline-block">
-                    Hand stuff
-                  </span>
-                </div>
-                <div>
-                  <div className="text-[10px] sm:text-xs font-bold text-no mb-1.5">
-                    Hard limit from one side
-                  </div>
-                  <span className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-no/15 border border-no/30 text-plum inline-block">
-                    Tickling
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 1b. Testimonials */}
-      <section className="px-5 sm:px-10 py-8 sm:py-12 max-w-5xl mx-auto">
-        <h2 className="font-sans text-sm font-semibold text-plum/80 text-center max-w-2xl mx-auto mb-6">
-          People are tired of guessing about sex and kink.
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-          {[
-            {
-              quote: "This removed so much awkwardness from kink negotiation.",
-              author: "J, 31",
-              avatar: avatarJ,
-              pos: "center",
-            },
-            {
-              quote: "I feel safer using this with people I meet on dating apps.",
-              author: "R, 26",
-              avatar: avatarR,
-              pos: "center",
-            },
-            {
-              quote:
-                "This was the first time I felt completely comfortable being honest about my limits.",
-              author: "A, 29",
-              avatar: avatarA,
-              pos: "center",
-            },
-          ].map((t) => (
-            <figure key={t.author} className="feature-card p-4 sm:p-5 flex flex-col">
-              <blockquote className="font-sans italic text-sm text-plum leading-[1.45]">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="flex items-center gap-2 mt-auto pt-3">
-                <span className="w-8 h-8 rounded-full bg-[oklch(0.86_0.10_5)] overflow-hidden shrink-0">
-                  <img
-                    src={t.avatar}
-                    alt=""
-                    aria-hidden
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: t.pos }}
-                  />
-                </span>
-                <span className="font-sans text-xs text-muted-foreground">by {t.author}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* 2. "What are you into?" is not enough */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[0.95fr_1.05fr] gap-6 md:gap-10 items-stretch">
-          {/* Left card */}
-          <div className="feature-card p-6 md:p-8 lg:p-10">
-            <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.05]">
-              <span className="italic">"What are you into?"</span>
-              <br />
-              is not enough.
-            </h2>
-            <p className="text-base text-foreground/75 leading-[1.5] mt-4">
-              Good sex needs more than vibes.
-              <br />
-              It needs shared expectations.
-            </p>
-            <hr className="my-7 border-plum/10" />
-            <p className="text-sm font-semibold text-plum mb-4">Before play, you need to know:</p>
-            <ul className="space-y-3 text-left">
-              {QUESTIONS.map((q) => (
-                <li key={q} className="flex items-start gap-3 text-sm text-plum">
-                  <HelpCircle className="shrink-0 mt-0.5 w-5 h-5 text-coral" strokeWidth={2.25} />
-                  <span>{q}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right pink box containing the kink menu screenshot */}
-          <div className="relative rounded-2xl bg-blush/70 p-4 md:p-5 lg:p-8 flex items-center overflow-hidden border border-coral/10">
-            <div className="relative z-0 bg-card/95 rounded-xl p-4 md:p-4 lg:p-6 w-full flex flex-col shadow-[0_16px_55px_oklch(0.22_0.04_20_/_0.05)]">
-              <div className="flex flex-wrap gap-1.5">
-                {KINK_CHIPS.map((c) => {
-                  if (!c.selected) {
-                    return (
-                      <span
-                        key={c.label}
-                        className="text-[10px] md:text-[10px] lg:text-[12px] px-2 md:px-2 lg:px-2.5 py-0.5 sm:py-1 rounded-full border border-plum/15 text-plum/80 bg-white whitespace-nowrap"
-                      >
-                        + {c.label}
-                      </span>
-                    );
-                  }
-                  return (
-                    <span
-                      key={c.label}
-                      className="inline-flex flex-wrap items-center gap-1 max-w-full text-[10px] md:text-[10px] lg:text-[12px] pl-2 md:pl-2 lg:pl-2.5 pr-1 py-0.5 rounded-full border border-yes/40 bg-yes/15 text-plum"
-                    >
-                      <span className="flex items-center gap-1 whitespace-nowrap">
-                        <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" strokeWidth={3} />
-                        {c.label}
-                      </span>
-                      <span className="flex items-center gap-0.5 ml-1">
-                        {(["give", "receive", "both"] as const).map((opt) => (
-                          <span
-                            key={opt}
-                            className={`text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded-full capitalize ${
-                              c.selected === opt
-                                ? "bg-yes/60 text-plum font-semibold"
-                                : "text-plum/60"
-                            }`}
-                          >
-                            {opt}
-                          </span>
-                        ))}
-                      </span>
-                    </span>
-                  );
-                })}
-              </div>
-              <div className="mt-6 flex items-center gap-2">
-                <input
-                  type="text"
-                  placeholder="Add your own kink..."
-                  readOnly
-                  className="flex-1 min-w-0 text-[13px] px-3 py-2 rounded-full border border-plum/15 bg-white text-plum/60 placeholder:text-plum/40 focus:outline-none"
-                />
-                <button
-                  type="button"
-                  disabled
-                  className="shrink-0 text-[13px] px-5 py-2 rounded-full bg-yes/40 text-plum/70 font-semibold"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Know before row */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-foreground/75">
-          <span className="font-bold text-plum">Know before:</span>
-          {KNOW_BEFORE.map((k) => (
-            <span key={k}>{k}</span>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. How it works */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-6xl mx-auto relative">
-        <div className="text-center space-y-2 mb-8 sm:mb-10">
-          <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.05]">
-            How it works
-          </h2>
-          <p className="text-base text-foreground/75 max-w-md mx-auto">
-            A consent flow you can actually use.
-          </p>
-        </div>
-        <div className="relative">
-          <div className="feature-card p-6 sm:p-10 relative z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-              {STEPS.map((s) => (
-                <div key={s.n}>
-                  <div className="text-xs font-semibold text-coral mb-2">{s.n}</div>
-                  <h3 className="font-display text-2xl text-plum leading-tight mb-3">{s.title}</h3>
-                  <p className="text-sm text-foreground/75 leading-[1.5]">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <img
-            src={stickerBoundHands}
-            alt=""
-            aria-hidden
-            className="absolute left-1/2 -translate-x-1/2 -bottom-32 sm:-bottom-44 w-44 sm:w-56 rotate-[3deg] pointer-events-none z-0"
-          />
-        </div>
-        <div className="h-32 sm:h-44" />
-      </section>
-
-      {/* removed - moved under hero */}
-
-      {/* 4. Feature cluster — staggered collage */}
-      <section className="px-5 sm:px-10 py-10 sm:py-20 max-w-4xl mx-auto relative">
-        <img
-          src={stickerFeather}
-          alt=""
-          aria-hidden
-          className="hidden md:block absolute -left-32 lg:-left-40 top-1/3 w-56 lg:w-64 rotate-[-15deg] pointer-events-none"
-        />
-        <img
-          src={stickerRope}
-          alt=""
-          aria-hidden
-          className="hidden md:block absolute -right-32 lg:-right-40 top-12 w-60 lg:w-72 rotate-[12deg] pointer-events-none"
-        />
-        <img
-          src={stickerWandPink}
-          alt=""
-          aria-hidden
-          className="hidden md:block absolute -right-44 lg:-right-56 bottom-8 w-52 lg:w-64 rotate-[18deg] pointer-events-none"
-        />
-
-        <div className="flex flex-col gap-16 md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-0 md:items-start relative">
-          {/* Left column */}
-          <div className="contents md:flex md:flex-col md:gap-16">
-            {/* Personal kink menu */}
-            <div className="feature-card p-6 md:p-7 order-1 md:order-none">
-              <div className="mb-2 space-y-4">
-                {[
-                  { label: "Rope bondage", yn: "Yes", gr: "Receive" },
-                  { label: "Cuffs / restraints", yn: "Yes", gr: "Receive" },
-                ].map((row, i) => (
-                  <div key={row.label} className={i > 0 ? "pt-4 border-t border-plum/10" : ""}>
-                    <div className="text-sm text-plum mb-2">{row.label}</div>
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                      <div className="inline-flex rounded-full border border-plum/15 overflow-hidden text-[10px] sm:text-[11px]">
-                        {["Yes", "Maybe", "No"].map((opt) => (
-                          <span
-                            key={opt}
-                            className={`px-2 sm:px-3 py-1 ${
-                              row.yn === opt ? "bg-yes/30 text-plum font-semibold" : "text-plum/60"
-                            }`}
-                          >
-                            {opt}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="inline-flex rounded-full border border-plum/15 overflow-hidden text-[10px] sm:text-[11px]">
-                        {["Give", "Receive", "Both"].map((opt) => (
-                          <span
-                            key={opt}
-                            className={`px-2 sm:px-3 py-1 ${
-                              row.gr === opt ? "bg-yes/30 text-plum font-semibold" : "text-plum/60"
-                            }`}
-                          >
-                            {opt}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <h3 className="font-display text-2xl sm:text-[1.75rem] text-plum leading-tight">
-                  Your personal
-                  <br />
-                  kink menu
-                </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
-                  Save your own interests, boundaries, and notes so you do not have to rebuild the
-                  conversation from scratch every time.
-                </p>
-              </div>
-              <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-semibold text-plum mb-2">Good for:</p>
-              <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
-                <li>New partners</li>
-                <li>Dungeon pickup play</li>
-                <li>Recurring scenes</li>
-                <li>Long-term dynamics</li>
-                <li>People who freeze when asked, "So what are you into?"</li>
-              </ul>
-            </div>
-
-            {/* Scene cards */}
-            <div className="feature-card p-6 md:p-7 order-3 md:order-none">
-              <div className="font-mono text-xs leading-relaxed text-plum mb-2">
-                <div className="text-no font-semibold mb-2">Safewords</div>
-                <div>Verbal:</div>
-                <div>Red — stop the scene, something is wrong and we can't continue.</div>
-                <div>Yellow — check in.</div>
-                <div>Green — good, keep going.</div>
-                <div>Mercy — no more on the same spot.</div>
-                <div className="h-3" />
-                <div>Non-verbal:</div>
-                <div>Thumb up — keep going.</div>
-                <div>Enthusiastic thumb up — more more more please.</div>
-                <div className="text-plum/40">
-                  Thumb side — right here is good, no more no less.
-                </div>
-                <div className="text-plum/40">Thumb down, double tap — check in please.</div>
-              </div>
-              <div className="text-center mt-8">
-                <h3 className="font-display text-2xl sm:text-[1.75rem] text-plum leading-tight">
-                  Scene cards for when
-                  <br />
-                  brains stop working
-                </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
-                  During play, details can get blurry. The scene card keeps the important stuff
-                  readable.
-                </p>
-              </div>
-              <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-semibold text-plum mb-2">Include:</p>
-              <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
-                <li>Safewords</li>
-                <li>Nonverbal signals</li>
-                <li>Hard limits</li>
-                <li>Intensity notes</li>
-                <li>Health or accessibility notes</li>
-                <li>Aftercare requests</li>
-                <li>Anything that must not be forgotten</li>
-              </ul>
-            </div>
-          </div>
-          {/* end left column */}
-
-          {/* Right column */}
-          <div className="contents md:flex md:flex-col md:gap-16 md:mt-20">
-            {/* Two-way consent */}
-            <div className="feature-card p-6 md:p-7 order-2 md:order-none">
-              <div className="space-y-3 mb-2">
-                <div>
-                  <div className="text-xs font-semibold text-plum/75 mb-1.5">
-                    Last STD test date
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="text-xs px-2.5 py-0.5 rounded-full border border-plum/15 text-plum">
-                      <span className="font-semibold">Maddie:</span> May 1, 2026
-                    </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full border border-plum/15 text-plum">
-                      <span className="font-semibold">Cass:</span> Apr 29, 2026
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-plum/75 mb-1.5">STD test results</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="text-xs px-2.5 py-0.5 rounded-full border border-plum/15 text-plum">
-                      <span className="font-semibold">Maddie:</span> All Clear
-                    </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full border border-plum/15 text-plum">
-                      <span className="font-semibold">Cass:</span> Clean
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-plum/75 mb-1.5">On PrEP / DoxyPEP</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-yes/20 border border-yes/40 text-plum">
-                      <span className="font-semibold">Maddie:</span> Yes
-                    </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-no/15 border border-no/30 text-plum">
-                      <span className="font-semibold">Cass:</span> No
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="text-center mt-8">
-                <h3 className="font-display text-2xl sm:text-[1.75rem] text-plum leading-tight">
-                  Two-way consent, not
-                  <br />
-                  one-way permission
-                </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
-                  Both people fill out their own side. The goal is not to pressure someone into
-                  agreement. The goal is to make overlap obvious and mismatches impossible to
-                  ignore.
-                </p>
-              </div>
-              <hr className="my-5 -mx-6 md:-mx-7 border-plum/10" />
-              <p className="text-sm font-semibold text-plum mb-2">Use it to clarify:</p>
-              <ul className="space-y-1.5 text-sm text-plum list-disc pl-5">
-                <li>Yes / maybe / no</li>
-                <li>Hard limits</li>
-                <li>Soft limits</li>
-                <li>Intensity levels</li>
-                <li>Role preferences</li>
-                <li>Safewords and signals</li>
-                <li>Aftercare needs</li>
-                <li>Things that require a longer conversation</li>
-              </ul>
-            </div>
-
-            {/* Aftercare */}
-            <div className="feature-card p-6 md:p-7 order-4 md:order-none">
-              <div className="mb-2">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2.5">
-                    <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-no text-white shrink-0">
-                      <Check className="w-2.5 h-2.5" strokeWidth={3} />
-                    </span>
-                    <span className="text-plum/60 line-through">Water and electrolytes</span>
-                  </li>
-                  {[
-                    "Cuddling",
-                    "Debrief scene",
-                    "Thorns and roses?",
-                    "Make a check-in plan",
-                    "Monitor for drop and do self care",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5">
-                      <span className="inline-block w-4 h-4 rounded-full border-2 border-no shrink-0" />
-                      <span className="text-plum">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="text-center mt-8">
-                <h3 className="font-display text-2xl sm:text-[1.75rem] text-plum leading-tight">
-                  Aftercare does not have
-                  <br />
-                  to be improvised
-                </h3>
-                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
-                  Water, food, blankets, shower, silence, cuddling, space, check-ins, reassurance,
-                  grounding, or anything else each person needs to come down safely.
-                </p>
-                <p className="text-sm text-foreground/75 mt-3 leading-[1.5] max-w-xs mx-auto">
-                  You can also keep private reflection notes afterward, so future scenes get better
-                  instead of messier.
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* end right column */}
-        </div>
-      </section>
-
-      {/* 5. Built for kinky people */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-6xl mx-auto">
-        <div className="relative rounded-xl overflow-hidden bg-plum text-white min-h-[420px] sm:min-h-[520px] flex flex-col">
-          <img
-            src={sectionBg}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-plum/55" />
-          <div className="relative flex flex-col justify-between flex-1 p-8 sm:p-12 lg:p-14">
-            <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] max-w-md">
-              Built for kinky people who take consent seriously.
-            </h2>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mt-10">
-              <div className="text-sm text-white/90 leading-[1.5] max-w-sm space-y-4">
-                <p>
-                  Department of Consent is for adults who want play to feel hotter because it is
-                  clearer.
-                </p>
-                <p>
-                  Not colder.
-                  <br />
-                  Not clinical.
-                  <br />
-                  Not overcomplicated.
-                </p>
-                <p>
-                  Just enough structure to make the conversation easier, safer, and less awkward.
-                </p>
-              </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <img src={flag} alt="Trans pride flag" className="h-5 w-auto" />
-                <p className="text-sm text-white/90 max-w-[16rem] leading-[1.45]">
-                  Department of Consent is proudly
-                  <br />
-                  trans owned and operated.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5b. Feature grid */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-6xl mx-auto">
-        <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] text-plum text-center max-w-2xl mx-auto">
-          Everything you'd rather know beforehand.
-        </h2>
-        <div className="feature-card overflow-hidden mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y divide-plum/10 sm:divide-y-0 sm:divide-x lg:divide-x-0">
-            {[
-              { title: "Hard limits", body: "Communicate non-negotiables clearly before meeting." },
-              {
-                title: "Kink compatibility",
-                body: "See mutual interests and mismatches instantly.",
-              },
-              {
-                title: "Protection preferences",
-                body: "Reduce awkward condom and STI conversations.",
-              },
-              {
-                title: "Aftercare expectations",
-                body: "Clarify emotional and physical needs afterward.",
-              },
-              {
-                title: "Dynamic preferences",
-                body: "Discuss dominance, submission, praise, degradation, service, ownership, and more.",
-              },
-              { title: "Revocable anytime", body: "Boundaries can change at any moment." },
-            ].map((f) => (
-              <div key={f.title} className="p-6 sm:p-8 lg:border-r lg:border-b lg:border-plum/10">
-                <h3 className="font-display text-xl text-plum">{f.title}</h3>
-                <p className="text-sm text-foreground/75 mt-2 leading-[1.5]">{f.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5c. Trust / Safety */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-5xl mx-auto">
-        <div className="feature-card p-8 sm:p-12">
-          <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] text-plum text-center max-w-2xl mx-auto">
-            Built for privacy and clarity.
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 mt-10">
-            {[
-              { title: "Private by default", body: "Profiles are only shared intentionally." },
-              {
-                title: "No public kink feed",
-                body: "No follower counts. No performative social layer. No algorithm broadcasting your sexuality.",
-              },
-              {
-                title: "Consent is revocable",
-                body: "Anyone can change boundaries or withdraw consent at any time.",
-              },
-              {
-                title: "Built to reduce pressure",
-                body: "The goal is communication and compatibility, not convincing people to say yes.",
-              },
-            ].map((f) => (
-              <div key={f.title}>
-                <h3 className="font-display text-xl text-plum">{f.title}</h3>
-                <p className="text-sm text-foreground/75 mt-2 leading-[1.5]">{f.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Mint CTA */}
-      <section className="px-5 sm:px-10 py-10 sm:py-16 max-w-5xl mx-auto relative">
-        <img
-          src={stickerCollar}
-          alt=""
-          aria-hidden
-          className="hidden md:block absolute -left-4 -top-6 w-40 rotate-[-12deg] pointer-events-none z-10"
-        />
-        <img
-          src={stickerHandcuffs}
-          alt=""
-          aria-hidden
-          className="hidden md:block absolute -right-4 -bottom-8 w-40 rotate-[18deg] pointer-events-none z-10"
-        />
-        <div className="relative rounded-xl bg-mint text-white p-10 sm:p-14 text-center overflow-hidden">
-          <h2 className="font-display text-3xl sm:text-4xl leading-[1.05] max-w-2xl mx-auto text-white">
-            Your sex life deserves better communication
-          </h2>
-          <div className="text-base text-white/90 mt-4 max-w-md mx-auto leading-[1.5] space-y-3">
+      <Section wide className="!pt-16 sm:!pt-24 !pb-14">
+        <div className="max-w-3xl">
+          <Eyebrow>Beginner kink and polyamory coaching</Eyebrow>
+          <h1 className="font-display text-5xl sm:text-7xl text-plum leading-[0.98]">
+            From kink-curious to kink&#8209;confident.
+          </h1>
+          <div className="prose-doc mt-7">
             <p>
-              Most people wait until they're already naked, pressured, emotionally attached, or
-              halfway through a hookup to communicate clearly.
+              You have done the wondering. Now you want to know how to explore kink or polyamory
+              without walking in blind.
             </p>
-            <p>That's usually when communication gets hardest.</p>
+            <p>
+              Department of Consent offers practical education, private coaching, and nonsexual
+              event support for adults ready to take their first real steps.
+            </p>
           </div>
-          <div className="flex justify-center pt-6">
-            <CloudButton to={startTo} className="cloud-btn-white !max-w-[16rem]">
-              Start with clarity
-            </CloudButton>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink to="/book">Book an introductory session</ButtonLink>
+            <ButtonLink to="/coaching" variant="outline">
+              Explore coaching
+            </ButtonLink>
           </div>
-        </div>
-      </section>
-
-      {/* 7. Giant wordmark */}
-      <section className="px-4 sm:px-8 pt-8 pb-10 max-w-[920px] mx-auto">
-        <img src={footerWordmark} alt="Dept of Consent" className="w-full h-auto block" />
-        <div className="text-center text-xs text-muted-foreground pt-6 space-y-2">
-          <p>
-            Questions?{" "}
-            <a
-              href="mailto:support@departmentofconsent.com"
-              className="underline underline-offset-4 hover:opacity-80"
-            >
-              support@departmentofconsent.com
-            </a>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area.
+            For adults 18+.
           </p>
-          <p>Copyright Department of Consent {new Date().getFullYear()}</p>
-          <nav className="flex justify-center gap-6 font-semibold">
-            <Link to="/privacy" className="hover:underline underline-offset-4">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:underline underline-offset-4">
-              Terms of Service
-            </Link>
-          </nav>
         </div>
-      </section>
-    </Layout>
+      </Section>
+
+      {/* 2. Recognition */}
+      <Section ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[22ch]">
+          You do not need more random internet advice.
+        </h2>
+        <div className="prose-doc mt-6">
+          <p>
+            You may already know what interests you. The harder part is knowing what happens next.
+          </p>
+          <p>
+            Where do you meet people? What should you ask before playing with someone? How do you
+            know whether an event welcomes beginners? What is normal nervousness, and what is an
+            actual warning sign?
+          </p>
+          <p>
+            The internet can give you a thousand conflicting answers. Coaching gives you a private
+            place to ask the questions that actually apply to you.
+          </p>
+        </div>
+      </Section>
+
+      {/* 3. Pillars */}
+      <Section wide ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[24ch]">
+          Kink is easier to explore when someone explains the room.
+        </h2>
+        <div className="mt-10 grid gap-8 md:grid-cols-3">
+          {PILLARS.map((p) => (
+            <div key={p.n} className="border-t-2 border-coral pt-5">
+              <p className="text-xs font-bold text-coral">{p.n}</p>
+              <h3 className="font-display text-2xl text-plum leading-tight mt-2">{p.headline}</h3>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground/75">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 4. Services overview */}
+      <Section wide ruled>
+        <Eyebrow>Services</Eyebrow>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+          Start where you actually are.
+        </h2>
+        <p className="prose-doc mt-4">
+          You do not need the right vocabulary, a fixed identity, or a perfectly organized list of
+          interests. We can begin with the questions you already have.
+        </p>
+        <div className="mt-10 divide-y divide-plum/10 border-y border-plum/10">
+          {SERVICES.map((s) => (
+            <div
+              key={s.title}
+              className="py-7 grid gap-3 md:grid-cols-[1fr_2fr_auto] md:items-baseline"
+            >
+              <h3 className="font-display text-2xl text-plum leading-tight">{s.title}</h3>
+              <p className="text-[0.95rem] leading-relaxed text-foreground/75 max-w-xl">{s.body}</p>
+              <TextLink to={s.to} className="md:justify-self-end whitespace-nowrap">
+                {s.cta}
+              </TextLink>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 5. What coaching can help with */}
+      <Section ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[22ch]">
+          Bring the questions you cannot solve with a glossary.
+        </h2>
+        <ul className="mt-8 space-y-3">
+          {HELP_ITEMS.map((item) => (
+            <li key={item} className="flex gap-3 text-[1.0325rem] leading-relaxed text-plum/90">
+              <span aria-hidden className="text-coral font-bold select-none">
+                —
+              </span>
+              <span className="italic">“{item}”</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* 6. First-event support feature */}
+      <Section wide ruled>
+        <div className="rounded-2xl bg-blush/50 border border-coral/15 px-6 py-10 sm:px-12 sm:py-14">
+          <Eyebrow>First event support</Eyebrow>
+          <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[22ch]">
+            You can walk into the room knowing what to expect.
+          </h2>
+          <div className="prose-doc mt-5">
+            <p>
+              Your first kink event should not feel like being dropped into a private club with no
+              explanation.
+            </p>
+            <p>
+              We can choose an appropriate event, discuss dress and etiquette, review your
+              boundaries, plan how to handle conversations, and make sure you know how to leave
+              whenever you want.
+            </p>
+            <p>
+              For selected events in the San Francisco Bay Area, nonsexual accompaniment may also be
+              available.
+            </p>
+          </div>
+          <p className="mt-6 max-w-2xl text-sm text-plum/70 border-l-2 border-coral/40 pl-4">
+            Event accompaniment is educational and social support. It does not include sexual
+            activity, kink play, topping, bottoming, dating, romantic companionship, or guaranteed
+            introductions.
+          </p>
+          <div className="mt-7">
+            <ButtonLink to="/services/kink-event-accompaniment" variant="outline">
+              Learn about event support
+            </ButtonLink>
+          </div>
+        </div>
+      </Section>
+
+      {/* 7. Process */}
+      <Section wide ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+          No grand initiation. Just a useful next step.
+        </h2>
+        <div className="mt-10 grid gap-8 md:grid-cols-3">
+          {STEPS.map((s) => (
+            <div key={s.n}>
+              <p className="section-label">{s.n}</p>
+              <h3 className="font-display text-2xl text-plum leading-tight mt-1">{s.title}</h3>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground/75">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 8. About preview */}
+      <Section ruled>
+        <Eyebrow>About</Eyebrow>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[24ch]">
+          The person you wish you had met before taking your first step into the scene.
+        </h2>
+        <div className="prose-doc mt-6">
+          <p>I am Jules Holloway, founder of Department of Consent.</p>
+          <p>
+            I kept finding myself in the same role: helping newer people understand the language,
+            read the room, ask better questions, and avoid learning everything through trial and
+            error.
+          </p>
+          <p>
+            Department of Consent turns that informal mentorship into practical, structured support
+            for adults who are ready to make their curiosity real.
+          </p>
+        </div>
+        <div className="mt-7">
+          <TextLink to="/about">Meet Jules</TextLink>
+        </div>
+      </Section>
+
+      {/* 9. Guide cards */}
+      <Section wide ruled>
+        <Eyebrow>Free guides</Eyebrow>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08] max-w-[22ch]">
+          Read this before asking strangers on the internet.
+        </h2>
+        <p className="prose-doc mt-4">
+          Straightforward guides to entering the kink scene, preparing for your first event,
+          negotiating a scene, vetting people, aftercare, polyamory, and the unwritten rules
+          beginners are expected to know.
+        </p>
+        <div className="mt-9 grid gap-5 sm:grid-cols-2">
+          {allGuides.map((g) => (
+            <Link
+              key={g.slug}
+              to={g.path}
+              className="group rounded-2xl border border-plum/15 bg-card px-6 py-7 hover:border-coral/50 transition-colors"
+            >
+              <p className="section-label">Beginner guide</p>
+              <h3 className="font-display text-2xl text-plum leading-tight mt-1 group-hover:text-coral transition-colors">
+                {g.crumbLabel}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/70 line-clamp-3">
+                {g.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-7">
+          <TextLink to="/resources">Browse beginner guides</TextLink>
+        </div>
+      </Section>
+
+      {/* 10. FAQ */}
+      <Section ruled>
+        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.08]">
+          Common questions
+        </h2>
+        <div className="mt-6">
+          <FaqAccordion faqs={HOME_FAQS} withJsonLd />
+        </div>
+        <div className="mt-6">
+          <TextLink to="/faq">Read the full FAQ</TextLink>
+        </div>
+      </Section>
+
+      {/* 11. Email guide capture */}
+      <Section wide ruled>
+        <NewsletterSignup />
+      </Section>
+
+      {/* 12. Final CTA */}
+      <CtaBlock
+        headline="You do not need to become an expert before you begin."
+        body="You need enough knowledge, support, and confidence to make your next decision deliberately."
+        primaryLabel="Book an introductory session"
+        primaryTo="/book"
+        secondaryLabel="Explore coaching"
+        secondaryTo="/coaching"
+      />
+    </MarketingLayout>
   );
 }

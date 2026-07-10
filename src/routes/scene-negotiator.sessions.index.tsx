@@ -8,8 +8,8 @@ import { WhipLoader } from "@/components/WhipLoader";
 import { useMemo } from "react";
 import emptySessionsImg from "@/assets/empty-sessions.png";
 
-export const Route = createFileRoute("/sessions/")({
-  head: () => ({ meta: [{ title: "Scenes — Department of Consent" }] }),
+export const Route = createFileRoute("/scene-negotiator/sessions/")({
+  head: () => ({ meta: [{ title: "Scenes — Scene Negotiator" }] }),
   component: SessionsList,
 });
 
@@ -43,7 +43,7 @@ function SessionsList() {
               Your first negotiation is just a tap away.
             </p>
             <div className="flex justify-center pt-1">
-              <CloudButton to="/sessions/new" className="cloud-btn-sm">
+              <CloudButton to="/scene-negotiator/sessions/new" className="cloud-btn-sm">
                 Create one
               </CloudButton>
             </div>
@@ -54,7 +54,7 @@ function SessionsList() {
           {sorted.map((s) => (
             <Link
               key={s.shareToken}
-              to="/sessions/$sessionId"
+              to="/scene-negotiator/sessions/$sessionId"
               params={{ sessionId: s.shareToken }}
               className="block"
             >
@@ -82,7 +82,7 @@ function SessionsList() {
 
         {!isLoading && sorted.length > 0 && (
           <div className="flex justify-center pt-4">
-            <CloudButton to="/sessions/new">+ New scene</CloudButton>
+            <CloudButton to="/scene-negotiator/sessions/new">+ New scene</CloudButton>
           </div>
         )}
       </div>

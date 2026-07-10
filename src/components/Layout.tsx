@@ -15,15 +15,15 @@ export function Layout({
   showFooter?: boolean;
 }) {
   const { pathname } = useLocation();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/scene-negotiator" || pathname === "/scene-negotiator/";
   return (
     <div className="min-h-screen grain bg-background flex flex-col overflow-x-hidden">
       {!isHome && (
         <header className="w-full px-5 sm:px-10 pt-6 sm:pt-8 pb-2 flex items-center justify-between max-w-6xl mx-auto">
-          <Link to="/" aria-label="Dept of Consent — Home" className="block">
-            <img src={wordmark} alt="Dept of Consent" className="h-7 sm:h-8 w-auto" />
+          <Link to="/scene-negotiator" aria-label="Scene Negotiator — Home" className="block">
+            <img src={wordmark} alt="Scene Negotiator" className="h-7 sm:h-8 w-auto" />
           </Link>
-          <CloudButton to="/sessions/new" variant="outline" className="cloud-btn-sm">
+          <CloudButton to="/scene-negotiator/sessions/new" variant="outline" className="cloud-btn-sm">
             New scene
           </CloudButton>
         </header>
@@ -44,9 +44,9 @@ export function Layout({
 
 function BottomNav() {
   const items = [
-    { to: "/sessions", label: "Scenes", Icon: ListChecks, exact: true },
-    { to: "/sessions/new", label: "New scene", Icon: Plus, exact: false },
-    { to: "/settings", label: "Profile", Icon: User, exact: false },
+    { to: "/scene-negotiator/sessions", label: "Scenes", Icon: ListChecks, exact: true },
+    { to: "/scene-negotiator/sessions/new", label: "New scene", Icon: Plus, exact: false },
+    { to: "/scene-negotiator/settings", label: "Profile", Icon: User, exact: false },
   ] as const;
   return (
     <nav className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md rounded-full border border-coral/10 bg-card/95 shadow-[0_14px_45px_oklch(0.22_0.04_20_/_0.14)] backdrop-blur-sm">

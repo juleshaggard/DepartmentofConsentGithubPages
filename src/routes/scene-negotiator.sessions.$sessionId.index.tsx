@@ -25,8 +25,8 @@ import {
 } from "@/components/ui/accordion";
 import { useEffect, useMemo, useState } from "react";
 
-export const Route = createFileRoute("/sessions/$sessionId/")({
-  head: () => ({ meta: [{ title: "Scene — Department of Consent" }] }),
+export const Route = createFileRoute("/scene-negotiator/sessions/$sessionId/")({
+  head: () => ({ meta: [{ title: "Scene — Scene Negotiator" }] }),
   component: SessionDetail,
 });
 
@@ -43,7 +43,7 @@ function SessionDetail() {
 
   useEffect(() => {
     if (!session) return;
-    sceneUrl(`/join/${session.shareToken}`, session)
+    sceneUrl(`/scene-negotiator/join/${session.shareToken}`, session)
       .then(setShareUrl)
       .catch(() => setShareUrl(""));
   }, [session]);
@@ -65,7 +65,7 @@ function SessionDetail() {
           <p>Scene not found.</p>
           {error && <p className="text-xs text-muted-foreground">{error}</p>}
           <Button asChild>
-            <Link to="/sessions">Back</Link>
+            <Link to="/scene-negotiator/sessions">Back</Link>
           </Button>
         </Sticker>
       </Layout>
@@ -75,7 +75,7 @@ function SessionDetail() {
   const remove = async () => {
     if (!confirm("Delete this scene? This removes it from this browser.")) return;
     await removeSession();
-    navigate({ to: "/sessions" });
+    navigate({ to: "/scene-negotiator/sessions" });
   };
 
   const o = session.ownerSide;
@@ -200,7 +200,7 @@ function SessionDetail() {
 
         <div className="flex justify-center">
           <Link
-            to="/sessions/$sessionId/edit"
+            to="/scene-negotiator/sessions/$sessionId/edit"
             params={{ sessionId }}
             className="text-sm text-link underline underline-offset-4 hover:opacity-80"
           >

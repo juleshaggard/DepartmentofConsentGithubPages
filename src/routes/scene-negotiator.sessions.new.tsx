@@ -44,8 +44,8 @@ import {
   type Vibe,
 } from "@/lib/sceneVocab";
 
-export const Route = createFileRoute("/sessions/new")({
-  head: () => ({ meta: [{ title: "New scene — Department of Consent" }] }),
+export const Route = createFileRoute("/scene-negotiator/sessions/new")({
+  head: () => ({ meta: [{ title: "New scene — Scene Negotiator" }] }),
   component: NewSession,
 });
 
@@ -156,7 +156,10 @@ function NewSession() {
         status: "shared",
         ownerSide: buildSideForSave(),
       });
-      navigate({ to: "/sessions/$sessionId", params: { sessionId: created.shareToken } });
+      navigate({
+        to: "/scene-negotiator/sessions/$sessionId",
+        params: { sessionId: created.shareToken },
+      });
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not save scene");
     } finally {

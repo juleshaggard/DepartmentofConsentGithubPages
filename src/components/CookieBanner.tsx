@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 export function CookieBanner() {
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/scene-negotiator" || pathname === "/scene-negotiator/";
 
   useEffect(() => {
     try {

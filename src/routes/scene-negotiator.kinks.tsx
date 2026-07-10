@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { WhipLoader } from "@/components/WhipLoader";
 
-export const Route = createFileRoute("/kinks")({
-  head: () => ({ meta: [{ title: "New scene — Department of Consent" }] }),
+export const Route = createFileRoute("/scene-negotiator/kinks")({
+  head: () => ({ meta: [{ title: "New scene — Scene Negotiator" }] }),
   component: KinksRemovedRedirect,
 });
 
@@ -12,7 +12,7 @@ function KinksRemovedRedirect() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate({ to: "/sessions/new", replace: true });
+    navigate({ to: "/scene-negotiator/sessions/new", replace: true });
   }, [navigate]);
 
   return (
