@@ -181,7 +181,7 @@ function Index() {
           </div>
 
           <div className="relative order-1 md:order-2">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[5/4] bg-blush shadow-[0_22px_80px_oklch(0.22_0.04_20_/_0.08)]">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[5/4] bg-blush shadow-[0_22px_80px_rgb(27_27_27_/_0.08)]">
               <img
                 src={heroImg}
                 alt="Two partners resting together on soft sheets"
@@ -191,7 +191,7 @@ function Index() {
                 decoding="async"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-card/95 rounded-xl p-3 sm:p-6 space-y-2.5 sm:space-y-4 shadow-[0_18px_55px_oklch(0.22_0.04_20_/_0.12)]">
+              <div className="absolute left-3 right-3 sm:inset-x-8 top-1/2 -translate-y-1/2 max-w-[16rem] sm:max-w-none mx-auto bg-card/95 rounded-xl p-3 sm:p-6 space-y-2.5 sm:space-y-4 shadow-[0_18px_55px_rgb(27_27_27_/_0.12)]">
                 <div>
                   <div className="text-[10px] sm:text-xs font-bold text-yes mb-1">
                     Both want to play
@@ -305,7 +305,7 @@ function Index() {
 
           {/* Right pink box containing the kink menu screenshot */}
           <div className="relative rounded-2xl bg-blush/70 p-4 md:p-5 lg:p-8 flex items-center overflow-hidden border border-coral/10">
-            <div className="relative z-0 bg-card/95 rounded-xl p-4 md:p-4 lg:p-6 w-full flex flex-col shadow-[0_16px_55px_oklch(0.22_0.04_20_/_0.05)]">
+            <div className="relative z-0 bg-card/95 rounded-xl p-4 md:p-4 lg:p-6 w-full flex flex-col shadow-[0_16px_55px_rgb(27_27_27_/_0.05)]">
               <div className="flex flex-wrap gap-1.5">
                 {KINK_CHIPS.map((c) => {
                   if (!c.selected) {

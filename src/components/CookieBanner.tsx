@@ -29,7 +29,7 @@ export function CookieBanner() {
   return (
     <div
       className={cn(
-        "fixed left-4 right-4 z-50 mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-coral/20 bg-card/95 px-4 py-3 shadow-[0_14px_45px_oklch(0.22_0.04_20_/_0.12)] backdrop-blur-sm",
+        "fixed left-4 right-4 z-50 mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-coral/20 bg-card/95 px-4 py-3 shadow-[0_14px_45px_rgb(27_27_27_/_0.12)] backdrop-blur-sm",
         isHome ? "bottom-4" : "bottom-24 sm:bottom-28",
       )}
     >

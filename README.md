@@ -32,10 +32,14 @@ shared scene links keep working.
 npm install
 npm run dev          # dev server
 npm run build:pages  # static GitHub Pages build → dist/client
-npm run preview      # preview a build
+npm run preview:pages # preview the GitHub Pages build with the correct base path
+npm run preview      # raw Vite preview; not for GitHub Pages base-path QA
 npm run test         # smoke tests (Scene Negotiator)
 npm run lint         # eslint
 ```
+
+For local staging details and CSS/path troubleshooting, see
+[`docs/local-staging.md`](docs/local-staging.md).
 
 ## Environment variables
 

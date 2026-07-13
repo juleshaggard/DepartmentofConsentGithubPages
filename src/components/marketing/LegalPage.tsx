@@ -16,17 +16,19 @@ export function LegalPage({
 }) {
   return (
     <MarketingLayout>
-      <Container className="pt-8 sm:pt-12 pb-16">
+      <Container className="pb-16">
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
             { label: title, path },
           ]}
         />
-        <h1 className="display-condensed text-coral text-4xl sm:text-5xl">{title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</p>
+        <div className="mx-auto max-w-3xl">
+          <h1 className="display-condensed text-coral text-4xl sm:text-5xl">{title}</h1>
+          <p className="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</p>
+        </div>
         {draftNotice && (
-          <p className="mt-5 max-w-2xl rounded-xl border border-maybe bg-maybe/10 px-5 py-3.5 text-sm text-plum">
+          <p className="mx-auto mt-5 max-w-2xl rounded-xl border border-maybe bg-maybe/10 px-5 py-3.5 text-sm text-plum">
             <strong>Draft:</strong> this page has not yet been reviewed by an attorney. It must be
             reviewed and approved by qualified counsel before launch.
           </p>

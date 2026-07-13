@@ -57,7 +57,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
   return (
     <MarketingLayout>
       <article>
-        <Container className="pt-8 sm:pt-12">
+        <Container>
           <Breadcrumbs
             crumbs={[
               { label: "Home", path: "/" },
@@ -65,9 +65,9 @@ export function GuideArticle({ guide }: { guide: Guide }) {
               { label: guide.crumbLabel, path: guide.path },
             ]}
           />
-          <header>
+          <header className="mx-auto max-w-3xl">
             <Eyebrow>Beginner guide</Eyebrow>
-            <h1 className="display-condensed text-coral text-4xl sm:text-5xl max-w-[22ch]">
+            <h1 className="max-w-[22ch] display-condensed text-coral text-4xl sm:text-5xl">
               {guide.h1}
             </h1>
             <p className="mt-5 text-sm text-muted-foreground">

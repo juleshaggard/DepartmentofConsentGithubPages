@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
-import footerWordmark from "@/assets/footer-wordmark.svg";
+import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
+import navLogo from "../../../assets/Logo.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
-  { label: "Workshops", to: "/workshops" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
@@ -19,7 +20,6 @@ const FOOTER_LINKS = [
   { label: "Beginner BDSM Coaching", to: "/services/beginner-bdsm-coaching" },
   { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
-  { label: "Workshops", to: "/workshops" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
@@ -47,28 +47,103 @@ export function Lockup({ light = false }: { light?: boolean }) {
 export function MarketingLayout({
   children,
   hero,
+  mainRef,
 }: {
   children: React.ReactNode;
   /**
-   * Optional full-bleed hero rendered ABOVE the nav bar — the artboard puts
-   * the homepage photo hero first, with the sticky nav below it.
+   * Optional full-bleed hero rendered behind the first viewport. When present,
+   * the fixed nav stays hidden until the hero has scrolled away.
    */
   hero?: React.ReactNode;
+  /** Scope ref for page-level GSAP animations. */
+  mainRef?: React.Ref<HTMLDivElement>;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const hasHero = Boolean(hero);
+
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      if (!header) return;
+
+      const reduceMotion = prefersReducedMotion();
+      let headerVisible: boolean | null = null;
+      const showHeader = (visible: boolean) => {
+        if (headerVisible === visible) return;
+        headerVisible = visible;
+
+        const nextState = {
+          autoAlpha: visible ? 1 : 0,
+          pointerEvents: visible ? "auto" : "none",
+          y: visible ? 0 : -(header.offsetHeight + 4),
+        };
+
+        if (reduceMotion) {
+          gsap.set(header, nextState);
+          return;
+        }
+
+        gsap.to(header, {
+          ...nextState,
+          duration: 0.28,
+          ease: "power3.out",
+          overwrite: true,
+        });
+      };
+
+      if (menuOpen) {
+        showHeader(true);
+        return;
+      }
+
+      const heroElement = heroRef.current;
+      if (!heroElement) {
+        showHeader(true);
+        return;
+      }
+
+      const syncHeaderToHero = () => {
+        showHeader(heroElement.getBoundingClientRect().bottom <= 0);
+      };
+
+      syncHeaderToHero();
+
+      const trigger = ScrollTrigger.create({
+        trigger: heroElement,
+        start: "top top",
+        end: "bottom top",
+        onEnter: syncHeaderToHero,
+        onEnterBack: syncHeaderToHero,
+        onLeave: syncHeaderToHero,
+        onLeaveBack: syncHeaderToHero,
+        onRefresh: syncHeaderToHero,
+        onUpdate: syncHeaderToHero,
+      });
+
+      return () => trigger.kill();
+    },
+    { dependencies: [menuOpen], revertOnUpdate: true },
+  );
 
   return (
-    <div className="min-h-screen grain bg-white flex flex-col overflow-x-hidden">
+    <div className="min-h-screen grain bg-white flex flex-col overflow-x-clip">
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
 
-      {hero}
+      {hero && <div ref={heroRef}>{hero}</div>}
 
-      <header className="sticky top-0 z-40 w-full border-b border-plum/10 bg-white">
+      <header
+        ref={headerRef}
+        className={`fixed left-0 right-0 top-0 z-40 w-full border-b border-plum/10 bg-white/94 backdrop-blur-md will-change-[transform,opacity] ${
+          hasHero ? "pointer-events-none -translate-y-full opacity-0" : ""
+        }`}
+      >
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Department of Consent — Home" className="block shrink-0">
-            <Lockup />
+            <img src={navLogo} alt="Department of Consent" className="h-8 w-auto sm:h-9" />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:flex items-center gap-7">
@@ -131,8 +206,8 @@ export function MarketingLayout({
         )}
       </header>
 
-      <main id="main-content" className="flex-1">
-        {children}
+      <main id="main-content" className={`flex-1 ${hasHero ? "" : "pt-[4.5rem] sm:pt-20"}`}>
+        <div ref={mainRef}>{children}</div>
       </main>
 
       <MarketingFooter />
@@ -142,16 +217,20 @@ export function MarketingLayout({
 
 function MarketingFooter() {
   return (
-    <footer className="mt-20 border-t border-plum/10 bg-white">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-12 pb-8">
+    <footer className="mt-0 bg-[#1B1B1B] text-white">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-14 pb-8">
         <div className="grid gap-10 md:grid-cols-[1.1fr_1fr]">
           <div className="space-y-4 max-w-md">
-            <Lockup />
-            <p className="prose-doc !text-base">
+            <img
+              src={navLogo}
+              alt="Department of Consent"
+              className="h-10 w-auto brightness-0 invert"
+            />
+            <p className="font-display text-base leading-relaxed text-white/78">
               Practical kink and polyamory coaching for adults ready to move from curiosity into
               real-world exploration.
             </p>
-            <p className="prose-doc !text-base">
+            <p className="font-display text-base leading-relaxed text-white/78">
               Virtual coaching and selected in-person services in San Francisco and the greater Bay
               Area.
             </p>
@@ -159,7 +238,7 @@ function MarketingFooter() {
             <p className="text-sm">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="underline underline-offset-4 text-plum hover:text-coral"
+                className="text-white underline underline-offset-4 hover:text-coral"
               >
                 {siteConfig.contactEmail}
               </a>
@@ -172,7 +251,7 @@ function MarketingFooter() {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="label-condensed text-[0.75rem] text-plum/75 hover:text-coral"
+                    className="label-condensed text-[0.75rem] text-white/68 hover:text-coral"
                   >
                     {item.label}
                   </Link>
@@ -183,13 +262,8 @@ function MarketingFooter() {
         </div>
       </div>
 
-      {/* Giant multicolor wordmark from the artboard footer */}
-      <div className="px-4 sm:px-8 max-w-[960px] mx-auto">
-        <img src={footerWordmark} alt="" aria-hidden className="w-full h-auto block" />
-      </div>
-
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-6 text-center">
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-white/50">
           © {new Date().getFullYear()} {siteConfig.legalName}. Coaching is educational and practical
           — not therapy, medical care, legal advice, or crisis support.
         </p>

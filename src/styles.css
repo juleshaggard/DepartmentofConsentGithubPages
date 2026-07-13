@@ -18,7 +18,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-display: "Trocchi", ui-serif, Georgia, serif;
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
@@ -69,12 +69,12 @@
   --radius: 1.25rem;
 
   --background: oklch(0.965 0.018 50);
-  --foreground: oklch(0.22 0.04 20);
+  --foreground: #1b1b1b;
 
   --card: oklch(0.99 0.01 30);
-  --card-foreground: oklch(0.22 0.04 20);
+  --card-foreground: #1b1b1b;
   --popover: oklch(0.99 0.01 30);
-  --popover-foreground: oklch(0.22 0.04 20);
+  --popover-foreground: #1b1b1b;
 
   /* coral red (logo + buttons) — sampled from the approved Figma artboard */
   --primary: #fc5142;
@@ -87,7 +87,7 @@
   --muted-foreground: oklch(0.5 0.06 15);
 
   --accent: oklch(0.78 0.13 165);
-  --accent-foreground: oklch(0.22 0.04 20);
+  --accent-foreground: #1b1b1b;
 
   --destructive: oklch(0.6 0.25 25);
   --destructive-foreground: oklch(0.99 0.01 20);
@@ -100,17 +100,17 @@
   --pinkcard: #ffe8ef; /* pale pink marketing card (Figma artboard) */
   --pinkbg: oklch(0.965 0.018 50); /* matches cream background */
   --coral: #fc5142; /* brand coral (Figma artboard) */
-  --plum: oklch(0.22 0.04 20); /* near-black text */
+  --plum: #1b1b1b; /* brand black */
   --cream: oklch(0.965 0.018 50);
   --mint: oklch(0.78 0.12 165); /* CTA mint/teal */
-  --link: #2b1213; /* default link color */
+  --link: #1b1b1b; /* default link color */
 
   --yes: oklch(0.78 0.12 165);
   --maybe: oklch(0.82 0.13 75);
   --no: oklch(0.66 0.23 22);
 
   --sidebar: oklch(0.97 0.025 20);
-  --sidebar-foreground: oklch(0.22 0.04 20);
+  --sidebar-foreground: #1b1b1b;
   --sidebar-primary: oklch(0.66 0.23 22);
   --sidebar-primary-foreground: oklch(0.99 0.01 20);
   --sidebar-accent: oklch(0.92 0.05 10);
@@ -159,6 +159,9 @@
       "liga" 1,
       "calt" 1;
   }
+  html {
+    scroll-padding-top: 5.25rem;
+  }
   h1,
   h2,
   h3,
@@ -188,13 +191,13 @@
     background: oklch(0.995 0.006 35);
     border: 1px solid oklch(0.88 0.035 20 / 0.28);
     border-radius: var(--radius-2xl);
-    box-shadow: 0 14px 55px oklch(0.22 0.04 20 / 0.045);
+    box-shadow: 0 14px 55px rgb(27 27 27 / 0.045);
   }
   .sticker-coral {
     background: oklch(0.995 0.006 35);
     border: 1px solid oklch(0.66 0.18 22 / 0.18);
     border-radius: var(--radius-2xl);
-    box-shadow: 0 14px 55px oklch(0.22 0.04 20 / 0.045);
+    box-shadow: 0 14px 55px rgb(27 27 27 / 0.045);
   }
   .doc-input {
     width: 100%;
@@ -357,24 +360,69 @@
     background: oklch(0.995 0.006 35);
     border: 1px solid oklch(0.88 0.035 20 / 0.28);
     border-radius: 0.75rem;
-    box-shadow: 0 16px 65px oklch(0.22 0.04 20 / 0.04);
+    box-shadow: 0 16px 65px rgb(27 27 27 / 0.04);
+  }
+
+  .card-arrow {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10;
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: white;
+    color: var(--color-plum);
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 26px rgb(27 27 27 / 0.13);
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease;
+  }
+  .group:hover .card-arrow {
+    background: var(--color-coral);
+    color: white;
   }
 }
 
 /* --- Marketing site (Figma "Positioning" artboard design language) ------- */
 @layer utilities {
-  /* Heavy condensed all-caps display (Anton) */
+  /* Heavy all-caps display (Phudu) */
   .display-condensed {
-    font-family: "Anton", "Arial Narrow", var(--font-sans);
-    font-weight: 400;
+    font-family: "Phudu", "Arial Narrow", var(--font-sans);
+    font-weight: 900;
     text-transform: uppercase;
     line-height: 0.95;
-    letter-spacing: 0.005em;
+    letter-spacing: 0;
     text-wrap: balance;
   }
-  /* Condensed caps label (Oswald) — nav, buttons, eyebrows, card meta */
+
+  .meet-jules-title {
+    line-height: 0.69;
+  }
+
+  .meet-jules-title span + span {
+    margin-top: clamp(0.1rem, 0.45vw, 0.45rem);
+  }
+
+  .svc-marquee {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .svc-card {
+    contain: layout;
+  }
+
+  /* Caps label (Phudu) — nav, buttons, eyebrows, card meta */
   .label-condensed {
-    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-family: "Phudu", "Arial Narrow", var(--font-sans);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.045em;
@@ -388,7 +436,7 @@
     gap: 0.5rem;
     border-radius: 999px;
     padding: 0.8rem 1.7rem;
-    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-family: "Phudu", "Arial Narrow", var(--font-sans);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -413,7 +461,7 @@
   .btn-editorial-outline {
     background: transparent;
     color: var(--color-plum);
-    border-color: oklch(0.22 0.04 20 / 0.4);
+    border-color: rgb(27 27 27 / 0.4);
   }
   .btn-editorial-outline:hover {
     background: var(--color-plum);
@@ -421,54 +469,105 @@
     color: white;
   }
 
-  /* Rotated all-caps strips crossing the hero's bottom edge */
-  .hero-ticker {
-    font-family: "Oswald", "Arial Narrow", var(--font-sans);
-    font-weight: 700;
+  /* Circular hero copy set on an SVG path */
+  .hero-circle-text {
+    font-family: "Phudu", "Arial Narrow", var(--font-sans);
+    font-size: 31px;
+    font-weight: 800;
+    fill: white;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-  .hero-ticker-up {
-    transform: rotate(-3deg);
-    transform-origin: left bottom;
-  }
-  .hero-ticker-down {
-    transform: rotate(2deg);
-    transform-origin: right bottom;
   }
 
-  /* Scroll reveal: paragraphs start pale pink and fill to coral as they
-     enter the viewport (the artboard's mid-reveal state). JS adds/removes
-     .reveal-pending; without JS or with reduced motion, text stays coral. */
-  .reveal-scope p {
-    transition: color 0.9s ease;
+  .char-reveal-word {
+    display: inline-block;
+    white-space: nowrap;
   }
-  .reveal-scope p.reveal-pending {
-    color: #fbd3da;
+
+  .char-reveal-space {
+    white-space: pre;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal-scope p {
-      transition: none;
+
+  .char-reveal-char {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity;
+  }
+
+  .question-scroll {
+    position: relative;
+    padding-block: 0.45rem 0;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 11%,
+      black 54%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 11%,
+      black 54%,
+      transparent 100%
+    );
+  }
+
+  .question-scroll-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.05rem;
+    animation: question-scroll-y 56s linear infinite;
+    will-change: transform;
+  }
+
+  .question-scroll-item {
+    margin: 0;
+    width: min(100%, 58rem);
+    padding-inline: 1rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.48rem);
+    line-height: 1.18;
+    color: var(--color-plum);
+  }
+
+  @keyframes question-scroll-y {
+    from {
+      transform: translate3d(0, 0, 0);
     }
-    .reveal-scope p.reveal-pending {
-      color: inherit;
+    to {
+      transform: translate3d(0, -50%, 0);
     }
   }
+
   @media (prefers-reduced-motion: reduce) {
     .btn-editorial,
     .btn-editorial:hover {
       transition: none;
       transform: none;
     }
+    .char-reveal-char {
+      will-change: auto;
+    }
+    .question-scroll {
+      overflow-y: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .question-scroll-track {
+      animation: none;
+      will-change: auto;
+    }
   }
 
   .hairline {
-    border-top: 1px solid oklch(0.22 0.04 20 / 0.14);
+    border-top: 1px solid rgb(27 27 27 / 0.14);
   }
 
   .eyebrow {
-    font-family: "Oswald", "Arial Narrow", var(--font-sans);
+    font-family: "Phudu", "Arial Narrow", var(--font-sans);
     font-size: 0.8125rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -481,7 +580,7 @@
     font-family: var(--font-display);
     font-size: 1.1875rem;
     line-height: 1.5;
-    color: oklch(0.24 0.02 20);
+    color: var(--color-plum);
     max-width: 42rem;
   }
   .prose-doc p + p {

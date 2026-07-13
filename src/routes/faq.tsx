@@ -32,7 +32,7 @@ const FAQS: Faq[] = FULL_FAQ.map((f) => ({
 function FaqPage() {
   return (
     <MarketingLayout>
-      <Container className="pt-8 sm:pt-12">
+      <Container>
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
@@ -42,12 +42,14 @@ function FaqPage() {
       </Container>
 
       <Section className="!pt-2">
-        <Eyebrow>FAQ</Eyebrow>
-        <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
-          Frequently asked questions
-        </h1>
+        <div className="mx-auto max-w-3xl">
+          <Eyebrow>FAQ</Eyebrow>
+          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
+            Frequently asked questions
+          </h1>
+        </div>
         <div className="mt-10">
-          <FaqAccordion faqs={FAQS} withJsonLd />
+          <FaqAccordion faqs={FAQS} withJsonLd defaultOpenAll />
         </div>
       </Section>
 

@@ -42,7 +42,7 @@ const HELP_WITH = [
 function PolyCoachingPage() {
   return (
     <MarketingLayout>
-      <Container className="pt-8 sm:pt-12">
+      <Container>
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
@@ -53,7 +53,7 @@ function PolyCoachingPage() {
       </Container>
 
       <Section wide className="!pt-2">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <Eyebrow>Beginner polyamory and open-relationship coaching</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Opening a relationship is not a settings change.

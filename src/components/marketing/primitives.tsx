@@ -93,37 +93,9 @@ export function TextLink({
   );
 }
 
-/** Visible breadcrumbs + BreadcrumbList structured data. */
+/** BreadcrumbList structured data without a visible breadcrumb trail. */
 export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
-  return (
-    <>
-      <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-          {crumbs.map((c, i) => {
-            const last = i === crumbs.length - 1;
-            return (
-              <li key={c.path} className="flex items-center gap-1.5">
-                {last ? (
-                  <span aria-current="page" className="font-semibold text-plum/80">
-                    {c.label}
-                  </span>
-                ) : (
-                  <>
-                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    <Link to={c.path as any} className="hover:underline underline-offset-4">
-                      {c.label}
-                    </Link>
-                    <ChevronRight className="h-3 w-3" aria-hidden />
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ol>
-      </nav>
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
-    </>
-  );
+  return <JsonLd data={breadcrumbJsonLd(crumbs)} />;
 }
 
 export type Faq = { question: string; answer: React.ReactNode; answerText: string };
@@ -132,19 +104,39 @@ export type Faq = { question: string; answer: React.ReactNode; answerText: strin
  * Accessible FAQ accordion. Emits FAQPage structured data only for the
  * FAQs actually visible on the page.
  */
-export function FaqAccordion({ faqs, withJsonLd = false }: { faqs: Faq[]; withJsonLd?: boolean }) {
+export function FaqAccordion({
+  faqs,
+  withJsonLd = false,
+  defaultOpenAll = false,
+}: {
+  faqs: Faq[];
+  withJsonLd?: boolean;
+  defaultOpenAll?: boolean;
+}) {
+  const faqItems = faqs.map((f, i) => (
+    <AccordionItem key={f.question} value={`faq-${i}`}>
+      <AccordionTrigger className="text-left font-sans text-base font-semibold text-plum">
+        {f.question}
+      </AccordionTrigger>
+      <AccordionContent className="prose-doc text-[0.95rem]">{f.answer}</AccordionContent>
+    </AccordionItem>
+  ));
+
   return (
     <>
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((f, i) => (
-          <AccordionItem key={f.question} value={`faq-${i}`}>
-            <AccordionTrigger className="text-left font-sans text-base font-semibold text-plum">
-              {f.question}
-            </AccordionTrigger>
-            <AccordionContent className="prose-doc text-[0.95rem]">{f.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      {defaultOpenAll ? (
+        <Accordion
+          type="multiple"
+          defaultValue={faqs.map((_, i) => `faq-${i}`)}
+          className="w-full"
+        >
+          {faqItems}
+        </Accordion>
+      ) : (
+        <Accordion type="single" collapsible className="w-full">
+          {faqItems}
+        </Accordion>
+      )}
       {withJsonLd && (
         <JsonLd
           data={faqJsonLd(faqs.map((f) => ({ question: f.question, answer: f.answerText })))}

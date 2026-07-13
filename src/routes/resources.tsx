@@ -30,7 +30,7 @@ const CATEGORIES = [
 function ResourcesPage() {
   return (
     <MarketingLayout>
-      <Container className="pt-8 sm:pt-12">
+      <Container>
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
@@ -40,7 +40,7 @@ function ResourcesPage() {
       </Container>
 
       <Section wide className="!pt-2">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <Eyebrow>Guides</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             The instruction manual nobody handed you.

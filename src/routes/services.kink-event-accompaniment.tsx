@@ -90,7 +90,7 @@ const AVAILABILITY = [
 function AccompanimentPage() {
   return (
     <MarketingLayout>
-      <Container className="pt-8 sm:pt-12">
+      <Container>
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
@@ -101,7 +101,7 @@ function AccompanimentPage() {
       </Container>
 
       <Section wide className="!pt-2">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <Eyebrow>Nonsexual event support in San Francisco</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             Want someone knowledgeable to accompany you to a kink event?

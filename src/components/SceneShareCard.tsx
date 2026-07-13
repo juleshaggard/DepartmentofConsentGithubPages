@@ -42,7 +42,7 @@ export function SceneShareCard({
           level="L"
           boostLevel={false}
           marginSize={3}
-          fgColor="#2b1213"
+          fgColor="#1B1B1B"
           bgColor="#fffdfb"
         />
       </div>

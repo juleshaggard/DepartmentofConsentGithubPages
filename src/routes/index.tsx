@@ -1,23 +1,22 @@
+import { useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Lockup, MarketingLayout } from "@/components/marketing/MarketingLayout";
-import {
-  ButtonLink,
-  CtaBlock,
-  FaqAccordion,
-  PinkCard,
-  Section,
-  TextLink,
-  type Faq,
-} from "@/components/marketing/primitives";
-import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
-import { RevealText } from "@/components/marketing/RevealText";
+import { ArrowRight } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { MarketingLayout } from "@/components/marketing/MarketingLayout";
+import { ButtonLink, Section } from "@/components/marketing/primitives";
+import type { LinkProps } from "@tanstack/react-router";
 import { pageHead } from "@/lib/seo";
-import { allGuides } from "@/content/guides";
-import heroImg from "@/assets/hero-friends.jpg";
-import photoCardBg from "@/assets/built-for-bg.png";
-import stickerFeather from "@/assets/sticker-feather.png";
-import stickerWandPink from "@/assets/sticker-wand-pink.png";
-import stickerRope from "@/assets/sticker-rope.png";
+import heroImg from "../../assets/hero.jpg";
+import heroLogo from "../../assets/Logo.svg";
+import meetJulesImg from "../../assets/meetjules.jpg";
+import polyIcon from "../../assets/poly.png";
+import eventImg from "../../assets/Photo1.jpg";
+import coachingImg from "../../assets/Photo2.jpg";
+import prepImg from "../../assets/Photo3.jpg";
+import prepCardImg from "@/assets/card-flogger.jpg";
+import ctaPanelImg from "@/assets/figma-cta-panel.jpg";
+import stickerFeather from "@/assets/sticker-feather-flat.png";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -32,422 +31,580 @@ export const Route = createFileRoute("/")({
 
 const PILLARS = [
   {
-    n: "01",
     headline: "You do not have to figure this out alone.",
     body: "Being new does not mean you need to fake confidence or quietly follow whoever seems most experienced. Get clear, judgment-free guidance before your first conversation, event, scene, or open relationship.",
   },
   {
-    n: "02",
     headline: "Kink has an instruction manual.",
     body: "The rules are rarely written down, but the important parts can be learned. Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare should not be secrets people discover only after something goes wrong.",
   },
   {
-    n: "03",
     headline: "Consent is only the beginning.",
     body: "A clear yes matters. It does not automatically create a good experience. Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.",
   },
 ] as const;
 
-const HELP_ITEMS = [
-  "I know what I fantasize about, but I do not know how to begin.",
-  "I want to attend an event, but I am nervous about going alone.",
-  "I do not know how to tell whether someone is trustworthy.",
-  "I want to negotiate without sounding robotic or inexperienced.",
-  "My partner and I are discussing opening our relationship.",
-  "I am unsure whether I am dominant, submissive, a switch, or none of the above.",
-  "I had an experience that left me confused, and I want to understand it.",
-  "I want to learn community etiquette before accidentally breaking it.",
-  "I need help separating pressure from genuine consent.",
-  "I want to feel prepared without pretending that every risk can be eliminated.",
+type ServiceCardData = {
+  title: string;
+  to: LinkProps["to"];
+  body?: string;
+  image?: string;
+  centered?: boolean;
+  largeTitle?: boolean;
+  sticker?: string;
+  stickerClassName?: string;
+};
+
+const SERVICE_CARDS: ServiceCardData[] = [
+  {
+    title: "First Kink Scene Prep",
+    to: "/guides/how-to-negotiate-your-first-scene",
+    image: prepCardImg,
+  },
+  {
+    title: "Kink Event Accompaniment",
+    to: "/services/kink-event-accompaniment",
+    body: "For select San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, platonic guide who can help you understand the space and find your footing.",
+  },
+  {
+    title: "Polyamory Coaching for Beginners",
+    to: "/services/polyamory-coaching-for-beginners",
+    centered: true,
+    largeTitle: true,
+    sticker: polyIcon,
+    stickerClassName: "right-2 bottom-4 w-28 rotate-[3deg] opacity-95 sm:w-34",
+  },
+  {
+    title: "Beginner BDSM Coaching",
+    to: "/services/beginner-bdsm-coaching",
+    centered: true,
+    largeTitle: true,
+    sticker: stickerFeather,
+    stickerClassName: "-right-2 bottom-4 w-32 rotate-[-13deg] sm:w-40",
+  },
 ];
 
-const STEPS = [
-  {
-    n: "Step one",
-    title: "Tell me what you are considering.",
-    body: "You do not need the perfect language. Explain what interests you, what concerns you, and what you are thinking about doing next.",
-  },
-  {
-    n: "Step two",
-    title: "Get a plan built around your situation.",
-    body: "We identify the information, skills, boundaries, and practical preparation most relevant to you.",
-  },
-  {
-    n: "Step three",
-    title: "Explore with better judgment.",
-    body: "You leave with specific next steps, useful questions, and a clearer understanding of what you do and do not want.",
-  },
+const HERO_CIRCLE_SENTENCE_GAP = "     ";
+const HERO_CIRCLE_COPY = `Virtual Coaching.${HERO_CIRCLE_SENTENCE_GAP}San Francisco Based.${HERO_CIRCLE_SENTENCE_GAP}Event Support.${HERO_CIRCLE_SENTENCE_GAP}Beginner Kink Coaching.${HERO_CIRCLE_SENTENCE_GAP}`;
+const HERO_CIRCLE_COPY_INDEXES = Array.from({ length: 18 }, (_, index) => index - 2);
+const HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION = 36;
+const HERO_CIRCLE_SPEED_RATIO = 0.1;
+const SERVICE_MARQUEE_SET_COUNT = 4;
+
+const SECTION_TWO_PARAGRAPHS = [
+  "Want to know how to explore kink or polyamory without walking in blind?",
+  "Department of Consent offers practical education, private coaching, and nonsexual event support for adults ready to take their first real steps.",
 ] as const;
 
-const HOME_FAQS: Faq[] = [
-  {
-    question: "Do I need previous kink experience?",
-    answer:
-      "No. Department of Consent is designed for people who are new, uncertain, or preparing to explore kink in real life for the first time.",
-    answerText:
-      "No. Department of Consent is designed for people who are new, uncertain, or preparing to explore kink in real life for the first time.",
-  },
-  {
-    question: "Do I need to know exactly what I am into?",
-    answer:
-      "No. Coaching can help you separate fantasy, curiosity, identity, and real-world interest without forcing you into a label.",
-    answerText:
-      "No. Coaching can help you separate fantasy, curiosity, identity, and real-world interest without forcing you into a label.",
-  },
-  {
-    question: "Is this therapy?",
-    answer:
-      "No. Coaching is educational and practical. It does not diagnose or treat mental-health conditions and is not a substitute for a licensed therapist, medical provider, attorney, or crisis service.",
-    answerText:
-      "No. Coaching is educational and practical. It does not diagnose or treat mental-health conditions and is not a substitute for a licensed therapist, medical provider, attorney, or crisis service.",
-  },
-  {
-    question: "Do you offer in-person sessions?",
-    answer:
-      "Virtual coaching is available. Selected in-person coaching and nonsexual event support may be available in San Francisco and the greater Bay Area.",
-    answerText:
-      "Virtual coaching is available. Selected in-person coaching and nonsexual event support may be available in San Francisco and the greater Bay Area.",
-  },
-];
+const CTA_QUESTIONS = [
+  "How do I figure out what I'm into?",
+  "How do I know if I'm a Dom, sub, switch, or something else?",
+  "What happens at my first play party?",
+  "What do I wear to a kink event?",
+  "How do I approach someone at a play party?",
+  "How do I know if someone is safe to play with?",
+  "Can you help me prepare for my first kink event?",
+  "Can you come with me to my first kink event?",
+  "What are the biggest red flags in the kink community?",
+  "How do I negotiate my first scene?",
+  "What should I say before a scene starts?",
+  "How do I say no without feeling guilty?",
+  "How do I introduce kink to my partner?",
+  "What if my partner isn't into kink?",
+  "How do I prepare for my first scene?",
+  "What's the safest way to explore BDSM as a beginner?",
+  "How do I avoid making embarrassing beginner mistakes?",
+  "What are the unwritten rules of the kink community?",
+  "How do I find beginner-friendly events?",
+  "How do I make friends in the kink community?",
+  "How do I know if I'm ready for a play party?",
+  "What gear do I actually need (and what can wait)?",
+  "How do I build confidence before my first event?",
+  "How do I write a FetLife profile that actually represents me?",
+  "How do I recover after an awkward or bad first experience?",
+  "How do I become part of the community instead of just attending events?",
+  "Can you review my negotiation before I send it?",
+  "Can you help me decide whether this person is a red flag?",
+  "How do I go from kink-curious to kink-confident?",
+] as const;
 
-/** Full-bleed photo hero — sits ABOVE the nav bar, per the artboard. */
 function Hero() {
+  const ref = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+      const intro = gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .from(".hero-line", { yPercent: 112, duration: 0.85, stagger: 0.12 }, 0.12)
+        .from(".hero-sub", { y: 20, opacity: 0, duration: 0.65 }, "-=0.4")
+        .from(".hero-chrome", { opacity: 0, duration: 0.5 }, "-=0.35")
+        .from(".hero-circle-wrap", { opacity: 0, y: 18, duration: 0.6 }, "-=0.25");
+
+      const circlePaths = gsap.utils.toArray<SVGTextPathElement>(".hero-circle-path");
+      const pathShape = ref.current?.querySelector<SVGPathElement>("#hero-circle-text-path");
+      const firstSegment = ref.current?.querySelector<SVGTextElement>(".hero-circle-segment");
+      const textAdvance = firstSegment?.getComputedTextLength() ?? 0;
+      const pathLength = pathShape?.getTotalLength() ?? 0;
+
+      if (circlePaths.length > 0 && textAdvance > 0 && pathLength > 0) {
+        const copyDuration =
+          (textAdvance / pathLength) *
+          (HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION / HERO_CIRCLE_SPEED_RATIO);
+
+        gsap.set(circlePaths, {
+          attr: {
+            startOffset: (_index, target: SVGTextPathElement) =>
+              Number(target.dataset.copyIndex) * textAdvance,
+          },
+        });
+
+        gsap.to(circlePaths, {
+          attr: {
+            startOffset: (_index, target: SVGTextPathElement) =>
+              (Number(target.dataset.copyIndex) - 1) * textAdvance,
+          },
+          duration: copyDuration,
+          ease: "none",
+          repeat: -1,
+          delay: intro.duration() * 0.45,
+        });
+      }
+    },
+    { scope: ref },
+  );
+
   return (
-    <section className="relative overflow-hidden bg-plum">
+    <section ref={ref} className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-plum">
       <img
         src={heroImg}
         alt="Four friends sitting close together, laughing"
         fetchPriority="high"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-[50%_25%]"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_28%]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/65 via-[#1B1B1B]/10 to-[#1B1B1B]/25" />
 
-      {/* Mini-header overlaid on the photo */}
-      <div className="relative flex items-start justify-between px-5 sm:px-8 pt-5">
-        <Link to="/" aria-label="Department of Consent — Home" className="block">
-          <Lockup light />
+      <div className="hero-chrome relative z-10 flex items-start justify-between gap-4 px-5 pt-5 sm:px-8">
+        <Link to="/" aria-label="Department of Consent - Home" className="block">
+          <img
+            src={heroLogo}
+            alt="Department of Consent"
+            className="h-9 w-auto brightness-0 invert sm:h-10"
+          />
         </Link>
-        <Link to="/book" className="btn-editorial !px-5 !py-2.5">
+        <Link to="/book" className="btn-editorial shrink-0 !px-5 !py-2.5">
           Book an intro session
         </Link>
       </div>
 
-      {/* Headline — two full-width lines, en-dashes, mid-photo */}
-      <div className="relative max-w-6xl mx-auto px-5 sm:px-10 pt-28 sm:pt-44 lg:pt-56 pb-20 sm:pb-28">
-        <h1 className="display-condensed text-white text-[13vw] sm:text-[7.2vw] leading-[0.98] drop-shadow-sm">
-          From kink&#8211;curious
-          <br />
-          to kink&#8211;confident.
+      <div className="relative z-10 mx-auto flex w-full max-w-[78rem] flex-1 flex-col items-center justify-center px-5 pb-36 pt-12 text-center sm:px-10 sm:pb-44 lg:pb-48">
+        <h1 className="display-condensed text-white text-[clamp(3.25rem,12vw,7.5rem)] sm:text-[clamp(5rem,8.4vw,9rem)] leading-[0.88] drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
+          <span className="block overflow-hidden">
+            <span className="hero-line block">From kink&#8211;curious</span>
+          </span>
+          <span className="block overflow-hidden">
+            <span className="hero-line block">to kink&#8211;confident.</span>
+          </span>
         </h1>
-        <p className="font-display text-white text-2xl sm:text-[2.6vw] mt-3 drop-shadow-sm">
+        <p className="hero-sub font-display text-white text-xl sm:text-[clamp(1.4rem,2.2vw,2.6rem)] mt-4 drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
           Kink and polyamory coaching for beginners
         </p>
       </div>
 
-      {/* Crossing ticker strips along the bottom edge */}
-      <div
-        aria-label="Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area. For adults 18 and older."
-        className="relative -mx-2 flex items-end justify-between gap-6 overflow-hidden pb-6"
-      >
-        <p aria-hidden className="hero-ticker hero-ticker-up pl-2 text-sm text-white sm:text-base">
-          In San Francisco and the greater Bay Area. For adults 18+. &nbsp;·&nbsp; Virtual coaching.
-        </p>
-        <p
-          aria-hidden
-          className="hero-ticker hero-ticker-down hidden pr-2 text-sm text-white sm:text-base md:block"
-        >
-          Selected in&#8211;person services in San Francisco.
-        </p>
-      </div>
+      <RotatingCircleText />
     </section>
   );
 }
 
-function HomePage() {
+function RotatingCircleText() {
   return (
-    <MarketingLayout hero={<Hero />}>
-      {/* 2. Coral serif statement with scroll reveal */}
+    <div
+      className="hero-circle-wrap pointer-events-none absolute inset-x-0 bottom-0 z-10 h-44 overflow-hidden sm:h-48 lg:h-56"
+      aria-label="Virtual coaching. San Francisco based."
+    >
+      <svg
+        className="absolute bottom-0 left-1/2 h-full w-[52rem] -translate-x-1/2 overflow-visible sm:w-[86rem] lg:w-[100rem]"
+        viewBox="0 0 1400 320"
+        role="presentation"
+        focusable="false"
+      >
+        <defs>
+          <path
+            id="hero-circle-text-path"
+            d="M 700 3760 m -3600 0 a 3600 3600 0 1 1 7200 0 a 3600 3600 0 1 1 -7200 0"
+          />
+        </defs>
+        {HERO_CIRCLE_COPY_INDEXES.map((copyIndex) => (
+          <text key={copyIndex} className="hero-circle-text hero-circle-segment" aria-hidden="true">
+            <textPath
+              className="hero-circle-path"
+              data-copy-index={copyIndex}
+              href="#hero-circle-text-path"
+              xmlSpace="preserve"
+              startOffset={`${copyIndex * 12}%`}
+            >
+              {HERO_CIRCLE_COPY}
+            </textPath>
+          </text>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+function HomePage() {
+  const mainRef = useRef<HTMLDivElement>(null);
+  const marqueeTrackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+      gsap.from(".svc-card", {
+        opacity: 0,
+        duration: 0.45,
+        ease: "power3.out",
+        stagger: 0.035,
+        scrollTrigger: { trigger: ".svc-marquee", start: "top 82%", once: true },
+      });
+
+      const track = marqueeTrackRef.current;
+      const firstSet = track?.querySelector<HTMLElement>("[data-marquee-set='0']");
+      const distance = firstSet?.getBoundingClientRect().width ?? 0;
+
+      if (track && distance > 0) {
+        gsap.set(track, { x: 0, force3D: true });
+        gsap.to(track, {
+          x: -distance,
+          duration: Math.max(20, distance / 44),
+          ease: "none",
+          repeat: -1,
+          scrollTrigger: {
+            trigger: ".svc-marquee",
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play pause resume pause",
+          },
+        });
+      }
+
+      gsap.utils.toArray<HTMLElement>(".image-band-copy").forEach((copy) => {
+        const section = copy.closest<HTMLElement>(".image-band");
+        if (!section || copy.dataset.staticCopy === "true") return;
+
+        gsap.fromTo(
+          copy,
+          { y: 0 },
+          {
+            y: () => -window.innerHeight,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>(".artboard-rise", mainRef.current!).forEach((el) => {
+        gsap.from(el, {
+          y: 26,
+          opacity: 0,
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        });
+      });
+    },
+    { scope: mainRef },
+  );
+
+  return (
+    <MarketingLayout hero={<Hero />} mainRef={mainRef}>
       <Section wide className="!py-16 sm:!py-24">
-        <RevealText className="max-w-xl sm:ml-[14%]">
-          <div className="font-display text-coral text-2xl sm:text-[2rem] leading-[1.35] space-y-7">
-            <p>
-              You have done the wondering.
-              <br />
-              Now you want to know how to explore kink or polyamory without walking in blind.
+        <div className="mx-auto max-w-xl space-y-7 font-display text-2xl leading-[1.35] text-coral sm:text-[2.05rem]">
+          {SECTION_TWO_PARAGRAPHS.map((paragraph) => (
+            <p key={Array.isArray(paragraph) ? paragraph.join(" ") : paragraph}>
+              {Array.isArray(paragraph)
+                ? paragraph.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))
+                : paragraph}
             </p>
-            <p>
-              Department of Consent offers practical education, private coaching, and nonsexual
-              event support for adults ready to take their first real steps.
-            </p>
-          </div>
-        </RevealText>
+          ))}
+        </div>
       </Section>
 
-      {/* 3. Services — giant coral display + one row of tall cards */}
-      <Section wide className="!pt-4 !pb-20">
-        <h2 className="display-condensed text-coral text-center text-5xl sm:text-7xl lg:text-[5.8rem] max-w-4xl mx-auto">
+      <Section wide className="!pt-4 !pb-16 sm:!pb-24">
+        <h2 className="artboard-rise display-condensed text-coral text-center text-[clamp(3.8rem,12vw,8.2rem)] leading-[0.82] max-w-5xl mx-auto">
           Start where you actually are.
         </h2>
-        <p className="prose-doc mx-auto mt-6 text-center !max-w-2xl">
+        <p className="mx-auto mt-5 max-w-2xl text-center font-semibold text-plum leading-snug">
           You do not need the right vocabulary, a fixed identity, or a perfectly organized list of
           interests. We can begin with the questions you already have.
         </p>
 
-        <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 mx-[calc(50%-50vw)] px-[max(1.25rem,calc(50vw-50%))]">
-          <PinkCard
-            to="/services/beginner-bdsm-coaching"
-            title="Beginner BDSM Coaching"
-            centered
-            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
+        <div className="svc-marquee mx-[calc(50%-50vw)] mt-11 pb-10 motion-reduce:overflow-x-auto">
+          <div
+            ref={marqueeTrackRef}
+            className="svc-row flex w-max will-change-transform motion-reduce:will-change-auto"
           >
-            <img
-              src={stickerFeather}
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute -left-7 bottom-14 w-36 rotate-[-15deg]"
-            />
-            <img
-              src={stickerWandPink}
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute right-2 bottom-2 w-28 rotate-[12deg]"
-            />
-          </PinkCard>
-
-          <Link
-            to="/guides/how-to-negotiate-your-first-scene"
-            className="group relative flex w-[80vw] min-h-[26rem] shrink-0 snap-start flex-col items-center justify-center overflow-hidden rounded-3xl bg-plum px-6 py-7 text-center transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-[320px]"
-          >
-            <img
-              src={photoCardBg}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 h-full w-full object-cover opacity-40"
-            />
-            <h3 className="display-condensed relative text-[3.2rem] leading-[0.95] text-coral drop-shadow-sm">
-              First
-              <br />
-              Kink
-              <br />
-              Scene
-              <br />
-              Prep
-            </h3>
-            <span
-              aria-hidden
-              className="absolute bottom-4 right-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-plum shadow-sm transition-colors group-hover:bg-coral group-hover:text-white"
-            >
-              →
-            </span>
-          </Link>
-
-          <PinkCard
-            to="/services/kink-event-accompaniment"
-            title="Kink Event Accompaniment"
-            body="For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can help you understand the space and find your footing."
-            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
-          />
-
-          <PinkCard
-            to="/workshops"
-            title="Private Workshops"
-            centered
-            className="w-[80vw] shrink-0 snap-start justify-center sm:w-[320px] !min-h-[26rem]"
-          />
-
-          <PinkCard
-            to="/services/polyamory-coaching-for-beginners"
-            title="Polyamory Coaching for Beginners"
-            body="Practical support for individuals and partners considering consensual nonmonogamy — agreements, dating, jealousy, time, and course correction."
-            className="w-[80vw] shrink-0 snap-start sm:w-[320px] !min-h-[26rem]"
-          />
-        </div>
-      </Section>
-
-      {/* 4. Recognition */}
-      <Section ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum leading-[1.15] max-w-[22ch]">
-          You do not need more random internet advice.
-        </h2>
-        <div className="prose-doc mt-6">
-          <p>
-            You may already know what interests you. The harder part is knowing what happens next.
-          </p>
-          <p>
-            Where do you meet people? What should you ask before playing with someone? How do you
-            know whether an event welcomes beginners? What is normal nervousness, and what is an
-            actual warning sign?
-          </p>
-          <p>
-            The internet can give you a thousand conflicting answers. Coaching gives you a private
-            place to ask the questions that actually apply to you.
-          </p>
-        </div>
-      </Section>
-
-      {/* 5. Pillars */}
-      <Section wide ruled>
-        <h2 className="display-condensed text-coral text-4xl sm:text-6xl max-w-3xl">
-          Kink is easier to explore when someone explains the room.
-        </h2>
-        <div className="mt-12 grid gap-10 md:grid-cols-3">
-          {PILLARS.map((p) => (
-            <div key={p.n}>
-              <p className="label-condensed text-coral text-sm">{p.n}</p>
-              <h3 className="font-display text-2xl sm:text-[1.7rem] text-plum leading-tight mt-2">
-                {p.headline}
-              </h3>
-              <p className="prose-doc mt-3 !text-base">{p.body}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* 6. What coaching can help with */}
-      <Section ruled>
-        <h2 className="display-condensed text-coral text-4xl sm:text-6xl">
-          Bring the questions you cannot solve with a glossary.
-        </h2>
-        <ul className="mt-9 space-y-3">
-          {HELP_ITEMS.map((item) => (
-            <li key={item} className="flex gap-3 font-display text-lg sm:text-xl text-plum/90">
-              <span aria-hidden className="text-coral select-none">
-                —
-              </span>
-              <span className="italic">“{item}”</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* 7. First-event support feature */}
-      <Section wide ruled>
-        <div className="relative overflow-hidden rounded-3xl bg-pinkcard px-6 py-12 sm:px-14 sm:py-16">
-          <img
-            src={stickerRope}
-            alt=""
-            aria-hidden
-            className="pointer-events-none absolute -right-10 -top-8 w-48 rotate-[15deg] hidden sm:block"
-          />
-          <p className="label-condensed text-coral text-sm">First event support</p>
-          <h2 className="display-condensed text-coral text-4xl sm:text-6xl mt-3 max-w-[16ch]">
-            Walk into the room knowing what to expect.
-          </h2>
-          <div className="prose-doc mt-6">
-            <p>
-              Your first kink event should not feel like being dropped into a private club with no
-              explanation.
-            </p>
-            <p>
-              We can choose an appropriate event, discuss dress and etiquette, review your
-              boundaries, plan how to handle conversations, and make sure you know how to leave
-              whenever you want.
-            </p>
-            <p>
-              For selected events in the San Francisco Bay Area, nonsexual accompaniment may also be
-              available.
-            </p>
-          </div>
-          <p className="mt-6 max-w-2xl border-l-2 border-coral/50 pl-4 text-sm text-plum/75">
-            Event accompaniment is educational and social support. It does not include sexual
-            activity, kink play, topping, bottoming, dating, romantic companionship, or guaranteed
-            introductions.
-          </p>
-          <div className="mt-8">
-            <ButtonLink to="/services/kink-event-accompaniment">
-              Learn about event support
-            </ButtonLink>
+            {Array.from({ length: SERVICE_MARQUEE_SET_COUNT }, (_, setIndex) => (
+              <div
+                key={setIndex}
+                data-marquee-set={setIndex}
+                className="flex items-start gap-5 pr-5"
+                aria-hidden={setIndex !== 0}
+              >
+                {SERVICE_CARDS.map((card) => (
+                  <ServiceCard
+                    key={`${setIndex}-${card.title}`}
+                    card={card}
+                    duplicate={setIndex !== 0}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* 8. Process */}
-      <Section wide ruled>
-        <h2 className="font-display text-3xl sm:text-4xl text-plum text-center leading-[1.08]">
-          No grand initiation. Just a useful next step.
-        </h2>
-        <div className="mt-12 grid gap-10 md:grid-cols-3">
-          {STEPS.map((s) => (
-            <div key={s.n} className="text-center">
-              <p className="label-condensed text-coral text-sm">{s.n}</p>
-              <h3 className="font-display text-2xl text-plum leading-tight mt-2">{s.title}</h3>
-              <p className="prose-doc mx-auto mt-3 !text-base">{s.body}</p>
+      <section className="relative isolate">
+        <ImageBand
+          image={eventImg}
+          title="Event Support"
+          to="/services/kink-event-accompaniment"
+          label="Learn more"
+          position="object-[50%_50%]"
+          layerIndex={1}
+        />
+        <ImageBand
+          image={coachingImg}
+          title="Expert Coaching"
+          to="/coaching"
+          label="Learn more"
+          position="object-[36%_50%]"
+          layerIndex={2}
+        />
+        <ImageBand
+          image={prepImg}
+          title="First Scene Preparation"
+          to="/guides/how-to-negotiate-your-first-scene"
+          label="Learn more"
+          position="object-[30%_50%]"
+          layerIndex={3}
+          staticCopy
+        />
+      </section>
+
+      <Section wide className="relative z-10 bg-white !pb-0 !pt-0">
+        <QuestionScroll />
+      </Section>
+
+      <Section
+        wide
+        className="relative z-10 bg-white !pb-16 !pt-0 sm:!pb-24 sm:!pt-0"
+      >
+        <div className="mx-auto text-center">
+          <div className="relative mx-auto flex flex-col items-center">
+            <h2 className="meet-jules-title artboard-rise display-condensed text-coral text-center text-[clamp(5.6rem,18vw,15.5rem)]">
+              <span className="block">Meet</span>
+              <span className="block">Jules</span>
+            </h2>
+            <div className="relative z-10 -mt-[clamp(1.8rem,4vw,3.7rem)] w-[min(23.125rem,78vw)] overflow-hidden rounded-[1.15rem] shadow-sm">
+              <img
+                src={meetJulesImg}
+                alt="Jules coaching a client in conversation"
+                className="aspect-[370/247] w-full object-cover"
+              />
             </div>
-          ))}
-        </div>
-      </Section>
+          </div>
 
-      {/* 9. About preview */}
-      <Section ruled>
-        <p className="label-condensed text-coral text-sm">About</p>
-        <h2 className="font-display text-3xl sm:text-[2.4rem] text-plum leading-[1.15] mt-3 max-w-[24ch]">
-          The person you wish you had met before taking your first step into the scene.
-        </h2>
-        <div className="prose-doc mt-6">
-          <p>I am Jules Holloway, founder of Department of Consent.</p>
-          <p>
-            I kept finding myself in the same role: helping newer people understand the language,
-            read the room, ask better questions, and avoid learning everything through trial and
-            error.
-          </p>
-          <p>
-            Department of Consent turns that informal mentorship into practical, structured support
-            for adults who are ready to make their curiosity real.
+          <p className="mx-auto mt-8 max-w-[45rem] font-display text-[clamp(1.45rem,2.25vw,2rem)] leading-[1.18] text-plum">
+            <strong className="block">Skip years of awkward mistakes.</strong>
+            <span className="block">Learn the unwritten rules of kink before you need them.</span>
           </p>
         </div>
-        <div className="mt-7">
-          <TextLink to="/about">Meet Jules</TextLink>
-        </div>
-      </Section>
 
-      {/* 10. Guide cards */}
-      <Section wide ruled>
-        <h2 className="display-condensed text-coral text-center text-4xl sm:text-6xl max-w-3xl mx-auto">
-          Read this before asking strangers on the internet.
-        </h2>
-        <p className="prose-doc mx-auto mt-5 text-center !max-w-2xl">
-          Straightforward guides to entering the kink scene, preparing for your first event,
-          negotiating a scene, vetting people, aftercare, polyamory, and the unwritten rules
-          beginners are expected to know.
-        </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {allGuides.map((g) => (
-            <PinkCard key={g.slug} to={g.path} title={g.crumbLabel} body={g.description} />
-          ))}
+        <div className="mx-auto mt-4 max-w-[68rem] bg-white/62 px-5 py-7 text-left sm:px-10 sm:py-8">
+          <div className="grid gap-8 md:grid-cols-3 md:gap-11">
+            {PILLARS.map((pillar, index) => (
+              <article key={pillar.headline}>
+                <p className="label-condensed text-xs text-coral">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 font-display text-[1.55rem] leading-[1.04] text-plum sm:text-[1.75rem]">
+                  {pillar.headline}
+                </h3>
+                <p className="mt-4 font-display text-[0.94rem] leading-[1.34] text-plum/82">
+                  {pillar.body}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
+
         <div className="mt-8 text-center">
-          <ButtonLink to="/resources" variant="outline">
-            Browse all beginner guides
+          <ButtonLink
+            to="/coaching"
+            className="!border-[#1B1B1B] !bg-[#1B1B1B] !px-10 !py-3 hover:!bg-coral hover:!border-coral"
+          >
+            Expert coaching
           </ButtonLink>
         </div>
       </Section>
 
-      {/* 11. FAQ */}
-      <Section ruled>
-        <h2 className="display-condensed text-coral text-4xl sm:text-6xl">Common questions</h2>
-        <div className="mt-7">
-          <FaqAccordion faqs={HOME_FAQS} withJsonLd />
-        </div>
-        <div className="mt-7">
-          <TextLink to="/faq">Read the full FAQ</TextLink>
-        </div>
+      <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
+        <Link
+          to="/book"
+          aria-label="Book a coaching session"
+          className="group relative mx-auto block max-w-4xl overflow-hidden rounded-[1.35rem] bg-plum text-center text-white"
+        >
+          <img
+            src={ctaPanelImg}
+            alt=""
+            aria-hidden
+            className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.025]"
+          />
+        </Link>
       </Section>
 
-      {/* 12. Email guide capture */}
-      <Section wide ruled>
-        <NewsletterSignup />
-      </Section>
-
-      {/* 13. Final CTA — mint panel */}
-      <CtaBlock
-        headline="You do not need to become an expert before you begin."
-        body="You need enough knowledge, support, and confidence to make your next decision deliberately."
-        primaryLabel="Book an introductory session"
-        primaryTo="/book"
-        secondaryLabel="Explore coaching"
-        secondaryTo="/coaching"
-      />
     </MarketingLayout>
+  );
+}
+
+function QuestionScroll() {
+  const scrollingQuestions = [...CTA_QUESTIONS, ...CTA_QUESTIONS];
+
+  return (
+    <div className="question-scroll mx-auto h-[38rem] max-w-5xl overflow-hidden sm:h-[46rem] lg:h-[50rem]">
+      <h2 className="sr-only">Questions Department of Consent can help with</h2>
+      <ul className="sr-only">
+        {CTA_QUESTIONS.map((question) => (
+          <li key={question}>{question}</li>
+        ))}
+      </ul>
+      <div className="question-scroll-track" aria-hidden="true">
+        {scrollingQuestions.map((question, index) => (
+          <p key={`${question}-${index}`} className="question-scroll-item">
+            {question}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ServiceCard({ card, duplicate }: { card: ServiceCardData; duplicate?: boolean }) {
+  const tabIndex = duplicate ? -1 : undefined;
+
+  if (card.image) {
+    return (
+      <Link
+        to={card.to}
+        tabIndex={tabIndex}
+        aria-hidden={duplicate}
+        className="svc-card group relative flex h-[28rem] w-[76vw] max-w-[18.5rem] shrink-0 flex-col items-center justify-center overflow-hidden rounded-[1.35rem] bg-plum px-6 py-7 text-center sm:w-[16.5rem] md:w-[17.5rem] xl:w-[18.5rem]"
+      >
+        <img src={card.image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-[#1B1B1B]/45" />
+        <h3 className="display-condensed relative text-[3.2rem] leading-[0.86] text-coral drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
+          First
+          <br />
+          Kink
+          <br />
+          Scene
+          <br />
+          Prep
+        </h3>
+        <span className="card-arrow" aria-hidden>
+          <ArrowRight className="h-4 w-4" />
+        </span>
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      to={card.to}
+      tabIndex={tabIndex}
+      aria-hidden={duplicate}
+      className={`svc-card group relative flex h-[28rem] w-[76vw] max-w-[18.5rem] shrink-0 flex-col overflow-hidden rounded-[1.35rem] bg-pinkcard px-6 pb-16 pt-7 sm:w-[16.5rem] md:w-[17.5rem] xl:w-[18.5rem] ${
+        card.centered ? "items-center justify-center text-center" : ""
+      }`}
+    >
+      <h3
+        className={`display-condensed relative z-10 text-coral ${
+          card.largeTitle
+            ? "max-w-[16.25rem] text-[clamp(2.65rem,3.35vw,3.55rem)] leading-[0.86]"
+            : "max-w-[15rem] text-2xl"
+        }`}
+      >
+        {card.title}
+      </h3>
+      {card.body && <p className="prose-doc relative z-10 mt-3 !text-[0.95rem] !leading-snug">{card.body}</p>}
+      {card.sticker && (
+        <img
+          src={card.sticker}
+          alt=""
+          aria-hidden
+          className={`pointer-events-none absolute ${card.stickerClassName}`}
+        />
+      )}
+      <span className="card-arrow" aria-hidden>
+        <ArrowRight className="h-4 w-4" />
+      </span>
+    </Link>
+  );
+}
+
+function ImageBand({
+  image,
+  title,
+  to,
+  label,
+  position,
+  layerIndex,
+  staticCopy = false,
+}: {
+  image: string;
+  title: string;
+  to: LinkProps["to"];
+  label: string;
+  position: string;
+  layerIndex: number;
+  staticCopy?: boolean;
+}) {
+  return (
+    <section
+      className="image-band sticky top-0 min-h-[100dvh] overflow-hidden bg-plum"
+      style={{ zIndex: layerIndex }}
+    >
+      <img
+        src={image}
+        alt=""
+        aria-hidden
+        className={`absolute inset-0 h-full w-full object-cover ${position}`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/68 via-[#1B1B1B]/20 to-[#1B1B1B]/22" />
+      <div
+        className="image-band-copy relative z-10 flex min-h-[100dvh] items-end justify-center px-5 pb-[clamp(3rem,10vh,6.5rem)] pt-20 text-center will-change-transform sm:px-12"
+        data-static-copy={staticCopy ? "true" : undefined}
+      >
+        <div className="mx-auto flex max-w-5xl flex-col items-center">
+          <h2 className="display-condensed text-white text-[clamp(3.3rem,13vw,7.5rem)] leading-[0.86] drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
+            {title}
+          </h2>
+          <Link to={to} className="btn-editorial mt-5 !px-5 !py-2.5">
+            {label}
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

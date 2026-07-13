@@ -54,6 +54,7 @@ export const siteConfig = {
    * No advertising pixels, session replay, or fingerprinting.
    */
   analytics: {
+    googleAnalyticsId: env.VITE_GOOGLE_ANALYTICS_ID || "G-GYYJEDCDTZ",
     plausibleDomain: env.VITE_PLAUSIBLE_DOMAIN || "",
     plausibleScriptSrc: env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/script.js",
   },
@@ -67,7 +68,7 @@ export const siteConfig = {
     "Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area.",
 
   /** Default social sharing image (relative to site root) */
-  defaultSocialImage: "/og-default.png",
+  defaultSocialImage: "/socialog.jpg",
 
   /**
    * Pricing display mode:
