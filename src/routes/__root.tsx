@@ -15,6 +15,32 @@ import { siteConfig } from "@/config/site";
 
 import appCss from "../styles.css?url";
 
+const GOOGLE_ANALYTICS_ID = siteConfig.analytics.googleAnalyticsId;
+
+const googleAnalyticsScripts = GOOGLE_ANALYTICS_ID
+  ? [
+      {
+        async: true,
+        src: `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`,
+      },
+      {
+        children: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });
+`,
+      },
+    ]
+  : [];
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 /**
  * Old public URLs of the consent app (now Scene Negotiator) that may exist
  * as shared direct links. Scene/invite links carry their data in the URL
@@ -161,6 +187,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      ...googleAnalyticsScripts,
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -178,22 +205,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "Beginner-focused kink and polyamory coaching: practical education, one-to-one coaching, and nonsexual event support for adults.",
         }),
       },
-      ...(siteConfig.analytics.googleAnalyticsId
-        ? [
-            {
-              async: true,
-              src: `https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.googleAnalyticsId}`,
-            },
-            {
-              children: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${siteConfig.analytics.googleAnalyticsId}');
-              `,
-            },
-          ]
-        : []),
       ...(siteConfig.analytics.plausibleDomain
         ? [
             {
@@ -230,8 +241,26 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AnalyticsPageView />
       <Outlet />
       <Toaster />
     </QueryClientProvider>
   );
+}
+
+function AnalyticsPageView() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!GOOGLE_ANALYTICS_ID || typeof window.gtag !== "function") return;
+
+    const pagePath = `${location.pathname}${location.searchStr}`;
+    window.gtag("event", "page_view", {
+      page_title: document.title,
+      page_location: `${window.location.origin}${pagePath}`,
+      page_path: pagePath,
+    });
+  }, [location.pathname, location.searchStr]);
+
+  return null;
 }

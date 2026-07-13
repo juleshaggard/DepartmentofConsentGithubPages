@@ -11,6 +11,14 @@ scene-planning app, preserved as a hidden product at `/scene-negotiator`.
 - Site configuration: [`src/config/site.ts`](src/config/site.ts) + `.env` (see `.env.example`)
 - Architecture and migration decisions: [`docs/DECISIONS.md`](docs/DECISIONS.md)
 
+## Live Site
+
+https://departmentofconsent.com/
+
+GitHub Pages fallback:
+
+https://juleshaggard.github.io/DepartmentofConsentGithubPages/
+
 ## Scene Negotiator
 
 The original app lives at `/scene-negotiator` (and child routes). It is:

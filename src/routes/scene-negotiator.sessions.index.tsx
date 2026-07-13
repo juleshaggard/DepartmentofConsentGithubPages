@@ -58,7 +58,7 @@ function SessionsList() {
               params={{ sessionId: s.shareToken }}
               className="block"
             >
-              <Sticker className="hover:scale-[1.01] transition-transform">
+              <Sticker className="motion-card">
                 <div className="flex justify-between items-start gap-3">
                   <div className="min-w-0">
                     <div className="font-display text-xl text-plum truncate">

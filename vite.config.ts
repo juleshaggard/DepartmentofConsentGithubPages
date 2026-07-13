@@ -3,7 +3,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { loadEnv } from "vite";
 
 const isGitHubPages = process.env.DOC_DEPLOY_TARGET === "github-pages";
-const githubPagesBase = "/DepartmentofConsentGithubPages/";
+const hasCustomDomain = Boolean(process.env.DOC_PAGES_CUSTOM_DOMAIN);
+const githubPagesBase = hasCustomDomain ? "/" : "/DepartmentofConsentGithubPages/";
 
 // Load all (non-VITE_) env vars into process.env for server routes
 const serverEnv = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");

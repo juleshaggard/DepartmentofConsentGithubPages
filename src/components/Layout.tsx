@@ -19,7 +19,7 @@ export function Layout({
   return (
     <div className="min-h-screen grain bg-background flex flex-col overflow-x-hidden">
       {!isHome && (
-        <header className="w-full px-5 sm:px-10 pt-6 sm:pt-8 pb-2 flex items-center justify-between max-w-6xl mx-auto">
+        <header className="motion-topbar w-full px-5 sm:px-10 pt-6 sm:pt-8 pb-2 flex items-center justify-between max-w-6xl mx-auto">
           <Link to="/scene-negotiator" aria-label="Scene Negotiator — Home" className="block">
             <img src={wordmark} alt="Scene Negotiator" className="h-7 sm:h-8 w-auto" />
           </Link>
@@ -30,7 +30,9 @@ export function Layout({
       )}
       <main
         className={
-          fullBleed ? "flex-1 pb-24" : "flex-1 max-w-2xl w-full mx-auto px-5 pt-5 pb-40 sm:pt-6"
+          fullBleed
+            ? "flex-1 pb-24"
+            : "motion-page flex-1 max-w-2xl w-full mx-auto px-5 pt-5 pb-40 sm:pt-6"
         }
       >
         {children}
@@ -49,7 +51,7 @@ function BottomNav() {
     { to: "/scene-negotiator/settings", label: "Profile", Icon: User, exact: false },
   ] as const;
   return (
-    <nav className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md rounded-full border border-coral/10 bg-card/95 shadow-[0_14px_45px_rgb(27_27_27_/_0.14)] backdrop-blur-sm">
+    <nav className="bottom-nav fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-md rounded-full border border-coral/10 bg-card/95 shadow-[0_14px_45px_rgb(27_27_27_/_0.14)] backdrop-blur-sm">
       <ul className="grid grid-cols-3">
         {items.map(({ to, label, Icon, exact }) => (
           <li key={to}>

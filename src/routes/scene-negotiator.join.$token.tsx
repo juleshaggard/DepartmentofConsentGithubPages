@@ -376,11 +376,6 @@ function JoinPage() {
                 }
               />
             )}
-            {side.selectedKinks.length > 0 && (
-              <div className="text-xs text-center text-muted-foreground">
-                {side.selectedKinks.length} on your list · {hellYesIds.length} hell-yeses
-              </div>
-            )}
           </Sticker>
         )}
 

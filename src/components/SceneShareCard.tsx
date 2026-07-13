@@ -32,9 +32,12 @@ export function SceneShareCard({
   };
 
   return (
-    <Sticker className={cn("text-center space-y-3", className)}>
+    <Sticker
+      className={cn("scene-share-card text-center space-y-3", className)}
+      data-copied={copied}
+    >
       <h2 className="font-display text-[1.75rem] text-plum text-center leading-[1.05]">{title}</h2>
-      <div className="flex justify-center rounded-xl bg-card p-3 sm:p-4">
+      <div className="scene-qr-shell flex justify-center rounded-xl bg-card p-3 sm:p-4">
         <QRCodeSVG
           value={url || " "}
           size={260}
