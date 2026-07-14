@@ -16,7 +16,7 @@ export const Route = createFileRoute("/privacy")({
 
 function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" path="/privacy">
+    <LegalPage title="Privacy Policy" path="/privacy" draftNotice={false}>
       <p>
         Department of Consent (“we,” “us”) provides coaching, education, and event support for
         adults, plus a browser-based scene-planning tool. We try to collect as little information as

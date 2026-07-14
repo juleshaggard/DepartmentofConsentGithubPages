@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { Breadcrumbs, Container, Eyebrow, Section } from "@/components/marketing/primitives";
-import { InquiryForm } from "@/components/marketing/InquiryForm";
 import { pageHead } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 
@@ -46,26 +45,14 @@ function BookPage() {
       {scheduler ? (
         <Section ruled>
           <h2 className="font-display text-3xl text-plum leading-tight">Schedule directly</h2>
-          <p className="prose-doc mt-3">
-            Pick a time that works for you. If nothing fits, or you would rather start with a
-            question, use the inquiry form below instead.
-          </p>
-          <div className="mt-6">
-            <a href={scheduler} className="btn-editorial">
+          <p className="prose-doc mt-3">Pick a time that works for you.</p>
+          <div className="mobile-action-stack mt-6 sm:w-auto sm:max-w-none">
+            <a href={scheduler} className="btn-editorial w-full sm:w-auto">
               Open the scheduling page
             </a>
           </div>
         </Section>
       ) : null}
-
-      <Section ruled>
-        <h2 className="font-display text-3xl text-plum leading-tight">
-          {scheduler ? "Or send an inquiry" : "Send an inquiry"}
-        </h2>
-        <div className="mt-6">
-          <InquiryForm />
-        </div>
-      </Section>
 
       <Section ruled>
         <div className="prose-doc text-sm !max-w-2xl text-muted-foreground">

@@ -96,7 +96,7 @@ function CoachingPage() {
             more preparation and less guesswork.
           </p>
           <div className="mt-8">
-            <ButtonLink to="/pricing">View pricing and booking options</ButtonLink>
+            <ButtonLink to="/pricing">Book a Free Coaching Session</ButtonLink>
           </div>
         </div>
       </Section>
@@ -150,7 +150,7 @@ function CoachingPage() {
 
       <CtaBlock
         headline="Bring the uncertainty. We will turn it into a plan."
-        primaryLabel="View pricing and booking options"
+        primaryLabel="Book a Free Coaching Session"
         primaryTo="/pricing"
       />
     </MarketingLayout>

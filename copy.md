@@ -83,7 +83,6 @@ Avoid:
 - Workshops
 - Guides
 - About
-- FAQ
 - Book
 
 Do not link Scene Negotiator from public navigation or the footer.

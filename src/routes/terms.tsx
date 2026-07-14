@@ -16,7 +16,7 @@ export const Route = createFileRoute("/terms")({
 
 function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" path="/terms">
+    <LegalPage title="Terms of Service" path="/terms" draftNotice={false}>
       <p>
         These terms govern your use of the Department of Consent website, coaching services,
         workshops, event support, and the Scene Negotiator browser app. By using the site or booking

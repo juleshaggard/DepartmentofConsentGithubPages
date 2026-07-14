@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import {
   Breadcrumbs,
-  ButtonLink,
   Container,
   CtaBlock,
   Eyebrow,
@@ -10,6 +9,7 @@ import {
 } from "@/components/marketing/primitives";
 import { JsonLd } from "@/components/marketing/JsonLd";
 import { pageHead, personJsonLd } from "@/lib/seo";
+import julesPortrait from "../../assets/julesholloway.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -62,27 +62,37 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section ruled>
-        <div className="prose-doc">
-          <p>I am Jules Holloway, founder of Department of Consent.</p>
-          <p>
-            I kept finding myself in the same role. Newer people came to me with the questions they
-            did not feel comfortable asking publicly.
-          </p>
-          <p>
-            What should I expect at an event? Is this behavior normal? How do I negotiate without
-            sounding inexperienced? How do I tell the difference between confidence and pressure?
-            How do I enter a community where everyone seems to know rules no one has explained?
-          </p>
-          <p>
-            I am good at making unfamiliar systems legible. My work is not about telling people what
-            they should want. It is about helping them understand the situation clearly enough to
-            make their own decisions.
-          </p>
-          <p>
-            Department of Consent turns informal mentorship into practical, structured support for
-            adults who are ready to make their curiosity real.
-          </p>
+      <Section wide ruled>
+        <div className="grid gap-9 md:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] md:items-center md:gap-12">
+          <div className="prose-doc">
+            <p>I am Jules Holloway, founder of Department of Consent.</p>
+            <p>
+              I kept finding myself in the same role. Newer people came to me with the questions
+              they did not feel comfortable asking publicly.
+            </p>
+            <p>
+              What should I expect at an event? Is this behavior normal? How do I negotiate without
+              sounding inexperienced? How do I tell the difference between confidence and pressure?
+              How do I enter a community where everyone seems to know rules no one has explained?
+            </p>
+            <p>
+              I am good at making unfamiliar systems legible. My work is not about telling people
+              what they should want. It is about helping them understand the situation clearly
+              enough to make their own decisions.
+            </p>
+            <p>
+              Department of Consent turns informal mentorship into practical, structured support for
+              adults who are ready to make their curiosity real.
+            </p>
+          </div>
+
+          <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-[1.25rem] bg-[#1B1B1B] shadow-[0_18px_46px_-34px_rgba(27,27,27,0.65)] md:mx-0 md:justify-self-end">
+            <img
+              src={julesPortrait}
+              alt="Portrait of Jules Holloway"
+              className="aspect-[4/5] h-full w-full object-cover object-[50%_20%]"
+            />
+          </div>
         </div>
       </Section>
 
@@ -112,7 +122,7 @@ function AboutPage() {
 
       <CtaBlock
         headline="You are allowed to ask the beginner question."
-        primaryLabel="View pricing and booking options"
+        primaryLabel="Book a Free Coaching Session"
         primaryTo="/pricing"
       />
 

@@ -20,6 +20,12 @@ export const Route = createFileRoute("/pricing")({
 
 const bookingLinks = siteConfig.bookingLinks;
 
+type PriceMeta = {
+  prefix?: string;
+  price: string;
+  suffix?: string;
+};
+
 const faqItems = [
   {
     question: "Are all coaching sessions online?",
@@ -44,7 +50,7 @@ const faqItems = [
   {
     question: "Is everything confidential?",
     answer:
-      "I treat what you share with care and discretion. Coaching is not psychotherapy, and it does not create therapist-client privilege or medical confidentiality.",
+      "Yes. I treat what you share with care and discretion. Coaching is not psychotherapy, and it does not create therapist-client privilege or medical confidentiality.",
   },
   {
     question: "Can I book Event Companion immediately?",
@@ -59,13 +65,6 @@ const faqItems = [
 ] as const;
 
 function PricingPage() {
-  const hasMissingBookingLinks = [
-    bookingLinks.coachingSession,
-    bookingLinks.deepDive,
-    bookingLinks.package,
-    bookingLinks.eventPrep,
-  ].some((url) => !url);
-
   useEffect(() => {
     trackBookingAction("pricing_page_view");
   }, []);
@@ -100,17 +99,6 @@ function PricingPage() {
             </p>
             <p>No question is too basic. No curiosity is too weird.</p>
           </div>
-          {hasMissingBookingLinks && (
-            <div className="mt-8 rounded-2xl border border-coral/20 bg-pinkcard px-5 py-4">
-              <p className="text-sm font-semibold text-plum">
-                Paid scheduling links are being connected.
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-plum/72">
-                The free discovery call opens Calendly. Paid services still open the inquiry form
-                until the approved Calendly payment flow is ready.
-              </p>
-            </div>
-          )}
         </div>
       </Section>
 
@@ -118,7 +106,7 @@ function PricingPage() {
         <PricingCard
           eyebrow="Free Discovery Call"
           title="Free Discovery Call"
-          meta="20 minutes · Free · Online"
+          meta={{ prefix: "20 minutes", price: "Free", suffix: "Online" }}
           body={[
             "Not sure where to start?",
             "We’ll talk about what you want help with, where you’re feeling stuck, and whether coaching is a good fit.",
@@ -141,7 +129,7 @@ function PricingPage() {
           <div className="grid gap-5 md:grid-cols-2">
             <PricingCard
               title="One Coaching Session"
-              meta="60 minutes · $175 · Online"
+              meta={{ prefix: "60 minutes", price: "$175", suffix: "Online" }}
               body={["A focused session for one specific question, challenge, or next step."]}
               bullets={[
                 "Understanding your interests",
@@ -160,7 +148,7 @@ function PricingPage() {
             />
             <PricingCard
               title="Deep Dive Session"
-              meta="90 minutes · $250 · Online"
+              meta={{ prefix: "90 minutes", price: "$250", suffix: "Online" }}
               body={[
                 "More time to unpack your goals, answer questions, and leave with a practical plan.",
                 "This is a good fit if you are completely new, feeling overwhelmed, or navigating several connected questions at once.",
@@ -175,19 +163,17 @@ function PricingPage() {
       </Section>
 
       <Section wide ruled>
-        <article className="relative overflow-hidden rounded-[1.35rem] bg-pinkcard px-6 py-8 sm:px-10 sm:py-10">
-          <div className="absolute right-5 top-5 rounded-full bg-coral px-4 py-2 label-condensed text-xs text-white">
+        <article className="relative overflow-hidden rounded-[1.35rem] bg-[#1B1B1B] px-6 py-8 text-white sm:px-10 sm:py-10">
+          <div className="absolute right-5 top-5 rounded-full bg-mint px-4 py-2 label-condensed text-xs text-[#1B1B1B]">
             Most Popular
           </div>
           <div className="max-w-3xl">
-            <Eyebrow>Most Popular</Eyebrow>
+            <p className="eyebrow mb-3 !text-mint">Most Popular</p>
             <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
               Kink Curious to Kink Confident
             </h2>
-            <p className="mt-3 font-display text-xl leading-tight text-plum">
-              Three online sessions · $475
-            </p>
-            <div className="prose-doc mt-6">
+            <PriceLine meta={{ prefix: "Three online sessions", price: "$475" }} tone="dark" />
+            <div className="prose-doc mt-6 !text-white/86">
               <p>
                 A complete beginner coaching package designed to take you from “I don’t know where
                 to start” to feeling prepared to explore safely and confidently.
@@ -198,6 +184,7 @@ function PricingPage() {
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <PackageSession
               title="Session One: Understand what you want"
+              tone="dark"
               items={[
                 "Your interests",
                 "Your boundaries",
@@ -208,6 +195,7 @@ function PricingPage() {
             />
             <PackageSession
               title="Session Two: Learn how to navigate it"
+              tone="dark"
               items={[
                 "Finding community",
                 "Vetting partners",
@@ -219,6 +207,7 @@ function PricingPage() {
             />
             <PackageSession
               title="Session Three: Put it into practice"
+              tone="dark"
               items={[
                 "Preparing for your first event or experience",
                 "Managing nerves",
@@ -230,7 +219,7 @@ function PricingPage() {
           </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="prose-doc !max-w-3xl">
+            <div className="prose-doc !max-w-3xl !text-white/86">
               <p>
                 You’ll leave with practical knowledge, resources, and a clearer sense of what comes
                 next.
@@ -238,7 +227,7 @@ function PricingPage() {
               <p>
                 <strong>Save $50 compared with three individual sessions.</strong>
               </p>
-              <p className="!text-base text-plum/72">
+              <p className="!text-base !text-white/62">
                 The price covers three separate online sessions. The public booking flow is for the
                 package purchase and first session only; follow-up booking links stay private.
               </p>
@@ -261,7 +250,7 @@ function PricingPage() {
           <div className="grid gap-5 md:grid-cols-2">
             <PricingCard
               title="First Event Preparation"
-              meta="90 minutes · $225 · Online"
+              meta={{ prefix: "90 minutes", price: "$225", suffix: "Online" }}
               body={[
                 "Heading to your first munch, play party, workshop, or kink event?",
                 "You’ll walk in knowing what to expect instead of wondering whether you’re doing everything wrong.",
@@ -283,7 +272,10 @@ function PricingPage() {
             />
             <PricingCard
               title="Event Companion"
-              meta="Online preparation + up to three hours in person + online follow-up · $795"
+              meta={{
+                prefix: "Online preparation + up to three hours in person + online follow-up",
+                price: "$795",
+              }}
               body={[
                 "Sometimes the hardest part is simply walking through the door.",
                 "We’ll meet online beforehand to prepare. I’ll then accompany you to an approved event in the San Francisco Bay Area, help you understand the space, answer questions, and support you as you navigate the experience.",
@@ -310,7 +302,9 @@ function PricingPage() {
           <div className="divide-y divide-plum/12 border-y border-plum/12">
             {faqItems.map((item) => (
               <article key={item.question} className="py-5">
-                <h3 className="font-display text-2xl leading-tight text-plum">{item.question}</h3>
+                <h3 className="display-condensed text-2xl text-coral sm:text-3xl">
+                  {item.question}
+                </h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed text-plum/76">{item.answer}</p>
               </article>
             ))}
@@ -352,7 +346,7 @@ function PricingCard({
 }: {
   eyebrow?: string;
   title: string;
-  meta: string;
+  meta: PriceMeta;
   body: string[];
   bullets?: string[];
   ctaLabel: string;
@@ -369,7 +363,7 @@ function PricingCard({
     >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 className="display-condensed text-coral text-3xl sm:text-4xl">{title}</h2>
-      <p className="mt-3 font-display text-xl leading-tight text-plum">{meta}</p>
+      <PriceLine meta={meta} />
       <div className="mt-5 space-y-3 text-[0.98rem] leading-relaxed text-plum/78">
         {body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
@@ -389,11 +383,65 @@ function PricingCard({
   );
 }
 
-function PackageSession({ title, items }: { title: string; items: string[] }) {
+function PriceLine({ meta, tone = "light" }: { meta: PriceMeta; tone?: "light" | "dark" }) {
+  const isDark = tone === "dark";
+
+  return (
+    <p
+      className={cn("mt-3 font-display text-xl leading-[1.6]", isDark ? "text-white" : "text-plum")}
+    >
+      {meta.prefix && (
+        <>
+          <span>{meta.prefix}</span>
+          <span className={cn("mx-1.5", isDark ? "text-white/38" : "text-plum/45")} aria-hidden>
+            ·
+          </span>
+        </>
+      )}
+      <span
+        className={cn(
+          "inline-flex -translate-y-[0.05em] items-center rounded-xl border-2 border-mint px-2.5 py-1 font-sans text-[0.78em] font-bold leading-none",
+          isDark ? "bg-mint text-[#1B1B1B]" : "bg-mint/15 text-plum",
+        )}
+      >
+        {meta.price}
+      </span>
+      {meta.suffix && (
+        <>
+          <span className={cn("mx-1.5", isDark ? "text-white/38" : "text-plum/45")} aria-hidden>
+            ·
+          </span>
+          <span>{meta.suffix}</span>
+        </>
+      )}
+    </p>
+  );
+}
+
+function PackageSession({
+  title,
+  items,
+  tone = "light",
+}: {
+  title: string;
+  items: string[];
+  tone?: "light" | "dark";
+}) {
+  const isDark = tone === "dark";
+
   return (
     <section className="border-t-2 border-coral pt-5">
-      <h3 className="font-display text-2xl leading-[1.04] text-plum">{title}</h3>
-      <ul className="mt-4 list-disc space-y-1.5 pl-5 text-[0.95rem] leading-relaxed text-plum/78">
+      <h3
+        className={cn("font-display text-2xl leading-[1.04]", isDark ? "text-white" : "text-plum")}
+      >
+        {title}
+      </h3>
+      <ul
+        className={cn(
+          "mt-4 list-disc space-y-1.5 pl-5 text-[0.95rem] leading-relaxed",
+          isDark ? "text-white/72 marker:text-mint" : "text-plum/78",
+        )}
+      >
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
@@ -419,18 +467,14 @@ function BookingButton({
 
   if (!isCalendly) {
     return (
-      <Link to="/book" className="btn-editorial" onClick={handleClick}>
+      <Link to="/book" className="btn-editorial w-full sm:w-auto" onClick={handleClick}>
         {label}
       </Link>
     );
   }
 
   return (
-    <a
-      href={href}
-      className="btn-editorial"
-      onClick={handleClick}
-    >
+    <a href={href} className="btn-editorial w-full sm:w-auto" onClick={handleClick}>
       {label}
     </a>
   );

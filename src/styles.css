@@ -606,6 +606,8 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 999px;
+    min-height: 2.9rem;
+    max-width: 100%;
     padding: 0.8rem 1.7rem;
     font-family: "Phudu", "Arial Narrow", var(--font-sans);
     font-weight: 600;
@@ -618,26 +620,65 @@
     border: 1px solid var(--color-coral);
     cursor: pointer;
     text-align: center;
+    text-wrap: balance;
+    white-space: normal;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition:
       background-color 0.18s ease,
       color 0.18s ease,
       transform 0.18s ease;
   }
-  .btn-editorial:hover {
-    background: var(--color-plum);
-    border-color: var(--color-plum);
-    color: white;
-    transform: translateY(-1px);
+
+  .btn-editorial:active {
+    transform: scale(0.985);
   }
+
   .btn-editorial-outline {
     background: transparent;
     color: var(--color-plum);
     border-color: rgb(27 27 27 / 0.4);
   }
-  .btn-editorial-outline:hover {
-    background: var(--color-plum);
-    border-color: var(--color-plum);
-    color: white;
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-editorial:hover {
+      background: var(--color-plum);
+      border-color: var(--color-plum);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .btn-editorial-outline:hover {
+      background: var(--color-plum);
+      border-color: var(--color-plum);
+      color: white;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .btn-editorial {
+      min-height: 2.75rem;
+      padding: 0.7rem 1.05rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      line-height: 1.08;
+    }
+
+    .mobile-action-stack {
+      width: min(100%, 22rem);
+      margin-inline: auto;
+    }
+
+    .mobile-action-stack .btn-editorial {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 374px) {
+    .btn-editorial {
+      padding-inline: 0.88rem;
+      font-size: 0.7rem;
+    }
   }
 
   /* Circular hero copy set on an SVG path */
@@ -668,13 +709,7 @@
   .question-scroll {
     position: relative;
     padding-block: 0.45rem 0;
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 11%,
-      black 54%,
-      transparent 100%
-    );
+    mask-image: linear-gradient(to bottom, transparent 0%, black 11%, black 54%, transparent 100%);
     -webkit-mask-image: linear-gradient(
       to bottom,
       transparent 0%,
@@ -715,7 +750,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .btn-editorial,
-    .btn-editorial:hover {
+    .btn-editorial:hover,
+    .btn-editorial:active {
       transition: none;
       transform: none;
     }

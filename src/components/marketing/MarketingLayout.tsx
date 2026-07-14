@@ -14,7 +14,6 @@ const NAV_ITEMS = [
   { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
-  { label: "FAQ", to: "/faq" },
 ] as const;
 
 const FOOTER_LINKS = [
@@ -26,14 +25,13 @@ const FOOTER_LINKS = [
   { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
-  { label: "FAQ", to: "/faq" },
   { label: "Book", to: "/book" },
   { label: "Privacy", to: "/privacy" },
   { label: "Terms", to: "/terms" },
   { label: "Disclaimer", to: "/disclaimer" },
 ] as const;
 
-const navCtaLabel = "Book a free coaching session";
+const navCtaLabel = "Book a Free Coaching Session";
 
 /** "DOC — Department of Consent" lockup from the artboard nav. */
 export function Lockup({ light = false }: { light?: boolean }) {

@@ -66,7 +66,7 @@ function PolyCoachingPage() {
             </p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/pricing">View pricing and booking options</ButtonLink>
+            <ButtonLink to="/pricing">Book a Free Coaching Session</ButtonLink>
           </div>
         </div>
       </Section>
@@ -144,7 +144,7 @@ function PolyCoachingPage() {
 
       <CtaBlock
         headline="Do not use rules to avoid the conversation."
-        primaryLabel="View pricing and booking options"
+        primaryLabel="Book a Free Coaching Session"
         primaryTo="/pricing"
       />
 

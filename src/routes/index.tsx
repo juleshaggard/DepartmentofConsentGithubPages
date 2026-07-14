@@ -196,9 +196,11 @@ function Hero() {
         </Link>
         <a
           href={siteConfig.bookingLinks.discoveryCall}
-          className="btn-editorial shrink-0 !px-5 !py-2.5"
+          aria-label="Book a Free Coaching Session"
+          className="btn-editorial shrink-0 !px-3 !py-2 sm:!px-5 sm:!py-2.5"
         >
-          Book a free coaching session
+          <span className="sm:hidden">Free session</span>
+          <span className="hidden sm:inline">Book a Free Coaching Session</span>
         </a>
       </div>
 
@@ -463,7 +465,7 @@ function HomePage() {
       <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
         <Link
           to="/pricing"
-          aria-label="View pricing and booking options"
+          aria-label="Book a Free Coaching Session"
           className="group relative mx-auto block max-w-4xl overflow-hidden rounded-[1.35rem] bg-plum text-center text-white"
         >
           <img

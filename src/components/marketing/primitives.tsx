@@ -63,7 +63,11 @@ export function ButtonLink({
   return (
     <Link
       to={to}
-      className={cn("btn-editorial", variant === "outline" && "btn-editorial-outline", className)}
+      className={cn(
+        "btn-editorial w-full sm:w-auto",
+        variant === "outline" && "btn-editorial-outline",
+        className,
+      )}
     >
       {children}
     </Link>
@@ -115,7 +119,7 @@ export function FaqAccordion({
 }) {
   const faqItems = faqs.map((f, i) => (
     <AccordionItem key={f.question} value={`faq-${i}`}>
-      <AccordionTrigger className="text-left font-sans text-base font-semibold text-plum">
+      <AccordionTrigger className="display-condensed text-left text-2xl text-coral hover:no-underline sm:text-3xl">
         {f.question}
       </AccordionTrigger>
       <AccordionContent className="prose-doc text-[0.95rem]">{f.answer}</AccordionContent>
@@ -146,7 +150,7 @@ export function FaqAccordion({
 export function CtaBlock({
   headline,
   body,
-  primaryLabel = "View pricing and booking options",
+  primaryLabel = "Book a Free Coaching Session",
   primaryTo = "/pricing",
   secondaryLabel,
   secondaryTo,
@@ -169,7 +173,7 @@ export function CtaBlock({
             {body}
           </p>
         )}
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mobile-action-stack mt-8 flex flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
           <ButtonLink
             to={primaryTo}
             className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"

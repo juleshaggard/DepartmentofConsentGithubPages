@@ -91,7 +91,7 @@ function WorkshopsPage() {
           <h2 className="font-display text-3xl sm:text-5xl leading-[1.05] max-w-2xl mx-auto">
             Bring Department of Consent to your group.
           </h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mobile-action-stack mt-8 flex flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
             <ButtonLink
               to="/pricing"
               className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
@@ -101,7 +101,7 @@ function WorkshopsPage() {
             {waitlist ? (
               <a
                 href={waitlist}
-                className="btn-editorial btn-editorial-outline !text-white !border-white/60 hover:!bg-white hover:!text-coral"
+                className="btn-editorial btn-editorial-outline w-full !text-white !border-white/60 hover:!bg-white hover:!text-coral sm:w-auto"
               >
                 Join the public workshop list
               </a>

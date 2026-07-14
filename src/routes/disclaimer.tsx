@@ -15,7 +15,7 @@ export const Route = createFileRoute("/disclaimer")({
 
 function DisclaimerPage() {
   return (
-    <LegalPage title="Coaching Disclaimer" path="/disclaimer">
+    <LegalPage title="Coaching Disclaimer" path="/disclaimer" draftNotice={false}>
       <p>
         Department of Consent provides education, coaching, and practical support related to kink,
         consent, communication, relationships, consensual nonmonogamy, community participation, and

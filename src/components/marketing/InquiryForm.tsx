@@ -300,10 +300,10 @@ export function InquiryForm() {
         </div>
       )}
 
-      <div>
+      <div className="mobile-action-stack sm:mx-0 sm:w-auto sm:max-w-none">
         <button
           type="submit"
-          className="btn-editorial"
+          className="btn-editorial w-full sm:w-auto"
           disabled={!endpoint || state === "submitting"}
           aria-disabled={!endpoint || state === "submitting"}
         >
