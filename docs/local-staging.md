@@ -20,7 +20,13 @@ makes the preview look unstyled.
 ## Correct Preview Flow
 
 ```bash
-npm run build:pages
+npm run local:staging
+```
+
+That command does two things:
+
+```bash
+npm run build:pages:local
 npm run preview:pages
 ```
 
@@ -35,6 +41,15 @@ Optional port override:
 ```bash
 PORT=4174 npm run preview:pages
 ```
+
+If you already have a server running and only changed code, rebuild the local
+staging output first:
+
+```bash
+npm run build:pages:local
+```
+
+Then refresh the browser.
 
 ## Verification
 
@@ -62,7 +77,26 @@ Content-Type: text/css; charset=utf-8
 If it returns `404` or `text/html`, the preview server is wrong and the browser
 will not show the styled site.
 
+The preview server also checks `dist/client/index.html` before serving. If the
+HTML was built for the custom-domain root path (`/`) but the preview is running
+under `/DepartmentofConsentGithubPages/`, it exits with instructions instead of
+serving a blank hydrated app.
+
 ## What Not To Do
+
+Do not use the production custom-domain build for local staging:
+
+```bash
+npm run build:pages
+```
+
+That command is for deployment to `https://departmentofconsent.com/`, where the
+asset and router base path is `/`. Local staging at
+`/DepartmentofConsentGithubPages/` needs:
+
+```bash
+npm run build:pages:local
+```
 
 Do not use this for GitHub Pages staging:
 

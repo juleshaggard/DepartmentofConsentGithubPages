@@ -89,7 +89,7 @@ function SfCoachPage() {
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink to="/book">Book an introductory session</ButtonLink>
+            <ButtonLink to="/pricing">View pricing and booking options</ButtonLink>
             <ButtonLink to="/services/kink-event-accompaniment" variant="outline">
               Ask about in-person support
             </ButtonLink>
@@ -171,8 +171,8 @@ function SfCoachPage() {
 
       <CtaBlock
         headline="You do not need to know the scene before asking for help entering it."
-        primaryLabel="Book an introductory session"
-        primaryTo="/book"
+        primaryLabel="View pricing and booking options"
+        primaryTo="/pricing"
       />
 
       <JsonLd

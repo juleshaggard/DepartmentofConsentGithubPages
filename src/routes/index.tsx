@@ -7,6 +7,7 @@ import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { ButtonLink, Section } from "@/components/marketing/primitives";
 import type { LinkProps } from "@tanstack/react-router";
 import { pageHead } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 import heroImg from "../../assets/hero.jpg";
 import heroLogo from "../../assets/Logo.svg";
 import meetJulesImg from "../../assets/meetjules.jpg";
@@ -193,9 +194,12 @@ function Hero() {
             className="h-9 w-auto brightness-0 invert sm:h-10"
           />
         </Link>
-        <Link to="/book" className="btn-editorial shrink-0 !px-5 !py-2.5">
-          Book an intro session
-        </Link>
+        <a
+          href={siteConfig.bookingLinks.discoveryCall}
+          className="btn-editorial shrink-0 !px-5 !py-2.5"
+        >
+          Book a free coaching session
+        </a>
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[78rem] flex-1 flex-col items-center justify-center px-5 pb-36 pt-12 text-center sm:px-10 sm:pb-44 lg:pb-48">
@@ -406,10 +410,7 @@ function HomePage() {
         <QuestionScroll />
       </Section>
 
-      <Section
-        wide
-        className="relative z-10 bg-white !pb-16 !pt-0 sm:!pb-24 sm:!pt-0"
-      >
+      <Section wide className="relative z-10 bg-white !pb-16 !pt-0 sm:!pb-24 sm:!pt-0">
         <div className="mx-auto text-center">
           <div className="relative mx-auto flex flex-col items-center">
             <h2 className="meet-jules-title artboard-rise display-condensed text-coral text-center text-[clamp(5.6rem,18vw,15.5rem)]">
@@ -461,8 +462,8 @@ function HomePage() {
 
       <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
         <Link
-          to="/book"
-          aria-label="Book a coaching session"
+          to="/pricing"
+          aria-label="View pricing and booking options"
           className="group relative mx-auto block max-w-4xl overflow-hidden rounded-[1.35rem] bg-plum text-center text-white"
         >
           <img
@@ -473,7 +474,6 @@ function HomePage() {
           />
         </Link>
       </Section>
-
     </MarketingLayout>
   );
 }
@@ -511,7 +511,12 @@ function ServiceCard({ card, duplicate }: { card: ServiceCardData; duplicate?: b
         aria-hidden={duplicate}
         className="svc-card group relative flex h-[28rem] w-[76vw] max-w-[18.5rem] shrink-0 flex-col items-center justify-center overflow-hidden rounded-[1.35rem] bg-plum px-6 py-7 text-center sm:w-[16.5rem] md:w-[17.5rem] xl:w-[18.5rem]"
       >
-        <img src={card.image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={card.image}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-[#1B1B1B]/45" />
         <h3 className="display-condensed relative text-[3.2rem] leading-[0.86] text-coral drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
           First
@@ -547,7 +552,9 @@ function ServiceCard({ card, duplicate }: { card: ServiceCardData; duplicate?: b
       >
         {card.title}
       </h3>
-      {card.body && <p className="prose-doc relative z-10 mt-3 !text-[0.95rem] !leading-snug">{card.body}</p>}
+      {card.body && (
+        <p className="prose-doc relative z-10 mt-3 !text-[0.95rem] !leading-snug">{card.body}</p>
+      )}
       {card.sticker && (
         <img
           src={card.sticker}
@@ -593,7 +600,7 @@ function ImageBand({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/68 via-[#1B1B1B]/20 to-[#1B1B1B]/22" />
       <div
-        className="image-band-copy relative z-10 flex min-h-[100dvh] items-end justify-center px-5 pb-[clamp(3rem,10vh,6.5rem)] pt-20 text-center will-change-transform sm:px-12"
+        className="image-band-copy relative z-10 flex min-h-[100dvh] items-center justify-center px-5 py-20 text-center will-change-transform sm:px-12"
         data-static-copy={staticCopy ? "true" : undefined}
       >
         <div className="mx-auto flex max-w-5xl flex-col items-center">

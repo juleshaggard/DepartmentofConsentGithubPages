@@ -1,9 +1,10 @@
 import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 
 const root = path.resolve("dist/client");
+const indexPath = path.join(root, "index.html");
 const host = process.env.HOST || "127.0.0.1";
 const port = Number(process.env.PORT || 4173);
 const basePath = normalizeBase(process.env.DOC_PAGES_BASE || "/DepartmentofConsentGithubPages/");
@@ -25,7 +26,15 @@ const mimeTypes = new Map([
 
 function normalizeBase(value) {
   const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
-  return withLeadingSlash.replace(/\/+$/, "");
+  return withLeadingSlash.replace(/\/+$/, "") || "/";
+}
+
+function previewUrl(pathname = "/") {
+  if (basePath === "/") {
+    return pathname;
+  }
+
+  return `${basePath}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
 }
 
 function sendHead(res, status, headers = {}) {
@@ -47,15 +56,18 @@ async function resolveFile(requestUrl) {
   const url = new URL(requestUrl || "/", `http://${host}:${port}`);
   let pathname = decodeURIComponent(url.pathname);
 
-  if (pathname === "/" || pathname === basePath) {
-    return { redirect: `${basePath}/` };
+  if (basePath !== "/" && (pathname === "/" || pathname === basePath)) {
+    return { redirect: previewUrl("/") };
   }
 
-  if (!pathname.startsWith(`${basePath}/`)) {
-    return undefined;
+  if (basePath !== "/" && pathname.startsWith(`${basePath}/`)) {
+    pathname = pathname.slice(basePath.length).replace(/^\/+/, "");
+  } else if (basePath !== "/" && !path.extname(pathname)) {
+    return { redirect: previewUrl(pathname) };
+  } else {
+    pathname = pathname.replace(/^\/+/, "");
   }
 
-  pathname = pathname.slice(basePath.length).replace(/^\/+/, "");
   const relativePath = pathname || "index.html";
   let filePath = path.resolve(root, relativePath);
 
@@ -92,7 +104,7 @@ async function handleRequest(req, res) {
 
   if (!resolved) {
     sendHead(res, 404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end(`Use ${basePath}/ for this GitHub Pages preview.\n`);
+    res.end(`Use ${previewUrl("/")} for this GitHub Pages preview.\n`);
     return;
   }
 
@@ -109,11 +121,52 @@ async function handleRequest(req, res) {
   createReadStream(resolved.filePath).pipe(res);
 }
 
+async function assertBuildMatchesPreviewBase() {
+  const html = await readFile(indexPath, "utf8");
+  const expectedAssetPrefix = basePath === "/" ? "/assets/" : `${basePath}/assets/`;
+  const expectedStaticPrefix = basePath === "/" ? "/favicon.png" : `${basePath}/favicon.png`;
+  const hasExpectedBase = html.includes(expectedAssetPrefix) || html.includes(expectedStaticPrefix);
+  const hasRootAssets =
+    html.includes('"/assets/') ||
+    html.includes("'/assets/") ||
+    html.includes('import("/assets/') ||
+    html.includes("import('/assets/");
+
+  if (basePath !== "/" && hasRootAssets && !hasExpectedBase) {
+    console.error("");
+    console.error("This dist/client build was generated for the custom-domain root path (/).");
+    console.error(`Local staging is trying to serve it at ${basePath}/, which can blank the app.`);
+    console.error("");
+    console.error("Run this instead:");
+    console.error("");
+    console.error("  npm run build:pages:local");
+    console.error("  npm run preview:pages");
+    console.error("");
+    process.exit(1);
+  }
+
+  if (basePath === "/" && html.includes("/DepartmentofConsentGithubPages/assets/")) {
+    console.error("");
+    console.error("This dist/client build was generated for the GitHub Pages repository path.");
+    console.error("Root preview expects a custom-domain/root-path build.");
+    console.error("");
+    process.exit(1);
+  }
+}
+
 const rootStat = await pathExists(root);
 if (!rootStat?.isDirectory()) {
-  console.error("Missing dist/client. Run `npm run build:pages` first.");
+  console.error("Missing dist/client. Run `npm run build:pages:local` first.");
   process.exit(1);
 }
+
+const indexStat = await pathExists(indexPath);
+if (!indexStat?.isFile()) {
+  console.error("Missing dist/client/index.html. Run `npm run build:pages:local` first.");
+  process.exit(1);
+}
+
+await assertBuildMatchesPreviewBase();
 
 const server = createServer((req, res) => {
   handleRequest(req, res).catch((error) => {
@@ -132,5 +185,5 @@ server.on("error", (error) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Local staging: http://${host}:${port}${basePath}/`);
+  console.log(`Local staging: http://${host}:${port}${previewUrl("/")}`);
 });

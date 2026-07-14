@@ -93,7 +93,7 @@ function WorkshopsPage() {
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink
-              to="/book"
+              to="/pricing"
               className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
             >
               Inquire about a private workshop
@@ -107,7 +107,7 @@ function WorkshopsPage() {
               </a>
             ) : (
               <ButtonLink
-                to="/book"
+                to="/pricing"
                 variant="outline"
                 className="!text-white !border-white/60 hover:!bg-white hover:!text-coral"
               >

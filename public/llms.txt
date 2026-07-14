@@ -6,6 +6,7 @@
 
 - [Home](/): From kink-curious to kink-confident — services overview.
 - [Coaching](/coaching): Beginner kink and polyamory coaching options and session format.
+- [Pricing](/pricing): Coaching prices, package details, and booking options.
 - [Kink Coach in San Francisco](/services/kink-coach-san-francisco): Local coaching, event preparation, and Bay Area availability.
 - [Beginner BDSM Coaching](/services/beginner-bdsm-coaching): Private coaching for kink beginners.
 - [Polyamory Coaching for Beginners](/services/polyamory-coaching-for-beginners): Support for individuals and partners considering consensual nonmonogamy.

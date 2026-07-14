@@ -112,8 +112,8 @@ function AboutPage() {
 
       <CtaBlock
         headline="You are allowed to ask the beginner question."
-        primaryLabel="Book an introductory session"
-        primaryTo="/book"
+        primaryLabel="View pricing and booking options"
+        primaryTo="/pricing"
       />
 
       <JsonLd data={personJsonLd()} />

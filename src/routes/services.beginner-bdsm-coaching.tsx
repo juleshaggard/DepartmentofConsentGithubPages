@@ -70,7 +70,7 @@ function BdsmCoachingPage() {
             </p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/book">Book an introductory session</ButtonLink>
+            <ButtonLink to="/pricing">View pricing and booking options</ButtonLink>
           </div>
         </div>
       </Section>
@@ -156,8 +156,8 @@ function BdsmCoachingPage() {
 
       <CtaBlock
         headline="Kink confidence is built before anyone touches anyone."
-        primaryLabel="Book an introductory session"
-        primaryTo="/book"
+        primaryLabel="View pricing and booking options"
+        primaryTo="/pricing"
       />
 
       <JsonLd

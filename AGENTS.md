@@ -5,7 +5,7 @@
 For user-facing local staging of the built site, use the base-path-aware server:
 
 ```bash
-npm run build:pages
+npm run build:pages:local
 npm run preview:pages
 ```
 

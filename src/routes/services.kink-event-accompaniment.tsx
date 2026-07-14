@@ -114,8 +114,8 @@ function AccompanimentPage() {
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink to="/book">Ask about event accompaniment</ButtonLink>
-            <ButtonLink to="/book" variant="outline">
+            <ButtonLink to="/pricing">Ask about event accompaniment</ButtonLink>
+            <ButtonLink to="/pricing" variant="outline">
               Book an event preparation session
             </ButtonLink>
           </div>
@@ -199,7 +199,7 @@ function AccompanimentPage() {
       <CtaBlock
         headline="You can ask for a guide without giving up your own judgment."
         primaryLabel="Ask about event accompaniment"
-        primaryTo="/book"
+        primaryTo="/pricing"
       />
 
       <JsonLd

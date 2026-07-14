@@ -28,6 +28,7 @@ export default defineConfig({
           pages: [
             { path: "/" },
             { path: "/coaching" },
+            { path: "/pricing" },
             { path: "/workshops" },
             { path: "/about" },
             { path: "/resources" },

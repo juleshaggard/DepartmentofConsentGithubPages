@@ -14,6 +14,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SceneNegotiatorRouteImport } from './routes/scene-negotiator'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CoachingRouteImport } from './routes/coaching'
@@ -64,6 +65,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
@@ -254,6 +261,7 @@ export interface FileRoutesByTo {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
@@ -287,6 +295,7 @@ export interface FileRoutesById {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
@@ -322,6 +331,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/pricing'
     | '/privacy'
     | '/resources'
     | '/scene-negotiator'
@@ -355,6 +365,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/pricing'
     | '/privacy'
     | '/resources'
     | '/terms'
@@ -387,6 +398,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/pricing'
     | '/privacy'
     | '/resources'
     | '/scene-negotiator'
@@ -421,6 +433,7 @@ export interface RootRouteChildren {
   CoachingRoute: typeof CoachingRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
+  PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   SceneNegotiatorRoute: typeof SceneNegotiatorRouteWithChildren
@@ -471,6 +484,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -703,6 +723,7 @@ const rootRouteChildren: RootRouteChildren = {
   CoachingRoute: CoachingRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
+  PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   SceneNegotiatorRoute: SceneNegotiatorRouteWithChildren,

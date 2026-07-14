@@ -33,6 +33,7 @@ const siteUrl = (
 const marketingPaths = [
   "/",
   "/coaching",
+  "/pricing",
   "/workshops",
   "/about",
   "/resources",
@@ -110,8 +111,7 @@ const guides = [
   },
 ];
 
-const escapeXml = (s) =>
-  s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+const escapeXml = (s) => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 const items = guides
   .map(

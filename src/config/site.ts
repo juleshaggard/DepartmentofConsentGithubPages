@@ -7,6 +7,7 @@
  */
 
 const env = import.meta.env;
+const discoveryCallUrl = "https://calendly.com/jules-departmentofconsent/free-discovery-call";
 
 export const siteConfig = {
   /** Public brand name */
@@ -28,7 +29,17 @@ export const siteConfig = {
    * External scheduling URL (Cal.com, Calendly, Acuity…).
    * When empty, the booking page falls back to the inquiry form.
    */
-  bookingUrl: env.VITE_BOOKING_URL || "",
+  bookingUrl: env.VITE_BOOKING_URL || discoveryCallUrl,
+
+  /** Calendly scheduling URLs for the pricing flow. Keep paid URLs blank until approved/published. */
+  bookingLinks: {
+    discoveryCall: env.VITE_CALENDLY_DISCOVERY_CALL_URL || discoveryCallUrl,
+    coachingSession: env.VITE_CALENDLY_COACHING_SESSION_URL || "",
+    deepDive: env.VITE_CALENDLY_DEEP_DIVE_URL || "",
+    package: env.VITE_CALENDLY_PACKAGE_URL || "",
+    eventPrep: env.VITE_CALENDLY_EVENT_PREP_URL || "",
+    eventCompanionInquiry: env.VITE_CALENDLY_EVENT_COMPANION_INQUIRY_URL || "",
+  },
 
   /**
    * Inquiry form endpoint (Formspree/Basin/own worker…). When empty, the
@@ -44,6 +55,7 @@ export const siteConfig = {
   newsletter: {
     provider: env.VITE_NEWSLETTER_PROVIDER || "",
     endpoint: env.VITE_NEWSLETTER_ENDPOINT || "",
+    emailFieldName: env.VITE_NEWSLETTER_EMAIL_FIELD || "",
   },
 
   /** Public workshop waitlist URL — falls back to the inquiry form */
@@ -70,16 +82,17 @@ export const siteConfig = {
   /** Default social sharing image (relative to site root) */
   defaultSocialImage: "/socialog.jpg",
 
-  /**
-   * Pricing display mode:
-   * "contact"  — show “Contact for current pricing” (prices pending approval)
-   * "listed"   — show prices from the prices map below
-   */
-  pricingDisplayMode: "contact" as "contact" | "listed",
+  /** Public pricing for approved one-time services. */
+  pricingDisplayMode: "listed" as "contact" | "listed",
   prices: {
-    introductoryConsultation: "", // [ADD CURRENT PRICE]
-    privateSession: "", // [ADD CURRENT PRICE]
-    beginnerPackage: "", // [ADD CURRENT PRICE]
+    discoveryCall: "Free",
+    coachingSession: "$175",
+    deepDive: "$250",
+    beginnerPackage: "$475",
+    eventPrep: "$225",
+    eventCompanion: "$795",
+    introductoryConsultation: "Free",
+    privateSession: "$175",
   },
 
   /** Feature flags */

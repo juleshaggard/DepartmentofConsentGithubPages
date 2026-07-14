@@ -39,7 +39,9 @@ shared scene links keep working.
 ```bash
 npm install
 npm run dev          # dev server
-npm run build:pages  # static GitHub Pages build → dist/client
+npm run local:staging # local GitHub Pages-style build + preview
+npm run build:pages:local # local staging build → dist/client
+npm run build:pages  # production custom-domain Pages build → dist/client
 npm run preview:pages # preview the GitHub Pages build with the correct base path
 npm run preview      # raw Vite preview; not for GitHub Pages base-path QA
 npm run test         # smoke tests (Scene Negotiator)
@@ -53,16 +55,18 @@ For local staging details and CSS/path troubleshooting, see
 
 All browser-safe (`VITE_*`) — see `.env.example` for full documentation:
 
-| Variable | Purpose |
-| --- | --- |
-| `VITE_SITE_URL` | Public base URL (canonical/sitemap/OG) |
-| `VITE_BOOKING_URL` | External scheduler (Cal.com/Calendly). Empty → inquiry form only |
-| `VITE_INQUIRY_FORM_ENDPOINT` | Form POST endpoint (e.g. Formspree). Empty → form disabled with honest notice |
-| `VITE_CONTACT_EMAIL` | Contact email shown on the site |
-| `VITE_NEWSLETTER_PROVIDER` / `VITE_NEWSLETTER_ENDPOINT` | Email-guide signup (Buttondown/Kit/Mailchimp/Loops). Empty → dev state, no fake success |
-| `VITE_WORKSHOP_WAITLIST_URL` | Public workshop list signup |
-| `VITE_PLAUSIBLE_DOMAIN` / `VITE_PLAUSIBLE_SRC` | Privacy-friendly analytics. Empty → no analytics script at all |
-| `VITE_LEGAL_NAME` | Legal entity name once confirmed |
+| Variable                                                                                                                                                                                                               | Purpose                                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_SITE_URL`                                                                                                                                                                                                        | Public base URL (canonical/sitemap/OG)                                                                                     |
+| `VITE_BOOKING_URL`                                                                                                                                                                                                     | External scheduler (Cal.com/Calendly). Empty → inquiry form only                                                           |
+| `VITE_CALENDLY_DISCOVERY_CALL_URL` / `VITE_CALENDLY_COACHING_SESSION_URL` / `VITE_CALENDLY_DEEP_DIVE_URL` / `VITE_CALENDLY_PACKAGE_URL` / `VITE_CALENDLY_EVENT_PREP_URL` / `VITE_CALENDLY_EVENT_COMPANION_INQUIRY_URL` | Service-specific pricing-page booking links. Empty → inquiry form fallback                                                 |
+| `VITE_INQUIRY_FORM_ENDPOINT`                                                                                                                                                                                           | Form POST endpoint (e.g. Formspree). Empty → form disabled with honest notice                                              |
+| `VITE_CONTACT_EMAIL`                                                                                                                                                                                                   | Contact email shown on the site                                                                                            |
+| `VITE_NEWSLETTER_PROVIDER` / `VITE_NEWSLETTER_ENDPOINT` / `VITE_NEWSLETTER_EMAIL_FIELD`                                                                                                                                | Email-guide signup (Buttondown/Kit/Mailchimp/Loops). Kit uses `email_address`; empty endpoint → dev state, no fake success |
+| `VITE_WORKSHOP_WAITLIST_URL`                                                                                                                                                                                           | Public workshop list signup                                                                                                |
+| `VITE_GOOGLE_ANALYTICS_ID`                                                                                                                                                                                             | GA4 measurement ID for high-level page and booking CTA events                                                              |
+| `VITE_PLAUSIBLE_DOMAIN` / `VITE_PLAUSIBLE_SRC`                                                                                                                                                                         | Privacy-friendly analytics. Empty → no analytics script at all                                                             |
+| `VITE_LEGAL_NAME`                                                                                                                                                                                                      | Legal entity name once confirmed                                                                                           |
 
 There are no server-side secrets in this project.
 

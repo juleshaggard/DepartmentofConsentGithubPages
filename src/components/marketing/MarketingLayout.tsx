@@ -4,11 +4,14 @@ import { Menu, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
+import { NewsletterScrollModal } from "./NewsletterScrollModal";
+import { NewsletterSignup } from "./NewsletterSignup";
 import navLogo from "../../../assets/Logo.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
+  { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
@@ -20,6 +23,7 @@ const FOOTER_LINKS = [
   { label: "Beginner BDSM Coaching", to: "/services/beginner-bdsm-coaching" },
   { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
+  { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
@@ -28,6 +32,8 @@ const FOOTER_LINKS = [
   { label: "Terms", to: "/terms" },
   { label: "Disclaimer", to: "/disclaimer" },
 ] as const;
+
+const navCtaLabel = "Book a free coaching session";
 
 /** "DOC — Department of Consent" lockup from the artboard nav. */
 export function Lockup({ light = false }: { light?: boolean }) {
@@ -157,9 +163,9 @@ export function MarketingLayout({
                 {item.label}
               </Link>
             ))}
-            <Link to="/book" className="btn-editorial !px-5 !py-2.5">
-              Book an intro session
-            </Link>
+            <a href={siteConfig.bookingLinks.discoveryCall} className="btn-editorial !px-5 !py-2.5">
+              {navCtaLabel}
+            </a>
           </nav>
 
           <button
@@ -193,13 +199,13 @@ export function MarketingLayout({
                 </li>
               ))}
               <li className="pt-3">
-                <Link
-                  to="/book"
+                <a
+                  href={siteConfig.bookingLinks.discoveryCall}
                   onClick={() => setMenuOpen(false)}
                   className="btn-editorial w-full"
                 >
-                  Book an intro session
-                </Link>
+                  {navCtaLabel}
+                </a>
               </li>
             </ul>
           </nav>
@@ -211,6 +217,7 @@ export function MarketingLayout({
       </main>
 
       <MarketingFooter />
+      <NewsletterScrollModal />
     </div>
   );
 }
@@ -219,7 +226,7 @@ function MarketingFooter() {
   return (
     <footer className="mt-0 bg-[#1B1B1B] text-white">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-14 pb-8">
-        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1fr_0.8fr]">
           <div className="space-y-4 max-w-md">
             <img
               src={navLogo}
@@ -244,6 +251,8 @@ function MarketingFooter() {
               </a>
             </p>
           </div>
+
+          <NewsletterSignup variant="footer" />
 
           <nav aria-label="Footer">
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">

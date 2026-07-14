@@ -60,6 +60,10 @@ _Marketing-site build, July 2026._
    with a visible "not connected" notice and a mailto alternative. The
    newsletter capture renders the provider's real form POST when
    `VITE_NEWSLETTER_ENDPOINT` is set; otherwise it shows a development state.
+   Newsletter capture appears on the guide page, marketing footer, and the
+   scroll-up modal; all three must stay email-only unless the user explicitly
+   approves more fields. Current provider: Kit form `9683945`, using
+   `email_address` as the submitted email field.
 9. **Analytics off by default.** Plausible script is injected only when
    `VITE_PLAUSIBLE_DOMAIN` is set. No pixels, replay, or fingerprinting.
 10. **Structured data:** Organization (site-wide), Person (About), Service

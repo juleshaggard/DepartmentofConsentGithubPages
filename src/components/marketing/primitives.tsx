@@ -125,11 +125,7 @@ export function FaqAccordion({
   return (
     <>
       {defaultOpenAll ? (
-        <Accordion
-          type="multiple"
-          defaultValue={faqs.map((_, i) => `faq-${i}`)}
-          className="w-full"
-        >
+        <Accordion type="multiple" defaultValue={faqs.map((_, i) => `faq-${i}`)} className="w-full">
           {faqItems}
         </Accordion>
       ) : (
@@ -150,8 +146,8 @@ export function FaqAccordion({
 export function CtaBlock({
   headline,
   body,
-  primaryLabel = "Book an introductory session",
-  primaryTo = "/book",
+  primaryLabel = "View pricing and booking options",
+  primaryTo = "/pricing",
   secondaryLabel,
   secondaryTo,
 }: {

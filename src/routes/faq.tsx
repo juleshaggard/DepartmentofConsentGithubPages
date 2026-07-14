@@ -57,7 +57,7 @@ function FaqPage() {
         headline="Still have a question?"
         body="Ask it directly — you will not be added to a mailing list or pushed into a sales funnel."
         primaryLabel="Ask a question"
-        primaryTo="/book"
+        primaryTo="/pricing"
       />
     </MarketingLayout>
   );

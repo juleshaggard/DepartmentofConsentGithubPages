@@ -66,7 +66,7 @@ function PolyCoachingPage() {
             </p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/book">Book an introductory session</ButtonLink>
+            <ButtonLink to="/pricing">View pricing and booking options</ButtonLink>
           </div>
         </div>
       </Section>
@@ -144,8 +144,8 @@ function PolyCoachingPage() {
 
       <CtaBlock
         headline="Do not use rules to avoid the conversation."
-        primaryLabel="Book an introductory session"
-        primaryTo="/book"
+        primaryLabel="View pricing and booking options"
+        primaryTo="/pricing"
       />
 
       <JsonLd
