@@ -106,9 +106,6 @@ function NotFoundComponent() {
           <Link to="/coaching" className="underline underline-offset-4 hover:opacity-80">
             Coaching
           </Link>
-          <Link to="/pricing" className="underline underline-offset-4 hover:opacity-80">
-            Pricing
-          </Link>
           <Link to="/resources" className="underline underline-offset-4 hover:opacity-80">
             Guides
           </Link>

@@ -1,5 +1,6 @@
 type BookingAnalyticsEvent =
   | "pricing_page_view"
+  | "coaching_page_view"
   | "discovery_call_click"
   | "coaching_session_click"
   | "deep_dive_click"

@@ -7,10 +7,10 @@
 **Primary promise:** From kink-curious to kink-confident.
 
 **Short positioning statement:**  
-Practical guidance for taking your first real steps into kink and polyamory without learning everything the hard way.
+Clear coaching for taking your first real steps into kink and polyamory without learning everything the hard way.
 
 **Full positioning statement:**  
-Department of Consent helps adults move from private curiosity to informed, confident real-world exploration through practical education, one-to-one coaching, and nonsexual event support.
+Department of Consent helps adults move from private curiosity to informed, confident real-world exploration through education, one-to-one coaching, and nonsexual event support.
 
 **Primary audience:**  
 Adults who have been curious about kink or polyamory for some time and are ready to begin exploring it in real life.
@@ -110,7 +110,7 @@ From kink-curious to kink-confident.
 **Body:**  
 You have done the wondering. Now you want to know how to explore kink or polyamory without walking in blind.
 
-Department of Consent offers practical education, private coaching, and nonsexual event support for adults ready to take their first real steps.
+Department of Consent offers education, private coaching, and nonsexual event support for adults ready for their first real steps.
 
 **Primary CTA:**  
 Book an introductory session
@@ -124,14 +124,14 @@ Virtual coaching. Selected in-person services in San Francisco and the greater B
 ## Recognition
 
 **Headline:**  
-You do not need more random internet advice.
+Skip random internet advice.
 
 **Body:**  
 You may already know what interests you. The harder part is knowing what happens next.
 
 Where do you meet people? What should you ask before playing with someone? How do you know whether an event welcomes beginners? What is normal nervousness, and what is an actual warning sign?
 
-The internet can give you a thousand conflicting answers. Coaching gives you a private place to ask the questions that actually apply to you.
+The internet can give you a thousand conflicting answers. Coaching gives you a private place to ask the questions that apply to you.
 
 ## Pillars Introduction
 
@@ -144,9 +144,7 @@ Kink is easier to explore when someone explains the room.
 You do not have to figure this out alone.
 
 **Body:**  
-Being new does not mean you need to fake confidence or quietly follow whoever seems most experienced.
-
-Get clear, judgment-free guidance before your first conversation, event, scene, or open relationship.
+Ask the beginner questions before your first conversation, event, scene, or open relationship without pretending you know more than you do.
 
 ### Pillar Two
 
@@ -154,9 +152,9 @@ Get clear, judgment-free guidance before your first conversation, event, scene, 
 Kink has an instruction manual.
 
 **Body:**  
-The rules are rarely written down, but the important parts can be learned.
+The rules are rarely written down.
 
-Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare should not be secrets people discover only after something goes wrong.
+Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare can be learned before something goes wrong.
 
 ### Pillar Three
 
@@ -164,17 +162,17 @@ Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercar
 Consent is only the beginning.
 
 **Body:**  
-A clear yes matters. It does not automatically create a good experience.
+A clear yes matters.
 
 Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.
 
 ## Services Overview
 
 **Headline:**  
-Start where you actually are.
+Start where you are.
 
 **Intro:**  
-You do not need the right vocabulary, a fixed identity, or a perfectly organized list of interests. We can begin with the questions you already have.
+Bring the questions you already have. We can sort out vocabulary, identity, and next steps together.
 
 ### Service One
 
@@ -193,7 +191,7 @@ Explore beginner BDSM coaching
 Polyamory Coaching for Beginners
 
 **Body:**  
-Practical support for individuals and partners considering consensual nonmonogamy, from the first conversation through agreements, dating, jealousy, time, and course correction.
+Clear coaching for individuals and partners considering consensual nonmonogamy, from the first conversation through agreements, dating, jealousy, time, and course correction.
 
 **CTA:**  
 Explore polyamory coaching
@@ -215,7 +213,7 @@ Prepare for your first kink event
 Kink Event Accompaniment
 
 **Body:**  
-For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can help you understand the space and find your footing.
+For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can explain the space and help you find your footing.
 
 **CTA:**  
 Ask about event accompaniment
@@ -281,7 +279,7 @@ No grand initiation. Just a useful next step.
 Tell me what you are considering.
 
 **Body:**  
-You do not need the perfect language. Explain what interests you, what concerns you, and what you are thinking about doing next.
+Bring the language you have. Explain what interests you, what concerns you, and what you are thinking about doing next.
 
 ### Step Two
 
@@ -307,9 +305,9 @@ The person you wish you had met before taking your first step into the scene.
 **Body:**  
 I am Jules Holloway, founder of Department of Consent.
 
-I kept finding myself in the same role: helping newer people understand the language, read the room, ask better questions, and avoid learning everything through trial and error.
+I kept finding myself in the same role: helping newer people understand the language, read the room, ask better questions, and avoid learning through trial and error.
 
-Department of Consent turns that informal mentorship into practical, structured support for adults who are ready to make their curiosity real.
+Department of Consent turns that informal mentorship into structured coaching for adults who are ready to make their curiosity real.
 
 **CTA:**  
 Meet Jules
@@ -367,10 +365,10 @@ Virtual coaching is available. Selected in-person coaching and nonsexual event s
 ## Final CTA
 
 **Headline:**  
-You do not need to become an expert before you begin.
+Begin with enough information to choose well.
 
 **Body:**  
-You need enough knowledge, support, and confidence to make your next decision deliberately.
+You need enough knowledge and confidence to make your next decision deliberately.
 
 **Primary CTA:**  
 Book an introductory session
@@ -397,10 +395,10 @@ Private coaching for adults exploring BDSM, kink, polyamory, and open relationsh
 ## Hero
 
 **Headline:**  
-Private coaching for the questions you are not ready to ask publicly.
+Private coaching for the questions you would rather ask one-on-one.
 
 **Body:**  
-Get practical, nonjudgmental support for exploring kink or consensual nonmonogamy with more preparation and less guesswork.
+Ask the private questions, sort through kink or consensual nonmonogamy, and leave with clearer next steps.
 
 ## Coaching Options
 
@@ -438,9 +436,9 @@ Explore first event support
 What a coaching session looks like
 
 **Body:**  
-Sessions are conversational but structured. We identify the immediate situation, clarify the decision in front of you, and turn broad uncertainty into specific questions and next steps.
+Sessions are conversational and structured. We name the situation, clarify the decision, and turn broad uncertainty into specific questions and next steps.
 
-You will not be pressured to disclose unnecessary details, adopt a label, attend an event, open a relationship, or act on any fantasy.
+You choose which details matter. Labels, events, relationships, and fantasies only enter the conversation when they help the decision in front of you.
 
 ## Offer Placeholders
 
@@ -468,7 +466,7 @@ Three private sessions for people preparing to take their first significant real
 ## CTA
 
 **Headline:**  
-Bring the uncertainty. We will turn it into a plan.
+Bring the uncertainty. We will make a plan.
 
 **CTA:**  
 Book an introductory session
@@ -500,7 +498,7 @@ A kink coach for people who are ready to stop guessing.
 **Body:**  
 I am Jules Holloway, a San Francisco-based kink and polyamory coach for adults taking their first real steps into the scene.
 
-Whether you are preparing for an event, talking with a potential partner, negotiating a first scene, or trying to understand what you want, coaching gives you a private place to get practical answers before the stakes feel high.
+Whether you are preparing for an event, talking with a potential partner, negotiating a first scene, or trying to understand what you want, coaching gives you a private place for clear answers before the stakes feel high.
 
 **Primary CTA:**  
 Book an introductory session
@@ -516,7 +514,7 @@ The Bay Area has options. That does not make it easy to begin.
 **Body:**  
 San Francisco has social gatherings, educational workshops, play spaces, private events, online groups, and overlapping communities. A long list of events does not tell you which space fits your experience level, comfort, identity, interests, or goals.
 
-Local coaching can help you understand the differences, identify beginner-friendly options, prepare for venue rules, and make a plan that does not depend on pretending you already know everyone.
+Local coaching helps you compare spaces, identify beginner-friendly options, prepare for venue rules, and make a plan that does not depend on pretending you already know everyone.
 
 ## What We Can Work On
 
@@ -553,7 +551,7 @@ For selected Bay Area events, Jules may be available to attend as an educational
 ## Scope
 
 **Headline:**  
-Clear support. Clear boundaries.
+Clear answers. Clear boundaries.
 
 **Body:**  
 Department of Consent provides coaching, education, and nonsexual event support.
@@ -572,7 +570,7 @@ Virtual coaching is available more broadly. In-person availability is limited to
 ## CTA
 
 **Headline:**  
-You do not need to know the scene before asking for help entering it.
+Get help entering the scene before you have to fake fluency.
 
 **CTA:**  
 Book an introductory session
@@ -604,7 +602,7 @@ Learn BDSM before experience is the only teacher.
 **Body:**  
 Beginner BDSM coaching helps you understand the language, skills, expectations, and decisions that come before real-world kink.
 
-You do not need to arrive with a role, a label, a partner, or a list of activities. You can begin with a question.
+Bring a question. We can sort out roles, labels, partners, and activities from there.
 
 **CTA:**  
 Book an introductory session
@@ -631,19 +629,17 @@ Coaching is not a class where you are tested on terminology. It is a private con
 - Preparing for an event
 - Debriefing an experience afterward
 
-## You Do Not Need to Prove Anything
+## Bring Curiosity, Not a Performance
 
 **Body:**  
-You do not need to be “kinky enough.” You do not need to pick a role before you understand it. You do not need to perform confidence for someone more experienced.
-
-A good first step can be learning, asking questions, or deciding not to proceed.
+You can be new, unsure, or still sorting out a role. You can learn, ask questions, or decide not to proceed.
 
 ## What a Session Looks Like
 
 **Body:**  
 We begin with the situation in front of you. That might be an invitation, a fantasy, a new relationship, an event, a conversation with a partner, or a general sense that you are ready to explore.
 
-We identify the questions that matter, the information you still need, the boundaries you want to clarify, and the next step that makes sense for you.
+We sort the questions that matter, the information you need, the boundaries you want to clarify, and the next step that makes sense for you.
 
 ## What Coaching Is Not
 
@@ -693,11 +689,11 @@ Book an introductory session
 ## Start With the Actual Question
 
 **Body:**  
-“Should we open our relationship?” often contains several different questions.
+“Should we open our relationship?” usually holds more than one decision.
 
-Do you want more sexual freedom, additional romantic relationships, independent experiences, shared experiences, or permission to explore an identity? Are both people interested, or is one person afraid of losing the relationship? Are you trying to solve a problem that opening will not fix?
+Maybe you want sexual freedom, additional romance, independent experiences, shared experiences, or room to explore an identity. Maybe one person wants this and another fears losing the relationship. Maybe opening would avoid a problem it cannot fix.
 
-Coaching creates room to answer those questions without assuming that polyamory is automatically the right destination.
+Coaching helps you answer those questions before treating polyamory as the destination.
 
 ## Coaching Can Help With
 
@@ -726,7 +722,7 @@ Joint coaching is not couples therapy. Jules will not diagnose either person, ta
 **Body:**  
 A relationship is not consensually nonmonogamous because one person finally gives in.
 
-Coaching should make motives, pressure, uncertainty, and boundaries easier to see. Sometimes the most honest outcome is to wait, change the plan, or admit that two people want different relationship structures.
+Coaching makes motives, pressure, uncertainty, and boundaries easier to see. Sometimes the honest outcome is waiting, changing the plan, or admitting that two people want different relationship structures.
 
 ## What Coaching Is Not
 
@@ -983,7 +979,7 @@ Look for events that explain:
 - How privacy is handled
 - Who to contact with questions
 
-Ambiguity is not automatically dangerous, but it is not a good foundation for your first experience.
+Ambiguity is not dangerous by itself, but it is not a good foundation for your first experience.
 
 ## 4. Protect Your Privacy Deliberately
 
@@ -1273,7 +1269,7 @@ Book an event preparation session
 
 ## Why People Ask for Accompaniment
 
-You may want support because:
+You may want a guide if:
 
 - You have never attended a kink event
 - You do not know which event is appropriate
@@ -1283,7 +1279,7 @@ You may want support because:
 - You want a planned check-in during the event
 - You want to debrief with someone who understands the context
 
-Wanting support does not mean you are not ready. It means you are taking the environment seriously.
+Wanting a guide means you are taking the environment seriously.
 
 ## What Event Accompaniment May Include
 
@@ -1377,7 +1373,7 @@ Kink Red Flags Beginners Should Know
 
 ## Introduction
 
-Experience, confidence, titles, and community status do not automatically make someone trustworthy.
+Experience, confidence, titles, and community status do not make someone trustworthy.
 
 A red flag is not always proof that someone is dangerous. It is information worth slowing down for.
 
@@ -1433,7 +1429,7 @@ Accountability requires the ability to hear that an interaction caused harm or c
 
 A person can be a poor fit without being abusive or unsafe.
 
-Different interests, communication styles, aftercare needs, relationship goals, or risk tolerances may simply mean you should not proceed together.
+Different interests, communication styles, aftercare needs, relationship goals, or risk tolerances may mean you should not proceed together.
 
 The goal is not to label everyone. It is to make a clearer decision.
 
@@ -1527,13 +1523,11 @@ I help people enter the scene without pretending they already know the rules.
 
 I am Jules Holloway, founder of Department of Consent.
 
-I kept finding myself in the same role. Newer people came to me with the questions they did not feel comfortable asking publicly.
+I kept finding myself in the same role. Newer people brought me the questions they could not ask publicly: what to expect at an event, how to negotiate without sounding new, how to spot pressure, and how to enter a scene where everyone seems fluent in rules no one explained.
 
-What should I expect at an event? Is this behavior normal? How do I negotiate without sounding inexperienced? How do I tell the difference between confidence and pressure? How do I enter a community where everyone seems to know rules no one has explained?
+I help people read unfamiliar systems, sort the situation in front of them, and make decisions they can own.
 
-I am good at making unfamiliar systems legible. My work is not about telling people what they should want. It is about helping them understand the situation clearly enough to make their own decisions.
-
-Department of Consent turns informal mentorship into practical, structured support for adults who are ready to make their curiosity real.
+Department of Consent turns informal mentorship into structured coaching for adults who are ready to make their curiosity real.
 
 ## Credentials
 
@@ -1548,7 +1542,7 @@ Do not infer credentials from lived experience.
 
 ### No pressure to perform an identity
 
-You do not need to prove that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.
+You can be curious without proving that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.
 
 ### Information without false certainty
 
@@ -1648,7 +1642,7 @@ No. Coaching does not diagnose or treat mental-health conditions. It is not psyc
 
 ### Who is coaching for?
 
-Services are for adults aged 18 and older. The primary focus is people who are relatively new to kink or consensual nonmonogamy and want practical guidance before taking a next step.
+Services are for adults aged 18 and older. The primary focus is people who are relatively new to kink or consensual nonmonogamy and want clear answers before taking a next step.
 
 ### Do I need to identify as kinky or polyamorous?
 
@@ -1668,7 +1662,7 @@ Yes. Virtual coaching is available. In-person options are limited to San Francis
 
 ### What happens during an introductory consultation?
 
-You briefly explain what you want help with, learn how coaching works, and determine whether Department of Consent is an appropriate fit. You do not need to provide a detailed sexual history.
+You briefly explain what you want help with, learn how coaching works, and determine whether Department of Consent is an appropriate fit. A detailed sexual history is not required.
 
 ### Is coaching confidential?
 
@@ -1720,7 +1714,7 @@ Book an introductory kink or polyamory coaching session with Jules Holloway. Vir
 Tell me what you are trying to figure out.
 
 **Body:**  
-You do not need the right terminology or a polished explanation. A few clear details are enough to determine the most useful next step.
+Bring the terminology you have. A few clear details are enough to determine the most useful next step.
 
 ## Form Introduction
 

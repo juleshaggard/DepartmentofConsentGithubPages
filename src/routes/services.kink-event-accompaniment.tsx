@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
+import { EventSupportPricingSection } from "@/components/marketing/CoachingPricingContent";
 import {
   Breadcrumbs,
   ButtonLink,
@@ -100,7 +101,7 @@ function AccompanimentPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Nonsexual event support in San Francisco</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -114,29 +115,28 @@ function AccompanimentPage() {
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink to="/pricing">Ask about event accompaniment</ButtonLink>
-            <ButtonLink to="/pricing" variant="outline">
+            <ButtonLink to="/coaching">Ask about event accompaniment</ButtonLink>
+            <ButtonLink to="/coaching" variant="outline">
               Book an event preparation session
             </ButtonLink>
           </div>
         </div>
       </Section>
 
+      <EventSupportPricingSection />
+
       <Section ruled>
         <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
           Why people ask for accompaniment
         </h2>
         <div className="prose-doc mt-6">
-          <p>You may want support because:</p>
+          <p>You may want a guide if:</p>
           <ul>
             {WHY.map((w) => (
               <li key={w}>{w}</li>
             ))}
           </ul>
-          <p>
-            Wanting support does not mean you are not ready. It means you are taking the environment
-            seriously.
-          </p>
+          <p>Wanting a guide means you are taking the environment seriously.</p>
         </div>
       </Section>
 
@@ -199,7 +199,7 @@ function AccompanimentPage() {
       <CtaBlock
         headline="You can ask for a guide without giving up your own judgment."
         primaryLabel="Ask about event accompaniment"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
 
       <JsonLd

@@ -25,7 +25,7 @@ export const Route = createFileRoute("/about")({
 const VALUES = [
   {
     title: "No pressure to perform an identity",
-    body: "You do not need to prove that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.",
+    body: "You can be curious without proving that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.",
   },
   {
     title: "Information without false certainty",
@@ -53,7 +53,7 @@ function AboutPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>About</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -67,22 +67,18 @@ function AboutPage() {
           <div className="prose-doc">
             <p>I am Jules Holloway, founder of Department of Consent.</p>
             <p>
-              I kept finding myself in the same role. Newer people came to me with the questions
-              they did not feel comfortable asking publicly.
+              I kept finding myself in the same role. Newer people brought me the questions they
+              could not ask publicly: what to expect at an event, how to negotiate without sounding
+              new, how to spot pressure, and how to enter a scene where everyone seems fluent in
+              rules no one explained.
             </p>
             <p>
-              What should I expect at an event? Is this behavior normal? How do I negotiate without
-              sounding inexperienced? How do I tell the difference between confidence and pressure?
-              How do I enter a community where everyone seems to know rules no one has explained?
+              I help people read unfamiliar systems, sort the situation in front of them, and make
+              decisions they can own.
             </p>
             <p>
-              I am good at making unfamiliar systems legible. My work is not about telling people
-              what they should want. It is about helping them understand the situation clearly
-              enough to make their own decisions.
-            </p>
-            <p>
-              Department of Consent turns informal mentorship into practical, structured support for
-              adults who are ready to make their curiosity real.
+              Department of Consent turns informal mentorship into structured coaching for adults
+              who are ready to make their curiosity real.
             </p>
           </div>
 
@@ -108,22 +104,10 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section ruled>
-        <h2 className="font-display text-2xl text-plum leading-tight">Scope, plainly</h2>
-        <div className="prose-doc mt-4">
-          <p>
-            Coaching with Department of Consent is educational and practical. It is not
-            psychotherapy, medical care, legal advice, or crisis support, and it does not include
-            kink play, topping, bottoming, dating, romantic companionship, or physical intimacy. All
-            services are for adults aged 18 and older.
-          </p>
-        </div>
-      </Section>
-
       <CtaBlock
         headline="You are allowed to ask the beginner question."
         primaryLabel="Book a Free Coaching Session"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
 
       <JsonLd data={personJsonLd()} />

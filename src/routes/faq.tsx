@@ -41,7 +41,7 @@ function FaqPage() {
         />
       </Container>
 
-      <Section className="!pt-2">
+      <Section className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>FAQ</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -57,7 +57,7 @@ function FaqPage() {
         headline="Still have a question?"
         body="Ask it directly — you will not be added to a mailing list or pushed into a sales funnel."
         primaryLabel="Ask a question"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
     </MarketingLayout>
   );

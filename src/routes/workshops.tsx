@@ -57,7 +57,7 @@ function WorkshopsPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Workshops</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -93,7 +93,7 @@ function WorkshopsPage() {
           </h2>
           <div className="mobile-action-stack mt-8 flex flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
             <ButtonLink
-              to="/pricing"
+              to="/coaching"
               className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
             >
               Inquire about a private workshop
@@ -107,7 +107,7 @@ function WorkshopsPage() {
               </a>
             ) : (
               <ButtonLink
-                to="/pricing"
+                to="/coaching"
                 variant="outline"
                 className="!text-white !border-white/60 hover:!bg-white hover:!text-coral"
               >

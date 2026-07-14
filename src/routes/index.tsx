@@ -33,15 +33,15 @@ export const Route = createFileRoute("/")({
 const PILLARS = [
   {
     headline: "You do not have to figure this out alone.",
-    body: "Being new does not mean you need to fake confidence or quietly follow whoever seems most experienced. Get clear, judgment-free guidance before your first conversation, event, scene, or open relationship.",
+    body: "Ask the beginner questions before your first conversation, event, scene, or open relationship without pretending you know more than you do.",
   },
   {
     headline: "Kink has an instruction manual.",
-    body: "The rules are rarely written down, but the important parts can be learned. Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare should not be secrets people discover only after something goes wrong.",
+    body: "The rules are rarely written down. Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare can be learned before something goes wrong.",
   },
   {
     headline: "Consent is only the beginning.",
-    body: "A clear yes matters. It does not automatically create a good experience. Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.",
+    body: "A clear yes matters. Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.",
   },
 ] as const;
 
@@ -65,7 +65,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Kink Event Accompaniment",
     to: "/services/kink-event-accompaniment",
-    body: "For select San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, platonic guide who can help you understand the space and find your footing.",
+    body: "For select San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
   },
   {
     title: "Polyamory Coaching for Beginners",
@@ -94,7 +94,7 @@ const SERVICE_MARQUEE_SET_COUNT = 4;
 
 const SECTION_TWO_PARAGRAPHS = [
   "Want to know how to explore kink or polyamory without walking in blind?",
-  "Department of Consent offers practical education, private coaching, and nonsexual event support for adults ready to take their first real steps.",
+  "Department of Consent offers education, private coaching, and nonsexual event support for adults ready for their first real steps.",
 ] as const;
 
 const CTA_QUESTIONS = [
@@ -119,9 +119,9 @@ const CTA_QUESTIONS = [
   "How do I find beginner-friendly events?",
   "How do I make friends in the kink community?",
   "How do I know if I'm ready for a play party?",
-  "What gear do I actually need (and what can wait)?",
+  "What gear do I need (and what can wait)?",
   "How do I build confidence before my first event?",
-  "How do I write a FetLife profile that actually represents me?",
+  "How do I write a FetLife profile that represents me?",
   "How do I recover after an awkward or bad first experience?",
   "How do I become part of the community instead of just attending events?",
   "Can you review my negotiation before I send it?",
@@ -348,11 +348,11 @@ function HomePage() {
 
       <Section wide className="!pt-4 !pb-16 sm:!pb-24">
         <h2 className="artboard-rise display-condensed text-coral text-center text-[clamp(3.8rem,12vw,8.2rem)] leading-[0.82] max-w-5xl mx-auto">
-          Start where you actually are.
+          Start where you are.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-center font-semibold text-plum leading-snug">
-          You do not need the right vocabulary, a fixed identity, or a perfectly organized list of
-          interests. We can begin with the questions you already have.
+          Bring the questions you already have. We can sort out vocabulary, identity, and next steps
+          together.
         </p>
 
         <div className="svc-marquee mx-[calc(50%-50vw)] mt-11 pb-10 motion-reduce:overflow-x-auto">
@@ -464,7 +464,7 @@ function HomePage() {
 
       <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
         <Link
-          to="/pricing"
+          to="/coaching"
           aria-label="Book a Free Coaching Session"
           className="group relative mx-auto block max-w-4xl overflow-hidden rounded-[1.35rem] bg-plum text-center text-white"
         >

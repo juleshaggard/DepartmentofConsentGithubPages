@@ -52,7 +52,7 @@ function PolyCoachingPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Beginner polyamory and open-relationship coaching</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -66,7 +66,7 @@ function PolyCoachingPage() {
             </p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/pricing">Book a Free Coaching Session</ButtonLink>
+            <ButtonLink to="/coaching">Book a Free Coaching Session</ButtonLink>
           </div>
         </div>
       </Section>
@@ -76,16 +76,14 @@ function PolyCoachingPage() {
           Start with the actual question
         </h2>
         <div className="prose-doc mt-6">
-          <p>“Should we open our relationship?” often contains several different questions.</p>
+          <p>“Should we open our relationship?” usually holds more than one decision.</p>
           <p>
-            Do you want more sexual freedom, additional romantic relationships, independent
-            experiences, shared experiences, or permission to explore an identity? Are both people
-            interested, or is one person afraid of losing the relationship? Are you trying to solve
-            a problem that opening will not fix?
+            Maybe you want sexual freedom, additional romance, independent experiences, shared
+            experiences, or room to explore an identity. Maybe one person wants this and another
+            fears losing the relationship. Maybe opening would avoid a problem it cannot fix.
           </p>
           <p>
-            Coaching creates room to answer those questions without assuming that polyamory is
-            automatically the right destination.
+            Coaching helps you answer those questions before treating polyamory as the destination.
           </p>
         </div>
       </Section>
@@ -124,9 +122,9 @@ function PolyCoachingPage() {
             A relationship is not consensually nonmonogamous because one person finally gives in.
           </p>
           <p>
-            Coaching should make motives, pressure, uncertainty, and boundaries easier to see.
-            Sometimes the most honest outcome is to wait, change the plan, or admit that two people
-            want different relationship structures.
+            Coaching makes motives, pressure, uncertainty, and boundaries easier to see. Sometimes
+            the honest outcome is waiting, changing the plan, or admitting that two people want
+            different relationship structures.
           </p>
         </div>
       </Section>
@@ -145,7 +143,7 @@ function PolyCoachingPage() {
       <CtaBlock
         headline="Do not use rules to avoid the conversation."
         primaryLabel="Book a Free Coaching Session"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
 
       <JsonLd

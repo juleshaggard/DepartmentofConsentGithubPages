@@ -71,7 +71,7 @@ function SfCoachPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>San Francisco kink coaching</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -85,11 +85,11 @@ function SfCoachPage() {
             <p>
               Whether you are preparing for an event, talking with a potential partner, negotiating
               a first scene, or trying to understand what you want, coaching gives you a private
-              place to get practical answers before the stakes feel high.
+              place for clear answers before the stakes feel high.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink to="/pricing">Book a Free Coaching Session</ButtonLink>
+            <ButtonLink to="/coaching">Book a Free Coaching Session</ButtonLink>
             <ButtonLink to="/services/kink-event-accompaniment" variant="outline">
               Ask about in-person support
             </ButtonLink>
@@ -108,9 +108,9 @@ function SfCoachPage() {
             which space fits your experience level, comfort, identity, interests, or goals.
           </p>
           <p>
-            Local coaching can help you understand the differences, identify beginner-friendly
-            options, prepare for venue rules, and make a plan that does not depend on pretending you
-            already know everyone.
+            Local coaching helps you compare spaces, identify beginner-friendly options, prepare for
+            venue rules, and make a plan that does not depend on pretending you already know
+            everyone.
           </p>
         </div>
       </Section>
@@ -143,7 +143,7 @@ function SfCoachPage() {
 
       <Section ruled>
         <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
-          Clear support. Clear boundaries.
+          Clear answers. Clear boundaries.
         </h2>
         <div className="prose-doc mt-6">
           <p>Department of Consent provides coaching, education, and nonsexual event support.</p>
@@ -170,9 +170,9 @@ function SfCoachPage() {
       </Section>
 
       <CtaBlock
-        headline="You do not need to know the scene before asking for help entering it."
+        headline="Get help entering the scene before you have to fake fluency."
         primaryLabel="Book a Free Coaching Session"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
 
       <JsonLd

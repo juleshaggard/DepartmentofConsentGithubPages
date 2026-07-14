@@ -11,7 +11,6 @@ import navLogo from "../../../assets/Logo.svg";
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
-  { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
 ] as const;
@@ -22,7 +21,6 @@ const FOOTER_LINKS = [
   { label: "Beginner BDSM Coaching", to: "/services/beginner-bdsm-coaching" },
   { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
-  { label: "Pricing", to: "/pricing" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "Book", to: "/book" },

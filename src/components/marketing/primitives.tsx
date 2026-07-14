@@ -31,7 +31,6 @@ export function Section({
   children,
   className,
   wide = false,
-  ruled = false,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -39,7 +38,7 @@ export function Section({
   ruled?: boolean;
 }) {
   return (
-    <section className={cn("py-12 sm:py-16", ruled && "hairline", className)}>
+    <section className={cn("py-12 sm:py-16", className)}>
       <Container wide={wide}>{children}</Container>
     </section>
   );
@@ -151,7 +150,7 @@ export function CtaBlock({
   headline,
   body,
   primaryLabel = "Book a Free Coaching Session",
-  primaryTo = "/pricing",
+  primaryTo = "/coaching",
   secondaryLabel,
   secondaryTo,
 }: {

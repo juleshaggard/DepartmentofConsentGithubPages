@@ -33,7 +33,6 @@ const siteUrl = (
 const marketingPaths = [
   "/",
   "/coaching",
-  "/pricing",
   "/workshops",
   "/about",
   "/resources",

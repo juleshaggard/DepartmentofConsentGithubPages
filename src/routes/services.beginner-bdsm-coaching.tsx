@@ -53,7 +53,7 @@ function BdsmCoachingPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Private coaching for kink beginners</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
@@ -65,12 +65,11 @@ function BdsmCoachingPage() {
               decisions that come before real-world kink.
             </p>
             <p>
-              You do not need to arrive with a role, a label, a partner, or a list of activities.
-              You can begin with a question.
+              Bring a question. We can sort out roles, labels, partners, and activities from there.
             </p>
           </div>
           <div className="mt-8">
-            <ButtonLink to="/pricing">Book a Free Coaching Session</ButtonLink>
+            <ButtonLink to="/coaching">Book a Free Coaching Session</ButtonLink>
           </div>
         </div>
       </Section>
@@ -107,14 +106,13 @@ function BdsmCoachingPage() {
 
       <Section ruled>
         <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
-          You do not need to prove anything
+          Bring curiosity, not a performance
         </h2>
         <div className="prose-doc mt-6">
           <p>
-            You do not need to be “kinky enough.” You do not need to pick a role before you
-            understand it. You do not need to perform confidence for someone more experienced.
+            You can be new, unsure, or still sorting out a role. You can learn, ask questions, or
+            decide not to proceed.
           </p>
-          <p>A good first step can be learning, asking questions, or deciding not to proceed.</p>
         </div>
       </Section>
 
@@ -129,8 +127,8 @@ function BdsmCoachingPage() {
             are ready to explore.
           </p>
           <p>
-            We identify the questions that matter, the information you still need, the boundaries
-            you want to clarify, and the next step that makes sense for you.
+            We sort the questions that matter, the information you need, the boundaries you want to
+            clarify, and the next step that makes sense for you.
           </p>
         </div>
         <div className="mt-7">
@@ -157,7 +155,7 @@ function BdsmCoachingPage() {
       <CtaBlock
         headline="Kink confidence is built before anyone touches anyone."
         primaryLabel="Book a Free Coaching Session"
-        primaryTo="/pricing"
+        primaryTo="/coaching"
       />
 
       <JsonLd

@@ -29,7 +29,7 @@ function BookPage() {
         />
       </Container>
 
-      <Section wide className="!pt-2">
+      <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Book</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
