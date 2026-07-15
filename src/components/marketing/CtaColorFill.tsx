@@ -143,7 +143,7 @@ export function CtaColorFill() {
       if (entering) {
         state.pointsByPath.forEach((points, pathIndex) => {
           points.forEach((point, pointIndex) => {
-            const delay = pathIndex * 0.038 + POINT_DELAYS[pointIndex];
+            const delay = pathIndex * 0.058 + POINT_DELAYS[pointIndex];
             const wobble = pointIndex % 2 === 0 ? -7 : 5;
             const overshoot = FULL_Y - 14 + wobble + pathIndex * 0.45;
 
@@ -151,7 +151,7 @@ export function CtaColorFill() {
               point,
               {
                 y: overshoot,
-                duration: 0.34,
+                duration: 0.58,
                 ease: "expo.out",
               },
               delay,
@@ -159,10 +159,10 @@ export function CtaColorFill() {
               point,
               {
                 y: FULL_Y,
-                duration: 0.5,
-                ease: "elastic.out(1, 0.74)",
+                duration: 0.76,
+                ease: "expo.out",
               },
-              delay + 0.24,
+              delay + 0.34,
             );
           });
         });
@@ -171,25 +171,25 @@ export function CtaColorFill() {
 
       [...state.pointsByPath].reverse().forEach((points, reverseIndex) => {
         points.forEach((point, pointIndex) => {
-          const delay = reverseIndex * 0.045 + POINT_DELAYS[NUM_POINTS - 1 - pointIndex] * 0.45;
+          const delay = reverseIndex * 0.058 + POINT_DELAYS[NUM_POINTS - 1 - pointIndex] * 0.45;
           const sag = HIDDEN_Y + 15 + (pointIndex % 2 === 0 ? 4 : -8);
 
           tl.to(
             point,
             {
               y: sag,
-              duration: 0.46,
-              ease: "power3.inOut",
+              duration: 0.58,
+              ease: "expo.out",
             },
             delay,
           ).to(
             point,
             {
               y: HIDDEN_Y,
-              duration: 0.28,
-              ease: "power2.out",
+              duration: 0.5,
+              ease: "expo.out",
             },
-            delay + 0.34,
+            delay + 0.42,
           );
         });
       });

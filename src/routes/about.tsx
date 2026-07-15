@@ -65,20 +65,24 @@ function AboutPage() {
       <Section wide ruled>
         <div className="grid gap-9 md:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)] md:items-center md:gap-12">
           <div className="prose-doc">
-            <p>I am Jules Holloway, founder of Department of Consent.</p>
+            <p>I'm Jules Holloway. I run Department of Consent.</p>
             <p>
-              I kept finding myself in the same role. Newer people brought me the questions they
-              could not ask publicly: what to expect at an event, how to negotiate without sounding
-              new, how to spot pressure, and how to enter a scene where everyone seems fluent in
-              rules no one explained.
+              My first Dore Alley and Folsom were in 2009. Kink stayed private for a long time after
+              that; in 2025 I came back to the public scene in San Francisco.
             </p>
             <p>
-              I help people read unfamiliar systems, sort the situation in front of them, and make
-              decisions they can own.
+              I'm a switch and a sadomasochist, with years on both sides of power exchange. I'm not
+              a therapist or a certified educator. What I know comes from doing this, and from a lot
+              of conversations with people trying to figure out where they fit.
             </p>
             <p>
-              Department of Consent turns informal mentorship into structured coaching for adults
-              who are ready to make their curiosity real.
+              I coach beginners. Not with hype or jargon, but the practical stuff: what actually
+              happens at a play party, how to negotiate before you know what you want, how to spot
+              pressure.
+            </p>
+            <p>
+              You don't need the right vocabulary. You need a place to ask honest questions before
+              you're in the middle of something you don't understand.
             </p>
           </div>
 

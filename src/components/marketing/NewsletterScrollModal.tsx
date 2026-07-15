@@ -4,6 +4,14 @@ import { NewsletterSignup } from "./NewsletterSignup";
 
 const STORAGE_KEY = "doc-newsletter-scroll-modal-dismissed-v1";
 const UPWARD_SCROLL_DELTA = -18;
+const MODAL_KIT_FORM = {
+  provider: "kit",
+  endpoint: "https://app.kit.com/forms/9688724/subscriptions",
+  emailFieldName: "email_address",
+  kitFormId: "9688724",
+  kitUid: "ae1eab16cb",
+  kitFormat: "modal",
+};
 
 function hasDismissedModal() {
   try {
@@ -79,6 +87,7 @@ export function NewsletterScrollModal() {
           <NewsletterSignup
             variant="modal"
             className="pr-7 sm:pr-8"
+            formConfig={MODAL_KIT_FORM}
             onValidSubmit={markModalDismissed}
           />
         </div>

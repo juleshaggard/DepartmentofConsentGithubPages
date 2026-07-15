@@ -4,6 +4,15 @@ import { cn } from "@/lib/utils";
 
 type NewsletterVariant = "guide" | "footer" | "modal";
 
+type NewsletterFormConfig = {
+  provider?: string;
+  endpoint?: string;
+  emailFieldName?: string;
+  kitFormId?: string;
+  kitUid?: string;
+  kitFormat?: string;
+};
+
 type NewsletterSignupProps = {
   compact?: boolean;
   variant?: NewsletterVariant;
@@ -11,6 +20,7 @@ type NewsletterSignupProps = {
   heading?: string;
   description?: string;
   buttonLabel?: string;
+  formConfig?: NewsletterFormConfig;
   onValidSubmit?: () => void;
 };
 
@@ -57,6 +67,7 @@ export function NewsletterSignup({
   heading,
   description,
   buttonLabel,
+  formConfig,
   onValidSubmit,
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");
@@ -64,13 +75,16 @@ export function NewsletterSignup({
   const emailId = useId();
   const resolvedVariant = variant ?? (compact ? "footer" : "guide");
   const content = variantContent[resolvedVariant];
-  const endpoint = siteConfig.newsletter.endpoint;
-  const newsletterProvider = siteConfig.newsletter.provider.trim().toLowerCase();
+  const endpoint = formConfig?.endpoint ?? siteConfig.newsletter.endpoint;
+  const newsletterProvider = (formConfig?.provider ?? siteConfig.newsletter.provider)
+    .trim()
+    .toLowerCase();
+  const isKitProvider = newsletterProvider === "kit" || newsletterProvider === "convertkit";
+  const hasKitFormMetadata = isKitProvider && Boolean(formConfig?.kitFormId && formConfig.kitUid);
   const emailFieldName =
+    formConfig?.emailFieldName ||
     siteConfig.newsletter.emailFieldName ||
-    (newsletterProvider === "kit" || newsletterProvider === "convertkit"
-      ? "email_address"
-      : "email");
+    (isKitProvider ? "email_address" : "email");
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const showError = touched && !emailValid;
   const displayHeading = heading ?? content.heading;
@@ -129,7 +143,11 @@ export function NewsletterSignup({
         <form
           action={endpoint}
           method="post"
-          className={formClasses}
+          className={cn(hasKitFormMetadata && "seva-form formkit-form", formClasses)}
+          data-sv-form={hasKitFormMetadata ? formConfig?.kitFormId : undefined}
+          data-uid={hasKitFormMetadata ? formConfig?.kitUid : undefined}
+          data-format={hasKitFormMetadata ? (formConfig?.kitFormat ?? resolvedVariant) : undefined}
+          data-version={hasKitFormMetadata ? "5" : undefined}
           onSubmit={(e) => {
             if (!emailValid) {
               e.preventDefault();
