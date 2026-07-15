@@ -114,36 +114,8 @@ export function CoachingPricingContent() {
         </div>
       </Section>
 
-      <Section wide ruled>
-        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div>
-            <Eyebrow>Coaching Paths</Eyebrow>
-            <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
-              Choose the question you are bringing.
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {coachingOptions.map((option) => (
-              <article
-                key={option.title}
-                className="flex flex-col rounded-[1.35rem] bg-white px-6 py-7 shadow-[0_16px_60px_rgb(27_27_27_/_0.045)] ring-1 ring-plum/8"
-              >
-                <h3 className="display-condensed text-2xl text-coral">{option.title}</h3>
-                <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-plum/78">
-                  {option.body}
-                </p>
-                <div className="mt-5">
-                  <TextLink to={option.to}>{option.cta}</TextLink>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </Section>
-
       <Section ruled>
         <PricingCard
-          eyebrow="Free Discovery Call"
           title="Free Discovery Call"
           meta={{ prefix: "20 minutes", price: "Free", suffix: "Online" }}
           body={[
@@ -179,46 +151,38 @@ export function CoachingPricingContent() {
       </Section>
 
       <Section wide ruled>
-        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div>
-            <Eyebrow>Individual Coaching</Eyebrow>
-            <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
-              Focused answers without guesswork.
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            <PricingCard
-              title="One Coaching Session"
-              meta={{ prefix: "60 minutes", price: "$175", suffix: "Online" }}
-              body={["A focused session for one specific question, challenge, or next step."]}
-              bullets={[
-                "Understanding your interests",
-                "Negotiating a scene",
-                "Vetting a partner",
-                "Building confidence",
-                "Event etiquette",
-                "Consent conversations",
-                "Relationship dynamics",
-                "Finding your place in the community",
-              ]}
-              ctaLabel="Book a Session"
-              href={bookingLinks.coachingSession}
-              eventName="coaching_session_click"
-              compact
-            />
-            <PricingCard
-              title="Deep Dive Session"
-              meta={{ prefix: "90 minutes", price: "$250", suffix: "Online" }}
-              body={[
-                "More time to sort through your goals, answer questions, and leave with a plan.",
-                "This fits when you are new, overwhelmed, or holding several connected questions at once.",
-              ]}
-              ctaLabel="Book a Deep Dive"
-              href={bookingLinks.deepDive}
-              eventName="deep_dive_click"
-              compact
-            />
-          </div>
+        <div className="mx-auto grid w-full max-w-[44rem] gap-5 md:grid-cols-2">
+          <PricingCard
+            title="One Coaching Session"
+            meta={{ prefix: "60 minutes", price: "$175", suffix: "Online" }}
+            body={["A focused session for one specific question, challenge, or next step."]}
+            bullets={[
+              "Understanding your interests",
+              "Negotiating a scene",
+              "Vetting a partner",
+              "Building confidence",
+              "Event etiquette",
+              "Consent conversations",
+              "Relationship dynamics",
+              "Finding your place in the community",
+            ]}
+            ctaLabel="Book a Session"
+            href={bookingLinks.coachingSession}
+            eventName="coaching_session_click"
+            compact
+          />
+          <PricingCard
+            title="Deep Dive Session"
+            meta={{ prefix: "90 minutes", price: "$250", suffix: "Online" }}
+            body={[
+              "More time to sort through your goals, answer questions, and leave with a plan.",
+              "This fits when you are new, overwhelmed, or holding several connected questions at once.",
+            ]}
+            ctaLabel="Book a Deep Dive"
+            href={bookingLinks.deepDive}
+            eventName="deep_dive_click"
+            compact
+          />
         </div>
       </Section>
 
@@ -278,17 +242,7 @@ export function CoachingPricingContent() {
             />
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="prose-doc !max-w-3xl !text-white/86">
-              <p>You’ll leave with clear resources and a next-step plan.</p>
-              <p>
-                <strong>Save $50 compared with three individual sessions.</strong>
-              </p>
-              <p className="!text-base !text-white/62">
-                The price covers three separate online sessions. The public booking flow is for the
-                package purchase and first session only; follow-up booking links stay private.
-              </p>
-            </div>
+          <div className="mt-9 flex justify-center">
             <BookingButton
               href={bookingLinks.package}
               eventName="package_click"
@@ -322,6 +276,33 @@ export function CoachingPricingContent() {
       </Section>
 
       <Section wide ruled>
+        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div>
+            <Eyebrow>Coaching Paths</Eyebrow>
+            <h2 className="display-condensed text-coral text-3xl sm:text-5xl">
+              Choose the question you are bringing.
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {coachingOptions.map((option) => (
+              <article
+                key={option.title}
+                className="flex flex-col rounded-[1.35rem] bg-white px-6 py-7 shadow-[0_16px_60px_rgb(27_27_27_/_0.045)] ring-1 ring-plum/8"
+              >
+                <h3 className="display-condensed text-2xl text-coral">{option.title}</h3>
+                <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-plum/78">
+                  {option.body}
+                </p>
+                <div className="mt-5">
+                  <TextLink to={option.to}>{option.cta}</TextLink>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section wide ruled>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl leading-tight text-plum sm:text-5xl">
             Still not sure where to start?
@@ -345,52 +326,46 @@ export function CoachingPricingContent() {
 export function EventSupportPricingSection() {
   return (
     <Section wide ruled>
-      <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-        <div>
-          <Eyebrow>Event Support</Eyebrow>
-          <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Walk in prepared.</h2>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          <PricingCard
-            title="First Event Preparation"
-            meta={{ prefix: "90 minutes", price: "$225", suffix: "Online" }}
-            body={[
-              "Heading to your first munch, play party, workshop, or kink event?",
-              "You’ll walk in knowing what to expect instead of wondering whether you’re doing everything wrong.",
-            ]}
-            bullets={[
-              "What to wear",
-              "What to bring",
-              "How to introduce yourself",
-              "Consent and etiquette",
-              "How to approach people",
-              "Managing nerves",
-              "What happens at events",
-              "How to leave or say no without awkwardness",
-            ]}
-            ctaLabel="Book Event Prep"
-            href={bookingLinks.eventPrep}
-            eventName="event_prep_click"
-            compact
-          />
-          <PricingCard
-            title="Event Companion"
-            meta={{
-              prefix: "Online preparation + up to three hours in person + online follow-up",
-              price: "$795",
-            }}
-            body={[
-              "Walking through the door can be the hardest part.",
-              "We’ll meet online beforehand to prepare. I’ll then accompany you to an approved San Francisco or Oakland event, explain the space, answer questions, and help you move through the experience.",
-              "Afterward, we’ll meet online again to process what happened and choose what comes next.",
-              "Event Companion is available only after a consultation and is subject to event, location, timing, safety, and fit.",
-            ]}
-            ctaLabel="Ask About Event Companion"
-            href={bookingLinks.eventCompanionInquiry}
-            eventName="event_companion_inquiry_click"
-            compact
-          />
-        </div>
+      <div className="mx-auto grid w-full max-w-[44rem] gap-5 md:grid-cols-2">
+        <PricingCard
+          title="First Event Preparation"
+          meta={{ prefix: "90 minutes", price: "$225", suffix: "Online" }}
+          body={[
+            "Heading to your first munch, play party, workshop, or kink event?",
+            "You’ll walk in knowing what to expect instead of wondering whether you’re doing everything wrong.",
+          ]}
+          bullets={[
+            "What to wear",
+            "What to bring",
+            "How to introduce yourself",
+            "Consent and etiquette",
+            "How to approach people",
+            "Managing nerves",
+            "What happens at events",
+            "How to leave or say no without awkwardness",
+          ]}
+          ctaLabel="Book Event Prep"
+          href={bookingLinks.eventPrep}
+          eventName="event_prep_click"
+          compact
+        />
+        <PricingCard
+          title="Event Companion"
+          meta={{
+            prefix: "Online preparation + up to three hours in person + online follow-up",
+            price: "$795",
+          }}
+          body={[
+            "Walking through the door can be the hardest part.",
+            "We’ll meet online beforehand to prepare. I’ll then accompany you to an approved San Francisco or Oakland event, explain the space, answer questions, and help you move through the experience.",
+            "Afterward, we’ll meet online again to process what happened and choose what comes next.",
+            "Event Companion is available only after a consultation and is subject to event, location, timing, safety, and fit.",
+          ]}
+          ctaLabel="Ask About Event Companion"
+          href={bookingLinks.eventCompanionInquiry}
+          eventName="event_companion_inquiry_click"
+          compact
+        />
       </div>
     </Section>
   );

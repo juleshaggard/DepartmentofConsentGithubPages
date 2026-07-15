@@ -342,7 +342,7 @@ A practical guide to choosing an event, understanding the rules, protecting your
 Get the free guide
 
 **Privacy note:**  
-Occasional educational emails. No public mailing lists, no selling your information, and no explicit subject lines.
+No public mailing lists, no selling your information, and no explicit subject lines.
 
 ## Homepage FAQ
 

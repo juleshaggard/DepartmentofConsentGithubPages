@@ -81,7 +81,7 @@ export function NewsletterSignup({
   const formClasses =
     resolvedVariant === "guide"
       ? "mt-6 flex flex-col sm:flex-row gap-3 max-w-lg"
-      : "mt-5 flex max-w-sm flex-col gap-3";
+      : "mt-5 flex w-full max-w-[28rem] flex-col gap-3";
   const inputClasses = isFooter
     ? "h-12 w-full rounded-full border border-white/18 bg-white px-4 font-display text-base text-[#1B1B1B] outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/35 disabled:cursor-not-allowed disabled:opacity-65"
     : "doc-input";
@@ -94,7 +94,7 @@ export function NewsletterSignup({
     <div
       className={cn(
         hasFramedGuide && "rounded-3xl bg-pinkcard px-6 py-8 sm:px-10 sm:py-10",
-        isFooter && "max-w-sm",
+        isFooter && "max-w-[28rem]",
         className,
       )}
     >
@@ -248,8 +248,7 @@ export function NewsletterSignup({
           isFooter ? "text-white/42" : "text-muted-foreground",
         )}
       >
-        Occasional educational emails. No public mailing lists, no selling your information, and no
-        explicit subject lines.
+        No public mailing lists, no selling your information, and no explicit subject lines.
       </p>
     </div>
   );

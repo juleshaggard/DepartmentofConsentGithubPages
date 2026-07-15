@@ -15,8 +15,8 @@ import polyIcon from "../../assets/poly.png";
 import eventImg from "../../assets/Photo1.jpg";
 import coachingImg from "../../assets/Photo2.jpg";
 import prepImg from "../../assets/Photo3.jpg";
+import ctaBackgroundImg from "../../assets/bottomcta.jpg";
 import prepCardImg from "@/assets/card-flogger.jpg";
-import ctaPanelImg from "@/assets/figma-cta-panel.jpg";
 import stickerFeather from "@/assets/sticker-feather-flat.png";
 
 export const Route = createFileRoute("/")({
@@ -90,6 +90,7 @@ const HERO_CIRCLE_COPY = `Virtual Coaching.${HERO_CIRCLE_SENTENCE_GAP}San Franci
 const HERO_CIRCLE_COPY_INDEXES = Array.from({ length: 18 }, (_, index) => index - 2);
 const HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION = 36;
 const HERO_CIRCLE_SPEED_RATIO = 0.1;
+const HERO_CIRCLE_FALLBACK_SEGMENT_PERCENT = 12;
 const SERVICE_MARQUEE_SET_COUNT = 4;
 
 const SECTION_TWO_PARAGRAPHS = [
@@ -148,22 +149,29 @@ function Hero() {
       const textAdvance = firstSegment?.getComputedTextLength() ?? 0;
       const pathLength = pathShape?.getTotalLength() ?? 0;
 
-      if (circlePaths.length > 0 && textAdvance > 0 && pathLength > 0) {
-        const copyDuration =
-          (textAdvance / pathLength) *
-          (HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION / HERO_CIRCLE_SPEED_RATIO);
+      if (circlePaths.length > 0) {
+        const hasMeasuredText = textAdvance > 0 && pathLength > 0;
+        const copyDuration = hasMeasuredText
+          ? (textAdvance / pathLength) *
+            (HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION / HERO_CIRCLE_SPEED_RATIO)
+          : (HERO_CIRCLE_PREVIOUS_FULL_PATH_DURATION / HERO_CIRCLE_SPEED_RATIO) *
+            (HERO_CIRCLE_FALLBACK_SEGMENT_PERCENT / 100);
 
         gsap.set(circlePaths, {
           attr: {
             startOffset: (_index, target: SVGTextPathElement) =>
-              Number(target.dataset.copyIndex) * textAdvance,
+              hasMeasuredText
+                ? Number(target.dataset.copyIndex) * textAdvance
+                : `${Number(target.dataset.copyIndex) * HERO_CIRCLE_FALLBACK_SEGMENT_PERCENT}%`,
           },
         });
 
         gsap.to(circlePaths, {
           attr: {
             startOffset: (_index, target: SVGTextPathElement) =>
-              (Number(target.dataset.copyIndex) - 1) * textAdvance,
+              hasMeasuredText
+                ? (Number(target.dataset.copyIndex) - 1) * textAdvance
+                : `${(Number(target.dataset.copyIndex) - 1) * HERO_CIRCLE_FALLBACK_SEGMENT_PERCENT}%`,
           },
           duration: copyDuration,
           ease: "none",
@@ -204,13 +212,13 @@ function Hero() {
         </a>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[78rem] flex-1 flex-col items-center justify-center px-5 pb-36 pt-12 text-center sm:px-10 sm:pb-44 lg:pb-48">
-        <h1 className="display-condensed text-white text-[clamp(3.25rem,12vw,7.5rem)] sm:text-[clamp(5rem,8.4vw,9rem)] leading-[0.88] drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[92rem] flex-1 flex-col items-center justify-center px-5 pb-36 pt-12 text-center sm:px-8 sm:pb-44 lg:pb-48">
+        <h1 className="display-condensed w-full text-white text-[clamp(2.25rem,10.5vw,7.5rem)] leading-[0.88] drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)] sm:text-[clamp(3.8rem,8.4vw,9rem)]">
           <span className="block overflow-hidden">
-            <span className="hero-line block">From kink&#8211;curious</span>
+            <span className="hero-line block whitespace-nowrap">From kink&#8211;curious</span>
           </span>
           <span className="block overflow-hidden">
-            <span className="hero-line block">to kink&#8211;confident.</span>
+            <span className="hero-line block whitespace-nowrap">to kink&#8211;confident.</span>
           </span>
         </h1>
         <p className="hero-sub font-display text-white text-xl sm:text-[clamp(1.4rem,2.2vw,2.6rem)] mt-4 drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
@@ -419,7 +427,7 @@ function HomePage() {
               <span className="block">Meet</span>
               <span className="block">Jules</span>
             </h2>
-            <div className="relative z-10 -mt-[clamp(1.8rem,4vw,3.7rem)] w-[min(23.125rem,78vw)] overflow-hidden rounded-[1.15rem] shadow-sm">
+            <div className="relative z-10 mt-2 w-[min(23.125rem,78vw)] overflow-hidden rounded-[1.15rem] shadow-sm sm:mt-[clamp(1rem,2vw,2rem)]">
               <img
                 src={meetJulesImg}
                 alt="Jules coaching a client in conversation"
@@ -463,18 +471,23 @@ function HomePage() {
       </Section>
 
       <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
-        <Link
-          to="/coaching"
-          aria-label="Book a Free Coaching Session"
-          className="group relative mx-auto block max-w-4xl overflow-hidden rounded-[1.35rem] bg-plum text-center text-white"
-        >
+        <div className="group relative mx-auto flex min-h-[30rem] w-full max-w-[22rem] flex-col justify-center overflow-hidden rounded-[1.35rem] bg-[#1B1B1B] px-5 py-6 text-center text-white shadow-[0_18px_60px_rgb(27_27_27_/_0.16)] sm:aspect-[1044/478] sm:min-h-0 sm:max-w-4xl sm:px-8 sm:py-10 md:px-12 md:py-12">
           <img
-            src={ctaPanelImg}
+            src={ctaBackgroundImg}
             alt=""
             aria-hidden
-            className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.025]"
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-[50%_42%] transition-transform duration-500 group-hover:scale-110"
           />
-        </Link>
+          <div className="relative z-10 mx-auto flex max-w-[50rem] flex-col items-center">
+            <h2 className="display-condensed text-[3.05rem] leading-[0.86] text-white sm:text-[clamp(3.7rem,6.4vw,5.5rem)]">
+              Your life is calling.
+              <span className="block">Are you ready?</span>
+            </h2>
+            <ButtonLink to="/coaching" className="mt-6 w-full sm:w-auto sm:!px-10">
+              Book a Free Coaching Session
+            </ButtonLink>
+          </div>
+        </div>
       </Section>
     </MarketingLayout>
   );

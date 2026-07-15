@@ -600,11 +600,25 @@
     line-height: 1.2;
   }
 
+  .footer-flag {
+    display: block;
+    width: 2.35rem;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0.18rem;
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.26),
+      0 0 0 1px rgb(27 27 27 / 0.35);
+  }
+
   .btn-editorial {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     border-radius: 999px;
     min-height: 2.9rem;
     max-width: 100%;
@@ -615,7 +629,8 @@
     letter-spacing: 0.06em;
     font-size: 0.8125rem;
     line-height: 1.15;
-    background: var(--color-coral);
+    background-color: transparent !important;
+    background-image: none !important;
     color: white;
     border: 1px solid var(--color-coral);
     cursor: pointer;
@@ -625,9 +640,38 @@
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     transition:
-      background-color 0.18s ease,
+      border-color 0.18s ease,
       color 0.18s ease,
       transform 0.18s ease;
+  }
+
+  .btn-editorial::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    border-radius: inherit;
+    background: var(--cta-base-bg, var(--color-coral));
+    pointer-events: none;
+  }
+
+  .btn-editorial > :not(.cta-fill-overlay) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-fill-overlay {
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .cta-fill-path {
+    shape-rendering: geometricPrecision;
   }
 
   .btn-editorial:active {
@@ -640,18 +684,21 @@
     border-color: rgb(27 27 27 / 0.4);
   }
 
+  .btn-editorial-outline::before {
+    background: transparent;
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    .btn-editorial:hover {
-      background: var(--color-plum);
-      border-color: var(--color-plum);
-      color: white;
+    .btn-editorial:hover,
+    .btn-editorial:focus-visible {
+      border-color: #5bcefa !important;
+      color: white !important;
       transform: translateY(-1px);
     }
 
     .btn-editorial-outline:hover {
-      background: var(--color-plum);
-      border-color: var(--color-plum);
-      color: white;
+      border-color: #5bcefa !important;
+      color: white !important;
     }
   }
 
@@ -679,6 +726,11 @@
       padding-inline: 0.88rem;
       font-size: 0.7rem;
     }
+  }
+
+  .btn-editorial:focus-visible {
+    outline: 2px solid #5bcefa;
+    outline-offset: 3px;
   }
 
   /* Circular hero copy set on an SVG path */

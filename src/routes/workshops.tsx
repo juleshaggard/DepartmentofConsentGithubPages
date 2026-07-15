@@ -101,7 +101,7 @@ function WorkshopsPage() {
             {waitlist ? (
               <a
                 href={waitlist}
-                className="btn-editorial btn-editorial-outline w-full !text-white !border-white/60 hover:!bg-white hover:!text-coral sm:w-auto"
+                className="btn-editorial btn-editorial-outline w-full !border-white/60 !text-white sm:w-auto"
               >
                 Join the public workshop list
               </a>

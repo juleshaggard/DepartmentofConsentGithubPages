@@ -68,7 +68,7 @@ export function ButtonLink({
         className,
       )}
     >
-      {children}
+      <span>{children}</span>
     </Link>
   );
 }
@@ -153,6 +153,7 @@ export function CtaBlock({
   primaryTo = "/coaching",
   secondaryLabel,
   secondaryTo,
+  tone = "mint",
 }: {
   headline: string;
   body?: string;
@@ -160,10 +161,18 @@ export function CtaBlock({
   primaryTo?: LinkProps["to"];
   secondaryLabel?: string;
   secondaryTo?: LinkProps["to"];
+  tone?: "mint" | "dark";
 }) {
+  const isDark = tone === "dark";
+
   return (
     <Section wide>
-      <div className="rounded-3xl bg-mint text-white px-6 py-12 sm:px-14 sm:py-16 text-center">
+      <div
+        className={cn(
+          "rounded-3xl px-6 py-12 text-center text-white sm:px-14 sm:py-16",
+          isDark ? "bg-[#1B1B1B] shadow-[0_24px_80px_rgb(27_27_27_/_0.12)]" : "bg-mint",
+        )}
+      >
         <h2 className="font-display text-3xl sm:text-5xl leading-[1.05] max-w-2xl mx-auto">
           {headline}
         </h2>
@@ -173,12 +182,7 @@ export function CtaBlock({
           </p>
         )}
         <div className="mobile-action-stack mt-8 flex flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
-          <ButtonLink
-            to={primaryTo}
-            className="!bg-white !text-coral !border-white hover:!bg-plum hover:!text-white hover:!border-plum"
-          >
-            {primaryLabel}
-          </ButtonLink>
+          <ButtonLink to={primaryTo}>{primaryLabel}</ButtonLink>
           {secondaryLabel && secondaryTo && (
             <ButtonLink
               to={secondaryTo}

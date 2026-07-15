@@ -200,6 +200,7 @@ function AccompanimentPage() {
         headline="You can ask for a guide without giving up your own judgment."
         primaryLabel="Ask about event accompaniment"
         primaryTo="/coaching"
+        tone="dark"
       />
 
       <JsonLd

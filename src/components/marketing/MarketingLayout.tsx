@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
+import { CtaColorFill } from "./CtaColorFill";
 import { NewsletterScrollModal } from "./NewsletterScrollModal";
 import { NewsletterSignup } from "./NewsletterSignup";
 import navLogo from "../../../assets/Logo.svg";
@@ -43,6 +44,64 @@ export function Lockup({ light = false }: { light?: boolean }) {
         of Consent
       </span>
     </span>
+  );
+}
+
+function PrideFlag({ label }: { label: string }) {
+  const stripes = ["#E40303", "#FF8C00", "#FFED00", "#008026", "#24408E", "#732982"];
+
+  return (
+    <svg className="footer-flag" viewBox="0 0 48 30" role="img" aria-label={label}>
+      {stripes.map((color, index) => (
+        <rect key={color} x="0" y={index * 5} width="48" height="5" fill={color} />
+      ))}
+    </svg>
+  );
+}
+
+function TransPrideFlag({ label }: { label: string }) {
+  const stripes = ["#5BCEFA", "#F5A9B8", "#FFFFFF", "#F5A9B8", "#5BCEFA"];
+
+  return (
+    <svg className="footer-flag" viewBox="0 0 48 30" role="img" aria-label={label}>
+      {stripes.map((color, index) => (
+        <rect key={`${color}-${index}`} x="0" y={index * 6} width="48" height="6" fill={color} />
+      ))}
+    </svg>
+  );
+}
+
+function KinkPrideFlag({ label }: { label: string }) {
+  const stripes = [
+    "#111111",
+    "#0046AD",
+    "#111111",
+    "#0046AD",
+    "#FFFFFF",
+    "#0046AD",
+    "#111111",
+    "#0046AD",
+    "#111111",
+  ];
+
+  return (
+    <svg className="footer-flag" viewBox="0 0 48 30" role="img" aria-label={label}>
+      {stripes.map((color, index) => (
+        <rect
+          key={`${color}-${index}`}
+          x="0"
+          y={index * (30 / 9)}
+          width="48"
+          height={30 / 9}
+          fill={color}
+        />
+      ))}
+      <path
+        d="M10.4 18.3 6.7 14.8C3.8 12 2.4 10.1 2.4 7.7c0-2.5 1.9-4.4 4.4-4.4 1.5 0 2.8.7 3.6 1.9.9-1.2 2.2-1.9 3.7-1.9 2.5 0 4.4 1.9 4.4 4.4 0 2.4-1.4 4.3-4.3 7.1l-3.8 3.5Z"
+        fill="#E6313A"
+        transform="translate(2.2 2.2) scale(.72)"
+      />
+    </svg>
   );
 }
 
@@ -107,10 +166,17 @@ export function MarketingLayout({
       }
 
       const syncHeaderToHero = () => {
-        showHeader(heroElement.getBoundingClientRect().bottom <= 0);
+        const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+        const mobileRevealOffset = isMobile ? Math.min(window.innerHeight * 0.35, 280) : 0;
+        showHeader(heroElement.getBoundingClientRect().bottom <= mobileRevealOffset);
       };
 
       syncHeaderToHero();
+
+      window.addEventListener("scroll", syncHeaderToHero, { passive: true });
+      window.addEventListener("resize", syncHeaderToHero);
+      window.addEventListener("orientationchange", syncHeaderToHero);
+      window.visualViewport?.addEventListener("resize", syncHeaderToHero);
 
       const trigger = ScrollTrigger.create({
         trigger: heroElement,
@@ -124,7 +190,13 @@ export function MarketingLayout({
         onUpdate: syncHeaderToHero,
       });
 
-      return () => trigger.kill();
+      return () => {
+        trigger.kill();
+        window.removeEventListener("scroll", syncHeaderToHero);
+        window.removeEventListener("resize", syncHeaderToHero);
+        window.removeEventListener("orientationchange", syncHeaderToHero);
+        window.visualViewport?.removeEventListener("resize", syncHeaderToHero);
+      };
     },
     { dependencies: [menuOpen], revertOnUpdate: true },
   );
@@ -214,6 +286,7 @@ export function MarketingLayout({
 
       <MarketingFooter />
       <NewsletterScrollModal />
+      <CtaColorFill />
     </div>
   );
 }
@@ -221,9 +294,9 @@ export function MarketingLayout({
 function MarketingFooter() {
   return (
     <footer className="mt-0 bg-[#1B1B1B] text-white">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-14 pb-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr_0.8fr]">
-          <div className="space-y-4 max-w-md">
+      <div className="mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8 lg:pt-20 lg:pb-12">
+        <div className="grid gap-12 lg:grid-cols-[minmax(17rem,0.9fr)_minmax(22rem,1fr)_minmax(18rem,0.9fr)] lg:items-start lg:gap-x-20 xl:gap-x-28">
+          <div className="max-w-[22rem] space-y-5">
             <img
               src={navLogo}
               alt="Department of Consent"
@@ -238,6 +311,16 @@ function MarketingFooter() {
               Area.
             </p>
             <p className="label-condensed text-xs text-coral">For adults aged 18 and older.</p>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <p className="label-condensed text-xs text-white/86">
+                Department of Consent is trans-owned and run.
+              </p>
+              <div className="flex items-center gap-1.5">
+                <PrideFlag label="Pride flag" />
+                <TransPrideFlag label="Trans pride flag" />
+                <KinkPrideFlag label="Kink pride flag" />
+              </div>
+            </div>
             <p className="text-sm">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
@@ -248,15 +331,15 @@ function MarketingFooter() {
             </p>
           </div>
 
-          <NewsletterSignup variant="footer" />
+          <NewsletterSignup variant="footer" className="w-full max-w-[28rem]" />
 
-          <nav aria-label="Footer">
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
+          <nav aria-label="Footer" className="lg:justify-self-end">
+            <ul className="grid max-w-[24rem] grid-cols-2 gap-x-10 gap-y-3 sm:gap-x-14">
               {FOOTER_LINKS.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="label-condensed text-[0.75rem] text-white/68 hover:text-coral"
+                    className="label-condensed block text-[0.75rem] leading-snug text-white/68 hover:text-coral"
                   >
                     {item.label}
                   </Link>
@@ -267,11 +350,13 @@ function MarketingFooter() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-6 text-center">
-        <p className="text-xs text-white/50">
-          © {new Date().getFullYear()} {siteConfig.legalName}. Coaching is educational and practical
-          — not therapy, medical care, legal advice, or crisis support.
-        </p>
+      <div className="mx-auto max-w-7xl px-5 pb-7 sm:px-8">
+        <div className="border-t border-white/10 pt-6">
+          <p className="max-w-4xl text-left text-xs leading-relaxed text-white/45">
+            © {new Date().getFullYear()} {siteConfig.legalName}. Coaching is educational and
+            practical — not therapy, medical care, legal advice, or crisis support.
+          </p>
+        </div>
       </div>
     </footer>
   );
