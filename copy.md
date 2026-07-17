@@ -3,7 +3,7 @@
 ## Brand
 
 **Brand name:** Department of Consent  
-**Founder and coach:** Jules Holloway  
+**Founder and coach:** Jules Darling  
 **Primary promise:** From kink-curious to kink-confident.
 
 **Short positioning statement:**  
@@ -121,6 +121,35 @@ Explore coaching
 **Support line:**  
 Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area.
 
+## Testimonials
+
+**Layout note:**  
+Minimal three-column testimonial strip directly beneath the homepage hero. White background, text only.
+
+### Testimonial One
+
+**Quote:**  
+I spent two years reading forums and AO3 at 2am. Now I have a partner I actually explore with, and the stuff I used to just read about, we do on Saturdays. Then mac and cheese for aftercare.
+
+**Attribution:**  
+Coaching client, 34F Marin
+
+### Testimonial Two
+
+**Quote:**  
+Jules came to my first play party as my anchor. We set intentions before, they held down home base while I went and was brave, and the debrief after helped me more than the party did.
+
+**Attribution:**  
+Event accompaniment client, 55M San Francisco
+
+### Testimonial Three
+
+**Quote:**  
+I had three partners and every relationship kept trying to be the same shape. Jules helped me figure out what each person actually is to me, and nobody had ever told me I was allowed to just decide that.
+
+**Attribution:**  
+Poly coaching client, 28F Oakland
+
 ## Recognition
 
 **Headline:**  
@@ -213,7 +242,7 @@ Prepare for your first kink event
 Kink Event Accompaniment
 
 **Body:**  
-For selected San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, nonsexual guide who can explain the space and help you find your footing.
+For selected San Francisco Bay Area events, attend with Jules Darling as a knowledgeable, nonsexual guide who can explain the space and help you find your footing.
 
 **CTA:**  
 Ask about event accompaniment
@@ -303,7 +332,7 @@ You leave with specific next steps, useful questions, and a clearer understandin
 The person you wish you had met before taking your first step into the scene.
 
 **Body:**  
-I am Jules Holloway, founder of Department of Consent.
+I am Jules Darling, founder of Department of Consent.
 
 I kept finding myself in the same role: helping newer people understand the language, read the room, ask better questions, and avoid learning through trial and error.
 
@@ -418,7 +447,7 @@ Explore polyamory coaching
 
 ### Kink Coach in San Francisco
 
-Work with Jules Holloway virtually or through selected in-person services in San Francisco and the greater Bay Area.
+Work with Jules Darling virtually or through selected in-person services in San Francisco and the greater Bay Area.
 
 **CTA:**  
 Meet your San Francisco kink coach
@@ -482,10 +511,10 @@ Book an introductory session
 ## SEO
 
 **Title:**  
-Kink Coach in San Francisco | Jules Holloway
+Kink Coach in San Francisco | Jules Darling
 
 **Meta description:**  
-Beginner-focused kink coaching with Jules Holloway in San Francisco. Virtual sessions, event preparation, and selected nonsexual Bay Area event support.
+Beginner-focused kink coaching with Jules Darling in San Francisco. Virtual sessions, event preparation, and selected nonsexual Bay Area event support.
 
 ## Hero
 
@@ -496,7 +525,7 @@ San Francisco kink coaching
 A kink coach for people who are ready to stop guessing.
 
 **Body:**  
-I am Jules Holloway, a San Francisco-based kink and polyamory coach for adults taking their first real steps into the scene.
+I am Jules Darling, a San Francisco-based kink and polyamory coach for adults taking their first real steps into the scene.
 
 Whether you are preparing for an event, talking with a potential partner, negotiating a first scene, or trying to understand what you want, coaching gives you a private place for clear answers before the stakes feel high.
 
@@ -1246,7 +1275,7 @@ Book a private coaching session
 Kink Event Accompaniment in San Francisco
 
 **Meta description:**  
-Looking for someone to accompany you to a kink event? Ask about nonsexual preparation and event support with Jules Holloway in San Francisco.
+Looking for someone to accompany you to a kink event? Ask about nonsexual preparation and event support with Jules Darling in San Francisco.
 
 ## Hero
 
@@ -1259,7 +1288,7 @@ Want someone knowledgeable to accompany you to a kink event?
 **Body:**  
 Walking into a new kink space alone can make every unfamiliar rule feel louder.
 
-For selected events in San Francisco and the greater Bay Area, Jules Holloway may be available to attend as a knowledgeable, nonsexual guide.
+For selected events in San Francisco and the greater Bay Area, Jules Darling may be available to attend as a knowledgeable, nonsexual guide.
 
 **Primary CTA:**  
 Ask about event accompaniment
@@ -1500,7 +1529,7 @@ Join the public workshop list
 
 ---
 
-# About Jules Holloway
+# About Jules Darling
 
 ## Route
 
@@ -1509,10 +1538,10 @@ Join the public workshop list
 ## SEO
 
 **Title:**  
-About Jules Holloway | Department of Consent
+About Jules Darling | Department of Consent
 
 **Meta description:**  
-Meet Jules Holloway, the San Francisco-based beginner kink and polyamory coach behind Department of Consent.
+Meet Jules Darling, the San Francisco-based beginner kink and polyamory coach behind Department of Consent.
 
 ## Hero
 
@@ -1521,7 +1550,7 @@ I help people enter the scene without pretending they already know the rules.
 
 ## Body
 
-### About Jules
+### About Jules Darling
 
 Kink's favorite tour guide.
 
@@ -1530,6 +1559,10 @@ My first Dore Alley and Folsom were in 2009. My kink practice stayed with privat
 ### My practice
 
 I'm intentionally not a therapist. I practice more intimate coaching than a therapist, like going shopping together for your first fetish wear, or being your event buddy at your first play party.
+
+I teach PRICK and RACK consent.
+PRICK: Personal Responsibility, Informed, Consensual Kink
+RACK: Risk-Aware Consensual Kink
 
 ### Qualifications
 
@@ -1722,7 +1755,7 @@ No. Department of Consent is not an emergency or crisis service. Contact local e
 Book Kink or Polyamory Coaching | Department of Consent
 
 **Meta description:**  
-Book an introductory kink or polyamory coaching session with Jules Holloway. Virtual sessions and selected San Francisco Bay Area services.
+Book an introductory kink or polyamory coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.
 
 ## Hero
 
@@ -1784,7 +1817,7 @@ Kink and sexual activity may involve physical, emotional, interpersonal, legal, 
 
 Clients remain responsible for their decisions, actions, boundaries, health considerations, legal compliance, and participation in any event, relationship, or activity.
 
-Department of Consent and Jules Holloway do not certify individuals as safe, trustworthy, qualified, or compatible.
+Department of Consent and Jules Darling do not certify individuals as safe, trustworthy, qualified, or compatible.
 
 All services are intended only for adults aged 18 and older.
 
@@ -1923,7 +1956,7 @@ Do not link Scene Negotiator.
 - Session duration
 - Availability
 - Exact in-person service area
-- Jules Holloway’s approved biography
+- Jules Darling’s approved biography
 - Verified experience, training, and credentials
 - Professional photograph
 - Social media links

@@ -40,7 +40,7 @@ function DisclaimerPage() {
         legal compliance, and participation in any event, relationship, or activity.
       </p>
       <p>
-        Department of Consent and Jules Holloway do not certify individuals as safe, trustworthy,
+        Department of Consent and Jules Darling do not certify individuals as safe, trustworthy,
         qualified, or compatible.
       </p>
       <p>All services are intended only for adults aged 18 and older.</p>

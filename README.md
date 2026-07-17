@@ -1,7 +1,7 @@
 # Department of Consent
 
 Marketing site for Department of Consent — beginner-focused kink and polyamory
-coaching by Jules Holloway — plus **Scene Negotiator**, the original consent /
+coaching by Jules Darling — plus **Scene Negotiator**, the original consent /
 scene-planning app, preserved as a hidden product at `/scene-negotiator`.
 
 - Framework: TanStack Start (React 19), fully prerendered to static HTML

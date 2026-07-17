@@ -65,7 +65,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Kink Event Accompaniment",
     to: "/services/kink-event-accompaniment",
-    body: "For select San Francisco Bay Area events, attend with Jules Holloway as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
+    body: "For select San Francisco Bay Area events, attend with Jules Darling as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
   },
   {
     title: "Polyamory Coaching for Beginners",
@@ -97,6 +97,29 @@ const SECTION_TWO_PARAGRAPHS = [
   "Want to know how to explore kink or polyamory without walking in blind?",
   "Department of Consent offers education, private coaching, and nonsexual event support for adults ready for their first real steps.",
 ] as const;
+
+type Testimonial = {
+  quote: string;
+  attribution: string;
+};
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      "I spent two years reading forums and AO3 at 2am. Now I have a partner I actually explore with, and the stuff I used to just read about, we do on Saturdays. Then mac and cheese for aftercare.",
+    attribution: "Coaching client, 34F Marin",
+  },
+  {
+    quote:
+      "Jules came to my first play party as my anchor. We set intentions before, they held down home base while I went and was brave, and the debrief after helped me more than the party did.",
+    attribution: "Event accompaniment client, 55M San Francisco",
+  },
+  {
+    quote:
+      "I had three partners and every relationship kept trying to be the same shape. Jules helped me figure out what each person actually is to me, and nobody had ever told me I was allowed to just decide that.",
+    attribution: "Poly coaching client, 28F Oakland",
+  },
+];
 
 const CTA_QUESTIONS = [
   "How do I figure out what I'm into?",
@@ -274,6 +297,15 @@ function HomePage() {
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
+      gsap.from(".testimonial-card", {
+        y: 24,
+        opacity: 0,
+        duration: 0.65,
+        ease: "power3.out",
+        stagger: 0.08,
+        scrollTrigger: { trigger: ".testimonial-grid", start: "top 84%", once: true },
+      });
+
       gsap.from(".svc-card", {
         opacity: 0,
         duration: 0.45,
@@ -338,6 +370,8 @@ function HomePage() {
 
   return (
     <MarketingLayout hero={<Hero />} mainRef={mainRef}>
+      <TestimonialsSection />
+
       <Section wide className="!py-16 sm:!py-24">
         <div className="mx-auto max-w-xl space-y-7 font-display text-2xl leading-[1.35] text-coral sm:text-[2.05rem]">
           {SECTION_TWO_PARAGRAPHS.map((paragraph) => (
@@ -490,6 +524,35 @@ function HomePage() {
         </div>
       </Section>
     </MarketingLayout>
+  );
+}
+
+function TestimonialsSection() {
+  return (
+    <Section wide className="relative z-10 bg-white !py-8 sm:!py-10">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="sr-only">Client testimonials</h2>
+        <div className="testimonial-grid grid gap-5 py-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-plum/10">
+          {TESTIMONIALS.map((testimonial) => (
+            <TestimonialCard key={testimonial.attribution} testimonial={testimonial} />
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <article className="testimonial-card text-plum md:px-6 md:first:pl-0 md:last:pr-0">
+      <blockquote className="font-display text-[0.98rem] leading-[1.35] text-plum/86 sm:text-[1.05rem]">
+        &ldquo;{testimonial.quote}&rdquo;
+      </blockquote>
+      <p className="label-condensed mt-4 text-[0.66rem] leading-tight text-coral sm:text-[0.7rem]">
+        <span aria-hidden="true">&mdash; </span>
+        {testimonial.attribution}
+      </p>
+    </article>
   );
 }
 

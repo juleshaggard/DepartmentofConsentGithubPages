@@ -2,7 +2,7 @@
  * Central site configuration for Department of Consent.
  *
  * Values marked [PENDING APPROVAL] are placeholders awaiting confirmation
- * from Jules Holloway. Environment variables (VITE_*) are safe-to-expose
+ * from Jules Darling. Environment variables (VITE_*) are safe-to-expose
  * browser values only — never put secrets here.
  */
 
@@ -15,7 +15,7 @@ export const siteConfig = {
   /** Legal entity name — falls back to brand name until supplied */
   legalName: env.VITE_LEGAL_NAME || "Department of Consent",
   /** Founder and coach */
-  founder: "Jules Holloway",
+  founder: "Jules Darling",
   /** Primary promise / tagline */
   tagline: "From kink-curious to kink-confident.",
   /** Public base URL (no trailing slash) */

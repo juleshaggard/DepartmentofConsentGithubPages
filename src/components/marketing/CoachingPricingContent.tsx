@@ -29,7 +29,7 @@ const coachingOptions = [
   },
   {
     title: "Kink Coach in San Francisco",
-    body: "Work with Jules Holloway online, or ask about selected in-person services in San Francisco and Oakland.",
+    body: "Work with Jules Darling online, or ask about selected in-person services in San Francisco and Oakland.",
     cta: "Meet your San Francisco kink coach",
     to: "/services/kink-coach-san-francisco",
   },

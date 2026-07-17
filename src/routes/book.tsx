@@ -9,7 +9,7 @@ export const Route = createFileRoute("/book")({
     pageHead({
       title: "Book Kink or Polyamory Coaching | Department of Consent",
       description:
-        "Book an introductory kink or polyamory coaching session with Jules Holloway. Virtual sessions and selected San Francisco Bay Area services.",
+        "Book an introductory kink or polyamory coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.",
       path: "/book",
     }),
   component: BookPage,
