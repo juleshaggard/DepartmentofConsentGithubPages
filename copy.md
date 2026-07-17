@@ -1521,15 +1521,29 @@ I help people enter the scene without pretending they already know the rules.
 
 ## Body
 
-I'm Jules Holloway. I run Department of Consent.
+### About Jules
 
-My first Dore Alley and Folsom were in 2009. Kink stayed private for a long time after that; in 2025 I came back to the public scene in San Francisco.
+Kink's favorite tour guide.
 
-I'm a switch and a sadomasochist, with years on both sides of power exchange. I'm not a therapist or a certified educator. What I know comes from doing this, and from a lot of conversations with people trying to figure out where they fit.
+My first Dore Alley and Folsom were in 2009. My kink practice stayed with private partners as I gained experience as a dom; in 2025 I came back to the public scene in San Francisco as a sub to let my freak flag fully fly. Now I proudly declare myself a switch and a sadomasochist.
 
-I coach beginners. Not with hype or jargon, but the practical stuff: what actually happens at a play party, how to negotiate before you know what you want, how to spot pressure.
+### My practice
 
-You don't need the right vocabulary. You need a place to ask honest questions before you're in the middle of something you don't understand.
+I'm intentionally not a therapist. I practice more intimate coaching than a therapist, like going shopping together for your first fetish wear, or being your event buddy at your first play party.
+
+### Qualifications
+
+My qualifications come from lived experience on both sides of the slash. My education is ongoing, by attending workshops in the SF Bay Area from organizations like Wicked Grounds, Dark Odyssey, Society of Janus, Kink.com, and Foundations. I am also a frequent attendee of local munches and kink community events where I've found such an amazing community that I love to be a part of.
+
+I also run [Leather Worship](https://leatherworship.com), a handmade boutique kink store selling collars, impact toys, and custom orders.
+
+### Beginners welcome
+
+I specialize in coaching beginners, because when I first started in the local scene finding a mentor was next to impossible and feeling comfortable in the scene felt endless and confusing.
+
+### What I teach best
+
+I focus on the practical stuff: what actually happens at a play party, how to negotiate before you know what you want, how to spot pressure, what to wear, and most importantly how to brand yourself.
 
 ## Credentials
 
@@ -1561,7 +1575,7 @@ People deserve discretion. They also deserve outside perspectives, community con
 ## CTA
 
 **Headline:**  
-You are allowed to ask the beginner question.
+You are allowed to ask the beginner questions.
 
 **CTA:**  
 Book an introductory session
