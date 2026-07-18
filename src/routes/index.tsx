@@ -334,25 +334,28 @@ function HomePage() {
         });
       }
 
-      gsap.utils.toArray<HTMLElement>(".image-band-copy").forEach((copy) => {
-        const section = copy.closest<HTMLElement>(".image-band");
-        if (!section || copy.dataset.staticCopy === "true") return;
+      const imageBandMotion = gsap.matchMedia();
+      imageBandMotion.add("(min-width: 768px)", () => {
+        gsap.utils.toArray<HTMLElement>(".image-band-copy").forEach((copy) => {
+          const section = copy.closest<HTMLElement>(".image-band");
+          if (!section || copy.dataset.staticCopy === "true") return;
 
-        gsap.fromTo(
-          copy,
-          { y: 0 },
-          {
-            y: () => -window.innerHeight,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-              invalidateOnRefresh: true,
+          gsap.fromTo(
+            copy,
+            { y: 0 },
+            {
+              y: () => -window.innerHeight,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
             },
-          },
-        );
+          );
+        });
       });
 
       gsap.utils.toArray<HTMLElement>(".artboard-rise", mainRef.current!).forEach((el) => {
@@ -364,6 +367,8 @@ function HomePage() {
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
+
+      return () => imageBandMotion.revert();
     },
     { scope: mainRef },
   );
@@ -667,7 +672,7 @@ function ImageBand({
 }) {
   return (
     <section
-      className="image-band sticky top-0 min-h-[100dvh] overflow-hidden bg-plum"
+      className="image-band sticky top-0 min-h-[100svh] overflow-hidden bg-plum md:min-h-[100dvh]"
       style={{ zIndex: layerIndex }}
     >
       <img
@@ -678,7 +683,7 @@ function ImageBand({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/68 via-[#1B1B1B]/20 to-[#1B1B1B]/22" />
       <div
-        className="image-band-copy relative z-10 flex min-h-[100dvh] items-center justify-center px-5 py-20 text-center will-change-transform sm:px-12"
+        className="image-band-copy relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-20 text-center will-change-transform sm:px-12 md:min-h-[100dvh]"
         data-static-copy={staticCopy ? "true" : undefined}
       >
         <div className="mx-auto flex max-w-5xl flex-col items-center">

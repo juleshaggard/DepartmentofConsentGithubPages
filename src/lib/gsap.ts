@@ -4,6 +4,10 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+if (typeof window !== "undefined") {
+  ScrollTrigger.config({ ignoreMobileResize: true });
+}
+
 /** True when the visitor asked for reduced motion (SSR-safe). */
 export function prefersReducedMotion() {
   return (

@@ -165,18 +165,57 @@ export function MarketingLayout({
         return;
       }
 
+      const mobileQuery = window.matchMedia("(max-width: 1023px)");
+      let stableViewportHeight = window.innerHeight;
+
       const syncHeaderToHero = () => {
-        const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-        const mobileRevealOffset = isMobile ? Math.min(window.innerHeight * 0.35, 280) : 0;
+        const mobileRevealOffset = mobileQuery.matches
+          ? Math.min(stableViewportHeight * 0.35, 280)
+          : 0;
         showHeader(heroElement.getBoundingClientRect().bottom <= mobileRevealOffset);
+      };
+
+      const updateStableViewportHeight = () => {
+        stableViewportHeight = window.innerHeight;
+        syncHeaderToHero();
+      };
+
+      const handleResize = () => {
+        if (mobileQuery.matches) return;
+        updateStableViewportHeight();
+      };
+
+      const handleOrientationChange = () => {
+        window.requestAnimationFrame(() => {
+          stableViewportHeight = window.innerHeight;
+          syncHeaderToHero();
+        });
+      };
+
+      const addMobileQueryListener = () => {
+        if (typeof mobileQuery.addEventListener === "function") {
+          mobileQuery.addEventListener("change", updateStableViewportHeight);
+          return;
+        }
+
+        mobileQuery.addListener(updateStableViewportHeight);
+      };
+
+      const removeMobileQueryListener = () => {
+        if (typeof mobileQuery.removeEventListener === "function") {
+          mobileQuery.removeEventListener("change", updateStableViewportHeight);
+          return;
+        }
+
+        mobileQuery.removeListener(updateStableViewportHeight);
       };
 
       syncHeaderToHero();
 
       window.addEventListener("scroll", syncHeaderToHero, { passive: true });
-      window.addEventListener("resize", syncHeaderToHero);
-      window.addEventListener("orientationchange", syncHeaderToHero);
-      window.visualViewport?.addEventListener("resize", syncHeaderToHero);
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("orientationchange", handleOrientationChange);
+      addMobileQueryListener();
 
       const trigger = ScrollTrigger.create({
         trigger: heroElement,
@@ -193,9 +232,9 @@ export function MarketingLayout({
       return () => {
         trigger.kill();
         window.removeEventListener("scroll", syncHeaderToHero);
-        window.removeEventListener("resize", syncHeaderToHero);
-        window.removeEventListener("orientationchange", syncHeaderToHero);
-        window.visualViewport?.removeEventListener("resize", syncHeaderToHero);
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("orientationchange", handleOrientationChange);
+        removeMobileQueryListener();
       };
     },
     { dependencies: [menuOpen], revertOnUpdate: true },

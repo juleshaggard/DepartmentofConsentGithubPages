@@ -1,3 +1,4 @@
+import { spawn } from "node:child_process";
 import { createReadStream } from "node:fs";
 import { readFile, stat } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -8,6 +9,7 @@ const indexPath = path.join(root, "index.html");
 const host = process.env.HOST || "127.0.0.1";
 const port = Number(process.env.PORT || 4173);
 const basePath = normalizeBase(process.env.DOC_PAGES_BASE || "/DepartmentofConsentGithubPages/");
+let rebuildPromise;
 
 const mimeTypes = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -94,6 +96,14 @@ async function resolveFile(requestUrl) {
 }
 
 async function handleRequest(req, res) {
+  try {
+    await ensureBuildMatchesPreviewBase();
+  } catch (error) {
+    sendHead(res, 503, { "Content-Type": "text/html; charset=utf-8" });
+    res.end(renderBuildProblem(error));
+    return;
+  }
+
   const resolved = await resolveFile(req.url);
 
   if (resolved?.redirect) {
@@ -121,7 +131,7 @@ async function handleRequest(req, res) {
   createReadStream(resolved.filePath).pipe(res);
 }
 
-async function assertBuildMatchesPreviewBase() {
+async function getBuildMismatch() {
   const html = await readFile(indexPath, "utf8");
   const expectedAssetPrefix = basePath === "/" ? "/assets/" : `${basePath}/assets/`;
   const expectedStaticPrefix = basePath === "/" ? "/favicon.png" : `${basePath}/favicon.png`;
@@ -133,25 +143,134 @@ async function assertBuildMatchesPreviewBase() {
     html.includes("import('/assets/");
 
   if (basePath !== "/" && hasRootAssets && !hasExpectedBase) {
-    console.error("");
-    console.error("This dist/client build was generated for the custom-domain root path (/).");
-    console.error(`Local staging is trying to serve it at ${basePath}/, which can blank the app.`);
-    console.error("");
-    console.error("Run this instead:");
-    console.error("");
-    console.error("  npm run build:pages:local");
-    console.error("  npm run preview:pages");
-    console.error("");
-    process.exit(1);
+    return {
+      detail: "This dist/client build was generated for the custom-domain root path (/).",
+      impact: `Local staging is trying to serve it at ${basePath}/, which can blank the app.`,
+      script: "build:pages:local",
+    };
   }
 
   if (basePath === "/" && html.includes("/DepartmentofConsentGithubPages/assets/")) {
-    console.error("");
-    console.error("This dist/client build was generated for the GitHub Pages repository path.");
-    console.error("Root preview expects a custom-domain/root-path build.");
-    console.error("");
-    process.exit(1);
+    return {
+      detail: "This dist/client build was generated for the GitHub Pages repository path.",
+      impact: "Root preview expects a custom-domain/root-path build.",
+      script: "build:pages",
+    };
   }
+
+  return undefined;
+}
+
+async function ensureBuildMatchesPreviewBase() {
+  const mismatch = await getBuildMismatch();
+  if (!mismatch) return;
+
+  if (process.env.DOC_PREVIEW_AUTO_REBUILD === "0") {
+    throw new Error(`${mismatch.detail} ${mismatch.impact} Run npm run ${mismatch.script}.`);
+  }
+
+  if (!rebuildPromise) {
+    console.warn("");
+    console.warn(mismatch.detail);
+    console.warn(mismatch.impact);
+    console.warn(`Rebuilding local preview with \`npm run ${mismatch.script}\`...`);
+    console.warn("");
+    rebuildPromise = runNpmScript(mismatch.script).finally(() => {
+      rebuildPromise = undefined;
+    });
+  }
+
+  await rebuildPromise;
+
+  const remainingMismatch = await getBuildMismatch();
+  if (remainingMismatch) {
+    throw new Error(
+      `${remainingMismatch.detail} ${remainingMismatch.impact} Automatic rebuild did not fix dist/client.`,
+    );
+  }
+}
+
+function runNpmScript(script) {
+  return new Promise((resolve, reject) => {
+    const child = spawn("npm", ["run", script], {
+      cwd: process.cwd(),
+      env: process.env,
+      stdio: "inherit",
+    });
+
+    child.on("error", reject);
+    child.on("exit", (code, signal) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+
+      reject(new Error(`npm run ${script} failed${signal ? ` with signal ${signal}` : ""}.`));
+    });
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderBuildProblem(error) {
+  const message = escapeHtml(error?.stack || error?.message || error);
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local staging build mismatch</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #fff;
+        color: #1b1b1b;
+        font: 16px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      main {
+        max-width: 44rem;
+        padding: 2rem;
+      }
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2rem, 7vw, 4rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+      code,
+      pre {
+        background: #f5f5f5;
+        border-radius: 0.5rem;
+      }
+      code {
+        padding: 0.12rem 0.3rem;
+      }
+      pre {
+        overflow: auto;
+        padding: 1rem;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Preview needs a local build.</h1>
+      <p>The preview server caught a build mismatch before the app could blank out.</p>
+      <p>Run <code>npm run build:pages:local</code>, then refresh this page.</p>
+      <pre>${message}</pre>
+    </main>
+  </body>
+</html>`;
 }
 
 const rootStat = await pathExists(root);
@@ -166,7 +285,7 @@ if (!indexStat?.isFile()) {
   process.exit(1);
 }
 
-await assertBuildMatchesPreviewBase();
+await ensureBuildMatchesPreviewBase();
 
 const server = createServer((req, res) => {
   handleRequest(req, res).catch((error) => {
