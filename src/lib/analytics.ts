@@ -7,7 +7,7 @@ type BookingAnalyticsEvent =
   | "package_click"
   | "event_prep_click"
   | "event_companion_inquiry_click"
-  | "calendly_opened";
+  | "scheduler_opened";
 
 declare global {
   interface Window {

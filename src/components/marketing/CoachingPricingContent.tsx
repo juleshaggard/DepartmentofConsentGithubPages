@@ -497,13 +497,13 @@ function BookingButton({
   eventName: Parameters<typeof trackBookingAction>[0];
   label: string;
 }) {
-  const isCalendly = Boolean(href);
+  const hasSchedulerLink = Boolean(href);
   const handleClick = () => {
     trackBookingAction(eventName);
-    if (isCalendly) trackBookingAction("calendly_opened");
+    if (hasSchedulerLink) trackBookingAction("scheduler_opened");
   };
 
-  if (!isCalendly) {
+  if (!hasSchedulerLink) {
     return (
       <Link to="/book" className="btn-editorial w-full sm:w-auto" onClick={handleClick}>
         {label}

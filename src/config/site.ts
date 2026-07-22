@@ -7,7 +7,44 @@
  */
 
 const env = import.meta.env;
-const discoveryCallUrl = "https://calendly.com/jules-departmentofconsent/free-discovery-call";
+const defaultCalBaseUrl = "https://cal.com/jules-darling-3rhr9n";
+const fallbackDiscoveryCallUrl = `${defaultCalBaseUrl}/free-discovery-call`;
+
+const calBaseUrl = (env.VITE_CAL_BASE_URL || defaultCalBaseUrl).replace(/\/$/, "");
+const calEventUrl = (slug: string) => (calBaseUrl ? `${calBaseUrl}/${slug}` : "");
+
+const bookingLinks = {
+  discoveryCall:
+    env.VITE_CAL_DISCOVERY_CALL_URL ||
+    calEventUrl("free-discovery-call") ||
+    env.VITE_CALENDLY_DISCOVERY_CALL_URL ||
+    fallbackDiscoveryCallUrl,
+  coachingSession:
+    env.VITE_CAL_COACHING_SESSION_URL ||
+    calEventUrl("one-coaching-session") ||
+    env.VITE_CALENDLY_COACHING_SESSION_URL ||
+    "",
+  deepDive:
+    env.VITE_CAL_DEEP_DIVE_URL ||
+    calEventUrl("deep-dive-session") ||
+    env.VITE_CALENDLY_DEEP_DIVE_URL ||
+    "",
+  package:
+    env.VITE_CAL_PACKAGE_URL ||
+    calEventUrl("kink-curious-to-kink-confident") ||
+    env.VITE_CALENDLY_PACKAGE_URL ||
+    "",
+  eventPrep:
+    env.VITE_CAL_EVENT_PREP_URL ||
+    calEventUrl("first-event-preparation") ||
+    env.VITE_CALENDLY_EVENT_PREP_URL ||
+    "",
+  eventCompanionInquiry:
+    env.VITE_CAL_EVENT_COMPANION_INQUIRY_URL ||
+    calEventUrl("event-companion-consultation") ||
+    env.VITE_CALENDLY_EVENT_COMPANION_INQUIRY_URL ||
+    "",
+};
 
 export const siteConfig = {
   /** Public brand name */
@@ -26,20 +63,13 @@ export const siteConfig = {
   contactEmail: env.VITE_CONTACT_EMAIL || "support@departmentofconsent.com",
 
   /**
-   * External scheduling URL (Cal.com, Calendly, Acuity…).
+   * External scheduling URL (Cal.com, Calendly, Acuity...).
    * When empty, the booking page falls back to the inquiry form.
    */
-  bookingUrl: env.VITE_BOOKING_URL || discoveryCallUrl,
+  bookingUrl: env.VITE_BOOKING_URL || bookingLinks.discoveryCall,
 
-  /** Calendly scheduling URLs for the pricing flow. Keep paid URLs blank until approved/published. */
-  bookingLinks: {
-    discoveryCall: env.VITE_CALENDLY_DISCOVERY_CALL_URL || discoveryCallUrl,
-    coachingSession: env.VITE_CALENDLY_COACHING_SESSION_URL || "",
-    deepDive: env.VITE_CALENDLY_DEEP_DIVE_URL || "",
-    package: env.VITE_CALENDLY_PACKAGE_URL || "",
-    eventPrep: env.VITE_CALENDLY_EVENT_PREP_URL || "",
-    eventCompanionInquiry: env.VITE_CALENDLY_EVENT_COMPANION_INQUIRY_URL || "",
-  },
+  /** Scheduler URLs for the pricing flow. Cal.com env vars win; legacy Calendly vars stay as fallback. */
+  bookingLinks,
 
   /**
    * Inquiry form endpoint (Formspree/Basin/own worker…). When empty, the
