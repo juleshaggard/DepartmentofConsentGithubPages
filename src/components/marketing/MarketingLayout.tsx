@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
@@ -31,6 +31,10 @@ const FOOTER_LINKS = [
 ] as const;
 
 const navCtaLabel = "Book a Free Coaching Session";
+const NEWSLETTER_MODAL_DISABLED_PATHS = new Set([
+  "/play-party-negotiation-form",
+  "/play-party-negotiation-checklist",
+]);
 
 /** "DOC — Department of Consent" lockup from the artboard nav. */
 export function Lockup({ light = false }: { light?: boolean }) {
@@ -120,9 +124,12 @@ export function MarketingLayout({
   mainRef?: React.Ref<HTMLDivElement>;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
   const headerRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const hasHero = Boolean(hero);
+  const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+  const showNewsletterModal = !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
 
   useGSAP(
     () => {
@@ -324,7 +331,7 @@ export function MarketingLayout({
       </main>
 
       <MarketingFooter />
-      <NewsletterScrollModal />
+      {showNewsletterModal && <NewsletterScrollModal />}
       <CtaColorFill />
     </div>
   );

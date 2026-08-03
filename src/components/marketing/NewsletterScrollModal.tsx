@@ -1,17 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { CheckCircle2, ClipboardCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { NewsletterSignup } from "./NewsletterSignup";
 
-const STORAGE_KEY = "doc-newsletter-scroll-modal-dismissed-v1";
+const STORAGE_KEY = "doc-negotiation-form-scroll-modal-dismissed-v1";
 const UPWARD_SCROLL_DELTA = -18;
-const MODAL_KIT_FORM = {
-  provider: "kit",
-  endpoint: "https://app.kit.com/forms/9688724/subscriptions",
-  emailFieldName: "email_address",
-  kitFormId: "9688724",
-  kitUid: "ae1eab16cb",
-  kitFormat: "modal",
-};
+const negotiationFormPath = "/play-party-negotiation-form";
+const modalPoints = ["Limits and maybes", "Signals and pacing", "Aftercare and exit plans"];
 
 function hasDismissedModal() {
   try {
@@ -76,20 +71,53 @@ export function NewsletterScrollModal() {
     }
   };
 
+  const handleCtaClick = () => {
+    hasTriggered.current = true;
+    markModalDismissed();
+    setOpen(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-[min(92vw,34rem)] overflow-hidden rounded-[1.75rem] border-0 bg-white p-0 text-[#1B1B1B] shadow-2xl">
-        <DialogTitle className="sr-only">Join the Department of Consent mailing list</DialogTitle>
-        <DialogDescription className="sr-only">
-          Email-only signup for occasional Department of Consent notes.
-        </DialogDescription>
-        <div className="bg-pinkcard px-6 pb-7 pt-8 sm:px-8 sm:pb-8">
-          <NewsletterSignup
-            variant="modal"
-            className="pr-7 sm:pr-8"
-            formConfig={MODAL_KIT_FORM}
-            onValidSubmit={markModalDismissed}
-          />
+      <DialogContent className="max-w-[min(92vw,34rem)] overflow-hidden rounded-[1.75rem] border border-plum/10 bg-white p-0 text-[#1B1B1B] shadow-2xl">
+        <div className="px-6 pb-7 pt-8 sm:px-8 sm:pb-8">
+          <div className="flex items-start gap-3 pr-8">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral text-white">
+              <ClipboardCheck className="h-5 w-5" aria-hidden strokeWidth={2.25} />
+            </span>
+            <div>
+              <p className="section-label text-coral">Free form</p>
+              <DialogTitle className="display-condensed mt-1 text-4xl leading-[0.9] text-coral sm:text-5xl">
+                Play Party Negotiation Form
+              </DialogTitle>
+            </div>
+          </div>
+
+          <DialogDescription className="mt-5 font-display text-lg leading-relaxed text-plum/76">
+            Talk through boundaries, risk, signals, logistics, and aftercare before you say yes at a
+            play party.
+          </DialogDescription>
+
+          <ul className="mt-5 grid gap-2 text-sm font-semibold text-plum/78">
+            {modalPoints.map((point) => (
+              <li key={point} className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-[#5BCEFA]" aria-hidden />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            to={negotiationFormPath}
+            className="btn-editorial mt-6 w-full"
+            onClick={handleCtaClick}
+          >
+            <span>Get the free form</span>
+          </Link>
+
+          <p className="mt-4 text-xs leading-relaxed text-plum/48">
+            One email field. We will send you the checklist link.
+          </p>
         </div>
       </DialogContent>
     </Dialog>
