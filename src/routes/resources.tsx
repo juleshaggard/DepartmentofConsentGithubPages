@@ -55,6 +55,19 @@ function ResourcesPage() {
       <Section wide ruled>
         <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Featured guides</h2>
         <div className="mt-9 grid gap-5 sm:grid-cols-2">
+          <Link
+            to="/play-party-negotiation-form"
+            className="group relative rounded-3xl bg-[#1B1B1B] px-6 py-7 text-white transition-transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+          >
+            <p className="section-label !text-[#5BCEFA]">Free form</p>
+            <h3 className="display-condensed text-2xl text-coral mt-1">
+              Play Party Negotiation Form
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-white/72">
+              A checklist for talking through boundaries, risks, signals, logistics, and aftercare
+              before a scene.
+            </p>
+          </Link>
           {allGuides.map((g) => (
             <Link
               key={g.slug}

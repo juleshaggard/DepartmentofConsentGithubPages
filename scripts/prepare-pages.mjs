@@ -49,6 +49,7 @@ const marketingPaths = [
   "/guides/how-to-enter-the-kink-scene",
   "/guides/how-to-negotiate-your-first-scene",
   "/guides/kink-red-flags-for-beginners",
+  "/play-party-negotiation-form",
 ];
 
 const urls = marketingPaths

@@ -15,6 +15,8 @@ import { Route as SceneNegotiatorRouteImport } from './routes/scene-negotiator'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PlayPartyNegotiationFormRouteImport } from './routes/play-party-negotiation-form'
+import { Route as PlayPartyNegotiationChecklistRouteImport } from './routes/play-party-negotiation-checklist'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CoachingRouteImport } from './routes/coaching'
@@ -72,6 +74,18 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlayPartyNegotiationFormRoute =
+  PlayPartyNegotiationFormRouteImport.update({
+    id: '/play-party-negotiation-form',
+    path: '/play-party-negotiation-form',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PlayPartyNegotiationChecklistRoute =
+  PlayPartyNegotiationChecklistRouteImport.update({
+    id: '/play-party-negotiation-checklist',
+    path: '/play-party-negotiation-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -227,6 +241,8 @@ export interface FileRoutesByFullPath {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
+  '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -261,6 +277,8 @@ export interface FileRoutesByTo {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
+  '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -295,6 +313,8 @@ export interface FileRoutesById {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
+  '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -331,6 +351,8 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/play-party-negotiation-checklist'
+    | '/play-party-negotiation-form'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -365,6 +387,8 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/play-party-negotiation-checklist'
+    | '/play-party-negotiation-form'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -398,6 +422,8 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/play-party-negotiation-checklist'
+    | '/play-party-negotiation-form'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -433,6 +459,8 @@ export interface RootRouteChildren {
   CoachingRoute: typeof CoachingRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
+  PlayPartyNegotiationChecklistRoute: typeof PlayPartyNegotiationChecklistRoute
+  PlayPartyNegotiationFormRoute: typeof PlayPartyNegotiationFormRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -491,6 +519,20 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play-party-negotiation-form': {
+      id: '/play-party-negotiation-form'
+      path: '/play-party-negotiation-form'
+      fullPath: '/play-party-negotiation-form'
+      preLoaderRoute: typeof PlayPartyNegotiationFormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play-party-negotiation-checklist': {
+      id: '/play-party-negotiation-checklist'
+      path: '/play-party-negotiation-checklist'
+      fullPath: '/play-party-negotiation-checklist'
+      preLoaderRoute: typeof PlayPartyNegotiationChecklistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -723,6 +765,8 @@ const rootRouteChildren: RootRouteChildren = {
   CoachingRoute: CoachingRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
+  PlayPartyNegotiationChecklistRoute: PlayPartyNegotiationChecklistRoute,
+  PlayPartyNegotiationFormRoute: PlayPartyNegotiationFormRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,

@@ -111,6 +111,13 @@ function AboutPage() {
                 </a>
                 , a handmade boutique kink store selling collars, impact toys, and custom orders.
               </p>
+              <p>
+                I also host{" "}
+                <a href="https://www.kinkin10.com/" target="_blank" rel="noreferrer">
+                  Kink in 10
+                </a>
+                , a kink podcast for beginners.
+              </p>
             </section>
 
             <section className="space-y-2">

@@ -23,8 +23,8 @@ export default defineConfig({
             failOnError: true,
             concurrency: 1,
           },
-          // Public marketing pages (indexed) + the Scene Negotiator entry
-          // point (unlinked, noindex — kept out of sitemap.xml).
+          // Public marketing pages (indexed) + unlinked noindex entry
+          // points kept out of sitemap.xml.
           pages: [
             { path: "/" },
             { path: "/coaching" },
@@ -45,6 +45,8 @@ export default defineConfig({
             { path: "/guides/how-to-enter-the-kink-scene" },
             { path: "/guides/how-to-negotiate-your-first-scene" },
             { path: "/guides/kink-red-flags-for-beginners" },
+            { path: "/play-party-negotiation-form" },
+            { path: "/play-party-negotiation-checklist" },
             { path: "/scene-negotiator" },
           ],
           sitemap: { enabled: false },
