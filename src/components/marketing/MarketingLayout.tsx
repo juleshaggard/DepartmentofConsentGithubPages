@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, Podcast, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
@@ -12,8 +12,8 @@ import navLogo from "../../../assets/Logo.svg";
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
-  { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
+  { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
 ] as const;
 
 const FOOTER_LINKS = [
@@ -266,17 +266,36 @@ export function MarketingLayout({
             <img src={navLogo} alt="Department of Consent" className="h-8 w-auto sm:h-9" />
           </Link>
 
-          <nav aria-label="Main" className="hidden lg:flex items-center gap-7">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="label-condensed text-[0.8125rem] text-plum hover:text-coral"
-                activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav aria-label="Main" className="hidden items-center gap-6 lg:flex xl:gap-7">
+            {NAV_ITEMS.map((item) => {
+              if ("href" in item) {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="label-condensed inline-flex items-center gap-1.5 text-[0.8125rem] text-plum hover:text-coral"
+                  >
+                    <Icon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="label-condensed text-[0.8125rem] text-plum hover:text-coral"
+                  activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <a href={siteConfig.bookingLinks.discoveryCall} className="btn-editorial !px-5 !py-2.5">
               {navCtaLabel}
             </a>
@@ -301,17 +320,38 @@ export function MarketingLayout({
             className="lg:hidden border-t border-plum/10 bg-white px-5 py-4"
           >
             <ul className="flex flex-col gap-1">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setMenuOpen(false)}
-                    className="label-condensed block py-2.5 text-base text-plum"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {NAV_ITEMS.map((item) => {
+                if ("href" in item) {
+                  const Icon = item.icon;
+
+                  return (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => setMenuOpen(false)}
+                        className="label-condensed flex items-center gap-2 py-2.5 text-base text-plum"
+                      >
+                        <Icon className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
+                        {item.label}
+                      </a>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setMenuOpen(false)}
+                      className="label-condensed block py-2.5 text-base text-plum"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
               <li className="pt-3">
                 <a
                   href={siteConfig.bookingLinks.discoveryCall}

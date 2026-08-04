@@ -334,30 +334,6 @@ function HomePage() {
         });
       }
 
-      const imageBandMotion = gsap.matchMedia();
-      imageBandMotion.add("(min-width: 768px)", () => {
-        gsap.utils.toArray<HTMLElement>(".image-band-copy").forEach((copy) => {
-          const section = copy.closest<HTMLElement>(".image-band");
-          if (!section || copy.dataset.staticCopy === "true") return;
-
-          gsap.fromTo(
-            copy,
-            { y: 0 },
-            {
-              y: () => -window.innerHeight,
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-                invalidateOnRefresh: true,
-              },
-            },
-          );
-        });
-      });
-
       gsap.utils.toArray<HTMLElement>(".artboard-rise", mainRef.current!).forEach((el) => {
         gsap.from(el, {
           y: 26,
@@ -367,8 +343,6 @@ function HomePage() {
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
-
-      return () => imageBandMotion.revert();
     },
     { scope: mainRef },
   );
@@ -451,7 +425,6 @@ function HomePage() {
           label="Learn more"
           position="object-[30%_50%]"
           layerIndex={3}
-          staticCopy
         />
       </section>
 
@@ -660,7 +633,6 @@ function ImageBand({
   label,
   position,
   layerIndex,
-  staticCopy = false,
 }: {
   image: string;
   title: string;
@@ -668,11 +640,10 @@ function ImageBand({
   label: string;
   position: string;
   layerIndex: number;
-  staticCopy?: boolean;
 }) {
   return (
     <section
-      className="image-band sticky top-0 min-h-[100svh] overflow-hidden bg-plum md:min-h-[100dvh]"
+      className="image-band relative min-h-[100svh] overflow-hidden bg-plum md:min-h-[100dvh]"
       style={{ zIndex: layerIndex }}
     >
       <img
@@ -682,10 +653,7 @@ function ImageBand({
         className={`absolute inset-0 h-full w-full object-cover ${position}`}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/68 via-[#1B1B1B]/20 to-[#1B1B1B]/22" />
-      <div
-        className="image-band-copy relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-20 text-center will-change-transform sm:px-12 md:min-h-[100dvh]"
-        data-static-copy={staticCopy ? "true" : undefined}
-      >
+      <div className="image-band-copy relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-20 text-center sm:px-12 md:min-h-[100dvh]">
         <div className="mx-auto flex max-w-5xl flex-col items-center">
           <h2 className="display-condensed text-white text-[clamp(3.3rem,13vw,7.5rem)] leading-[0.86] drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
             {title}

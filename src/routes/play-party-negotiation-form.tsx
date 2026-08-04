@@ -86,9 +86,8 @@ function PlayPartyNegotiationFormPage() {
       <Section wide className="!pt-4">
         <div className="grid gap-6 rounded-[1.5rem] bg-[#1B1B1B] px-6 py-8 text-white sm:px-8 lg:grid-cols-[0.7fr_1fr] lg:items-center">
           <div>
-            <p className="section-label !text-[#5BCEFA]">What is inside</p>
-            <h2 className="display-condensed mt-2 max-w-[10ch] text-4xl leading-[0.88] text-coral sm:text-6xl">
-              Before you say yes.
+            <h2 className="display-condensed max-w-[10ch] text-4xl leading-[0.88] text-coral sm:text-6xl">
+              You will get...
             </h2>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
