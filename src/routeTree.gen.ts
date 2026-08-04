@@ -17,6 +17,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PlayPartyNegotiationFormRouteImport } from './routes/play-party-negotiation-form'
 import { Route as PlayPartyNegotiationChecklistRouteImport } from './routes/play-party-negotiation-checklist'
+import { Route as NegotiateRouteImport } from './routes/negotiate'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CoachingRouteImport } from './routes/coaching'
@@ -86,6 +87,11 @@ const PlayPartyNegotiationChecklistRoute =
     path: '/play-party-negotiation-checklist',
     getParentRoute: () => rootRouteImport,
   } as any)
+const NegotiateRoute = NegotiateRouteImport.update({
+  id: '/negotiate',
+  path: '/negotiate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -241,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
@@ -277,6 +284,7 @@ export interface FileRoutesByTo {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
@@ -313,6 +321,7 @@ export interface FileRoutesById {
   '/coaching': typeof CoachingRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faq': typeof FaqRoute
+  '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
   '/pricing': typeof PricingRoute
@@ -351,6 +360,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
     | '/pricing'
@@ -387,6 +397,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
     | '/pricing'
@@ -422,6 +433,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/disclaimer'
     | '/faq'
+    | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
     | '/pricing'
@@ -459,6 +471,7 @@ export interface RootRouteChildren {
   CoachingRoute: typeof CoachingRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqRoute: typeof FaqRoute
+  NegotiateRoute: typeof NegotiateRoute
   PlayPartyNegotiationChecklistRoute: typeof PlayPartyNegotiationChecklistRoute
   PlayPartyNegotiationFormRoute: typeof PlayPartyNegotiationFormRoute
   PricingRoute: typeof PricingRoute
@@ -533,6 +546,13 @@ declare module '@tanstack/react-router' {
       path: '/play-party-negotiation-checklist'
       fullPath: '/play-party-negotiation-checklist'
       preLoaderRoute: typeof PlayPartyNegotiationChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/negotiate': {
+      id: '/negotiate'
+      path: '/negotiate'
+      fullPath: '/negotiate'
+      preLoaderRoute: typeof NegotiateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -765,6 +785,7 @@ const rootRouteChildren: RootRouteChildren = {
   CoachingRoute: CoachingRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqRoute: FaqRoute,
+  NegotiateRoute: NegotiateRoute,
   PlayPartyNegotiationChecklistRoute: PlayPartyNegotiationChecklistRoute,
   PlayPartyNegotiationFormRoute: PlayPartyNegotiationFormRoute,
   PricingRoute: PricingRoute,

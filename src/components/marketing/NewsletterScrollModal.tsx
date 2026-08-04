@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 
 const STORAGE_KEY = "doc-negotiation-form-scroll-modal-dismissed-v1";
 const UPWARD_SCROLL_DELTA = -18;
-const negotiationFormPath = "/play-party-negotiation-form";
+const negotiationFormPath = "/negotiate";
 const modalPoints = ["Limits and maybes", "Signals and pacing", "Aftercare and exit plans"];
 
 function hasDismissedModal() {

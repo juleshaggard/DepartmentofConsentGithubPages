@@ -32,6 +32,7 @@ const FOOTER_LINKS = [
 
 const navCtaLabel = "Book a Free Coaching Session";
 const NEWSLETTER_MODAL_DISABLED_PATHS = new Set([
+  "/negotiate",
   "/play-party-negotiation-form",
   "/play-party-negotiation-checklist",
 ]);

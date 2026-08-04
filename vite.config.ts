@@ -45,6 +45,7 @@ export default defineConfig({
             { path: "/guides/how-to-enter-the-kink-scene" },
             { path: "/guides/how-to-negotiate-your-first-scene" },
             { path: "/guides/kink-red-flags-for-beginners" },
+            { path: "/negotiate" },
             { path: "/play-party-negotiation-form" },
             { path: "/play-party-negotiation-checklist" },
             { path: "/scene-negotiator" },

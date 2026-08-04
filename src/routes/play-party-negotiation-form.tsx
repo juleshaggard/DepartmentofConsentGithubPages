@@ -7,10 +7,10 @@ import { Breadcrumbs, ButtonLink, Container, Section } from "@/components/market
 import { pageHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-const pagePath = "/play-party-negotiation-form";
+export const negotiationFormPath = "/negotiate";
 const checklistPath = "/play-party-negotiation-checklist";
-const pageTitle = "Free Play Party Negotiation Form | Department of Consent";
-const pageDescription =
+export const negotiationFormTitle = "Free Play Party Negotiation Form | Department of Consent";
+export const negotiationFormDescription =
   "Get a practical play party negotiation form for discussing boundaries, risks, signals, logistics, and aftercare before a kink scene.";
 
 const KIT_FORM = {
@@ -40,21 +40,21 @@ const CHECKLIST_TOPICS = [
 export const Route = createFileRoute("/play-party-negotiation-form")({
   head: () =>
     pageHead({
-      title: pageTitle,
-      description: pageDescription,
-      path: pagePath,
+      title: negotiationFormTitle,
+      description: negotiationFormDescription,
+      path: negotiationFormPath,
     }),
   component: PlayPartyNegotiationFormPage,
 });
 
-function PlayPartyNegotiationFormPage() {
+export function PlayPartyNegotiationFormPage() {
   return (
     <MarketingLayout>
       <Container>
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
-            { label: "Play Party Negotiation Form", path: pagePath },
+            { label: "Play Party Negotiation Form", path: negotiationFormPath },
           ]}
         />
       </Container>
@@ -121,7 +121,7 @@ function PlayPartyNegotiationFormPage() {
           "@context": "https://schema.org",
           "@type": "CreativeWork",
           name: "Play Party Negotiation Form",
-          description: pageDescription,
+          description: negotiationFormDescription,
         }}
       />
     </MarketingLayout>
