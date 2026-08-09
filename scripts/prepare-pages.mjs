@@ -53,6 +53,7 @@ const marketingPaths = [
   "/guides/how-to-negotiate-your-first-scene",
   "/guides/kink-red-flags-for-beginners",
   "/negotiate",
+  "/zines",
 ];
 
 async function discoverIndexRoutes(directory, relativeDirectory = "") {
@@ -74,7 +75,11 @@ const shopPaths = (await discoverIndexRoutes(path.join(clientDir, "shop"), ""))
   .map((route) => (route === "/" ? "/shop" : `/shop${route}`))
   .sort();
 
-const sitemapPaths = Array.from(new Set([...marketingPaths, ...shopPaths]));
+const zinePaths = (await discoverIndexRoutes(path.join(clientDir, "zines"), ""))
+  .map((route) => (route === "/" ? "/zines" : `/zines${route}`))
+  .sort();
+
+const sitemapPaths = Array.from(new Set([...marketingPaths, ...shopPaths, ...zinePaths]));
 
 const urls = sitemapPaths
   .map(

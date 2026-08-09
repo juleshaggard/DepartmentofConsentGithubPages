@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ZinesRouteImport } from './routes/zines'
 import { Route as WorkshopsRouteImport } from './routes/workshops'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -25,8 +26,10 @@ import { Route as CoachingRouteImport } from './routes/coaching'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ZinesIndexRouteImport } from './routes/zines.index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as SceneNegotiatorIndexRouteImport } from './routes/scene-negotiator.index'
+import { Route as ZinesZineSlugRouteImport } from './routes/zines.$zineSlug'
 import { Route as ServicesPolyamoryCoachingForBeginnersRouteImport } from './routes/services.polyamory-coaching-for-beginners'
 import { Route as ServicesKinkEventAccompanimentRouteImport } from './routes/services.kink-event-accompaniment'
 import { Route as ServicesKinkCoachSanFranciscoRouteImport } from './routes/services.kink-coach-san-francisco'
@@ -49,6 +52,11 @@ import { Route as SceneNegotiatorSessionsSessionIdSceneRouteImport } from './rou
 import { Route as SceneNegotiatorSessionsSessionIdEditRouteImport } from './routes/scene-negotiator.sessions.$sessionId.edit'
 import { Route as SceneNegotiatorSessionsSessionIdAftercareRouteImport } from './routes/scene-negotiator.sessions.$sessionId.aftercare'
 
+const ZinesRoute = ZinesRouteImport.update({
+  id: '/zines',
+  path: '/zines',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkshopsRoute = WorkshopsRouteImport.update({
   id: '/workshops',
   path: '/workshops',
@@ -131,6 +139,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ZinesIndexRoute = ZinesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ZinesRoute,
+} as any)
 const ShopIndexRoute = ShopIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -140,6 +153,11 @@ const SceneNegotiatorIndexRoute = SceneNegotiatorIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SceneNegotiatorRoute,
+} as any)
+const ZinesZineSlugRoute = ZinesZineSlugRouteImport.update({
+  id: '/$zineSlug',
+  path: '/$zineSlug',
+  getParentRoute: () => ZinesRoute,
 } as any)
 const ServicesPolyamoryCoachingForBeginnersRoute =
   ServicesPolyamoryCoachingForBeginnersRouteImport.update({
@@ -282,6 +300,7 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRouteWithChildren
   '/terms': typeof TermsRoute
   '/workshops': typeof WorkshopsRoute
+  '/zines': typeof ZinesRouteWithChildren
   '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
   '/guides/how-to-negotiate-your-first-scene': typeof GuidesHowToNegotiateYourFirstSceneRoute
   '/guides/kink-red-flags-for-beginners': typeof GuidesKinkRedFlagsForBeginnersRoute
@@ -293,8 +312,10 @@ export interface FileRoutesByFullPath {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
   '/shop/': typeof ShopIndexRoute
+  '/zines/': typeof ZinesIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
@@ -332,8 +353,10 @@ export interface FileRoutesByTo {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator': typeof SceneNegotiatorIndexRoute
   '/shop': typeof ShopIndexRoute
+  '/zines': typeof ZinesIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
@@ -363,6 +386,7 @@ export interface FileRoutesById {
   '/shop': typeof ShopRouteWithChildren
   '/terms': typeof TermsRoute
   '/workshops': typeof WorkshopsRoute
+  '/zines': typeof ZinesRouteWithChildren
   '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
   '/guides/how-to-negotiate-your-first-scene': typeof GuidesHowToNegotiateYourFirstSceneRoute
   '/guides/kink-red-flags-for-beginners': typeof GuidesKinkRedFlagsForBeginnersRoute
@@ -374,8 +398,10 @@ export interface FileRoutesById {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
   '/shop/': typeof ShopIndexRoute
+  '/zines/': typeof ZinesIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
@@ -406,6 +432,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/terms'
     | '/workshops'
+    | '/zines'
     | '/guides/how-to-enter-the-kink-scene'
     | '/guides/how-to-negotiate-your-first-scene'
     | '/guides/kink-red-flags-for-beginners'
@@ -417,8 +444,10 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/zines/$zineSlug'
     | '/scene-negotiator/'
     | '/shop/'
+    | '/zines/'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
@@ -456,8 +485,10 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/zines/$zineSlug'
     | '/scene-negotiator'
     | '/shop'
+    | '/zines'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
@@ -486,6 +517,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/terms'
     | '/workshops'
+    | '/zines'
     | '/guides/how-to-enter-the-kink-scene'
     | '/guides/how-to-negotiate-your-first-scene'
     | '/guides/kink-red-flags-for-beginners'
@@ -497,8 +529,10 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/zines/$zineSlug'
     | '/scene-negotiator/'
     | '/shop/'
+    | '/zines/'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
@@ -528,6 +562,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRouteWithChildren
   TermsRoute: typeof TermsRoute
   WorkshopsRoute: typeof WorkshopsRoute
+  ZinesRoute: typeof ZinesRouteWithChildren
   GuidesHowToEnterTheKinkSceneRoute: typeof GuidesHowToEnterTheKinkSceneRoute
   GuidesHowToNegotiateYourFirstSceneRoute: typeof GuidesHowToNegotiateYourFirstSceneRoute
   GuidesKinkRedFlagsForBeginnersRoute: typeof GuidesKinkRedFlagsForBeginnersRoute
@@ -540,6 +575,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/zines': {
+      id: '/zines'
+      path: '/zines'
+      fullPath: '/zines'
+      preLoaderRoute: typeof ZinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workshops': {
       id: '/workshops'
       path: '/workshops'
@@ -652,6 +694,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/zines/': {
+      id: '/zines/'
+      path: '/'
+      fullPath: '/zines/'
+      preLoaderRoute: typeof ZinesIndexRouteImport
+      parentRoute: typeof ZinesRoute
+    }
     '/shop/': {
       id: '/shop/'
       path: '/'
@@ -665,6 +714,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/scene-negotiator/'
       preLoaderRoute: typeof SceneNegotiatorIndexRouteImport
       parentRoute: typeof SceneNegotiatorRoute
+    }
+    '/zines/$zineSlug': {
+      id: '/zines/$zineSlug'
+      path: '/$zineSlug'
+      fullPath: '/zines/$zineSlug'
+      preLoaderRoute: typeof ZinesZineSlugRouteImport
+      parentRoute: typeof ZinesRoute
     }
     '/services/polyamory-coaching-for-beginners': {
       id: '/services/polyamory-coaching-for-beginners'
@@ -868,6 +924,18 @@ const ShopRouteChildren: ShopRouteChildren = {
 
 const ShopRouteWithChildren = ShopRoute._addFileChildren(ShopRouteChildren)
 
+interface ZinesRouteChildren {
+  ZinesZineSlugRoute: typeof ZinesZineSlugRoute
+  ZinesIndexRoute: typeof ZinesIndexRoute
+}
+
+const ZinesRouteChildren: ZinesRouteChildren = {
+  ZinesZineSlugRoute: ZinesZineSlugRoute,
+  ZinesIndexRoute: ZinesIndexRoute,
+}
+
+const ZinesRouteWithChildren = ZinesRoute._addFileChildren(ZinesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -885,6 +953,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRouteWithChildren,
   TermsRoute: TermsRoute,
   WorkshopsRoute: WorkshopsRoute,
+  ZinesRoute: ZinesRouteWithChildren,
   GuidesHowToEnterTheKinkSceneRoute: GuidesHowToEnterTheKinkSceneRoute,
   GuidesHowToNegotiateYourFirstSceneRoute:
     GuidesHowToNegotiateYourFirstSceneRoute,

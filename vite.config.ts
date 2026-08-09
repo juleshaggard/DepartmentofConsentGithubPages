@@ -28,6 +28,7 @@ const PRERENDER_PATHS = [
   "/play-party-negotiation-checklist",
   "/scene-negotiator",
   "/shop",
+  "/zines",
 ] as const;
 
 const PRERENDER_PATH_SET = new Set<string>(PRERENDER_PATHS);
@@ -83,7 +84,11 @@ export default defineConfig({
             }) => {
               if (pagePrerender?.outputPath === "/404") return true;
               const routePath = prerenderRoutePath(pagePath);
-              return PRERENDER_PATH_SET.has(routePath) || routePath.startsWith("/shop/");
+              return (
+                PRERENDER_PATH_SET.has(routePath) ||
+                routePath.startsWith("/shop/") ||
+                routePath.startsWith("/zines/")
+              );
             },
             failOnError: true,
             concurrency: 1,

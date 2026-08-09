@@ -12,6 +12,7 @@ import navLogo from "../../../assets/Logo.svg";
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
+  { label: "Zines", to: "/zines" },
   { label: "Shop", to: "/shop" },
   { label: "About", to: "/about" },
   { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
@@ -24,6 +25,7 @@ const FOOTER_LINKS = [
   { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
   { label: "Shop", to: "/shop" },
+  { label: "Zines", to: "/zines" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "Book", to: "/book" },
@@ -133,8 +135,9 @@ export function MarketingLayout({
   const hasHero = Boolean(hero);
   const normalizedPathname = pathname.replace(/\/$/, "") || "/";
   const isShopPath = normalizedPathname.startsWith("/shop");
+  const isZinePath = normalizedPathname.startsWith("/zines");
   const showNewsletterModal =
-    !isShopPath && !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
+    !isShopPath && !isZinePath && !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
 
   useGSAP(
     () => {
