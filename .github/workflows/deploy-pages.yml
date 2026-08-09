@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * *"
 
 permissions:
   contents: read
@@ -39,6 +41,7 @@ jobs:
           DOC_PAGES_CUSTOM_DOMAIN: departmentofconsent.com
           VITE_SITE_URL: https://departmentofconsent.com
           VITE_GOOGLE_ANALYTICS_ID: G-GYYJEDCDTZ
+          VITE_FOURTHWALL_STOREFRONT_TOKEN: ${{ secrets.FOURTHWALL_STOREFRONT_TOKEN }}
           VITE_NEWSLETTER_PROVIDER: kit
           VITE_NEWSLETTER_ENDPOINT: https://app.kit.com/forms/9683945/subscriptions
           VITE_NEWSLETTER_EMAIL_FIELD: email_address

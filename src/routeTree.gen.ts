@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkshopsRouteImport } from './routes/workshops'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SceneNegotiatorRouteImport } from './routes/scene-negotiator'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -24,6 +25,7 @@ import { Route as CoachingRouteImport } from './routes/coaching'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as SceneNegotiatorIndexRouteImport } from './routes/scene-negotiator.index'
 import { Route as ServicesPolyamoryCoachingForBeginnersRouteImport } from './routes/services.polyamory-coaching-for-beginners'
 import { Route as ServicesKinkEventAccompanimentRouteImport } from './routes/services.kink-event-accompaniment'
@@ -37,6 +39,8 @@ import { Route as GuidesKinkRedFlagsForBeginnersRouteImport } from './routes/gui
 import { Route as GuidesHowToNegotiateYourFirstSceneRouteImport } from './routes/guides.how-to-negotiate-your-first-scene'
 import { Route as GuidesHowToEnterTheKinkSceneRouteImport } from './routes/guides.how-to-enter-the-kink-scene'
 import { Route as SceneNegotiatorSessionsIndexRouteImport } from './routes/scene-negotiator.sessions.index'
+import { Route as ShopProductsProductSlugRouteImport } from './routes/shop.products.$productSlug'
+import { Route as ShopCollectionsCollectionSlugRouteImport } from './routes/shop.collections.$collectionSlug'
 import { Route as SceneNegotiatorSessionsNewRouteImport } from './routes/scene-negotiator.sessions.new'
 import { Route as SceneNegotiatorSceneTokenRouteImport } from './routes/scene-negotiator.scene.$token'
 import { Route as SceneNegotiatorJoinTokenRouteImport } from './routes/scene-negotiator.join.$token'
@@ -53,6 +57,11 @@ const WorkshopsRoute = WorkshopsRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SceneNegotiatorRoute = SceneNegotiatorRouteImport.update({
@@ -121,6 +130,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ShopIndexRoute = ShopIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ShopRoute,
 } as any)
 const SceneNegotiatorIndexRoute = SceneNegotiatorIndexRouteImport.update({
   id: '/',
@@ -197,6 +211,17 @@ const SceneNegotiatorSessionsIndexRoute =
     path: '/sessions/',
     getParentRoute: () => SceneNegotiatorRoute,
   } as any)
+const ShopProductsProductSlugRoute = ShopProductsProductSlugRouteImport.update({
+  id: '/products/$productSlug',
+  path: '/products/$productSlug',
+  getParentRoute: () => ShopRoute,
+} as any)
+const ShopCollectionsCollectionSlugRoute =
+  ShopCollectionsCollectionSlugRouteImport.update({
+    id: '/collections/$collectionSlug',
+    path: '/collections/$collectionSlug',
+    getParentRoute: () => ShopRoute,
+  } as any)
 const SceneNegotiatorSessionsNewRoute =
   SceneNegotiatorSessionsNewRouteImport.update({
     id: '/sessions/new',
@@ -254,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
+  '/shop': typeof ShopRouteWithChildren
   '/terms': typeof TermsRoute
   '/workshops': typeof WorkshopsRoute
   '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
@@ -268,9 +294,12 @@ export interface FileRoutesByFullPath {
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
+  '/shop/': typeof ShopIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/shop/collections/$collectionSlug': typeof ShopCollectionsCollectionSlugRoute
+  '/shop/products/$productSlug': typeof ShopProductsProductSlugRoute
   '/scene-negotiator/sessions/': typeof SceneNegotiatorSessionsIndexRoute
   '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
   '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
@@ -304,9 +333,12 @@ export interface FileRoutesByTo {
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
   '/scene-negotiator': typeof SceneNegotiatorIndexRoute
+  '/shop': typeof ShopIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/shop/collections/$collectionSlug': typeof ShopCollectionsCollectionSlugRoute
+  '/shop/products/$productSlug': typeof ShopProductsProductSlugRoute
   '/scene-negotiator/sessions': typeof SceneNegotiatorSessionsIndexRoute
   '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
   '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
@@ -328,6 +360,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/scene-negotiator': typeof SceneNegotiatorRouteWithChildren
+  '/shop': typeof ShopRouteWithChildren
   '/terms': typeof TermsRoute
   '/workshops': typeof WorkshopsRoute
   '/guides/how-to-enter-the-kink-scene': typeof GuidesHowToEnterTheKinkSceneRoute
@@ -342,9 +375,12 @@ export interface FileRoutesById {
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
+  '/shop/': typeof ShopIndexRoute
   '/scene-negotiator/join/$token': typeof SceneNegotiatorJoinTokenRoute
   '/scene-negotiator/scene/$token': typeof SceneNegotiatorSceneTokenRoute
   '/scene-negotiator/sessions/new': typeof SceneNegotiatorSessionsNewRoute
+  '/shop/collections/$collectionSlug': typeof ShopCollectionsCollectionSlugRoute
+  '/shop/products/$productSlug': typeof ShopProductsProductSlugRoute
   '/scene-negotiator/sessions/': typeof SceneNegotiatorSessionsIndexRoute
   '/scene-negotiator/sessions/$sessionId/aftercare': typeof SceneNegotiatorSessionsSessionIdAftercareRoute
   '/scene-negotiator/sessions/$sessionId/edit': typeof SceneNegotiatorSessionsSessionIdEditRoute
@@ -367,6 +403,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/resources'
     | '/scene-negotiator'
+    | '/shop'
     | '/terms'
     | '/workshops'
     | '/guides/how-to-enter-the-kink-scene'
@@ -381,9 +418,12 @@ export interface FileRouteTypes {
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
     | '/scene-negotiator/'
+    | '/shop/'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
+    | '/shop/collections/$collectionSlug'
+    | '/shop/products/$productSlug'
     | '/scene-negotiator/sessions/'
     | '/scene-negotiator/sessions/$sessionId/aftercare'
     | '/scene-negotiator/sessions/$sessionId/edit'
@@ -417,9 +457,12 @@ export interface FileRouteTypes {
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
     | '/scene-negotiator'
+    | '/shop'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
+    | '/shop/collections/$collectionSlug'
+    | '/shop/products/$productSlug'
     | '/scene-negotiator/sessions'
     | '/scene-negotiator/sessions/$sessionId/aftercare'
     | '/scene-negotiator/sessions/$sessionId/edit'
@@ -440,6 +483,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/resources'
     | '/scene-negotiator'
+    | '/shop'
     | '/terms'
     | '/workshops'
     | '/guides/how-to-enter-the-kink-scene'
@@ -454,9 +498,12 @@ export interface FileRouteTypes {
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
     | '/scene-negotiator/'
+    | '/shop/'
     | '/scene-negotiator/join/$token'
     | '/scene-negotiator/scene/$token'
     | '/scene-negotiator/sessions/new'
+    | '/shop/collections/$collectionSlug'
+    | '/shop/products/$productSlug'
     | '/scene-negotiator/sessions/'
     | '/scene-negotiator/sessions/$sessionId/aftercare'
     | '/scene-negotiator/sessions/$sessionId/edit'
@@ -478,6 +525,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   SceneNegotiatorRoute: typeof SceneNegotiatorRouteWithChildren
+  ShopRoute: typeof ShopRouteWithChildren
   TermsRoute: typeof TermsRoute
   WorkshopsRoute: typeof WorkshopsRoute
   GuidesHowToEnterTheKinkSceneRoute: typeof GuidesHowToEnterTheKinkSceneRoute
@@ -504,6 +552,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scene-negotiator': {
@@ -597,6 +652,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop/': {
+      id: '/shop/'
+      path: '/'
+      fullPath: '/shop/'
+      preLoaderRoute: typeof ShopIndexRouteImport
+      parentRoute: typeof ShopRoute
+    }
     '/scene-negotiator/': {
       id: '/scene-negotiator/'
       path: '/'
@@ -688,6 +750,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SceneNegotiatorSessionsIndexRouteImport
       parentRoute: typeof SceneNegotiatorRoute
     }
+    '/shop/products/$productSlug': {
+      id: '/shop/products/$productSlug'
+      path: '/products/$productSlug'
+      fullPath: '/shop/products/$productSlug'
+      preLoaderRoute: typeof ShopProductsProductSlugRouteImport
+      parentRoute: typeof ShopRoute
+    }
+    '/shop/collections/$collectionSlug': {
+      id: '/shop/collections/$collectionSlug'
+      path: '/collections/$collectionSlug'
+      fullPath: '/shop/collections/$collectionSlug'
+      preLoaderRoute: typeof ShopCollectionsCollectionSlugRouteImport
+      parentRoute: typeof ShopRoute
+    }
     '/scene-negotiator/sessions/new': {
       id: '/scene-negotiator/sessions/new'
       path: '/sessions/new'
@@ -778,6 +854,20 @@ const SceneNegotiatorRouteWithChildren = SceneNegotiatorRoute._addFileChildren(
   SceneNegotiatorRouteChildren,
 )
 
+interface ShopRouteChildren {
+  ShopIndexRoute: typeof ShopIndexRoute
+  ShopCollectionsCollectionSlugRoute: typeof ShopCollectionsCollectionSlugRoute
+  ShopProductsProductSlugRoute: typeof ShopProductsProductSlugRoute
+}
+
+const ShopRouteChildren: ShopRouteChildren = {
+  ShopIndexRoute: ShopIndexRoute,
+  ShopCollectionsCollectionSlugRoute: ShopCollectionsCollectionSlugRoute,
+  ShopProductsProductSlugRoute: ShopProductsProductSlugRoute,
+}
+
+const ShopRouteWithChildren = ShopRoute._addFileChildren(ShopRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -792,6 +882,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   SceneNegotiatorRoute: SceneNegotiatorRouteWithChildren,
+  ShopRoute: ShopRouteWithChildren,
   TermsRoute: TermsRoute,
   WorkshopsRoute: WorkshopsRoute,
   GuidesHowToEnterTheKinkSceneRoute: GuidesHowToEnterTheKinkSceneRoute,

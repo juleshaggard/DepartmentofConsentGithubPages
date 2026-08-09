@@ -12,6 +12,7 @@ import navLogo from "../../../assets/Logo.svg";
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Event Support", to: "/services/kink-event-accompaniment" },
+  { label: "Shop", to: "/shop" },
   { label: "About", to: "/about" },
   { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
 ] as const;
@@ -22,6 +23,7 @@ const FOOTER_LINKS = [
   { label: "Beginner BDSM Coaching", to: "/services/beginner-bdsm-coaching" },
   { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
+  { label: "Shop", to: "/shop" },
   { label: "Guides", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "Book", to: "/book" },
@@ -130,7 +132,9 @@ export function MarketingLayout({
   const heroRef = useRef<HTMLDivElement>(null);
   const hasHero = Boolean(hero);
   const normalizedPathname = pathname.replace(/\/$/, "") || "/";
-  const showNewsletterModal = !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
+  const isShopPath = normalizedPathname.startsWith("/shop");
+  const showNewsletterModal =
+    !isShopPath && !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
 
   useGSAP(
     () => {
@@ -371,14 +375,26 @@ export function MarketingLayout({
         <div ref={mainRef}>{children}</div>
       </main>
 
-      <MarketingFooter />
+      <MarketingFooter
+        newsletterHeading={isShopPath ? "Join the congregation" : undefined}
+        newsletterDescription={isShopPath ? "" : undefined}
+        newsletterButtonLabel={isShopPath ? "Subscribe" : undefined}
+      />
       {showNewsletterModal && <NewsletterScrollModal />}
       <CtaColorFill />
     </div>
   );
 }
 
-function MarketingFooter() {
+function MarketingFooter({
+  newsletterHeading,
+  newsletterDescription,
+  newsletterButtonLabel,
+}: {
+  newsletterHeading?: string;
+  newsletterDescription?: string;
+  newsletterButtonLabel?: string;
+}) {
   return (
     <footer className="mt-0 bg-[#1B1B1B] text-white">
       <div className="mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8 lg:pt-20 lg:pb-12">
@@ -418,7 +434,13 @@ function MarketingFooter() {
             </p>
           </div>
 
-          <NewsletterSignup variant="footer" className="w-full max-w-[28rem]" />
+          <NewsletterSignup
+            variant="footer"
+            className="w-full max-w-[28rem]"
+            heading={newsletterHeading}
+            description={newsletterDescription}
+            buttonLabel={newsletterButtonLabel}
+          />
 
           <nav aria-label="Footer" className="lg:justify-self-end">
             <ul className="grid max-w-[24rem] grid-cols-2 gap-x-10 gap-y-3 sm:gap-x-14">

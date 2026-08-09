@@ -1,4 +1,4 @@
-import { copyFile, rm, writeFile } from "node:fs/promises";
+import { readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
@@ -9,9 +9,12 @@ if (!existsSync(indexPath)) {
   throw new Error("Expected dist/client/index.html after the Pages prerender build.");
 }
 
-// SPA fallback for client-side routes (Scene Negotiator deep links, legacy
-// redirects). GitHub Pages serves 404.html for unknown paths.
-await copyFile(indexPath, path.join(clientDir, "404.html"));
+// TanStack's prerendered SPA shell is the GitHub Pages fallback for dynamic
+// routes and legacy redirects. Unlike a copied homepage, it hydrates the
+// requested client route without a markup mismatch.
+if (!existsSync(path.join(clientDir, "404.html"))) {
+  throw new Error("Expected TanStack's SPA shell at dist/client/404.html.");
+}
 await writeFile(path.join(clientDir, ".nojekyll"), "");
 
 const customDomain = process.env.DOC_PAGES_CUSTOM_DOMAIN?.trim();
@@ -52,7 +55,28 @@ const marketingPaths = [
   "/negotiate",
 ];
 
-const urls = marketingPaths
+async function discoverIndexRoutes(directory, relativeDirectory = "") {
+  const entries = await readdir(path.join(directory, relativeDirectory), { withFileTypes: true });
+  const discovered = [];
+  for (const entry of entries) {
+    const relativePath = path.join(relativeDirectory, entry.name);
+    if (entry.isDirectory()) {
+      discovered.push(...(await discoverIndexRoutes(directory, relativePath)));
+    } else if (entry.name === "index.html") {
+      const route = `/${relativeDirectory.split(path.sep).filter(Boolean).join("/")}`;
+      discovered.push(route || "/");
+    }
+  }
+  return discovered;
+}
+
+const shopPaths = (await discoverIndexRoutes(path.join(clientDir, "shop"), ""))
+  .map((route) => (route === "/" ? "/shop" : `/shop${route}`))
+  .sort();
+
+const sitemapPaths = Array.from(new Set([...marketingPaths, ...shopPaths]));
+
+const urls = sitemapPaths
   .map(
     (route) => `  <url>
     <loc>${siteUrl}${route === "/" ? "/" : route}</loc>

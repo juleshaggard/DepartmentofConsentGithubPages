@@ -150,3 +150,44 @@ export function faqJsonLd(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+export function productJsonLd({
+  name,
+  description,
+  path,
+  images,
+  currency,
+  lowPrice,
+  highPrice,
+  offerCount,
+  available,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  images: string[];
+  currency: string;
+  lowPrice: number;
+  highPrice: number;
+  offerCount: number;
+  available: boolean;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    url: publicSiteUrl(path),
+    image: images,
+    brand: { "@type": "Brand", name: "Department of Consent" },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: currency,
+      lowPrice,
+      highPrice,
+      offerCount,
+      availability: available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      url: publicSiteUrl(path),
+    },
+  };
+}

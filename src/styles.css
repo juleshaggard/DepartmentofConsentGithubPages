@@ -190,6 +190,72 @@
 }
 
 @layer utilities {
+  .shop-rich-text {
+    color: color-mix(in srgb, var(--plum) 72%, transparent);
+    font-size: 0.975rem;
+    line-height: 1.75;
+  }
+  .shop-rich-text > * + * {
+    margin-top: 1rem;
+  }
+  .shop-rich-text h2,
+  .shop-rich-text h3,
+  .shop-rich-text h4 {
+    color: var(--plum);
+    font-family: var(--font-display);
+    line-height: 1.15;
+    margin-top: 1.75rem;
+  }
+  .shop-rich-text h2 {
+    font-size: 1.75rem;
+  }
+  .shop-rich-text h3,
+  .shop-rich-text h4 {
+    font-size: 1.35rem;
+  }
+  .shop-rich-text ul,
+  .shop-rich-text ol {
+    padding-left: 1.35rem;
+  }
+  .shop-rich-text ul {
+    list-style: disc;
+  }
+  .shop-rich-text ol {
+    list-style: decimal;
+  }
+  .shop-rich-text li + li {
+    margin-top: 0.35rem;
+  }
+  .shop-rich-text a {
+    color: var(--plum);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+  .shop-rich-text a:hover {
+    color: var(--coral);
+  }
+  .shop-rich-text blockquote {
+    border-left: 2px solid var(--coral);
+    padding-left: 1rem;
+  }
+  .shop-rich-text table {
+    border-collapse: collapse;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    width: max-content;
+  }
+  .shop-rich-text th,
+  .shop-rich-text td {
+    border-bottom: 1px solid color-mix(in srgb, var(--plum) 14%, transparent);
+    padding: 0.6rem 1rem 0.6rem 0;
+    text-align: left;
+  }
+  .shop-rich-text th {
+    color: var(--plum);
+    font-weight: 700;
+  }
   .sticker {
     background: oklch(0.995 0.006 35);
     border: 1px solid oklch(0.88 0.035 20 / 0.28);
