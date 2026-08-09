@@ -26,7 +26,7 @@ function ZineArchive() {
           </div>
           <div className="max-w-md lg:pb-2">
             <p className="font-display text-xl leading-relaxed text-plum sm:text-2xl">
-              Eight-page provocations, presented in their original order.
+              Six-page provocations, presented in their original order.
             </p>
             <p className="label-condensed mt-5 text-xs text-plum/55">
               {allZines.length} issues in the archive

@@ -5,6 +5,7 @@ import type { ShopChromeData } from "@/lib/fourthwall/repository";
 import { useShopCart } from "./ShopCartContext";
 import { ShopCartProvider } from "./ShopCartProvider";
 import { ShopCartSheet } from "./ShopCartSheet";
+import { ShopLegalNav } from "./ShopLegalNav";
 
 function CartButton() {
   const { itemCount, setOpen, isHydrating } = useShopCart();
@@ -28,7 +29,7 @@ function CartButton() {
 
 function ShopSubnav({ data }: { data: ShopChromeData }) {
   return (
-    <div className="sticky top-[4.45rem] z-30 border-b border-plum/10 bg-white/96 backdrop-blur-md sm:top-[5rem]">
+    <div className="sticky top-[calc(4.45rem-1px)] z-30 -mt-px border-b border-plum/10 bg-white/96 backdrop-blur-md sm:top-[calc(5rem-1px)]">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3 sm:px-8">
         <Link
           to="/shop"
@@ -73,6 +74,7 @@ export function ShopChrome({
       <MarketingLayout>
         <ShopSubnav data={data} />
         {children}
+        <ShopLegalNav />
       </MarketingLayout>
       <ShopCartSheet />
     </ShopCartProvider>

@@ -11,10 +11,8 @@ import navLogo from "../../../assets/Logo.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
-  { label: "Event Support", to: "/services/kink-event-accompaniment" },
   { label: "Zines", to: "/zines" },
   { label: "Shop", to: "/shop" },
-  { label: "About", to: "/about" },
   { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
 ] as const;
 
@@ -378,26 +376,14 @@ export function MarketingLayout({
         <div ref={mainRef}>{children}</div>
       </main>
 
-      <MarketingFooter
-        newsletterHeading={isShopPath ? "Join the congregation" : undefined}
-        newsletterDescription={isShopPath ? "" : undefined}
-        newsletterButtonLabel={isShopPath ? "Subscribe" : undefined}
-      />
+      <MarketingFooter />
       {showNewsletterModal && <NewsletterScrollModal />}
       <CtaColorFill />
     </div>
   );
 }
 
-function MarketingFooter({
-  newsletterHeading,
-  newsletterDescription,
-  newsletterButtonLabel,
-}: {
-  newsletterHeading?: string;
-  newsletterDescription?: string;
-  newsletterButtonLabel?: string;
-}) {
+function MarketingFooter() {
   return (
     <footer className="mt-0 bg-[#1B1B1B] text-white">
       <div className="mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8 lg:pt-20 lg:pb-12">
@@ -437,13 +423,7 @@ function MarketingFooter({
             </p>
           </div>
 
-          <NewsletterSignup
-            variant="footer"
-            className="w-full max-w-[28rem]"
-            heading={newsletterHeading}
-            description={newsletterDescription}
-            buttonLabel={newsletterButtonLabel}
-          />
+          <NewsletterSignup variant="footer" className="w-full max-w-[28rem]" />
 
           <nav aria-label="Footer" className="lg:justify-self-end">
             <ul className="grid max-w-[24rem] grid-cols-2 gap-x-10 gap-y-3 sm:gap-x-14">

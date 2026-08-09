@@ -30,7 +30,7 @@ export function ZineCoverLink({
           {zine.title}
         </span>
         <span className="label-condensed shrink-0 text-[0.7rem] text-plum/55">
-          {zine.pages.length} pages
+          Issue {zine.issue} · {zine.pages.length} pages
         </span>
       </span>
     </Link>

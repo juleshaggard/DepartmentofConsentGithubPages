@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import commissionImage from "../../assets/shop-commission.jpg";
 import { ProductGrid } from "@/components/shop/ProductCard";
@@ -110,6 +111,8 @@ function ProductSection({
 function SpotlightProduct({ product }: { product: ShopSpotlightProduct }) {
   const { addItem, isPending, error, clearError } = useShopCart();
   const image = product.primaryImage;
+  const descriptionId = useId();
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false);
 
   return (
     <section className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,30rem)] lg:items-center lg:gap-12">
@@ -124,28 +127,37 @@ function SpotlightProduct({ product }: { product: ShopSpotlightProduct }) {
           </p>
         )}
         {product.descriptionHtml ? (
-          <div className="relative mt-6 max-h-72 overflow-hidden lg:max-h-none">
+          <>
             <div
-              className="shop-rich-text font-display text-plum/78"
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent lg:hidden"
-              aria-hidden
-            />
-          </div>
+              id={descriptionId}
+              className={`relative mt-6 ${descriptionExpanded ? "" : "max-h-48 overflow-hidden"}`}
+            >
+              <div
+                className="shop-rich-text font-display text-plum/78"
+                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+              />
+              {!descriptionExpanded && (
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent"
+                  aria-hidden
+                />
+              )}
+            </div>
+            <button
+              type="button"
+              aria-expanded={descriptionExpanded}
+              aria-controls={descriptionId}
+              onClick={() => setDescriptionExpanded((expanded) => !expanded)}
+              className="mt-4 w-fit font-display text-base text-plum underline underline-offset-4 hover:text-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2"
+            >
+              {descriptionExpanded ? "Show less" : "Read more"}
+            </button>
+          </>
         ) : (
           <p className="mt-6 max-w-xl font-display text-lg leading-relaxed text-plum/72">
             Designed for play and made to leave an impression.
           </p>
         )}
-        <Link
-          to="/shop/products/$productSlug"
-          params={{ productSlug: product.slug }}
-          className="mt-5 w-fit font-display text-base text-plum underline underline-offset-4 hover:text-coral"
-        >
-          Read more
-        </Link>
         {product.quickAddVariantId ? (
           <button
             type="button"
@@ -181,7 +193,7 @@ function SpotlightProduct({ product }: { product: ShopSpotlightProduct }) {
       <Link
         to="/shop/products/$productSlug"
         params={{ productSlug: product.slug }}
-        className="order-1 block aspect-square w-full overflow-hidden rounded-lg bg-[#f2f0ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 lg:order-2 lg:max-w-[30rem] lg:justify-self-end"
+        className="order-1 block aspect-[3/4] w-full overflow-hidden rounded-lg bg-[#f2f0ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 lg:order-2 lg:max-w-[30rem] lg:justify-self-end"
       >
         {image ? (
           <img

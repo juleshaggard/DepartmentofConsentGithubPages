@@ -101,7 +101,7 @@ function ProductGallery({
 
   return (
     <div className="min-w-0">
-      <div className="flex min-h-[28rem] items-center justify-center overflow-hidden rounded-2xl bg-cream ring-1 ring-plum/10 sm:min-h-[36rem] lg:min-h-[44rem]">
+      <div className="relative min-h-[28rem] overflow-hidden rounded-2xl bg-cream ring-1 ring-plum/10 sm:min-h-[36rem] lg:min-h-[44rem]">
         <img
           key={activeImage.id}
           src={activeImage.transformedUrl || activeImage.url}
@@ -110,7 +110,7 @@ function ProductGallery({
           height={activeImage.height}
           fetchPriority="high"
           decoding="async"
-          className="max-h-[78vh] w-full object-contain"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
       {images.length > 1 && (

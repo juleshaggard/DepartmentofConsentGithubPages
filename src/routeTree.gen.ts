@@ -30,6 +30,9 @@ import { Route as ZinesIndexRouteImport } from './routes/zines.index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as SceneNegotiatorIndexRouteImport } from './routes/scene-negotiator.index'
 import { Route as ZinesZineSlugRouteImport } from './routes/zines.$zineSlug'
+import { Route as ShopTermsOfServiceRouteImport } from './routes/shop.terms-of-service'
+import { Route as ShopReturnsFaqRouteImport } from './routes/shop.returns-faq'
+import { Route as ShopPrivacyPolicyRouteImport } from './routes/shop.privacy-policy'
 import { Route as ServicesPolyamoryCoachingForBeginnersRouteImport } from './routes/services.polyamory-coaching-for-beginners'
 import { Route as ServicesKinkEventAccompanimentRouteImport } from './routes/services.kink-event-accompaniment'
 import { Route as ServicesKinkCoachSanFranciscoRouteImport } from './routes/services.kink-coach-san-francisco'
@@ -158,6 +161,21 @@ const ZinesZineSlugRoute = ZinesZineSlugRouteImport.update({
   id: '/$zineSlug',
   path: '/$zineSlug',
   getParentRoute: () => ZinesRoute,
+} as any)
+const ShopTermsOfServiceRoute = ShopTermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => ShopRoute,
+} as any)
+const ShopReturnsFaqRoute = ShopReturnsFaqRouteImport.update({
+  id: '/returns-faq',
+  path: '/returns-faq',
+  getParentRoute: () => ShopRoute,
+} as any)
+const ShopPrivacyPolicyRoute = ShopPrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => ShopRoute,
 } as any)
 const ServicesPolyamoryCoachingForBeginnersRoute =
   ServicesPolyamoryCoachingForBeginnersRouteImport.update({
@@ -312,6 +330,9 @@ export interface FileRoutesByFullPath {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/shop/privacy-policy': typeof ShopPrivacyPolicyRoute
+  '/shop/returns-faq': typeof ShopReturnsFaqRoute
+  '/shop/terms-of-service': typeof ShopTermsOfServiceRoute
   '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
   '/shop/': typeof ShopIndexRoute
@@ -353,6 +374,9 @@ export interface FileRoutesByTo {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/shop/privacy-policy': typeof ShopPrivacyPolicyRoute
+  '/shop/returns-faq': typeof ShopReturnsFaqRoute
+  '/shop/terms-of-service': typeof ShopTermsOfServiceRoute
   '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator': typeof SceneNegotiatorIndexRoute
   '/shop': typeof ShopIndexRoute
@@ -398,6 +422,9 @@ export interface FileRoutesById {
   '/services/kink-coach-san-francisco': typeof ServicesKinkCoachSanFranciscoRoute
   '/services/kink-event-accompaniment': typeof ServicesKinkEventAccompanimentRoute
   '/services/polyamory-coaching-for-beginners': typeof ServicesPolyamoryCoachingForBeginnersRoute
+  '/shop/privacy-policy': typeof ShopPrivacyPolicyRoute
+  '/shop/returns-faq': typeof ShopReturnsFaqRoute
+  '/shop/terms-of-service': typeof ShopTermsOfServiceRoute
   '/zines/$zineSlug': typeof ZinesZineSlugRoute
   '/scene-negotiator/': typeof SceneNegotiatorIndexRoute
   '/shop/': typeof ShopIndexRoute
@@ -444,6 +471,9 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/shop/privacy-policy'
+    | '/shop/returns-faq'
+    | '/shop/terms-of-service'
     | '/zines/$zineSlug'
     | '/scene-negotiator/'
     | '/shop/'
@@ -485,6 +515,9 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/shop/privacy-policy'
+    | '/shop/returns-faq'
+    | '/shop/terms-of-service'
     | '/zines/$zineSlug'
     | '/scene-negotiator'
     | '/shop'
@@ -529,6 +562,9 @@ export interface FileRouteTypes {
     | '/services/kink-coach-san-francisco'
     | '/services/kink-event-accompaniment'
     | '/services/polyamory-coaching-for-beginners'
+    | '/shop/privacy-policy'
+    | '/shop/returns-faq'
+    | '/shop/terms-of-service'
     | '/zines/$zineSlug'
     | '/scene-negotiator/'
     | '/shop/'
@@ -722,6 +758,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ZinesZineSlugRouteImport
       parentRoute: typeof ZinesRoute
     }
+    '/shop/terms-of-service': {
+      id: '/shop/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/shop/terms-of-service'
+      preLoaderRoute: typeof ShopTermsOfServiceRouteImport
+      parentRoute: typeof ShopRoute
+    }
+    '/shop/returns-faq': {
+      id: '/shop/returns-faq'
+      path: '/returns-faq'
+      fullPath: '/shop/returns-faq'
+      preLoaderRoute: typeof ShopReturnsFaqRouteImport
+      parentRoute: typeof ShopRoute
+    }
+    '/shop/privacy-policy': {
+      id: '/shop/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/shop/privacy-policy'
+      preLoaderRoute: typeof ShopPrivacyPolicyRouteImport
+      parentRoute: typeof ShopRoute
+    }
     '/services/polyamory-coaching-for-beginners': {
       id: '/services/polyamory-coaching-for-beginners'
       path: '/services/polyamory-coaching-for-beginners'
@@ -911,12 +968,18 @@ const SceneNegotiatorRouteWithChildren = SceneNegotiatorRoute._addFileChildren(
 )
 
 interface ShopRouteChildren {
+  ShopPrivacyPolicyRoute: typeof ShopPrivacyPolicyRoute
+  ShopReturnsFaqRoute: typeof ShopReturnsFaqRoute
+  ShopTermsOfServiceRoute: typeof ShopTermsOfServiceRoute
   ShopIndexRoute: typeof ShopIndexRoute
   ShopCollectionsCollectionSlugRoute: typeof ShopCollectionsCollectionSlugRoute
   ShopProductsProductSlugRoute: typeof ShopProductsProductSlugRoute
 }
 
 const ShopRouteChildren: ShopRouteChildren = {
+  ShopPrivacyPolicyRoute: ShopPrivacyPolicyRoute,
+  ShopReturnsFaqRoute: ShopReturnsFaqRoute,
+  ShopTermsOfServiceRoute: ShopTermsOfServiceRoute,
   ShopIndexRoute: ShopIndexRoute,
   ShopCollectionsCollectionSlugRoute: ShopCollectionsCollectionSlugRoute,
   ShopProductsProductSlugRoute: ShopProductsProductSlugRoute,

@@ -12,6 +12,15 @@ describe("zine archive", () => {
     expect(allZines.every((zine) => zine.cover.pageNumber === 2)).toBe(true);
   });
 
+  it("uses editorial titles based on each issue's content", () => {
+    expect(allZines.map((zine) => zine.title)).toEqual([
+      "DIY Kink, Cheap Thrills",
+      "Collar Me, Devotion & Desire",
+      "Femininity, Defined by You",
+      "Bondage Beyond Rope",
+    ]);
+  });
+
   it("looks up permalinks and excludes the current issue from related zines", () => {
     expect(getZineBySlug("zine-03")?.issue).toBe("03");
     expect(getZineBySlug("missing-zine")).toBeNull();

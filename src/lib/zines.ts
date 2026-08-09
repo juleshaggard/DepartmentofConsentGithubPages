@@ -5,6 +5,13 @@ const zineImageModules = import.meta.glob("../../assets/zines/*/*.webp", {
 
 const naturalOrder = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
+const ZINE_TITLES: Record<string, string> = {
+  "01": "DIY Kink, Cheap Thrills",
+  "02": "Collar Me, Devotion & Desire",
+  "03": "Femininity, Defined by You",
+  "04": "Bondage Beyond Rope",
+};
+
 export type ZinePage = {
   pageNumber: number;
   src: string;
@@ -51,7 +58,7 @@ export const allZines: Zine[] = Array.from(groupedPages.entries())
       order: Number(folder),
       issue,
       slug: `zine-${issue}`,
-      title: `Zine ${issue}`,
+      title: ZINE_TITLES[issue] ?? `Zine ${issue}`,
       pages: readingPages,
       cover,
     };

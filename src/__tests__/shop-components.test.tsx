@@ -18,11 +18,12 @@ vi.mock("@tanstack/react-router", () => ({
 }));
 
 import { ProductPage } from "@/components/shop/ProductPage";
+import { ProductCard } from "@/components/shop/ProductCard";
 import { ShopCartProvider } from "@/components/shop/ShopCartProvider";
 import { ShopCartSheet } from "@/components/shop/ShopCartSheet";
 import { useShopCart } from "@/components/shop/ShopCartContext";
 import { fourthwallClient, StorefrontApiError } from "@/lib/fourthwall/client";
-import type { ProductDetail } from "@/lib/fourthwall/repository";
+import type { ProductDetail, ProductSummary } from "@/lib/fourthwall/repository";
 import type { Cart, Shop } from "@/lib/fourthwall/types";
 
 const shop: Shop = {
@@ -156,6 +157,28 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+});
+
+describe("product cards", () => {
+  it("layers the second product image as the hover and focus preview", () => {
+    const cardProduct: ProductSummary = {
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      primaryImage: product.images[0]!,
+      secondaryImage: product.images[1]!,
+      colorOptions: [],
+      price: null,
+      availability: "available",
+    };
+    const { container } = render(<ProductCard product={cardProduct} />);
+    const images = container.querySelectorAll("article img");
+
+    expect(images).toHaveLength(2);
+    expect(images[1]?.getAttribute("src")).toContain("black-large.jpg");
+    expect(images[1]?.className).toContain("group-hover:opacity-100");
+    expect(images[1]?.className).toContain("group-focus-within:opacity-100");
+  });
 });
 
 describe("product selection and cart UI", () => {

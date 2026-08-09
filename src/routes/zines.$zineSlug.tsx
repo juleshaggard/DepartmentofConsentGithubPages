@@ -37,24 +37,7 @@ function ZineIssue() {
 
   return (
     <article>
-      <header className="border-b border-plum/10 px-5 py-10 sm:px-8 sm:py-14">
-        <div className="mx-auto max-w-7xl">
-          <Link
-            to="/zines"
-            className="label-condensed text-xs text-plum/60 underline decoration-plum/25 underline-offset-4 hover:text-coral"
-          >
-            Back to all zines
-          </Link>
-          <div className="mt-8 flex flex-wrap items-end justify-between gap-5">
-            <h1 className="display-condensed text-[clamp(3.5rem,9vw,7rem)] leading-[0.82] tracking-[-0.03em] text-coral">
-              {zine.title}
-            </h1>
-            <p className="label-condensed pb-1 text-xs text-plum/55">
-              {zine.pages.length} pages, read in order
-            </p>
-          </div>
-        </div>
-      </header>
+      <h1 className="sr-only">{zine.title}</h1>
 
       <section
         aria-label={`${zine.title} pages`}

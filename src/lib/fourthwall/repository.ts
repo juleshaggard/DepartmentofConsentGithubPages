@@ -17,6 +17,7 @@ export type ProductSummary = {
   name: string;
   slug: string;
   primaryImage: FourthwallImage | null;
+  secondaryImage: FourthwallImage | null;
   colorOptions?: Array<{
     name: string;
     swatch: string | null;
@@ -166,6 +167,10 @@ function dedupeImages(images: FourthwallImage[]): FourthwallImage[] {
 }
 
 function summarizeProduct(product: Product): ProductSummary {
+  const productImages = dedupeImages([
+    ...product.images,
+    ...product.variants.flatMap((variant) => variant.images),
+  ]);
   const colorOptions = Array.from(
     product.variants.reduce((colors, variant) => {
       const color = variant.attributes.color;
@@ -183,7 +188,8 @@ function summarizeProduct(product: Product): ProductSummary {
     id: product.id,
     name: product.name,
     slug: product.slug,
-    primaryImage: product.images[0] ?? product.variants[0]?.images[0] ?? null,
+    primaryImage: productImages[0] ?? null,
+    secondaryImage: productImages[1] ?? null,
     colorOptions,
     price: productPriceRange(product),
     availability: productAvailability(product),

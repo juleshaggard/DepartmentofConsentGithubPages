@@ -13,26 +13,41 @@ export function ProductCard({
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]?.name ?? "");
   const selectedColorOption = colorOptions.find((option) => option.name === selectedColor);
   const image = selectedColorOption?.image ?? product.primaryImage;
+  const hoverImage = product.secondaryImage;
 
   return (
-    <article className="group min-w-0">
+    <article className="min-w-0">
       <Link
         to="/shop/products/$productSlug"
         params={{ productSlug: product.slug }}
-        className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2"
+        className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2"
       >
         <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[#f2f0ee]">
           {image ? (
-            <img
-              src={image.transformedUrl || image.url}
-              alt={product.name}
-              width={image.width}
-              height={image.height}
-              loading={priority ? "eager" : "lazy"}
-              fetchPriority={priority ? "high" : "auto"}
-              decoding="async"
-              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-            />
+            <>
+              <img
+                src={image.transformedUrl || image.url}
+                alt={product.name}
+                width={image.width}
+                height={image.height}
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : "auto"}
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+              {hoverImage && hoverImage.id !== image.id && (
+                <img
+                  src={hoverImage.transformedUrl || hoverImage.url}
+                  alt=""
+                  width={hoverImage.width}
+                  height={hoverImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none"
+                />
+              )}
+            </>
           ) : (
             <div className="flex h-full items-center justify-center px-5 text-center font-display text-sm text-plum/55">
               Image unavailable

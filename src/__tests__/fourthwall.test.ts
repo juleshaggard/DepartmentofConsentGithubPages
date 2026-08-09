@@ -133,6 +133,7 @@ describe("Fourthwall normalization", () => {
     const landing = await getShopLandingData();
     expect(landing.collections.map((collection) => collection.slug)).toEqual(["signature", "all"]);
     expect(landing.allProducts.map((item) => item.slug)).toEqual(["one", "two"]);
+    expect(landing.allProducts[1]?.secondaryImage?.id).toBe("alternate");
     expect(landing.featuredProducts.map((item) => item.slug)).toEqual(["two"]);
     expect(landing.collectionSummaries[0]?.productCount).toBe(1);
 
