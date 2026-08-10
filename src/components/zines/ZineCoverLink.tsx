@@ -25,12 +25,15 @@ export function ZineCoverLink({
           className="block h-auto w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       </span>
-      <span className="mt-3 flex items-baseline justify-between gap-3 text-plum">
+      <span className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 text-plum">
         <span className="font-display text-lg leading-tight group-hover:text-coral">
           {zine.title}
         </span>
-        <span className="label-condensed shrink-0 text-[0.7rem] text-plum/55">
-          Issue {zine.issue} · {zine.pages.length} pages
+        <span
+          aria-label={`Issue ${zine.issue}`}
+          className="display-condensed shrink-0 text-[clamp(2.5rem,4vw,4rem)] leading-[0.8] text-coral"
+        >
+          {zine.issue}
         </span>
       </span>
     </Link>
