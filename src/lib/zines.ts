@@ -10,6 +10,13 @@ const ZINE_TITLES: Record<string, string> = {
   "02": "Collar Me, Devotion & Desire",
   "03": "Femininity, Defined by You",
   "04": "Bondage Beyond Rope",
+  "05": "Needles, Care & Doctor Play",
+  "06": "Whispers, Tongues & Ear Play",
+};
+
+const ZINE_COVER_PAGES: Record<string, number> = {
+  "05": 6,
+  "06": 3,
 };
 
 export type ZinePage = {
@@ -49,7 +56,11 @@ export const allZines: Zine[] = Array.from(groupedPages.entries())
   .map(([folder, pages]) => {
     const sortedPages = [...pages].sort((left, right) => left.pageNumber - right.pageNumber);
     const issue = folder.padStart(2, "0");
-    const cover = sortedPages[1] ?? sortedPages[0];
+    const coverPageNumber = ZINE_COVER_PAGES[issue] ?? 2;
+    const cover =
+      sortedPages.find((page) => page.pageNumber === coverPageNumber) ??
+      sortedPages[1] ??
+      sortedPages[0];
     const readingPages = sortedPages.slice(1, -1);
 
     if (!cover) throw new Error(`Zine ${issue} has no page images.`);

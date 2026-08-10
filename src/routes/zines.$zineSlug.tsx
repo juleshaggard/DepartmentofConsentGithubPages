@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { JsonLd } from "@/components/marketing/JsonLd";
+import { NewsletterSignup } from "@/components/marketing/NewsletterSignup";
 import { ZineCoverLink } from "@/components/zines/ZineCoverLink";
 import { breadcrumbJsonLd, pageHead } from "@/lib/seo";
 import { getRelatedZines, getZineBySlug } from "@/lib/zines";
@@ -37,12 +38,16 @@ function ZineIssue() {
 
   return (
     <article>
-      <h1 className="sr-only">{zine.title}</h1>
-
       <section
         aria-label={`${zine.title} pages`}
-        className="bg-[#f3f0ed] px-5 py-6 sm:px-10 sm:py-10 lg:px-16"
+        className="bg-[#f3f0ed] px-5 pb-6 pt-8 sm:px-10 sm:pb-10 sm:pt-10 lg:px-16"
       >
+        <header className="mx-auto mb-7 max-w-5xl text-center sm:mb-9">
+          <h1 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] leading-tight tracking-[-0.015em] text-plum">
+            {zine.title}
+          </h1>
+        </header>
+
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {zine.pages.map((page, index) => (
             <figure key={page.pageNumber} className="m-0">
@@ -58,6 +63,22 @@ function ZineIssue() {
               />
             </figure>
           ))}
+        </div>
+      </section>
+
+      <section
+        aria-label="Zine newsletter"
+        className="border-t border-plum/10 px-5 py-14 sm:px-8 sm:py-20"
+      >
+        <div className="mx-auto max-w-3xl rounded-[2rem] bg-pinkcard px-6 py-9 sm:px-10 sm:py-12">
+          <NewsletterSignup
+            variant="modal"
+            heading="MORE WHERE THAT CAME FROM."
+            description="New zines, practical kink notes, and thoughtful troublemaking, sent occasionally."
+            descriptionClassName="italic"
+            buttonLabel="SEND ME THE NEXT ONE"
+            className="mx-auto max-w-[32rem]"
+          />
         </div>
       </section>
 

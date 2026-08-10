@@ -8,7 +8,7 @@
 
 const env = import.meta.env;
 const defaultCalBaseUrl = "https://cal.com/jules-darling-3rhr9n";
-const fallbackDiscoveryCallUrl = `${defaultCalBaseUrl}/free-discovery-call`;
+const fallbackDiscoveryCallUrl = `${defaultCalBaseUrl}/meet-jules-call`;
 
 const calBaseUrl = (env.VITE_CAL_BASE_URL || defaultCalBaseUrl).replace(/\/$/, "");
 const calEventUrl = (slug: string) => (calBaseUrl ? `${calBaseUrl}/${slug}` : "");
@@ -16,7 +16,7 @@ const calEventUrl = (slug: string) => (calBaseUrl ? `${calBaseUrl}/${slug}` : ""
 const bookingLinks = {
   discoveryCall:
     env.VITE_CAL_DISCOVERY_CALL_URL ||
-    calEventUrl("free-discovery-call") ||
+    calEventUrl("meet-jules-call") ||
     env.VITE_CALENDLY_DISCOVERY_CALL_URL ||
     fallbackDiscoveryCallUrl,
   coachingSession:

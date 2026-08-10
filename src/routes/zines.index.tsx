@@ -16,23 +16,18 @@ export const Route = createFileRoute("/zines/")({
 function ZineArchive() {
   return (
     <>
-      <section className="border-b border-plum/10 px-5 py-16 sm:px-8 sm:py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)] lg:items-end">
-          <div>
-            <p className="label-condensed mb-4 text-xs text-plum/60">Department of Consent</p>
-            <h1 className="display-condensed text-[clamp(4.75rem,13vw,9rem)] leading-[0.78] tracking-[-0.035em] text-coral">
-              Zines
-            </h1>
-          </div>
-          <div className="max-w-md lg:pb-2">
-            <p className="font-display text-xl leading-relaxed text-plum sm:text-2xl">
-              Six-page provocations, presented in their original order.
-            </p>
-            <p className="label-condensed mt-5 text-xs text-plum/55">
-              {allZines.length} issues in the archive
-            </p>
-          </div>
-        </div>
+      <section className="px-5 pb-8 pt-14 text-center sm:px-8 sm:pb-10 sm:pt-16">
+        <p className="font-display text-sm text-plum sm:text-base">
+          Department of Consent <span aria-hidden>•</span> {allZines.length} issues
+        </p>
+        <h1 className="mt-7 font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-plum">
+          Zines
+        </h1>
+        <p className="mx-auto mt-7 max-w-2xl font-display text-sm leading-relaxed text-plum/78 sm:text-base">
+          Six-page provocations,
+          <br />
+          presented in their original order.
+        </p>
       </section>
 
       <section aria-label="Zine archive" className="px-4 py-14 sm:px-8 sm:py-20">

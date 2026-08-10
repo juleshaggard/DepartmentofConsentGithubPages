@@ -3,13 +3,13 @@ import { allZines, getRelatedZines, getZineBySlug } from "@/lib/zines";
 
 describe("zine archive", () => {
   it("uses folder order and file order for every issue", () => {
-    expect(allZines.map((zine) => zine.issue)).toEqual(["01", "02", "03", "04"]);
+    expect(allZines.map((zine) => zine.issue)).toEqual(["01", "02", "03", "04", "05", "06"]);
     expect(allZines.every((zine) => zine.pages.length === 6)).toBe(true);
     expect(allZines[0]?.pages.map((page) => page.pageNumber)).toEqual([2, 3, 4, 5, 6, 7]);
   });
 
-  it("uses the second image in each folder as its cover", () => {
-    expect(allZines.every((zine) => zine.cover.pageNumber === 2)).toBe(true);
+  it("uses the configured cover image for each issue", () => {
+    expect(allZines.map((zine) => zine.cover.pageNumber)).toEqual([2, 2, 2, 2, 6, 3]);
   });
 
   it("uses editorial titles based on each issue's content", () => {
@@ -18,6 +18,8 @@ describe("zine archive", () => {
       "Collar Me, Devotion & Desire",
       "Femininity, Defined by You",
       "Bondage Beyond Rope",
+      "Needles, Care & Doctor Play",
+      "Whispers, Tongues & Ear Play",
     ]);
   });
 

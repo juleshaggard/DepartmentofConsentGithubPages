@@ -19,6 +19,7 @@ type NewsletterSignupProps = {
   className?: string;
   heading?: string;
   description?: string;
+  descriptionClassName?: string;
   buttonLabel?: string;
   formConfig?: NewsletterFormConfig;
   onValidSubmit?: () => void;
@@ -66,6 +67,7 @@ export function NewsletterSignup({
   className,
   heading,
   description,
+  descriptionClassName,
   buttonLabel,
   formConfig,
   onValidSubmit,
@@ -116,7 +118,7 @@ export function NewsletterSignup({
         <>
           {content.eyebrow && <p className="eyebrow mb-2">{content.eyebrow}</p>}
           <h2 className="display-condensed text-coral text-3xl sm:text-5xl">{displayHeading}</h2>
-          <p className="prose-doc mt-3">{displayDescription}</p>
+          <p className={cn("prose-doc mt-3", descriptionClassName)}>{displayDescription}</p>
         </>
       ) : (
         <div>
@@ -132,6 +134,7 @@ export function NewsletterSignup({
             className={cn(
               "mt-3 font-display text-base leading-relaxed",
               isFooter ? "text-white/72" : "text-[#1B1B1B]/72",
+              descriptionClassName,
             )}
           >
             {displayDescription}

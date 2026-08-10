@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Breadcrumbs, Container, Eyebrow, Section, TextLink } from "./primitives";
+import { Breadcrumbs, Eyebrow, Section, TextLink } from "./primitives";
 import { MarketingLayout } from "./MarketingLayout";
 import { siteConfig } from "@/config/site";
 import { trackBookingAction } from "@/lib/analytics";
@@ -45,7 +45,7 @@ const faqItems = [
   {
     question: "Are all coaching sessions online?",
     answer:
-      "Yes. All discovery calls, individual sessions, packages, event preparation sessions, and follow-up sessions take place online. Event Companion is the only in-person service.",
+      "Yes. The Meet Jules Call, individual sessions, packages, event preparation sessions, and follow-up sessions all take place online. Event Companion is the only in-person service.",
   },
   {
     question: "Where is Event Companion available?",
@@ -86,44 +86,37 @@ export function CoachingPricingContent() {
 
   return (
     <MarketingLayout>
-      <Container>
-        <Breadcrumbs
-          crumbs={[
-            { label: "Home", path: "/" },
-            { label: "Coaching", path: "/coaching" },
-          ]}
-        />
-      </Container>
+      <Breadcrumbs
+        crumbs={[
+          { label: "Home", path: "/" },
+          { label: "Coaching", path: "/coaching" },
+        ]}
+      />
 
-      <Section wide className="!pt-10 sm:!pt-14">
-        <div className="mx-auto max-w-3xl">
-          <Eyebrow>Coaching</Eyebrow>
-          <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
-            Coaching designed for where you are now.
-          </h1>
-          <div className="prose-doc mt-6">
-            <p>
-              Most sessions happen online. Event Companion is the only in-person service, available
-              for approved San Francisco and Oakland events.
-            </p>
-            <p>
-              Bring the basic question, the half-formed curiosity, or the thing you are nervous to
-              ask. We will choose the right next step from there.
-            </p>
-          </div>
-        </div>
-      </Section>
+      <section className="px-5 pb-8 pt-14 text-center sm:px-8 sm:pb-10 sm:pt-16">
+        <p className="font-display text-sm text-plum sm:text-base">
+          Kink &amp; polyamory coaching <span aria-hidden>•</span> Online
+        </p>
+        <h1 className="mx-auto mt-7 max-w-6xl font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-plum">
+          Coaching designed for where you are now.
+        </h1>
+        <p className="mx-auto mt-7 max-w-3xl font-display text-sm leading-relaxed text-plum/78 sm:text-base">
+          Bring the basic question, the half-formed curiosity, or the thing you are nervous to ask.
+          <br />
+          We will choose the right next step from there.
+        </p>
+      </section>
 
       <Section ruled>
         <PricingCard
-          title="Free Discovery Call"
+          title="Meet Jules Call"
           meta={{ prefix: "20 minutes", price: "Free", suffix: "Online" }}
           body={[
             "Not sure where to start?",
             "Tell me what you want help with, where you feel stuck, and whether coaching fits.",
             "No pressure. No obligation.",
           ]}
-          ctaLabel="Book a Discovery Call"
+          ctaLabel="Book a Free Coaching Session"
           href={bookingLinks.discoveryCall}
           eventName="discovery_call_click"
         />
@@ -308,13 +301,13 @@ export function CoachingPricingContent() {
             Still not sure where to start?
           </h2>
           <p className="prose-doc mx-auto mt-4">
-            Book a free discovery call and we’ll figure out the most useful next step.
+            Book your free Meet Jules Call and we’ll figure out the most useful next step.
           </p>
           <div className="mt-8">
             <BookingButton
               href={bookingLinks.discoveryCall}
               eventName="discovery_call_click"
-              label="Book a Free Discovery Call"
+              label="Book a Free Coaching Session"
             />
           </div>
         </div>
@@ -396,7 +389,7 @@ function PricingCard({
     <article
       className={cn(
         "rounded-[1.35rem] bg-white px-6 py-7 shadow-[0_16px_60px_rgb(27_27_27_/_0.045)] ring-1 ring-plum/8",
-        compact ? "flex flex-col" : "mx-auto max-w-3xl",
+        compact ? "flex flex-col" : "mx-auto max-w-2xl",
       )}
     >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
