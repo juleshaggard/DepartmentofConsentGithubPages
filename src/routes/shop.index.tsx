@@ -225,7 +225,7 @@ function ShopLandingPage() {
 
   return (
     <>
-      <section className="px-5 pb-8 pt-14 text-center sm:px-8 sm:pb-10 sm:pt-16">
+      <section className="px-5 pb-0 pt-14 text-center sm:px-8 sm:pt-16">
         <p className="font-display text-sm text-plum sm:text-base">
           Full-Grain Leather <span aria-hidden>•</span> Built for play
         </p>
@@ -308,7 +308,7 @@ function ShopLandingPage() {
               id="shop-coaching-title"
               className="mt-3 font-display text-3xl leading-[1.04] text-white sm:text-4xl"
             >
-              Gear is one part of the conversation.
+              Gear is only one part of the conversation.
             </h2>
             <p className="mt-5 max-w-lg font-display text-base leading-relaxed text-white/72 sm:text-lg">
               Not sure what you want, how to ask for it, or what happens after it arrives? Bring the
