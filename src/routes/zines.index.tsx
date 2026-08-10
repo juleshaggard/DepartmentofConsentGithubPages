@@ -6,8 +6,8 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/zines/")({
   head: () =>
     pageHead({
-      title: "Zines | Department of Consent",
-      description: "Read the Department of Consent zine archive in issue and page order.",
+      title: "Kink Field Guides | Department of Consent",
+      description: "Read the Department of Consent Kink Field Guides in issue and page order.",
       path: "/zines",
     }),
   component: ZineArchive,
@@ -21,7 +21,7 @@ function ZineArchive() {
           Department of Consent <span aria-hidden>•</span> {allZines.length} issues
         </p>
         <h1 className="mt-7 font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-plum">
-          Zines
+          Kink Field Guides
         </h1>
         <p className="mx-auto mt-7 max-w-2xl font-display text-sm leading-relaxed text-plum/78 sm:text-base">
           Six-page provocations,

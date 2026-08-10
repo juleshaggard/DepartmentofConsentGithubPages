@@ -11,7 +11,7 @@ import navLogo from "../../../assets/Logo.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
-  { label: "Zines", to: "/zines" },
+  { label: "Guides", to: "/zines" },
   { label: "Shop", to: "/shop" },
   { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
 ] as const;
