@@ -14,7 +14,7 @@ import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { pageHead } from "@/lib/seo";
 import { allFieldGuides } from "@/lib/field-guides";
 import heroImg from "../../assets/hero.jpg";
-import ctaBackgroundImg from "../../assets/bottomcta.jpg";
+import ctaBackgroundImg from "../../assets/Photo2.jpg";
 import prepCardImg from "@/assets/card-flogger.jpg";
 import stickerFeather from "@/assets/sticker-feather-flat.png";
 
