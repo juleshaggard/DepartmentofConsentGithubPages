@@ -405,7 +405,7 @@ export const guideEnterTheScene: Guide = {
         { t: "p", text: "Your first goal can be a conversation." },
         {
           t: "p",
-          text: "You do not need to find a dominant, submissive, partner, playmate, or polyamorous relationship immediately.",
+          text: "You do not need to find a dominant, submissive, partner, or playmate immediately.",
         },
         { t: "p", text: "Pay attention to how people respond when you:" },
         {

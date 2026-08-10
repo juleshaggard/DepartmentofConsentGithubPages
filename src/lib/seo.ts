@@ -70,7 +70,7 @@ export function personJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: siteConfig.founder,
-    jobTitle: "Kink and polyamory coach",
+    jobTitle: "Kink coach",
     worksFor: { "@type": "Organization", name: siteConfig.name, url: publicSiteUrl("/") },
     url: publicSiteUrl("/about"),
     email: siteConfig.contactEmail,

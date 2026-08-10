@@ -28,7 +28,7 @@ import avatarA from "@/assets/avatar-a.png";
 
 const COMMUNITIES = [
   { icon: iconFlogger, label: "Kink\npractitioners" },
-  { icon: iconBunnies, label: "Polyamorous\npartners" },
+  { icon: iconBunnies, label: "Play\npartners" },
   { icon: iconPup, label: "Queer\ncommunities" },
   { icon: iconMartini, label: "Casual daters" },
   { icon: iconRing, label: "Long term\ncouples" },

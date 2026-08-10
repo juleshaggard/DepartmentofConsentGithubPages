@@ -37,3 +37,10 @@ dist-ssr
 # oh-my-claudecode state
 .omc/
 **/.omc/
+
+# Local agent/design tooling and review artifacts
+.agents/
+.claude/
+.impeccable/
+artifacts/
+skills-lock.json

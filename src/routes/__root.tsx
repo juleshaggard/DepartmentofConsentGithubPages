@@ -106,8 +106,11 @@ function NotFoundComponent() {
           <Link to="/coaching" className="underline underline-offset-4 hover:opacity-80">
             Coaching
           </Link>
-          <Link to="/resources" className="underline underline-offset-4 hover:opacity-80">
+          <Link to="/guides" className="underline underline-offset-4 hover:opacity-80">
             Guides
+          </Link>
+          <Link to="/resources" className="underline underline-offset-4 hover:opacity-80">
+            Resources
           </Link>
           <Link to="/faq" className="underline underline-offset-4 hover:opacity-80">
             FAQ
@@ -159,11 +162,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kink and Poly Coaching for Beginners | Department of Consent" },
+      { title: "Kink Coaching for Beginners | Department of Consent" },
       {
         name: "description",
         content:
-          "Practical kink and polyamory coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.",
+          "Practical kink coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: siteConfig.name },
@@ -202,7 +205,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             name: siteConfig.founder,
           },
           description:
-            "Beginner-focused kink and polyamory coaching: practical education, one-to-one coaching, and nonsexual event support for adults.",
+            "Beginner-focused kink coaching: practical education, one-to-one coaching, and nonsexual event support for adults.",
         }),
       },
       ...(siteConfig.analytics.plausibleDomain

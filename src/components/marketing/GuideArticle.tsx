@@ -1,4 +1,3 @@
-import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import {
   Breadcrumbs,
   ButtonLink,
@@ -11,6 +10,11 @@ import { JsonLd } from "@/components/marketing/JsonLd";
 import { articleJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import type { Guide, GuideBlock } from "@/content/guides";
+import type { LinkProps } from "@tanstack/react-router";
+
+function routeTo(path: string) {
+  return path as LinkProps["to"];
+}
 
 function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
@@ -44,7 +48,7 @@ function Block({ block }: { block: GuideBlock }) {
       return (
         <p className="flex flex-wrap gap-x-6 gap-y-2 !mt-5">
           {block.items.map((l) => (
-            <TextLink key={l.to} to={l.to}>
+            <TextLink key={l.to} to={routeTo(l.to)}>
               {l.label}
             </TextLink>
           ))}
@@ -55,13 +59,13 @@ function Block({ block }: { block: GuideBlock }) {
 
 export function GuideArticle({ guide }: { guide: Guide }) {
   return (
-    <MarketingLayout>
+    <>
       <article>
         <Container>
           <Breadcrumbs
             crumbs={[
               { label: "Home", path: "/" },
-              { label: "Guides", path: "/resources" },
+              { label: "Resources", path: "/resources" },
               { label: guide.crumbLabel, path: guide.path },
             ]}
           />
@@ -105,7 +109,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
             </h2>
             {guide.cta.body && <p className="prose-doc mt-3">{guide.cta.body}</p>}
             <div className="mt-6">
-              <ButtonLink to={guide.cta.to}>{guide.cta.label}</ButtonLink>
+              <ButtonLink to={routeTo(guide.cta.to)}>{guide.cta.label}</ButtonLink>
             </div>
           </aside>
 
@@ -115,7 +119,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
               <ul className="space-y-2">
                 {guide.related.map((r) => (
                   <li key={r.to}>
-                    <TextLink to={r.to}>{r.label}</TextLink>
+                    <TextLink to={routeTo(r.to)}>{r.label}</TextLink>
                   </li>
                 ))}
               </ul>
@@ -133,6 +137,6 @@ export function GuideArticle({ guide }: { guide: Guide }) {
           dateModified: guide.dateModified,
         })}
       />
-    </MarketingLayout>
+    </>
   );
 }

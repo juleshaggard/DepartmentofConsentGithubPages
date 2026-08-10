@@ -7,13 +7,13 @@
 **Primary promise:** From kink-curious to kink-confident.
 
 **Short positioning statement:**  
-Clear coaching for taking your first real steps into kink and polyamory without learning everything the hard way.
+Clear coaching for taking your first real steps into kink without learning everything the hard way.
 
 **Full positioning statement:**  
 Department of Consent helps adults move from private curiosity to informed, confident real-world exploration through education, one-to-one coaching, and nonsexual event support.
 
 **Primary audience:**  
-Adults who have been curious about kink or polyamory for some time and are ready to begin exploring it in real life.
+Adults who have been curious about kink for some time and are ready to begin exploring it in real life.
 
 **Service area:**  
 Virtual coaching. Selected in-person services in San Francisco and the greater Bay Area.
@@ -94,21 +94,21 @@ Do not link Scene Negotiator from public navigation or the footer.
 ## SEO
 
 **Title:**  
-Kink and Poly Coaching for Beginners | Department of Consent
+Kink Coaching for Beginners | Department of Consent
 
 **Meta description:**  
-Practical kink and polyamory coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.
+Practical kink coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.
 
 ## Hero
 
 **Eyebrow:**  
-Beginner kink and polyamory coaching
+Beginner kink coaching
 
 **Headline:**  
 From kink-curious to kink-confident.
 
 **Body:**  
-You have done the wondering. Now you want to know how to explore kink or polyamory without walking in blind.
+You have done the wondering. Now you want to know how to explore kink without walking in blind.
 
 Department of Consent offers education, private coaching, and nonsexual event support for adults ready for their first real steps.
 
@@ -124,7 +124,7 @@ Virtual coaching. Selected in-person services in San Francisco and the greater B
 ## Testimonials
 
 **Layout note:**  
-Minimal three-column testimonial strip directly beneath the homepage hero. White background, text only.
+Minimal two-column testimonial strip directly beneath the homepage hero. White background, text only.
 
 ### Testimonial One
 
@@ -141,14 +141,6 @@ Jules came to my first play party as my anchor. We set intentions before, they h
 
 **Attribution:**  
 Event accompaniment client, 55M San Francisco
-
-### Testimonial Three
-
-**Quote:**  
-I had three partners and every relationship kept trying to be the same shape. Jules helped me figure out what each person actually is to me, and nobody had ever told me I was allowed to just decide that.
-
-**Attribution:**  
-Poly coaching client, 28F Oakland
 
 ## Recognition
 
@@ -173,7 +165,7 @@ Kink is easier to explore when someone explains the room.
 You do not have to figure this out alone.
 
 **Body:**  
-Ask the beginner questions before your first conversation, event, scene, or open relationship without pretending you know more than you do.
+Ask the beginner questions before your first conversation, event, or scene without pretending you know more than you do.
 
 ### Pillar Two
 
@@ -217,17 +209,6 @@ Explore beginner BDSM coaching
 ### Service Two
 
 **Title:**  
-Polyamory Coaching for Beginners
-
-**Body:**  
-Clear coaching for individuals and partners considering consensual nonmonogamy, from the first conversation through agreements, dating, jealousy, time, and course correction.
-
-**CTA:**  
-Explore polyamory coaching
-
-### Service Three
-
-**Title:**  
 First Kink Event Preparation
 
 **Body:**  
@@ -236,7 +217,7 @@ Learn what kind of event you are attending, what the rules mean, what to wear, w
 **CTA:**  
 Prepare for your first kink event
 
-### Service Four
+### Service Three
 
 **Title:**  
 Kink Event Accompaniment
@@ -347,7 +328,7 @@ Meet Jules
 Read this before asking strangers on the internet.
 
 **Body:**  
-Straightforward guides to entering the kink scene, preparing for your first event, negotiating a scene, vetting people, aftercare, polyamory, and the unwritten rules beginners are expected to know.
+Straightforward guides to entering the kink scene, preparing for your first event, negotiating a scene, vetting people, aftercare, and the unwritten rules beginners are expected to know.
 
 **Featured guides:**
 
@@ -416,10 +397,10 @@ Explore coaching
 ## SEO
 
 **Title:**  
-Beginner Kink and Polyamory Coaching | Department of Consent
+Beginner Kink Coaching | Department of Consent
 
 **Meta description:**  
-Private coaching for adults exploring BDSM, kink, polyamory, and open relationships. Learn negotiation, boundaries, vetting, communication, and community etiquette.
+Private coaching for adults exploring BDSM and kink. Learn negotiation, boundaries, vetting, communication, and community etiquette.
 
 ## Hero
 
@@ -427,7 +408,7 @@ Private coaching for adults exploring BDSM, kink, polyamory, and open relationsh
 Private coaching for the questions you would rather ask one-on-one.
 
 **Body:**  
-Ask the private questions, sort through kink or consensual nonmonogamy, and leave with clearer next steps.
+Ask the private questions, sort through kink, and leave with clearer next steps.
 
 ## Coaching Options
 
@@ -437,13 +418,6 @@ Understand your interests, learn common terminology, prepare for real-world expe
 
 **CTA:**  
 Explore beginner BDSM coaching
-
-### Polyamory Coaching for Beginners
-
-Think through motives, structures, agreements, autonomy, jealousy, dating, time, and the practical realities of opening a relationship.
-
-**CTA:**  
-Explore polyamory coaching
 
 ### Kink Coach in San Francisco
 
@@ -487,7 +461,7 @@ A focused 60-minute session built around a specific question, decision, or upcom
 
 ### Beginner Coaching Package
 
-Three private sessions for people preparing to take their first significant real-world steps into kink or polyamory.
+Three private sessions for people preparing to take their first significant real-world steps into kink.
 
 **Price:**  
 [ADD CURRENT PRICE]
@@ -525,7 +499,7 @@ San Francisco kink coaching
 A kink coach for people who are ready to stop guessing.
 
 **Body:**  
-I am Jules Darling, a San Francisco-based kink and polyamory coach for adults taking their first real steps into the scene.
+I am Jules Darling, a San Francisco-based kink coach for adults taking their first real steps into the scene.
 
 Whether you are preparing for an event, talking with a potential partner, negotiating a first scene, or trying to understand what you want, coaching gives you a private place for clear answers before the stakes feel high.
 
@@ -681,89 +655,6 @@ Services do not include sexual activity, kink play, topping, bottoming, dating, 
 
 **Headline:**  
 Kink confidence is built before anyone touches anyone.
-
-**CTA:**  
-Book an introductory session
-
----
-
-# Service Page: Polyamory Coaching for Beginners
-
-## Route
-
-`/services/polyamory-coaching-for-beginners`
-
-## SEO
-
-**Title:**  
-Polyamory Coaching for Beginners | Department of Consent
-
-**Meta description:**  
-Practical polyamory coaching for beginners, individuals, and couples considering consensual nonmonogamy, open relationships, agreements, jealousy, and dating.
-
-## Hero
-
-**Eyebrow:**  
-Beginner polyamory and open-relationship coaching
-
-**Headline:**  
-Opening a relationship is not a settings change.
-
-**Body:**  
-Polyamory coaching helps individuals and partners think through the real decisions behind consensual nonmonogamy before rules, dating apps, and new relationships make everything more complicated.
-
-**CTA:**  
-Book an introductory session
-
-## Start With the Actual Question
-
-**Body:**  
-“Should we open our relationship?” usually holds more than one decision.
-
-Maybe you want sexual freedom, additional romance, independent experiences, shared experiences, or room to explore an identity. Maybe one person wants this and another fears losing the relationship. Maybe opening would avoid a problem it cannot fix.
-
-Coaching helps you answer those questions before treating polyamory as the destination.
-
-## Coaching Can Help With
-
-- Clarifying why you want consensual nonmonogamy
-- Understanding common relationship structures
-- Discussing autonomy and expectations
-- Creating agreements without trying to control every outcome
-- Talking about disclosure and privacy
-- Handling jealousy and insecurity
-- Dating independently
-- Managing time and attention
-- Discussing safer-sex practices
-- Responding to broken agreements
-- Recognizing incompatibility
-- Deciding not to open a relationship
-
-## For Individuals and Partners
-
-**Body:**  
-You can attend alone, with one partner, or with multiple partners when appropriate.
-
-Joint coaching is not couples therapy. Jules will not diagnose either person, take responsibility for saving the relationship, or force agreement where there is a real incompatibility.
-
-## Consent Includes the Freedom to Say No
-
-**Body:**  
-A relationship is not consensually nonmonogamous because one person finally gives in.
-
-Coaching makes motives, pressure, uncertainty, and boundaries easier to see. Sometimes the honest outcome is waiting, changing the plan, or admitting that two people want different relationship structures.
-
-## What Coaching Is Not
-
-**Body:**  
-Polyamory coaching is educational and practical. It is not psychotherapy, mediation, legal advice, medical care, or crisis support.
-
-No relationship outcome can be guaranteed.
-
-## CTA
-
-**Headline:**  
-Do not use rules to avoid the conversation.
 
 **CTA:**  
 Book an introductory session
@@ -1022,7 +913,7 @@ Do not share more personal information because someone claims secrecy is a sign 
 
 Your first goal can be a conversation.
 
-You do not need to find a dominant, submissive, partner, playmate, or polyamorous relationship immediately.
+You do not need to find a dominant, submissive, partner, or playmate immediately.
 
 Pay attention to how people respond when you:
 
@@ -1481,10 +1372,10 @@ Book a coaching session
 ## SEO
 
 **Title:**  
-Beginner Kink, Consent and Polyamory Workshops
+Beginner Kink and Consent Workshops
 
 **Meta description:**  
-Practical workshops on consent, kink negotiation, vetting, aftercare, community etiquette, polyamory, and open relationships.
+Practical workshops on consent, kink negotiation, vetting, aftercare, and community etiquette.
 
 ## Hero
 
@@ -1541,7 +1432,7 @@ Join the public workshop list
 About Jules Darling | Department of Consent
 
 **Meta description:**  
-Meet Jules Darling, the San Francisco-based beginner kink and polyamory coach behind Department of Consent.
+Meet Jules Darling, the San Francisco-based beginner kink coach behind Department of Consent.
 
 ## Hero
 
@@ -1591,7 +1482,7 @@ Do not infer credentials from lived experience.
 
 ### No pressure to perform an identity
 
-You can be curious without proving that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.
+You can be curious without proving that you are dominant, submissive, queer, experienced, adventurous, or ready.
 
 ### Information without false certainty
 
@@ -1624,10 +1515,10 @@ Book an introductory session
 ## SEO
 
 **Title:**  
-Beginner Kink and Polyamory Guides | Department of Consent
+Beginner Kink Guides | Department of Consent
 
 **Meta description:**  
-Clear, practical guides to entering the kink scene, first events, consent, negotiation, vetting, aftercare, polyamory, and open relationships.
+Clear, practical guides to entering the kink scene, first events, consent, negotiation, vetting, aftercare, and communication.
 
 ## Hero
 
@@ -1635,7 +1526,7 @@ Clear, practical guides to entering the kink scene, first events, consent, negot
 The instruction manual nobody handed you.
 
 **Body:**  
-Practical introductions to kink, polyamory, consent, community etiquette, boundaries, communication, and the decisions that happen before anyone touches anyone.
+Practical introductions to kink, consent, community etiquette, boundaries, communication, and the decisions that happen before anyone touches anyone.
 
 ## Categories
 
@@ -1644,7 +1535,7 @@ Practical introductions to kink, polyamory, consent, community etiquette, bounda
 - Consent and Negotiation
 - Vetting and Boundaries
 - Aftercare
-- Polyamory and Open Relationships
+- Communication and Aftercare
 - Communication
 - Terminology
 
@@ -1666,10 +1557,10 @@ Practical introductions to kink, polyamory, consent, community etiquette, bounda
 ## SEO
 
 **Title:**  
-Kink and Polyamory Coaching FAQ | Department of Consent
+Kink Coaching FAQ | Department of Consent
 
 **Meta description:**  
-Answers about beginner kink coaching, polyamory coaching, privacy, first-event preparation, accompaniment, session structure, and service boundaries.
+Answers about beginner kink coaching, privacy, first-event preparation, accompaniment, session structure, and service boundaries.
 
 ## Questions
 
@@ -1681,25 +1572,21 @@ Kink coaching is practical education and decision support for adults exploring B
 
 Beginner BDSM coaching is private guidance for people who want to understand kink before acting on it. It can help with interests, roles, terminology, partner evaluation, negotiation, boundaries, stopping, aftercare, events, and next steps.
 
-### What is polyamory coaching?
-
-Polyamory coaching provides practical education for people considering or practicing consensual nonmonogamy. It may cover relationship structures, agreements, communication, autonomy, jealousy, time management, dating, and repair after broken agreements.
-
 ### Is coaching the same as therapy?
 
 No. Coaching does not diagnose or treat mental-health conditions. It is not psychotherapy, medical care, legal counsel, crisis support, or a replacement for a licensed professional.
 
 ### Who is coaching for?
 
-Services are for adults aged 18 and older. The primary focus is people who are relatively new to kink or consensual nonmonogamy and want clear answers before taking a next step.
+Services are for adults aged 18 and older. The primary focus is people who are relatively new to kink and want clear answers before taking a next step.
 
-### Do I need to identify as kinky or polyamorous?
+### Do I need to identify as kinky?
 
 No. Curiosity does not require an identity. You may decide to explore, wait, change direction, or decide that an experience or relationship structure is not for you.
 
 ### Can couples or partners attend together?
 
-Yes, when appropriate. Partners can use coaching to discuss kink, opening a relationship, agreements, boundaries, expectations, and communication.
+Yes, when appropriate. Partners can use coaching to discuss kink, boundaries, expectations, negotiation, and communication.
 
 ### Do you work with queer and trans clients?
 
@@ -1752,10 +1639,10 @@ No. Department of Consent is not an emergency or crisis service. Contact local e
 ## SEO
 
 **Title:**  
-Book Kink or Polyamory Coaching | Department of Consent
+Book Kink Coaching | Department of Consent
 
 **Meta description:**  
-Book an introductory kink or polyamory coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.
+Book an introductory kink coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.
 
 ## Hero
 
@@ -1881,7 +1768,7 @@ Mark the policy as requiring legal review before launch.
 # Footer
 
 **Short description:**  
-Practical kink and polyamory coaching for adults ready to move from curiosity into real-world exploration.
+Practical kink coaching for adults ready to move from curiosity into real-world exploration.
 
 **Location line:**  
 Virtual coaching and selected in-person services in San Francisco and the greater Bay Area.
@@ -1894,7 +1781,6 @@ For adults aged 18 and older.
 - Coaching
 - Kink Coach in San Francisco
 - Beginner BDSM Coaching
-- Polyamory Coaching
 - Event Accompaniment
 - Workshops
 - Guides

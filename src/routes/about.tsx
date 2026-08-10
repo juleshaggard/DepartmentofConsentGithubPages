@@ -16,7 +16,7 @@ export const Route = createFileRoute("/about")({
     pageHead({
       title: "About Jules Darling | Department of Consent",
       description:
-        "Meet Jules Darling, the San Francisco-based beginner kink and polyamory coach behind Department of Consent.",
+        "Meet Jules Darling, the San Francisco-based beginner kink coach behind Department of Consent.",
       path: "/about",
     }),
   component: AboutPage,
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/about")({
 const VALUES = [
   {
     title: "No pressure to perform an identity",
-    body: "You can be curious without proving that you are dominant, submissive, polyamorous, queer, experienced, adventurous, or ready.",
+    body: "You can be curious without proving that you are dominant, submissive, queer, experienced, adventurous, or ready.",
   },
   {
     title: "Information without false certainty",

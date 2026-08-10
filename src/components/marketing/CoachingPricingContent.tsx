@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Breadcrumbs, Eyebrow, Section, TextLink } from "./primitives";
 import { MarketingLayout } from "./MarketingLayout";
+import { MeetJulesCoachingSection } from "./MeetJulesCoachingSection";
 import { siteConfig } from "@/config/site";
 import { trackBookingAction } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -20,12 +21,6 @@ const coachingOptions = [
     body: "Understand your interests, learn common terminology, prepare for real-world experiences, and build confidence without pretending to be experienced.",
     cta: "Explore beginner BDSM coaching",
     to: "/services/beginner-bdsm-coaching",
-  },
-  {
-    title: "Polyamory Coaching for Beginners",
-    body: "Think through motives, structures, agreements, autonomy, jealousy, dating, time, and the practical realities of opening a relationship.",
-    cta: "Explore polyamory coaching",
-    to: "/services/polyamory-coaching-for-beginners",
   },
   {
     title: "Kink Coach in San Francisco",
@@ -95,7 +90,7 @@ export function CoachingPricingContent() {
 
       <section className="px-5 pb-8 pt-14 text-center sm:px-8 sm:pb-10 sm:pt-16">
         <p className="font-display text-sm text-plum sm:text-base">
-          Kink &amp; polyamory coaching <span aria-hidden>•</span> Online
+          Kink coaching <span aria-hidden>•</span> Online
         </p>
         <h1 className="mx-auto mt-7 max-w-6xl font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-plum">
           Coaching designed for where you are now.
@@ -106,6 +101,16 @@ export function CoachingPricingContent() {
           We will choose the right next step from there.
         </p>
       </section>
+
+      <MeetJulesCoachingSection
+        cta={
+          <BookingButton
+            href={bookingLinks.discoveryCall}
+            eventName="discovery_call_click"
+            label="Expert Coaching"
+          />
+        }
+      />
 
       <Section ruled>
         <PricingCard

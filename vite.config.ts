@@ -17,7 +17,6 @@ const PRERENDER_PATHS = [
   "/disclaimer",
   "/services/kink-coach-san-francisco",
   "/services/beginner-bdsm-coaching",
-  "/services/polyamory-coaching-for-beginners",
   "/services/kink-event-accompaniment",
   "/guides/preparing-for-your-first-kink-event",
   "/guides/how-to-enter-the-kink-scene",
@@ -28,10 +27,12 @@ const PRERENDER_PATHS = [
   "/play-party-negotiation-checklist",
   "/scene-negotiator",
   "/shop",
-  "/zines",
+  "/guides",
 ] as const;
 
-const PRERENDER_PATH_SET = new Set<string>(PRERENDER_PATHS);
+const NOINDEX_PRERENDER_PATHS = ["/homepage-test", "/homepage-archive"] as const;
+
+const PRERENDER_PATH_SET = new Set<string>([...PRERENDER_PATHS, ...NOINDEX_PRERENDER_PATHS]);
 
 const isGitHubPages = process.env.DOC_DEPLOY_TARGET === "github-pages";
 const hasCustomDomain = Boolean(process.env.DOC_PAGES_CUSTOM_DOMAIN);
@@ -87,7 +88,7 @@ export default defineConfig({
               return (
                 PRERENDER_PATH_SET.has(routePath) ||
                 routePath.startsWith("/shop/") ||
-                routePath.startsWith("/zines/")
+                routePath.startsWith("/guides/")
               );
             },
             failOnError: true,
@@ -95,7 +96,9 @@ export default defineConfig({
           },
           // Public marketing pages (indexed) + unlinked noindex entry
           // points kept out of sitemap.xml.
-          pages: PRERENDER_PATHS.map((pagePath) => ({ path: pagePath })),
+          pages: [...PRERENDER_PATHS, ...NOINDEX_PRERENDER_PATHS].map((pagePath) => ({
+            path: pagePath,
+          })),
           sitemap: { enabled: false },
         }
       : {}),

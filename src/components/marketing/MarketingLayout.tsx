@@ -11,7 +11,7 @@ import navLogo from "../../../assets/Logo.svg";
 
 const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
-  { label: "Guides", to: "/zines" },
+  { label: "Guides", to: "/guides" },
   { label: "Shop", to: "/shop" },
   { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
 ] as const;
@@ -20,11 +20,10 @@ const FOOTER_LINKS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Kink Coach in San Francisco", to: "/services/kink-coach-san-francisco" },
   { label: "Beginner BDSM Coaching", to: "/services/beginner-bdsm-coaching" },
-  { label: "Polyamory Coaching", to: "/services/polyamory-coaching-for-beginners" },
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
   { label: "Shop", to: "/shop" },
-  { label: "Zines", to: "/zines" },
-  { label: "Guides", to: "/resources" },
+  { label: "Guides", to: "/guides" },
+  { label: "Resources", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "Book", to: "/book" },
   { label: "Privacy", to: "/privacy" },
@@ -34,6 +33,9 @@ const FOOTER_LINKS = [
 
 const navCtaLabel = "Book a Free Coaching Session";
 const NEWSLETTER_MODAL_DISABLED_PATHS = new Set([
+  "/",
+  "/homepage-test",
+  "/homepage-archive",
   "/negotiate",
   "/play-party-negotiation-form",
   "/play-party-negotiation-checklist",
@@ -116,6 +118,8 @@ export function MarketingLayout({
   children,
   hero,
   mainRef,
+  hideNavCta = false,
+  navOverHero = false,
 }: {
   children: React.ReactNode;
   /**
@@ -125,17 +129,23 @@ export function MarketingLayout({
   hero?: React.ReactNode;
   /** Scope ref for page-level GSAP animations. */
   mainRef?: React.Ref<HTMLDivElement>;
+  /** Hide the booking button when a campaign page supplies its own primary action. */
+  hideNavCta?: boolean;
+  /** Keep the shared nav visible over a dark hero, then restore its standard treatment below it. */
+  navOverHero?: boolean;
 }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const headerRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const hasHero = Boolean(hero);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [headerOverHero, setHeaderOverHero] = useState(hasHero && navOverHero);
   const normalizedPathname = pathname.replace(/\/$/, "") || "/";
   const isShopPath = normalizedPathname.startsWith("/shop");
-  const isZinePath = normalizedPathname.startsWith("/zines");
+  const isFieldGuidePath =
+    normalizedPathname === "/guides" || normalizedPathname.startsWith("/guides/");
   const showNewsletterModal =
-    !isShopPath && !isZinePath && !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
+    !isShopPath && !isFieldGuidePath && !NEWSLETTER_MODAL_DISABLED_PATHS.has(normalizedPathname);
 
   useGSAP(
     () => {
@@ -168,12 +178,14 @@ export function MarketingLayout({
       };
 
       if (menuOpen) {
+        setHeaderOverHero(false);
         showHeader(true);
         return;
       }
 
       const heroElement = heroRef.current;
       if (!heroElement) {
+        setHeaderOverHero(false);
         showHeader(true);
         return;
       }
@@ -182,10 +194,18 @@ export function MarketingLayout({
       let stableViewportHeight = window.innerHeight;
 
       const syncHeaderToHero = () => {
+        const heroBottom = heroElement.getBoundingClientRect().bottom;
+        setHeaderOverHero(navOverHero && heroBottom > header.offsetHeight);
+
+        if (navOverHero) {
+          showHeader(true);
+          return;
+        }
+
         const mobileRevealOffset = mobileQuery.matches
           ? Math.min(stableViewportHeight * 0.35, 280)
           : 0;
-        showHeader(heroElement.getBoundingClientRect().bottom <= mobileRevealOffset);
+        showHeader(heroBottom <= mobileRevealOffset);
       };
 
       const updateStableViewportHeight = () => {
@@ -250,8 +270,10 @@ export function MarketingLayout({
         removeMobileQueryListener();
       };
     },
-    { dependencies: [menuOpen], revertOnUpdate: true },
+    { dependencies: [menuOpen, navOverHero], revertOnUpdate: true },
   );
+
+  const useLightHeader = headerOverHero && !menuOpen;
 
   return (
     <div className="min-h-screen grain bg-white flex flex-col overflow-x-clip">
@@ -263,13 +285,21 @@ export function MarketingLayout({
 
       <header
         ref={headerRef}
-        className={`fixed left-0 right-0 top-0 z-40 w-full border-b border-plum/10 bg-white/94 backdrop-blur-md will-change-[transform,opacity] ${
-          hasHero ? "pointer-events-none -translate-y-full opacity-0" : ""
-        }`}
+        className={`fixed left-0 right-0 top-0 z-40 w-full border-b transition-colors duration-200 will-change-[transform,opacity] ${
+          useLightHeader
+            ? "border-transparent bg-transparent text-white"
+            : "border-plum/10 bg-white/94 text-plum backdrop-blur-md"
+        } ${hasHero && !navOverHero ? "pointer-events-none -translate-y-full opacity-0" : ""}`}
       >
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-4">
           <Link to="/" aria-label="Department of Consent — Home" className="block shrink-0">
-            <img src={navLogo} alt="Department of Consent" className="h-8 w-auto sm:h-9" />
+            <img
+              src={navLogo}
+              alt="Department of Consent"
+              className={`h-8 w-auto transition-[filter] duration-200 sm:h-9 ${
+                useLightHeader ? "brightness-0 invert" : ""
+              }`}
+            />
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-6 lg:flex xl:gap-7">
@@ -283,7 +313,9 @@ export function MarketingLayout({
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="label-condensed inline-flex items-center gap-1.5 text-[0.8125rem] text-plum hover:text-coral"
+                    className={`label-condensed inline-flex items-center gap-1.5 text-[0.8125rem] hover:text-coral ${
+                      useLightHeader ? "text-white" : "text-plum"
+                    }`}
                   >
                     <Icon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
                     {item.label}
@@ -295,21 +327,30 @@ export function MarketingLayout({
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="label-condensed text-[0.8125rem] text-plum hover:text-coral"
+                  className={`label-condensed text-[0.8125rem] hover:text-coral ${
+                    useLightHeader ? "text-white" : "text-plum"
+                  }`}
                   activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <a href={siteConfig.bookingLinks.discoveryCall} className="btn-editorial !px-5 !py-2.5">
-              {navCtaLabel}
-            </a>
+            {!hideNavCta && (
+              <a
+                href={siteConfig.bookingLinks.discoveryCall}
+                className="btn-editorial !px-5 !py-2.5"
+              >
+                {navCtaLabel}
+              </a>
+            )}
           </nav>
 
           <button
             type="button"
-            className="lg:hidden inline-flex items-center justify-center rounded-full border border-plum/20 p-2.5 text-plum"
+            className={`inline-flex items-center justify-center rounded-full border p-2.5 lg:hidden ${
+              useLightHeader ? "border-white/50 text-white" : "border-plum/20 text-plum"
+            }`}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((v) => !v)}
@@ -358,15 +399,17 @@ export function MarketingLayout({
                   </li>
                 );
               })}
-              <li className="pt-3">
-                <a
-                  href={siteConfig.bookingLinks.discoveryCall}
-                  onClick={() => setMenuOpen(false)}
-                  className="btn-editorial w-full"
-                >
-                  {navCtaLabel}
-                </a>
-              </li>
+              {!hideNavCta && (
+                <li className="pt-3">
+                  <a
+                    href={siteConfig.bookingLinks.discoveryCall}
+                    onClick={() => setMenuOpen(false)}
+                    className="btn-editorial w-full"
+                  >
+                    {navCtaLabel}
+                  </a>
+                </li>
+              )}
             </ul>
           </nav>
         )}
@@ -395,8 +438,8 @@ function MarketingFooter() {
               className="h-10 w-auto brightness-0 invert"
             />
             <p className="font-display text-base leading-relaxed text-white/78">
-              Practical kink and polyamory coaching for adults ready to move from curiosity into
-              real-world exploration.
+              Practical kink coaching for adults ready to move from curiosity into real-world
+              exploration.
             </p>
             <p className="font-display text-base leading-relaxed text-white/78">
               Virtual coaching and selected in-person services in San Francisco and the greater Bay

@@ -1,4 +1,4 @@
-import { readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
@@ -46,14 +46,13 @@ const marketingPaths = [
   "/disclaimer",
   "/services/kink-coach-san-francisco",
   "/services/beginner-bdsm-coaching",
-  "/services/polyamory-coaching-for-beginners",
   "/services/kink-event-accompaniment",
   "/guides/preparing-for-your-first-kink-event",
   "/guides/how-to-enter-the-kink-scene",
   "/guides/how-to-negotiate-your-first-scene",
   "/guides/kink-red-flags-for-beginners",
   "/negotiate",
-  "/zines",
+  "/guides",
 ];
 
 async function discoverIndexRoutes(directory, relativeDirectory = "") {
@@ -75,11 +74,11 @@ const shopPaths = (await discoverIndexRoutes(path.join(clientDir, "shop"), ""))
   .map((route) => (route === "/" ? "/shop" : `/shop${route}`))
   .sort();
 
-const zinePaths = (await discoverIndexRoutes(path.join(clientDir, "zines"), ""))
-  .map((route) => (route === "/" ? "/zines" : `/zines${route}`))
+const guidePaths = (await discoverIndexRoutes(path.join(clientDir, "guides"), ""))
+  .map((route) => (route === "/" ? "/guides" : `/guides${route}`))
   .sort();
 
-const sitemapPaths = Array.from(new Set([...marketingPaths, ...shopPaths, ...zinePaths]));
+const sitemapPaths = Array.from(new Set([...marketingPaths, ...shopPaths, ...guidePaths]));
 
 const urls = sitemapPaths
   .map(
@@ -97,6 +96,56 @@ ${urls}
 </urlset>
 `,
 );
+
+// GitHub Pages cannot issue server-side 301 responses. These generated pages
+// preserve old field-guide links with an immediate canonical redirect, while
+// the client router handles the same addresses during in-app navigation.
+const fieldGuideSlugs = [
+  ["01", "diy-kink-cheap-thrills"],
+  ["02", "collar-me-devotion-and-desire"],
+  ["03", "femininity-defined-by-you"],
+  ["04", "bondage-beyond-rope"],
+  ["05", "needles-care-and-doctor-play"],
+  ["06", "whispers-tongues-and-ear-play"],
+];
+const legacyGuideRedirects = [
+  { from: "/zines", to: "/guides" },
+  ...fieldGuideSlugs.flatMap(([number, slug]) => {
+    const to = `/guides/${slug}`;
+    return [
+      { from: `/guides/guide-${number}`, to },
+      { from: `/zines/zine-${number}`, to },
+    ];
+  }),
+];
+
+const escapeHtmlAttribute = (value) =>
+  value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+
+for (const { from, to } of legacyGuideRedirects) {
+  const target = `${siteUrl}${to}`;
+  const outputDirectory = path.join(clientDir, ...from.split("/").filter(Boolean));
+  await mkdir(outputDirectory, { recursive: true });
+  await writeFile(
+    path.join(outputDirectory, "index.html"),
+    `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0; url=${escapeHtmlAttribute(target)}" />
+    <link rel="canonical" href="${escapeHtmlAttribute(target)}" />
+    <title>Moved | Department of Consent</title>
+  </head>
+  <body>
+    <p>This guide has moved. <a href="${escapeHtmlAttribute(target)}">Continue to the guide</a>.</p>
+    <script>window.location.replace(${JSON.stringify(target)} + window.location.search + window.location.hash);</script>
+  </body>
+</html>
+`,
+  );
+}
 
 // robots.txt with the correct sitemap URL for this deployment target.
 await writeFile(
@@ -162,7 +211,7 @@ await writeFile(
     <title>Department of Consent — Beginner Guides</title>
     <link>${siteUrl}/resources</link>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Practical guides to kink, consent, negotiation, events, and polyamory for beginners.</description>
+    <description>Practical guides to kink, consent, negotiation, and events for beginners.</description>
     <language>en-us</language>
 ${items}
   </channel>

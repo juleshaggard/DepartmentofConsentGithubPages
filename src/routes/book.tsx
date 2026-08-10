@@ -7,9 +7,9 @@ import { siteConfig } from "@/config/site";
 export const Route = createFileRoute("/book")({
   head: () =>
     pageHead({
-      title: "Book Kink or Polyamory Coaching | Department of Consent",
+      title: "Book Kink Coaching | Department of Consent",
       description:
-        "Book an introductory kink or polyamory coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.",
+        "Book an introductory kink coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.",
       path: "/book",
     }),
   component: BookPage,

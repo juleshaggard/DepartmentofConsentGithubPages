@@ -4,46 +4,41 @@ import { ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
+import { MeetJulesCoachingSection } from "@/components/marketing/MeetJulesCoachingSection";
 import { ButtonLink, Section } from "@/components/marketing/primitives";
 import type { LinkProps } from "@tanstack/react-router";
 import { pageHead } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import heroImg from "../../assets/hero.jpg";
 import heroLogo from "../../assets/Logo.svg";
-import meetJulesImg from "../../assets/meetjules.jpg";
-import polyIcon from "../../assets/poly.png";
 import eventImg from "../../assets/Photo1.jpg";
 import coachingImg from "../../assets/Photo2.jpg";
 import prepImg from "../../assets/Photo3.jpg";
 import ctaBackgroundImg from "../../assets/bottomcta.jpg";
 import prepCardImg from "@/assets/card-flogger.jpg";
 import stickerFeather from "@/assets/sticker-feather-flat.png";
+import { loadHomepageData } from "@/lib/homepage-data";
+import { HomepageTestPending, NewHomepage } from "@/routes/homepage-test";
 
 export const Route = createFileRoute("/")({
+  loader: loadHomepageData,
+  staleTime: 60_000,
+  pendingComponent: HomepageTestPending,
   head: () =>
     pageHead({
-      title: "Kink and Poly Coaching for Beginners | Department of Consent",
+      title: "Kink Coaching for Beginners | Department of Consent",
       description:
-        "Practical kink and polyamory coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.",
+        "Practical kink coaching for adults ready to move from curiosity into real-world exploration. Virtual sessions and San Francisco event support.",
       path: "/",
     }),
-  component: HomePage,
+  component: CurrentHomepage,
 });
 
-const PILLARS = [
-  {
-    headline: "You do not have to figure this out alone.",
-    body: "Ask the beginner questions before your first conversation, event, scene, or open relationship without pretending you know more than you do.",
-  },
-  {
-    headline: "Kink has an instruction manual.",
-    body: "The rules are rarely written down. Etiquette, vetting, negotiation, boundaries, safety, communication, and aftercare can be learned before something goes wrong.",
-  },
-  {
-    headline: "Consent is only the beginning.",
-    body: "A clear yes matters. Good kink also takes preparation, judgment, self-knowledge, communication, care, and the confidence to change your mind.",
-  },
-] as const;
+function CurrentHomepage() {
+  const data = Route.useLoaderData();
+
+  return <NewHomepage data={data} />;
+}
 
 type ServiceCardData = {
   title: string;
@@ -68,14 +63,6 @@ const SERVICE_CARDS: ServiceCardData[] = [
     body: "For select San Francisco Bay Area events, attend with Jules Darling as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
   },
   {
-    title: "Polyamory Coaching for Beginners",
-    to: "/services/polyamory-coaching-for-beginners",
-    centered: true,
-    largeTitle: true,
-    sticker: polyIcon,
-    stickerClassName: "right-2 bottom-4 w-28 rotate-[3deg] opacity-95 sm:w-34",
-  },
-  {
     title: "Beginner BDSM Coaching",
     to: "/services/beginner-bdsm-coaching",
     centered: true,
@@ -94,7 +81,7 @@ const HERO_CIRCLE_FALLBACK_SEGMENT_PERCENT = 12;
 const SERVICE_MARQUEE_SET_COUNT = 4;
 
 const SECTION_TWO_PARAGRAPHS = [
-  "Want to know how to explore kink or polyamory without walking in blind?",
+  "Want to know how to explore kink without walking in blind?",
   "Department of Consent offers education, private coaching, and nonsexual event support for adults ready for their first real steps.",
 ] as const;
 
@@ -114,44 +101,7 @@ const TESTIMONIALS: Testimonial[] = [
       "Jules came to my first play party as my anchor. We set intentions before, they held down home base while I went and was brave, and the debrief after helped me more than the party did.",
     attribution: "Event accompaniment client, 55M San Francisco",
   },
-  {
-    quote:
-      "I had three partners and every relationship kept trying to be the same shape. Jules helped me figure out what each person actually is to me, and nobody had ever told me I was allowed to just decide that.",
-    attribution: "Poly coaching client, 28F Oakland",
-  },
 ];
-
-const CTA_QUESTIONS = [
-  "How do I figure out what I'm into?",
-  "How do I know if I'm a Dom, sub, switch, or something else?",
-  "What happens at my first play party?",
-  "What do I wear to a kink event?",
-  "How do I approach someone at a play party?",
-  "How do I know if someone is safe to play with?",
-  "Can you help me prepare for my first kink event?",
-  "Can you come with me to my first kink event?",
-  "What are the biggest red flags in the kink community?",
-  "How do I negotiate my first scene?",
-  "What should I say before a scene starts?",
-  "How do I say no without feeling guilty?",
-  "How do I introduce kink to my partner?",
-  "What if my partner isn't into kink?",
-  "How do I prepare for my first scene?",
-  "What's the safest way to explore BDSM as a beginner?",
-  "How do I avoid making embarrassing beginner mistakes?",
-  "What are the unwritten rules of the kink community?",
-  "How do I find beginner-friendly events?",
-  "How do I make friends in the kink community?",
-  "How do I know if I'm ready for a play party?",
-  "What gear do I need (and what can wait)?",
-  "How do I build confidence before my first event?",
-  "How do I write a FetLife profile that represents me?",
-  "How do I recover after an awkward or bad first experience?",
-  "How do I become part of the community instead of just attending events?",
-  "Can you review my negotiation before I send it?",
-  "Can you help me decide whether this person is a red flag?",
-  "How do I go from kink-curious to kink-confident?",
-] as const;
 
 function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -245,7 +195,7 @@ function Hero() {
           </span>
         </h1>
         <p className="hero-sub font-display text-white text-xl sm:text-[clamp(1.4rem,2.2vw,2.6rem)] mt-4 drop-shadow-[0_1px_2px_rgb(27_27_27_/_0.16)]">
-          Kink and polyamory coaching for beginners
+          Kink coaching for beginners
         </p>
       </div>
 
@@ -290,7 +240,7 @@ function RotatingCircleText() {
   );
 }
 
-function HomePage() {
+export function OriginalHomepage() {
   const mainRef = useRef<HTMLDivElement>(null);
   const marqueeTrackRef = useRef<HTMLDivElement>(null);
 
@@ -428,59 +378,16 @@ function HomePage() {
         />
       </section>
 
-      <Section wide className="relative z-10 bg-white !pb-0 !pt-0">
-        <QuestionScroll />
-      </Section>
-
-      <Section wide className="relative z-10 bg-white !pb-16 !pt-0 sm:!pb-24 sm:!pt-0">
-        <div className="mx-auto text-center">
-          <div className="relative mx-auto flex flex-col items-center">
-            <h2 className="meet-jules-title artboard-rise display-condensed text-coral text-center text-[clamp(5.6rem,18vw,15.5rem)]">
-              <span className="block">Meet</span>
-              <span className="block">Jules</span>
-            </h2>
-            <div className="relative z-10 mt-2 w-[min(23.125rem,78vw)] overflow-hidden rounded-[1.15rem] shadow-sm sm:mt-[clamp(1rem,2vw,2rem)]">
-              <img
-                src={meetJulesImg}
-                alt="Jules coaching a client in conversation"
-                className="aspect-[370/247] w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <p className="mx-auto mt-8 max-w-[45rem] font-display text-[clamp(1.45rem,2.25vw,2rem)] leading-[1.18] text-plum">
-            <strong className="block">Skip years of awkward mistakes.</strong>
-            <span className="block">Learn the unwritten rules of kink before you need them.</span>
-          </p>
-        </div>
-
-        <div className="mx-auto mt-4 max-w-[68rem] bg-white/62 px-5 py-7 text-left sm:px-10 sm:py-8">
-          <div className="grid gap-8 md:grid-cols-3 md:gap-11">
-            {PILLARS.map((pillar, index) => (
-              <article key={pillar.headline}>
-                <p className="label-condensed text-xs text-coral">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-2 font-display text-[1.55rem] leading-[1.04] text-plum sm:text-[1.75rem]">
-                  {pillar.headline}
-                </h3>
-                <p className="mt-4 font-display text-[0.94rem] leading-[1.34] text-plum/82">
-                  {pillar.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 text-center">
+      <MeetJulesCoachingSection
+        cta={
           <ButtonLink
             to="/coaching"
             className="!border-[#1B1B1B] !bg-[#1B1B1B] !px-10 !py-3 hover:!bg-coral hover:!border-coral"
           >
             Expert coaching
           </ButtonLink>
-        </div>
-      </Section>
+        }
+      />
 
       <Section wide className="relative z-10 bg-white !pt-0 !pb-12 sm:!pb-16">
         <div className="group relative mx-auto flex min-h-[30rem] w-full max-w-[22rem] flex-col justify-center overflow-hidden rounded-[1.35rem] bg-[#1B1B1B] px-5 py-6 text-center text-white shadow-[0_18px_60px_rgb(27_27_27_/_0.16)] sm:aspect-[1044/478] sm:min-h-0 sm:max-w-4xl sm:px-8 sm:py-10 md:px-12 md:py-12">
@@ -510,7 +417,7 @@ function TestimonialsSection() {
     <Section wide className="relative z-10 bg-white !py-8 sm:!py-10">
       <div className="mx-auto max-w-6xl">
         <h2 className="sr-only">Client testimonials</h2>
-        <div className="testimonial-grid grid gap-5 py-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-plum/10">
+        <div className="testimonial-grid mx-auto grid max-w-4xl gap-5 py-6 md:grid-cols-2 md:gap-0 md:divide-x md:divide-plum/10">
           {TESTIMONIALS.map((testimonial) => (
             <TestimonialCard key={testimonial.attribution} testimonial={testimonial} />
           ))}
@@ -531,28 +438,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         {testimonial.attribution}
       </p>
     </article>
-  );
-}
-
-function QuestionScroll() {
-  const scrollingQuestions = [...CTA_QUESTIONS, ...CTA_QUESTIONS];
-
-  return (
-    <div className="question-scroll mx-auto h-[38rem] max-w-5xl overflow-hidden sm:h-[46rem] lg:h-[50rem]">
-      <h2 className="sr-only">Questions Department of Consent can help with</h2>
-      <ul className="sr-only">
-        {CTA_QUESTIONS.map((question) => (
-          <li key={question}>{question}</li>
-        ))}
-      </ul>
-      <div className="question-scroll-track" aria-hidden="true">
-        {scrollingQuestions.map((question, index) => (
-          <p key={`${question}-${index}`} className="question-scroll-item">
-            {question}
-          </p>
-        ))}
-      </div>
-    </div>
   );
 }
 

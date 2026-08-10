@@ -1,14 +1,9 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 
 export const Route = createFileRoute("/zines")({
-  component: ZineLayout,
+  component: LegacyGuideLayout,
 });
 
-function ZineLayout() {
-  return (
-    <MarketingLayout>
-      <Outlet />
-    </MarketingLayout>
-  );
+function LegacyGuideLayout() {
+  return <Outlet />;
 }

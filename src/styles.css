@@ -933,6 +933,32 @@
     text-underline-offset: 4px;
   }
 
+  .guide-stack-page {
+    transform: var(--guide-stack-rest);
+    transition: transform 560ms var(--ease-out-quint);
+    transition-delay: 0ms;
+    will-change: transform;
+  }
+
+  .guide-stack-link:focus-visible .guide-stack-page {
+    transform: var(--guide-stack-fan);
+    transition-delay: var(--guide-stack-delay);
+  }
+
+  @media (hover: hover) {
+    .guide-stack-link:hover .guide-stack-page {
+      transform: var(--guide-stack-fan);
+      transition-delay: var(--guide-stack-delay);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guide-stack-page {
+      transition-duration: 0.01ms;
+      transition-delay: 0ms;
+    }
+  }
+
   .skip-link {
     position: absolute;
     left: -9999px;

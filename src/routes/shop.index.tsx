@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import commissionImage from "../../assets/shop-commission.jpg";
+import coachingImage from "../../assets/Photo2.jpg";
 import { ProductGrid } from "@/components/shop/ProductCard";
 import { useShopCart } from "@/components/shop/ShopCartContext";
 import { EmptyCollectionState, ShopLoadingState } from "@/components/shop/ShopStates";
@@ -287,6 +288,38 @@ function ShopLandingPage() {
         products={apparelProducts}
         collectionSlug="apparel"
       />
+
+      <section aria-labelledby="shop-coaching-title" className="px-5 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[1.5rem] bg-[#1B1B1B] md:grid-cols-[0.95fr_1.05fr]">
+          <div className="aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[20rem]">
+            <img
+              src={coachingImage}
+              alt="A coaching client speaking with Jules in a warm living room"
+              width={1444}
+              height={905}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div className="flex flex-col justify-center px-7 py-9 sm:px-10 sm:py-12 md:px-12">
+            <p className="label-condensed text-xs text-coral">Coaching</p>
+            <h2
+              id="shop-coaching-title"
+              className="mt-3 font-display text-3xl leading-[1.04] text-white sm:text-4xl"
+            >
+              Gear is one part of the conversation.
+            </h2>
+            <p className="mt-5 max-w-lg font-display text-base leading-relaxed text-white/72 sm:text-lg">
+              Not sure what you want, how to ask for it, or what happens after it arrives? Bring the
+              questions. Jules will help you turn curiosity into a plan.
+            </p>
+            <Link to="/coaching" className="btn-editorial mt-7 w-full sm:w-fit">
+              Explore coaching
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/coaching")({
     pageHead({
       title: "Coaching and Pricing | Department of Consent",
       description:
-        "Beginner kink and polyamory coaching, a free Meet Jules Call, private sessions, packages, event preparation, and approved San Francisco and Oakland event support.",
+        "Beginner kink coaching, a free Meet Jules Call, private sessions, packages, event preparation, and approved San Francisco and Oakland event support.",
       path: "/coaching",
     }),
   component: CoachingPricingContent,

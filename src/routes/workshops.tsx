@@ -13,9 +13,9 @@ import { siteConfig } from "@/config/site";
 export const Route = createFileRoute("/workshops")({
   head: () =>
     pageHead({
-      title: "Beginner Kink, Consent and Polyamory Workshops",
+      title: "Beginner Kink and Consent Workshops",
       description:
-        "Practical workshops on consent, kink negotiation, vetting, aftercare, community etiquette, polyamory, and open relationships.",
+        "Practical workshops on consent, kink negotiation, vetting, aftercare, and community etiquette.",
       path: "/workshops",
     }),
   component: WorkshopsPage,
@@ -37,10 +37,6 @@ const TOPICS = [
   {
     title: "Vetting Without Playing Detective",
     body: "How to gather useful information, identify concerning behavior, ask for references when appropriate, and accept that no process eliminates all risk.",
-  },
-  {
-    title: "Opening a Relationship Thoughtfully",
-    body: "A practical discussion of motives, expectations, autonomy, agreements, jealousy, dating, and the possibility that consensual nonmonogamy may not be the right answer.",
   },
 ] as const;
 

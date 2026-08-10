@@ -17,10 +17,12 @@ type NewsletterSignupProps = {
   compact?: boolean;
   variant?: NewsletterVariant;
   className?: string;
+  eyebrow?: string;
   heading?: string;
   description?: string;
   descriptionClassName?: string;
   buttonLabel?: string;
+  placeholder?: string;
   formConfig?: NewsletterFormConfig;
   onValidSubmit?: () => void;
 };
@@ -43,7 +45,7 @@ const variantContent: Record<
   },
   footer: {
     heading: "Stay in the loop",
-    description: "Occasional notes for adults learning kink, polyamory, consent, and community.",
+    description: "Occasional notes for adults learning kink, consent, and community.",
     buttonLabel: "Join the list",
   },
   modal: {
@@ -65,10 +67,12 @@ export function NewsletterSignup({
   compact = false,
   variant,
   className,
+  eyebrow,
   heading,
   description,
   descriptionClassName,
   buttonLabel,
+  placeholder = "you@example.com",
   formConfig,
   onValidSubmit,
 }: NewsletterSignupProps) {
@@ -92,6 +96,7 @@ export function NewsletterSignup({
   const displayHeading = heading ?? content.heading;
   const displayDescription = description ?? content.description;
   const displayButtonLabel = buttonLabel ?? content.buttonLabel;
+  const displayEyebrow = eyebrow ?? content.eyebrow;
   const hasFramedGuide = resolvedVariant === "guide" && !compact;
   const isFooter = resolvedVariant === "footer";
   const formClasses =
@@ -116,7 +121,7 @@ export function NewsletterSignup({
     >
       {hasFramedGuide ? (
         <>
-          {content.eyebrow && <p className="eyebrow mb-2">{content.eyebrow}</p>}
+          {displayEyebrow && <p className="eyebrow mb-2">{displayEyebrow}</p>}
           <h2 className="display-condensed text-coral text-3xl sm:text-5xl">{displayHeading}</h2>
           <p className={cn("prose-doc mt-3", descriptionClassName)}>{displayDescription}</p>
         </>
@@ -176,7 +181,7 @@ export function NewsletterSignup({
               aria-invalid={showError || undefined}
               aria-describedby={showError ? errorId : undefined}
               className={inputClasses}
-              placeholder="you@example.com"
+              placeholder={placeholder}
             />
             {showError && (
               <p
@@ -224,7 +229,7 @@ export function NewsletterSignup({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={inputClasses}
-                placeholder="you@example.com"
+                placeholder={placeholder}
               />
             </div>
             <div className={resolvedVariant === "guide" ? "sm:self-end" : ""}>

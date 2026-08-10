@@ -15,9 +15,9 @@ import { FULL_FAQ } from "@/content/faq";
 export const Route = createFileRoute("/faq")({
   head: () =>
     pageHead({
-      title: "Kink and Polyamory Coaching FAQ | Department of Consent",
+      title: "Kink Coaching FAQ | Department of Consent",
       description:
-        "Answers about beginner kink coaching, polyamory coaching, privacy, first-event preparation, accompaniment, session structure, and service boundaries.",
+        "Answers about beginner kink coaching, privacy, first-event preparation, accompaniment, session structure, and service boundaries.",
       path: "/faq",
     }),
   component: FaqPage,

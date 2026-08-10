@@ -8,9 +8,9 @@ import { allGuides } from "@/content/guides";
 export const Route = createFileRoute("/resources")({
   head: () =>
     pageHead({
-      title: "Beginner Kink and Polyamory Guides | Department of Consent",
+      title: "Beginner Kink Resources | Department of Consent",
       description:
-        "Clear, practical guides to entering the kink scene, first events, consent, negotiation, vetting, aftercare, polyamory, and open relationships.",
+        "Clear, practical guides to entering the kink scene, first events, consent, negotiation, vetting, aftercare, and communication.",
       path: "/resources",
     }),
   component: ResourcesPage,
@@ -22,7 +22,7 @@ const CATEGORIES = [
   "Consent and Negotiation",
   "Vetting and Boundaries",
   "Aftercare",
-  "Polyamory and Open Relationships",
+  "Communication and Aftercare",
   "Communication",
   "Terminology",
 ];
@@ -34,26 +34,26 @@ function ResourcesPage() {
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
-            { label: "Guides", path: "/resources" },
+            { label: "Resources", path: "/resources" },
           ]}
         />
       </Container>
 
       <Section wide className="!pt-10 sm:!pt-14">
         <div className="mx-auto max-w-3xl">
-          <Eyebrow>Guides</Eyebrow>
+          <Eyebrow>Resources</Eyebrow>
           <h1 className="display-condensed text-coral text-4xl sm:text-6xl">
             The instruction manual nobody handed you.
           </h1>
           <p className="prose-doc mt-6">
-            Practical introductions to kink, polyamory, consent, community etiquette, boundaries,
+            Practical introductions to kink, consent, community etiquette, boundaries,
             communication, and the decisions that happen before anyone touches anyone.
           </p>
         </div>
       </Section>
 
       <Section wide ruled>
-        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Featured guides</h2>
+        <h2 className="display-condensed text-coral text-3xl sm:text-5xl">Featured resources</h2>
         <div className="mt-9 grid gap-5 sm:grid-cols-2">
           <Link
             to="/negotiate"

@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-Adults exploring kink, polyamory, consent, coaching, and related products. Storefront visitors need a clear, private, accessible path from browsing to a trusted hosted checkout.
+Adults exploring kink, consent, coaching, and related products. Storefront visitors need a clear, private, accessible path from browsing to a trusted hosted checkout.
 
 ## Product Purpose
 

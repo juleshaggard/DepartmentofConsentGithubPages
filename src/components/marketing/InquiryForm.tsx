@@ -4,7 +4,6 @@ import { siteConfig } from "@/config/site";
 const SERVICES = [
   "Introductory consultation",
   "Beginner BDSM coaching",
-  "Polyamory / open-relationship coaching",
   "First kink event preparation",
   "Kink event accompaniment (SF Bay Area)",
   "Private workshop",
