@@ -12,10 +12,12 @@ export function FieldGuideCoverLink({
   guide,
   loading = "lazy",
   showPageStack = false,
+  showCaption = true,
 }: {
   guide: FieldGuide;
   loading?: "eager" | "lazy";
   showPageStack?: boolean;
+  showCaption?: boolean;
 }) {
   const stackedPages = showPageStack
     ? guide.pages.filter((page) => page.src !== guide.cover.src).slice(0, 5)
@@ -75,17 +77,19 @@ export function FieldGuideCoverLink({
           />
         </span>
       </span>
-      <span className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 text-plum">
-        <span className="font-display text-lg leading-tight group-hover:text-coral">
-          {guide.title}
+      {showCaption && (
+        <span className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 text-plum">
+          <span className="font-display text-lg leading-tight group-hover:text-coral">
+            {guide.title}
+          </span>
+          <span
+            aria-label={`Guide ${guide.number}`}
+            className="display-condensed shrink-0 text-[clamp(2.5rem,4vw,4rem)] leading-[0.8] text-coral"
+          >
+            {guide.number}
+          </span>
         </span>
-        <span
-          aria-label={`Guide ${guide.number}`}
-          className="display-condensed shrink-0 text-[clamp(2.5rem,4vw,4rem)] leading-[0.8] text-coral"
-        >
-          {guide.number}
-        </span>
-      </span>
+      )}
     </Link>
   );
 }

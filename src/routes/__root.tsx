@@ -230,6 +230,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <noscript>
+          <style>{`
+            .test-hero-line,
+            .test-hero-detail,
+            .test-hero-circle-wrap,
+            .test-testimonial-card,
+            .test-section-rise {
+              visibility: visible !important;
+              opacity: 1 !important;
+              transform: none !important;
+            }
+          `}</style>
+        </noscript>
       </head>
       <body>
         {children}

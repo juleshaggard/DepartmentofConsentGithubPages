@@ -9,7 +9,7 @@ import { ProductGrid } from "@/components/shop/ProductCard";
 import { FieldGuideCoverLink } from "@/components/guides/FieldGuideCoverLink";
 import type { ProductSummary } from "@/lib/fourthwall/repository";
 import { loadHomepageData, type HomepageData } from "@/lib/homepage-data";
-import type { PodcastEpisode, PodcastFeed } from "@/lib/kink-in-ten";
+import { KINK_IN_TEN_LISTEN_LINKS, type PodcastEpisode, type PodcastFeed } from "@/lib/kink-in-ten";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { pageHead } from "@/lib/seo";
 import { allFieldGuides } from "@/lib/field-guides";
@@ -110,9 +110,9 @@ function HomepageTestHero() {
       if (prefersReducedMotion()) return;
       const intro = gsap
         .timeline({ defaults: { ease: "power3.out" } })
-        .from(".test-hero-line", { yPercent: 112, duration: 0.85, stagger: 0.12 }, 0.12)
-        .from(".test-hero-detail", { y: 18, opacity: 0, duration: 0.6, stagger: 0.08 }, "-=0.42")
-        .from(".test-hero-circle-wrap", { opacity: 0, y: 18, duration: 0.6 }, "-=0.25");
+        .to(".test-hero-line", { y: 0, duration: 0.85, stagger: 0.12 }, 0.12)
+        .to(".test-hero-detail", { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.08 }, "-=0.42")
+        .to(".test-hero-circle-wrap", { autoAlpha: 1, y: 0, duration: 0.6 }, "-=0.25");
 
       const circlePaths = gsap.utils.toArray<SVGTextPathElement>(".test-hero-circle-path");
       const pathShape = ref.current?.querySelector<SVGPathElement>("#test-hero-circle-text-path");
@@ -248,9 +248,9 @@ export function NewHomepage({ data }: { data: HomepageData }) {
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
-      gsap.from(".test-testimonial-card", {
-        y: 24,
-        opacity: 0,
+      gsap.to(".test-testimonial-card", {
+        y: 0,
+        autoAlpha: 1,
         duration: 0.65,
         ease: "power3.out",
         stagger: 0.08,
@@ -277,9 +277,9 @@ export function NewHomepage({ data }: { data: HomepageData }) {
       }
 
       gsap.utils.toArray<HTMLElement>(".test-section-rise", mainRef.current!).forEach((element) => {
-        gsap.from(element, {
-          y: 24,
-          opacity: 0,
+        gsap.to(element, {
+          y: 0,
+          autoAlpha: 1,
           duration: 0.7,
           ease: "power3.out",
           scrollTrigger: { trigger: element, start: "top 88%", once: true },
@@ -497,7 +497,12 @@ function GuidesSection() {
       {newestGuide && (
         <div className="test-section-rise mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[minmax(16rem,0.82fr)_minmax(0,1.18fr)] md:gap-14 lg:gap-20">
           <div className="mx-auto w-full max-w-[27rem] md:mx-0">
-            <FieldGuideCoverLink guide={newestGuide} loading="eager" showPageStack />
+            <FieldGuideCoverLink
+              guide={newestGuide}
+              loading="eager"
+              showPageStack
+              showCaption={false}
+            />
           </div>
           <div className="text-center md:text-left">
             <Eyebrow>Newest field manual</Eyebrow>
@@ -554,18 +559,7 @@ function PodcastSection({ podcast }: { podcast: PodcastFeed | null }) {
   return (
     <Section wide className="bg-white !py-20 sm:!py-24">
       <div className="test-section-rise mx-auto max-w-5xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Kink in 10</Eyebrow>
-          <h2 className="font-display text-[clamp(2.15rem,4.5vw,3.7rem)] leading-[1.02] text-plum">
-            Kink, ten minutes at a time.
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl font-display text-base leading-relaxed text-plum/70 sm:text-lg">
-            Short, candid episodes about consent, community, power, play, and the unwritten rules
-            behind real-world kink.
-          </p>
-        </div>
-
-        <div className="mt-10 overflow-hidden rounded-[1.5rem] bg-[#1B1B1B] px-6 py-9 text-white sm:mt-12 sm:px-10 sm:py-10 lg:px-14">
+        <div className="overflow-hidden rounded-[1.5rem] bg-[#1B1B1B] px-6 py-9 text-white sm:px-10 sm:py-10 lg:px-14">
           {latestEpisode && podcast ? (
             <div className="grid gap-7 sm:grid-cols-[11rem_minmax(0,1fr)] sm:items-center sm:gap-9">
               {podcast.artworkUrl && (
@@ -587,7 +581,7 @@ function PodcastSection({ podcast }: { podcast: PodcastFeed | null }) {
                 </a>
               )}
               <article>
-                <p className="label-condensed text-xs text-coral">Latest episode</p>
+                <p className="label-condensed text-xs text-coral">Latest podcast episode</p>
                 <p className="label-condensed mt-3 text-[0.68rem] text-white/48">
                   {episodeMeta(latestEpisode)}
                 </p>
@@ -617,23 +611,53 @@ function PodcastSection({ podcast }: { podcast: PodcastFeed | null }) {
           )}
 
           <div className="mobile-action-stack mt-8 flex flex-col justify-center gap-3 sm:w-auto sm:flex-row">
-            <a
-              href={latestEpisode?.url ?? "https://www.kinkin10.com/"}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-editorial"
-            >
+            <Link to="/podcast" className="btn-editorial">
               <span>Listen to Kink in 10</span>
-            </a>
+            </Link>
             <a
               href={podcast?.websiteUrl ?? "https://www.kinkin10.com/"}
               target="_blank"
               rel="noreferrer"
               className="btn-editorial btn-editorial-outline !border-white/60 !text-white"
             >
-              <span>View All Episodes</span>
+              <span>Podcast Website</span>
             </a>
           </div>
+        </div>
+
+        <div className="mt-6">
+          <p className="label-condensed text-center text-[0.65rem] text-coral">
+            Listen wherever you get podcasts
+          </p>
+          <ul
+            className="mx-auto mt-3 grid max-w-4xl grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center"
+            aria-label="Podcast platforms"
+          >
+            {KINK_IN_TEN_LISTEN_LINKS.map((platform) => (
+              <li key={platform.name}>
+                <a
+                  href={platform.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="label-condensed inline-flex min-h-10 w-full items-center gap-2 rounded-full border border-plum/16 bg-white px-3 py-2 text-[0.625rem] text-plum transition-colors hover:border-coral hover:bg-coral hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 sm:w-auto"
+                >
+                  <img
+                    src={platform.logoUrl}
+                    alt=""
+                    width={24}
+                    height={24}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-5 w-5 shrink-0 rounded-full object-cover"
+                  />
+                  <span>{platform.name}</span>
+                  <span className="ml-auto sm:ml-0" aria-hidden>
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Section>
@@ -642,25 +666,22 @@ function PodcastSection({ podcast }: { podcast: PodcastFeed | null }) {
 
 function BrandStatement() {
   return (
-    <Section wide className="bg-white !py-16 sm:!py-24">
-      <div className="test-section-rise group relative mx-auto flex min-h-[28rem] w-full max-w-4xl flex-col justify-center overflow-hidden rounded-[1.35rem] bg-[#1B1B1B] px-5 py-8 text-center text-white shadow-[0_18px_60px_rgb(27_27_27_/_0.16)] sm:aspect-[1044/478] sm:min-h-0 sm:px-8 sm:py-10 md:px-12 md:py-12">
-        <img
-          src={ctaBackgroundImg}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full scale-105 object-cover object-[50%_42%] transition-transform duration-500 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-[#1B1B1B]/40" />
-        <div className="relative z-10 mx-auto flex max-w-[50rem] flex-col items-center">
-          <h2 className="display-condensed text-[3.05rem] leading-[0.86] text-white sm:text-[clamp(3.7rem,6.4vw,5.5rem)]">
-            There is more than one way
-            <span className="block">into kink.</span>
-          </h2>
-          <ButtonLink to="/coaching" className="mt-6 w-full sm:w-auto sm:!px-10">
-            Explore Coaching
-          </ButtonLink>
-        </div>
+    <section className="test-section-rise group relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1B1B1B] px-5 py-8 text-center text-white sm:px-8 sm:py-10 md:px-12 md:py-12">
+      <img
+        src={ctaBackgroundImg}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full scale-105 object-cover object-[50%_42%] transition-transform duration-500 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#1B1B1B]/40" />
+      <div className="relative z-10 mx-auto flex max-w-[50rem] flex-col items-center">
+        <h2 className="display-condensed text-[3.05rem] leading-[0.86] text-white sm:text-[clamp(3.7rem,6.4vw,5.5rem)]">
+          GET INTO KINK WITHOUT GUESSING YOUR WAY THROUGH IT.
+        </h2>
+        <ButtonLink to="/coaching" className="mt-6 w-full sm:w-auto sm:!px-10">
+          Explore Coaching
+        </ButtonLink>
       </div>
-    </Section>
+    </section>
   );
 }

@@ -17,6 +17,7 @@ import { Route as SceneNegotiatorRouteImport } from './routes/scene-negotiator'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as PlayPartyNegotiationFormRouteImport } from './routes/play-party-negotiation-form'
 import { Route as PlayPartyNegotiationChecklistRouteImport } from './routes/play-party-negotiation-checklist'
 import { Route as NegotiateRouteImport } from './routes/negotiate'
@@ -97,6 +98,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlayPartyNegotiationFormRoute =
@@ -337,6 +343,7 @@ export interface FileRoutesByFullPath {
   '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
+  '/podcast': typeof PodcastRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -387,6 +394,7 @@ export interface FileRoutesByTo {
   '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
+  '/podcast': typeof PodcastRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -436,6 +444,7 @@ export interface FileRoutesById {
   '/negotiate': typeof NegotiateRoute
   '/play-party-negotiation-checklist': typeof PlayPartyNegotiationChecklistRoute
   '/play-party-negotiation-form': typeof PlayPartyNegotiationFormRoute
+  '/podcast': typeof PodcastRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
@@ -489,6 +498,7 @@ export interface FileRouteTypes {
     | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
+    | '/podcast'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -539,6 +549,7 @@ export interface FileRouteTypes {
     | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
+    | '/podcast'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -587,6 +598,7 @@ export interface FileRouteTypes {
     | '/negotiate'
     | '/play-party-negotiation-checklist'
     | '/play-party-negotiation-form'
+    | '/podcast'
     | '/pricing'
     | '/privacy'
     | '/resources'
@@ -639,6 +651,7 @@ export interface RootRouteChildren {
   NegotiateRoute: typeof NegotiateRoute
   PlayPartyNegotiationChecklistRoute: typeof PlayPartyNegotiationChecklistRoute
   PlayPartyNegotiationFormRoute: typeof PlayPartyNegotiationFormRoute
+  PodcastRoute: typeof PodcastRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -708,6 +721,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/play-party-negotiation-form': {
@@ -1106,6 +1126,7 @@ const rootRouteChildren: RootRouteChildren = {
   NegotiateRoute: NegotiateRoute,
   PlayPartyNegotiationChecklistRoute: PlayPartyNegotiationChecklistRoute,
   PlayPartyNegotiationFormRoute: PlayPartyNegotiationFormRoute,
+  PodcastRoute: PodcastRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,

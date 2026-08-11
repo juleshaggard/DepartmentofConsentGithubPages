@@ -9,6 +9,7 @@ const PRERENDER_PATHS = [
   "/pricing",
   "/workshops",
   "/about",
+  "/podcast",
   "/resources",
   "/faq",
   "/book",

@@ -5,6 +5,7 @@ const FEED_CACHE_TTL_MS = 15 * 60 * 1_000;
 export type PodcastEpisode = {
   title: string;
   url: string;
+  audioUrl: string | null;
   description: string;
   publishedAt: string;
   durationSeconds: number | null;
@@ -18,6 +19,39 @@ export type PodcastFeed = {
   artworkUrl: string | null;
   episodes: PodcastEpisode[];
 };
+
+export const KINK_IN_TEN_LISTEN_LINKS = [
+  {
+    name: "Apple Podcasts",
+    href: "https://podcasts.apple.com/us/podcast/kink-in-10/id6794421135",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/apple-podcast.png",
+  },
+  {
+    name: "Spotify",
+    href: "https://open.spotify.com/show/033Vq0mfhXFYmuDDKJKsO7",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/spotify.png",
+  },
+  {
+    name: "Amazon Music",
+    href: "https://music.amazon.com/podcasts/7e19f910-fa86-4b8d-a004-dee930dad941",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/AmazonMusic.png",
+  },
+  {
+    name: "iHeartRadio",
+    href: "https://iheart.com/podcast/339580347",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/iHeartRadio.png",
+  },
+  {
+    name: "PlayerFM",
+    href: "https://player.fm/series/3742396",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/PlayerFM.png",
+  },
+  {
+    name: "Podchaser",
+    href: "https://www.podchaser.com/podcasts/kink-in-10-6560079",
+    logoUrl: "https://pbcdn1.podbean.com/fs1/site/images/admin5/Podchaser.webp",
+  },
+] as const;
 
 let cachedFeed: { expiresAt: number; promise: Promise<PodcastFeed> } | null = null;
 
@@ -85,6 +119,7 @@ export function parseKinkInTenFeed(xml: string): PodcastFeed {
       return {
         title,
         url,
+        audioUrl: readAttribute(item, "enclosure", "url") || null,
         description,
         publishedAt,
         durationSeconds: positiveInteger(readTag(item, "itunes:duration")),

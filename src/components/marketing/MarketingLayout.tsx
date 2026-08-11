@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, Podcast, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { siteConfig } from "@/config/site";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { label: "Coaching", to: "/coaching" },
   { label: "Guides", to: "/guides" },
   { label: "Shop", to: "/shop" },
-  { label: "Podcast", href: "https://www.kinkin10.com/", icon: Podcast },
+  { label: "Podcast", to: "/podcast" },
 ] as const;
 
 const FOOTER_LINKS = [
@@ -23,6 +23,7 @@ const FOOTER_LINKS = [
   { label: "Event Accompaniment", to: "/services/kink-event-accompaniment" },
   { label: "Shop", to: "/shop" },
   { label: "Guides", to: "/guides" },
+  { label: "Podcast", to: "/podcast" },
   { label: "Resources", to: "/resources" },
   { label: "About", to: "/about" },
   { label: "Book", to: "/book" },
@@ -36,6 +37,7 @@ const NEWSLETTER_MODAL_DISABLED_PATHS = new Set([
   "/",
   "/homepage-test",
   "/homepage-archive",
+  "/podcast",
   "/negotiate",
   "/play-party-negotiation-form",
   "/play-party-negotiation-checklist",
@@ -303,39 +305,18 @@ export function MarketingLayout({
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-6 lg:flex xl:gap-7">
-            {NAV_ITEMS.map((item) => {
-              if ("href" in item) {
-                const Icon = item.icon;
-
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`label-condensed inline-flex items-center gap-1.5 text-[0.8125rem] hover:text-coral ${
-                      useLightHeader ? "text-white" : "text-plum"
-                    }`}
-                  >
-                    <Icon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
-                    {item.label}
-                  </a>
-                );
-              }
-
-              return (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className={`label-condensed text-[0.8125rem] hover:text-coral ${
-                    useLightHeader ? "text-white" : "text-plum"
-                  }`}
-                  activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`label-condensed text-[0.8125rem] hover:text-coral ${
+                  useLightHeader ? "text-white" : "text-plum"
+                }`}
+                activeProps={{ className: "label-condensed text-[0.8125rem] text-coral" }}
+              >
+                {item.label}
+              </Link>
+            ))}
             {!hideNavCta && (
               <a
                 href={siteConfig.bookingLinks.discoveryCall}
@@ -367,38 +348,17 @@ export function MarketingLayout({
             className="lg:hidden border-t border-plum/10 bg-white px-5 py-4"
           >
             <ul className="flex flex-col gap-1">
-              {NAV_ITEMS.map((item) => {
-                if ("href" in item) {
-                  const Icon = item.icon;
-
-                  return (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() => setMenuOpen(false)}
-                        className="label-condensed flex items-center gap-2 py-2.5 text-base text-plum"
-                      >
-                        <Icon className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
-                        {item.label}
-                      </a>
-                    </li>
-                  );
-                }
-
-                return (
-                  <li key={item.to}>
-                    <Link
-                      to={item.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="label-condensed block py-2.5 text-base text-plum"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
+              {NAV_ITEMS.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    onClick={() => setMenuOpen(false)}
+                    className="label-condensed block py-2.5 text-base text-plum"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
               {!hideNavCta && (
                 <li className="pt-3">
                   <a

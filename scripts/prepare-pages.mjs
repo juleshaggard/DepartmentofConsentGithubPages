@@ -38,6 +38,7 @@ const marketingPaths = [
   "/coaching",
   "/workshops",
   "/about",
+  "/podcast",
   "/resources",
   "/faq",
   "/book",

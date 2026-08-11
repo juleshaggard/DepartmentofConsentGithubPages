@@ -809,6 +809,30 @@
     letter-spacing: 0.05em;
   }
 
+  /*
+   * Homepage reveal start states live in CSS so they are present on the first
+   * server-rendered paint, before React hydrates and GSAP starts the tweens.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .test-hero-line {
+      transform: translateY(112%);
+    }
+
+    .test-hero-detail,
+    .test-hero-circle-wrap {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .test-testimonial-card,
+    .test-section-rise {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+
   .char-reveal-word {
     display: inline-block;
     white-space: nowrap;

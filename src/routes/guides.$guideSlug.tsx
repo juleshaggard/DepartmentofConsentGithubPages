@@ -105,7 +105,7 @@ function FieldGuidePage() {
         aria-label="Guide newsletter"
         className="border-t border-plum/10 px-5 py-14 sm:px-8 sm:py-20"
       >
-        <div className="mx-auto max-w-3xl rounded-[2rem] bg-pinkcard px-6 py-9 sm:px-10 sm:py-12">
+        <div className="mx-auto max-w-3xl rounded-[2rem] border-2 border-coral bg-white px-6 py-9 sm:px-10 sm:py-12">
           <NewsletterSignup
             variant="modal"
             heading="MORE WHERE THAT CAME FROM."

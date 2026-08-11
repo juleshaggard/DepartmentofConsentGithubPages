@@ -12,6 +12,7 @@ const FEED = `<?xml version="1.0"?>
       <link>https://www.kinkin10.com/e/consent/</link>
       <pubDate>Tue, 04 Aug 2026 09:53:52 -0700</pubDate>
       <description><![CDATA[<p>Leave someone feeling safer &amp; more seen.</p>]]></description>
+      <enclosure url="https://example.com/episode-3.mp3" type="audio/mpeg" />
       <itunes:duration>603</itunes:duration>
       <itunes:episode>3</itunes:episode>
     </item>
@@ -29,6 +30,7 @@ describe("Kink in 10 RSS feed", () => {
       {
         title: "Consent: Leave them better than you found them",
         url: "https://www.kinkin10.com/e/consent/",
+        audioUrl: "https://example.com/episode-3.mp3",
         description: "Leave someone feeling safer & more seen.",
         publishedAt: "Tue, 04 Aug 2026 09:53:52 -0700",
         durationSeconds: 603,
