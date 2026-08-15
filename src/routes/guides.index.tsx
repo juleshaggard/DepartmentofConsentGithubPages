@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FieldGuideCoverLink } from "@/components/guides/FieldGuideCoverLink";
+import { CtaBlock } from "@/components/marketing/primitives";
 import { allFieldGuides } from "@/lib/field-guides";
 import { pageHead } from "@/lib/seo";
 
@@ -42,6 +43,14 @@ function GuideArchive() {
           ))}
         </div>
       </section>
+
+      <CtaBlock
+        headline="A better scene starts with a clearer conversation."
+        body="Use the free Play Party Negotiation Guide to talk through boundaries, risks, signals, logistics, and aftercare before you play."
+        primaryLabel="Get the free negotiation guide"
+        primaryTo="/negotiate"
+        tone="dark"
+      />
     </>
   );
 }
