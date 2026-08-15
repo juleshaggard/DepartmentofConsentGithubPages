@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 
 export const negotiationFormPath = "/negotiate";
 const checklistPath = "/play-party-negotiation-checklist";
-export const negotiationFormTitle = "Free Play Party Negotiation Form | Department of Consent";
+export const negotiationFormTitle = "Free Play Party Negotiation Guide | Department of Consent";
 export const negotiationFormDescription =
-  "Get a practical play party negotiation form for discussing boundaries, risks, signals, logistics, and aftercare before a kink scene.";
+  "Get a practical play party negotiation guide for discussing boundaries, risks, signals, logistics, and aftercare before a kink scene.";
 
 const KIT_FORM = {
   endpoint: "https://app.kit.com/forms/9761022/subscriptions",
@@ -54,7 +54,7 @@ export function PlayPartyNegotiationFormPage() {
         <Breadcrumbs
           crumbs={[
             { label: "Home", path: "/" },
-            { label: "Play Party Negotiation Form", path: negotiationFormPath },
+            { label: "Play Party Negotiation Guide", path: negotiationFormPath },
           ]}
         />
       </Container>
@@ -62,12 +62,12 @@ export function PlayPartyNegotiationFormPage() {
       <Section wide className="!pt-14 sm:!pt-20">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.98fr)_minmax(21rem,0.72fr)] lg:items-center">
           <div>
-            <p className="section-label text-coral">Free form</p>
+            <p className="section-label text-coral">Free guide</p>
             <h1 className="display-condensed max-w-[12ch] text-5xl leading-[0.88] text-coral sm:text-7xl lg:text-8xl">
-              Play Party Negotiation Form
+              Play Party Negotiation Guide
             </h1>
             <p className="prose-doc mt-6 max-w-2xl text-[1.08rem]">
-              A practical form for adults who want to discuss boundaries, risk, signals, logistics,
+              A practical guide for adults who want to discuss boundaries, risk, signals, logistics,
               and aftercare before a kink scene.
             </p>
             <ul className="mt-7 grid max-w-2xl list-none gap-3 p-0 sm:grid-cols-3 sm:gap-5">
@@ -120,7 +120,7 @@ export function PlayPartyNegotiationFormPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CreativeWork",
-          name: "Play Party Negotiation Form",
+          name: "Play Party Negotiation Guide",
           description: negotiationFormDescription,
         }}
       />
@@ -161,11 +161,11 @@ function LeadGateCard() {
               You are in.
             </h2>
             <p className="mt-4 font-display text-lg leading-relaxed text-plum/72">
-              We are sending you the form link. You can open it now too.
+              We are sending you the guide link. You can open it now too.
             </p>
           </div>
           <ButtonLink to={checklistPath} className="mt-7 justify-center">
-            Get the form
+            Get the guide
           </ButtonLink>
         </div>
       ) : (
@@ -176,7 +176,7 @@ function LeadGateCard() {
             </span>
             <div>
               <h2 className="display-condensed mt-1 text-4xl leading-[0.9] text-coral sm:text-5xl">
-                Get the form.
+                Get the guide.
               </h2>
             </div>
           </div>
@@ -224,7 +224,7 @@ function LeadGateCard() {
             />
             {error && <p className="mt-2 text-sm font-semibold text-coral">{error}</p>}
             <button type="submit" className="btn-editorial mt-4 w-full" disabled={isSubmitting}>
-              <span>{isSubmitting ? "Sending" : "Send me the form"}</span>
+              <span>{isSubmitting ? "Sending" : "Send me the guide"}</span>
             </button>
           </form>
 
