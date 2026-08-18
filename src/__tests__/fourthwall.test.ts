@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FourthwallStorefrontClient } from "@/lib/fourthwall/client";
+import { resolveSyncedCollectionSlug } from "@/lib/fourthwall/homepage";
 import {
   clearCatalogCacheForTests,
   formatMoney,
@@ -113,6 +114,18 @@ afterEach(() => {
 });
 
 describe("Fourthwall normalization", () => {
+  it("resolves a synced homepage row to the narrowest matching collection", () => {
+    const collections = {
+      all: ["one", "two", "three", "four"],
+      toys: ["one", "two", "three"],
+      featured: ["one", "two"],
+    };
+
+    expect(resolveSyncedCollectionSlug(["one", "two"], collections)).toBe("featured");
+    expect(resolveSyncedCollectionSlug(["one", "two", "three"], collections)).toBe("toys");
+    expect(resolveSyncedCollectionSlug(["missing"], collections)).toBeUndefined();
+  });
+
   it("loads every page, preserves API order, and builds collection relationships", async () => {
     const shared = image("shared");
     const alternate = image("alternate");
@@ -136,6 +149,10 @@ describe("Fourthwall normalization", () => {
     expect(landing.allProducts[1]?.secondaryImage?.id).toBe("alternate");
     expect(landing.featuredProducts.map((item) => item.slug)).toEqual(["two"]);
     expect(landing.collectionSummaries[0]?.productCount).toBe(1);
+    expect(landing.collectionProductSlugs).toEqual({
+      all: ["one", "two"],
+      signature: ["two"],
+    });
 
     const detail = await getProductPageData("two");
     expect(detail?.collections.map((collection) => collection.slug)).toEqual(["signature"]);

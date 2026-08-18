@@ -1,5 +1,6 @@
 import sanitizeHtml from "sanitize-html";
 import { fourthwallClient, StorefrontApiError } from "./client";
+import { leatherWorshipHomepage } from "./homepage.generated";
 import type { Collection, FourthwallImage, Money, Product, Shop, Variant } from "./types";
 
 const CACHE_TTL_MS = 60_000;
@@ -64,8 +65,9 @@ export type ShopChromeData = { shop: Shop; collections: Collection[] };
 export type ShopLandingData = ShopChromeData & {
   featuredCollection: Collection | null;
   featuredProducts: ProductSummary[];
-  spotlightProduct: ShopSpotlightProduct | null;
+  spotlightProducts: Record<string, ShopSpotlightProduct>;
   collectionSummaries: CollectionSummary[];
+  collectionProductSlugs: Record<string, string[]>;
   allProducts: ProductSummary[];
 };
 export type CollectionPageData = {
@@ -196,6 +198,16 @@ function summarizeProduct(product: Product): ProductSummary {
   };
 }
 
+function summarizeSpotlightProduct(product: Product): ShopSpotlightProduct {
+  const availableVariants = product.variants.filter(isVariantAvailable);
+  return {
+    ...summarizeProduct(product),
+    descriptionHtml: sanitizeRichHtml(product.description),
+    descriptionText: htmlToPlainText(product.description),
+    quickAddVariantId: availableVariants.length === 1 ? (availableVariants[0]?.id ?? null) : null,
+  };
+}
+
 async function collectAll<T>(
   fetchPage: (page: number) => Promise<{ results: T[]; paging: { hasNextPage: boolean } }>,
 ) {
@@ -290,7 +302,9 @@ export async function getShopLandingData(): Promise<ShopLandingData> {
   const featuredSlugs = featuredCollection
     ? (index.collectionProducts.get(featuredCollection.slug) ?? [])
     : [];
-  const spotlightProduct = index.products.get("our-best-selling-impact-and-stim-toy") ?? null;
+  const spotlightProductSlugs = leatherWorshipHomepage.modules
+    .filter((module) => module.type === "product")
+    .map((module) => module.productSlug);
 
   return {
     shop: index.shop,
@@ -300,14 +314,12 @@ export async function getShopLandingData(): Promise<ShopLandingData> {
       .map((slug) => index.products.get(slug))
       .filter((product): product is Product => Boolean(product))
       .map(summarizeProduct),
-    spotlightProduct: spotlightProduct
-      ? {
-          ...summarizeProduct(spotlightProduct),
-          descriptionHtml: sanitizeRichHtml(spotlightProduct.description),
-          descriptionText: htmlToPlainText(spotlightProduct.description),
-          quickAddVariantId: spotlightProduct.variants.find(isVariantAvailable)?.id ?? null,
-        }
-      : null,
+    spotlightProducts: Object.fromEntries(
+      spotlightProductSlugs.flatMap((slug) => {
+        const product = index.products.get(slug);
+        return product ? [[slug, summarizeSpotlightProduct(product)]] : [];
+      }),
+    ),
     collectionSummaries: nonAllCollections.map((collection) => {
       const productSlugs = index.collectionProducts.get(collection.slug) ?? [];
       const firstProduct = productSlugs
@@ -319,6 +331,7 @@ export async function getShopLandingData(): Promise<ShopLandingData> {
         primaryImage: firstProduct?.images[0] ?? null,
       };
     }),
+    collectionProductSlugs: Object.fromEntries(index.collectionProducts),
     allProducts: index.productOrder
       .map((slug) => index.products.get(slug))
       .filter((product): product is Product => Boolean(product))

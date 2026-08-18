@@ -6,6 +6,8 @@ import { ProductGrid } from "@/components/shop/ProductCard";
 import { useShopCart } from "@/components/shop/ShopCartContext";
 import { EmptyCollectionState, ShopLoadingState } from "@/components/shop/ShopStates";
 import { siteConfig } from "@/config/site";
+import { leatherWorshipHomepage } from "@/lib/fourthwall/homepage.generated";
+import { resolveSyncedCollectionSlug } from "@/lib/fourthwall/homepage";
 import {
   formatMoney,
   getShopLandingData,
@@ -13,33 +15,6 @@ import {
   type ShopSpotlightProduct,
 } from "@/lib/fourthwall/repository";
 import { pageHead } from "@/lib/seo";
-
-const MERCHANDISING = {
-  impact: [
-    "spike-spanker-princess",
-    "spike-spanker-heart",
-    "spike-spanker-sadist",
-    "spike-impact-smacker-and-stim-toy",
-  ],
-  pup: [
-    "lil-pup-collar",
-    "frisky-dog-collar",
-    "big-dog-choker-and-leash-convertible",
-    "troublemaker-pup-collar",
-  ],
-  gear: [
-    "copy-of-spike-spanker-classic",
-    "dominion-bondage-belt",
-    "leather-flogger-bag-charm",
-    "everyday-leather-leash-black-natural",
-  ],
-  apparel: [
-    "obey-kneel-submit-relax-bdsm-crop-t-shirt",
-    "bite-risk-tee",
-    "negotiate-play-aftercare-repeat-bdsm-t-shirt",
-    "service-dog-tee",
-  ],
-} as const;
 
 export const Route = createFileRoute("/shop/")({
   loader: getShopLandingData,
@@ -216,12 +191,44 @@ function SpotlightProduct({ product }: { product: ShopSpotlightProduct }) {
   );
 }
 
+function CommissionSection() {
+  return (
+    <section className="mx-auto grid max-w-7xl px-4 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:items-stretch lg:gap-0">
+      <div className="order-2 flex flex-col justify-center py-12 lg:order-1 lg:pr-20">
+        <h2 className="font-display text-[clamp(2.25rem,4vw,3.5rem)] leading-none text-plum">
+          Commission a piece.
+        </h2>
+        <p className="mt-7 font-display text-lg text-plum/82">
+          Some ideas don&apos;t belong on a shelf.
+        </p>
+        <p className="mt-3 max-w-xl font-display text-lg leading-relaxed text-plum/72">
+          Whether it&apos;s custom sizing, unique hardware, or a one-of-one design, we&apos;ll build
+          something that&apos;s entirely yours.
+        </p>
+        <a
+          href={`mailto:${siteConfig.contactEmail}?subject=Custom%20shop%20commission`}
+          className="mt-9 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-plum px-7 font-display text-lg text-white transition-colors hover:bg-coral sm:w-fit sm:min-w-64"
+        >
+          Begin a commission
+        </a>
+      </div>
+      <div className="order-1 aspect-[4/5] overflow-hidden rounded-lg bg-[#f2f0ee] lg:order-2">
+        <img
+          src={commissionImage}
+          alt="Custom black leather harness with polished steel rings"
+          width={1024}
+          height={1280}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    </section>
+  );
+}
+
 function ShopLandingPage() {
   const data = Route.useLoaderData();
-  const impactProducts = selectProducts(data.allProducts, MERCHANDISING.impact);
-  const pupProducts = selectProducts(data.allProducts, MERCHANDISING.pup);
-  const gearProducts = selectProducts(data.allProducts, MERCHANDISING.gear);
-  const apparelProducts = selectProducts(data.allProducts, MERCHANDISING.apparel);
 
   return (
     <>
@@ -230,7 +237,7 @@ function ShopLandingPage() {
           Full-Grain Leather <span aria-hidden>•</span> Built for play
         </p>
         <h1 className="mt-7 font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-plum">
-          Wear your devotion.
+          Kink Couture
         </h1>
         <p className="mx-auto mt-7 max-w-2xl font-display text-sm leading-relaxed text-plum/78 sm:text-base">
           Handmade in San Francisco from premium leather.
@@ -239,55 +246,28 @@ function ShopLandingPage() {
         </p>
       </section>
 
-      <ProductSection
-        title="Signature pieces"
-        products={data.featuredProducts.slice(0, 4)}
-        collectionSlug={data.featuredCollection?.slug}
-      />
+      {leatherWorshipHomepage.modules.map((module) => {
+        if (module.type === "collection") {
+          return (
+            <ProductSection
+              key={module.id}
+              title={module.title}
+              products={selectProducts(data.allProducts, module.productSlugs)}
+              collectionSlug={resolveSyncedCollectionSlug(
+                module.productSlugs,
+                data.collectionProductSlugs,
+              )}
+            />
+          );
+        }
 
-      {data.spotlightProduct && <SpotlightProduct product={data.spotlightProduct} />}
+        if (module.type === "product") {
+          const product = data.spotlightProducts[module.productSlug];
+          return product ? <SpotlightProduct key={module.id} product={product} /> : null;
+        }
 
-      <ProductSection title="Impact toys" products={impactProducts} />
-      <ProductSection title="Pup play collars" products={pupProducts} />
-      <ProductSection title="BDSM gear and accessories" products={gearProducts} />
-
-      <section className="mx-auto grid max-w-7xl px-4 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:items-stretch lg:gap-0">
-        <div className="order-2 flex flex-col justify-center py-12 lg:order-1 lg:pr-20">
-          <h2 className="font-display text-[clamp(2.25rem,4vw,3.5rem)] leading-none text-plum">
-            Commission a piece.
-          </h2>
-          <p className="mt-7 font-display text-lg text-plum/82">
-            Some ideas don&apos;t belong on a shelf.
-          </p>
-          <p className="mt-3 max-w-xl font-display text-lg leading-relaxed text-plum/72">
-            Whether it&apos;s custom sizing, unique hardware, or a one-of-one design, we&apos;ll
-            build something that&apos;s entirely yours.
-          </p>
-          <a
-            href={`mailto:${siteConfig.contactEmail}?subject=Custom%20shop%20commission`}
-            className="mt-9 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-plum px-7 font-display text-lg text-white transition-colors hover:bg-coral sm:w-fit sm:min-w-64"
-          >
-            Begin a commission
-          </a>
-        </div>
-        <div className="order-1 aspect-[4/5] overflow-hidden rounded-lg bg-[#f2f0ee] lg:order-2">
-          <img
-            src={commissionImage}
-            alt="Custom black leather harness with polished steel rings"
-            width={1024}
-            height={1280}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </section>
-
-      <ProductSection
-        title="Uniforms for the devoted."
-        products={apparelProducts}
-        collectionSlug="apparel"
-      />
+        return <CommissionSection key={module.id} />;
+      })}
 
       <section aria-labelledby="shop-coaching-title" className="px-5 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[1.5rem] bg-[#1B1B1B] md:grid-cols-[0.95fr_1.05fr]">
