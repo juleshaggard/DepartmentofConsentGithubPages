@@ -73,7 +73,17 @@ export function FieldGuideCoverLink({
             height={guide.cover.height}
             loading={loading}
             decoding="async"
-            className="block h-auto w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            className="block h-auto w-full transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015] group-hover:opacity-0 group-focus-within:scale-[1.015] group-focus-within:opacity-0 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:group-focus-within:scale-100"
+          />
+          <img
+            src={guide.hoverPage.src}
+            alt=""
+            width={guide.hoverPage.width}
+            height={guide.hoverPage.height}
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+            className="absolute inset-0 block h-full w-full scale-[1.015] object-cover opacity-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100 motion-reduce:transition-none"
           />
         </span>
       </span>

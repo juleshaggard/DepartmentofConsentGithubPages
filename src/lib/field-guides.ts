@@ -42,6 +42,7 @@ export type FieldGuide = {
   title: string;
   pages: FieldGuidePage[];
   cover: FieldGuidePage;
+  hoverPage: FieldGuidePage;
 };
 
 const groupedPages = new Map<string, FieldGuidePage[]>();
@@ -81,6 +82,7 @@ export const allFieldGuides: FieldGuide[] = Array.from(groupedPages.entries())
       title: FIELD_GUIDE_TITLES[number] ?? `Guide ${number}`,
       pages: readingPages,
       cover,
+      hoverPage: sortedPages[0] ?? cover,
     };
   });
 

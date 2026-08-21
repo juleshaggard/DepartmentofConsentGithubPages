@@ -24,6 +24,10 @@ describe("field guide archive", () => {
     expect(allFieldGuides.map((guide) => guide.cover.pageNumber)).toEqual([2, 2, 2, 2, 6, 3]);
   });
 
+  it("uses the first image in each guide sequence for its hover state", () => {
+    expect(allFieldGuides.map((guide) => guide.hoverPage.pageNumber)).toEqual([1, 1, 1, 1, 1, 1]);
+  });
+
   it("uses editorial titles based on each guide's content", () => {
     expect(allFieldGuides.map((guide) => guide.title)).toEqual([
       "DIY Kink, Cheap Thrills",
