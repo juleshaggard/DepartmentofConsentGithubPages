@@ -9,7 +9,7 @@ export const Route = createFileRoute("/book")({
     pageHead({
       title: "Book Kink Coaching | Department of Consent",
       description:
-        "Book an introductory kink coaching session with Jules Darling. Virtual sessions and selected San Francisco Bay Area services.",
+        "Book an introductory kink coaching session with Jules. Virtual sessions and selected San Francisco Bay Area services.",
       path: "/book",
     }),
   component: BookPage,

@@ -17,9 +17,9 @@ const PATH = "/services/kink-coach-san-francisco";
 export const Route = createFileRoute("/services/kink-coach-san-francisco")({
   head: () =>
     pageHead({
-      title: "Kink Coach in San Francisco | Jules Darling",
+      title: "Kink Coach in San Francisco | Jules",
       description:
-        "Beginner-focused kink coaching with Jules Darling in San Francisco. Virtual sessions, event preparation, and selected nonsexual Bay Area event support.",
+        "Beginner-focused kink coaching with Jules in San Francisco. Virtual sessions, event preparation, and selected nonsexual Bay Area event support.",
       path: PATH,
     }),
   component: SfCoachPage,
@@ -79,8 +79,8 @@ function SfCoachPage() {
           </h1>
           <div className="prose-doc mt-6">
             <p>
-              I am Jules Darling, a San Francisco-based kink coach for adults taking their first
-              real steps into the scene.
+              I am Jules, a San Francisco-based kink coach for adults taking their first real steps
+              into the scene.
             </p>
             <p>
               Whether you are preparing for an event, talking with a potential partner, negotiating
@@ -179,7 +179,7 @@ function SfCoachPage() {
         data={serviceJsonLd({
           name: "Kink coaching in San Francisco",
           description:
-            "Beginner-focused kink coaching with Jules Darling: virtual sessions, event preparation, and selected nonsexual Bay Area event support.",
+            "Beginner-focused kink coaching with Jules: virtual sessions, event preparation, and selected nonsexual Bay Area event support.",
           path: PATH,
           areaServed: "San Francisco Bay Area",
         })}

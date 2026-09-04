@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services/kink-event-accompaniment")({
     pageHead({
       title: "Kink Event Accompaniment in San Francisco",
       description:
-        "Looking for someone to accompany you to a kink event? Ask about nonsexual preparation and event support with Jules Darling in San Francisco.",
+        "Looking for someone to accompany you to a kink event? Ask about nonsexual preparation and event support with Jules in San Francisco.",
       path: PATH,
     }),
   component: AccompanimentPage,
@@ -110,8 +110,8 @@ function AccompanimentPage() {
           <div className="prose-doc mt-6">
             <p>Walking into a new kink space alone can make every unfamiliar rule feel louder.</p>
             <p>
-              For selected events in San Francisco and the greater Bay Area, Jules Darling may be
-              available to attend as a knowledgeable, nonsexual guide.
+              For selected events in San Francisco and the greater Bay Area, Jules may be available
+              to attend as a knowledgeable, nonsexual guide.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">

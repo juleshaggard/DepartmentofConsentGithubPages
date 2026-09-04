@@ -14,27 +14,12 @@ export const leatherWorshipHomepage = {
         "spike-spanker-heart",
         "spike-spanker-sadist",
         "spike-impact-smacker-and-stim-toy",
-        "spike-thigh-wrap-pain-stim-toy",
-        "thigh-wrap-heart",
-        "sadist-spike-thigh-wrap-pain-stim-toy",
-        "classic-star-spike-thigh-wrap-pain-stim-toy",
       ],
     },
     {
       id: "fw-section-featured-product-30b9afa4-fbc5-4e6a-b697-0533dd95ca6b",
       type: "product",
       productSlug: "puppy-paw-spike-toy",
-    },
-    {
-      id: "fw-section-featured-collection-52c160a2-858f-483a-affd-1d6bbcbe6a3d",
-      type: "collection",
-      title: "Uniforms for the devoted.",
-      productSlugs: [
-        "garbage-baby-tee",
-        "dont-bully-me-ill-bark-baby-tee",
-        "obey-kneel-submit-relax-bdsm-crop-t-shirt",
-        "negotiate-play-aftercare-repeat-bdsm-t-shirt",
-      ],
     },
     {
       id: "fw-section-featured-collection-0",
@@ -45,6 +30,16 @@ export const leatherWorshipHomepage = {
         "the-eden-signature-collar",
         "the-iron-testament-signature-collar",
         "the-emerald-seal-signature-collar",
+      ],
+    },
+    {
+      id: "fw-section-featured-collection-bad9aceb-2059-446a-9618-bfab97fdb96f",
+      type: "collection",
+      title: "Cruel Collars",
+      productSlugs: [
+        "puppy-inward-spike-collar",
+        "coconut-rope-collar",
+        "needle-spike-collar",
       ],
     },
     {
@@ -63,10 +58,20 @@ export const leatherWorshipHomepage = {
       type: "collection",
       title: "BDSM gear and accessories",
       productSlugs: [
-        "copy-of-spike-spanker-classic",
         "dominion-bondage-belt",
         "leather-flogger-bag-charm",
         "everyday-leather-leash-black-natural",
+      ],
+    },
+    {
+      id: "fw-section-featured-collection-52c160a2-858f-483a-affd-1d6bbcbe6a3d",
+      type: "collection",
+      title: "Uniforms for the devoted.",
+      productSlugs: [
+        "garbage-baby-tee",
+        "dont-bully-me-ill-bark-baby-tee",
+        "obey-kneel-submit-relax-bdsm-crop-t-shirt",
+        "negotiate-play-aftercare-repeat-bdsm-t-shirt",
       ],
     },
     {

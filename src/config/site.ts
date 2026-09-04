@@ -2,12 +2,12 @@
  * Central site configuration for Department of Consent.
  *
  * Values marked [PENDING APPROVAL] are placeholders awaiting confirmation
- * from Jules Darling. Environment variables (VITE_*) are safe-to-expose
+ * from Jules. Environment variables (VITE_*) are safe-to-expose
  * browser values only — never put secrets here.
  */
 
 const env = import.meta.env;
-const defaultCalBaseUrl = "https://cal.com/jules-darling-3rhr9n";
+const defaultCalBaseUrl = "https://cal.com/departmentofconsent";
 const fallbackDiscoveryCallUrl = `${defaultCalBaseUrl}/meet-jules-call`;
 
 const calBaseUrl = (env.VITE_CAL_BASE_URL || defaultCalBaseUrl).replace(/\/$/, "");
@@ -52,7 +52,7 @@ export const siteConfig = {
   /** Legal entity name — falls back to brand name until supplied */
   legalName: env.VITE_LEGAL_NAME || "Department of Consent",
   /** Founder and coach */
-  founder: "Jules Darling",
+  founder: "Jules",
   /** Primary promise / tagline */
   tagline: "From kink-curious to kink-confident.",
   /** Public base URL (no trailing slash) */

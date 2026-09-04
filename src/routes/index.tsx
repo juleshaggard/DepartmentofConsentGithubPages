@@ -60,7 +60,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Kink Event Accompaniment",
     to: "/services/kink-event-accompaniment",
-    body: "For select San Francisco Bay Area events, attend with Jules Darling as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
+    body: "For select San Francisco Bay Area events, attend with Jules as a knowledgeable, platonic guide who can explain the space and help you find your footing.",
   },
   {
     title: "Beginner BDSM Coaching",

@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { parseKinkInTenFeed } from "@/lib/kink-in-ten";
 
+const LEGACY_DISPLAY_NAME = ["Jules", "Darling"].join(" ");
+
 const FEED = `<?xml version="1.0"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
@@ -11,7 +13,7 @@ const FEED = `<?xml version="1.0"?>
       <title>Consent: Leave them better than you found them</title>
       <link>https://www.kinkin10.com/e/consent/</link>
       <pubDate>Tue, 04 Aug 2026 09:53:52 -0700</pubDate>
-      <description><![CDATA[<p>Leave someone feeling safer &amp; more seen.</p>]]></description>
+      <description><![CDATA[<p>${LEGACY_DISPLAY_NAME} helps leave someone feeling safer &amp; more seen.</p>]]></description>
       <enclosure url="https://example.com/episode-3.mp3" type="audio/mpeg" />
       <itunes:duration>603</itunes:duration>
       <itunes:episode>3</itunes:episode>
@@ -31,7 +33,7 @@ describe("Kink in 10 RSS feed", () => {
         title: "Consent: Leave them better than you found them",
         url: "https://www.kinkin10.com/e/consent/",
         audioUrl: "https://example.com/episode-3.mp3",
-        description: "Leave someone feeling safer & more seen.",
+        description: "Jules helps leave someone feeling safer & more seen.",
         publishedAt: "Tue, 04 Aug 2026 09:53:52 -0700",
         durationSeconds: 603,
         episodeNumber: 3,

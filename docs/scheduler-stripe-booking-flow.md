@@ -7,24 +7,24 @@ use Cal.com booking pages with Stripe payment enabled at booking.
 
 The site defaults to this Cal.com public profile:
 
-https://cal.com/jules-darling-3rhr9n
+https://cal.com/departmentofconsent
 
 Public Cal.com event links:
 
-- Free Discovery Call:
-  https://cal.com/jules-darling-3rhr9n/free-discovery-call
+- Meet Jules Call:
+  https://cal.com/departmentofconsent/meet-jules-call
 - One Coaching Session:
-  https://cal.com/jules-darling-3rhr9n/one-coaching-session
+  https://cal.com/departmentofconsent/one-coaching-session
 - Deep Dive Session:
-  https://cal.com/jules-darling-3rhr9n/deep-dive-session
+  https://cal.com/departmentofconsent/deep-dive-session
 - Kink Curious to Kink Confident:
-  https://cal.com/jules-darling-3rhr9n/kink-curious-to-kink-confident
+  https://cal.com/departmentofconsent/kink-curious-to-kink-confident
 - First Event Preparation:
-  https://cal.com/jules-darling-3rhr9n/first-event-preparation
+  https://cal.com/departmentofconsent/first-event-preparation
 - Event Companion Consultation:
-  https://cal.com/jules-darling-3rhr9n/event-companion-consultation
+  https://cal.com/departmentofconsent/event-companion-consultation
 
-The Free Discovery Call link is safe to show publicly. It is a free 20-minute
+The Meet Jules Call link is safe to show publicly. It is a free 20-minute
 online meeting.
 
 Paid Cal.com links collect payment through the connected live Stripe account:
@@ -38,7 +38,7 @@ Paid Cal.com links collect payment through the connected live Stripe account:
 
 - `VITE_BOOKING_URL` can override the global booking link.
 - `VITE_CAL_BASE_URL` can point to the Cal.com public profile and derive standard event URLs.
-- `VITE_CAL_DISCOVERY_CALL_URL` points to the Free Discovery Call.
+- `VITE_CAL_DISCOVERY_CALL_URL` points to the Meet Jules Call.
 - `VITE_CAL_COACHING_SESSION_URL` points to One Coaching Session.
 - `VITE_CAL_DEEP_DIVE_URL` points to Deep Dive Session.
 - `VITE_CAL_PACKAGE_URL` points to Kink Curious to Kink Confident.

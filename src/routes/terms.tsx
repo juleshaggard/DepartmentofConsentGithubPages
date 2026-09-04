@@ -65,8 +65,8 @@ function TermsPage() {
         <li>No use of any service or tool to coerce, pressure, or harm anyone.</li>
         <li>No solicitation of sexual services.</li>
         <li>
-          Abusive, harassing, or unsafe behavior toward Jules Darling or others is grounds for
-          immediate termination of services.
+          Abusive, harassing, or unsafe behavior toward Jules or others is grounds for immediate
+          termination of services.
         </li>
       </ul>
 
@@ -95,7 +95,7 @@ function TermsPage() {
       <h2>Limitation of liability</h2>
       <p>
         The site and services are provided “as is” without warranties of any kind. To the fullest
-        extent allowed by law, Department of Consent and Jules Darling are not liable for indirect,
+        extent allowed by law, Department of Consent and Jules are not liable for indirect,
         incidental, or consequential damages arising from your use of the site, services, or app, or
         from your participation in any event, relationship, or activity.
       </p>

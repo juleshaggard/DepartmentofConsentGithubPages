@@ -27,7 +27,7 @@ export const Route = createFileRoute("/podcast")({
     pageHead({
       title: "Kink in 10 Podcast | Department of Consent",
       description:
-        "Listen to Kink in 10, Jules Darling's quick, candid podcast about BDSM, consent, power, play, and kink culture.",
+        "Listen to Kink in 10, Jules's quick, candid podcast about BDSM, consent, power, play, and kink culture.",
       path: "/podcast",
     }),
   component: PodcastPage,

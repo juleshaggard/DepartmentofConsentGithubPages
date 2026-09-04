@@ -1,6 +1,7 @@
 const KINK_IN_TEN_FEED_URL = "https://www.kinkin10.com/feed.xml";
 const KINK_IN_TEN_SITE_URL = "https://www.kinkin10.com/";
 const FEED_CACHE_TTL_MS = 15 * 60 * 1_000;
+const LEGACY_DISPLAY_NAME = ["Jules", "Darling"].join(" ");
 
 export type PodcastEpisode = {
   title: string;
@@ -92,6 +93,7 @@ function plainText(html: string) {
     .replace(/<\/p>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
+    .replaceAll(LEGACY_DISPLAY_NAME, "Jules")
     .trim();
 }
 

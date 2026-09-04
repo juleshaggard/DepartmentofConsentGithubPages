@@ -63,7 +63,7 @@ const COACHING_OPTIONS: CoachingOption[] = [
   {
     title: "Kink Event Support",
     description:
-      "Know what to expect before your first event, or attend selected San Francisco Bay Area events with Jules Darling as a knowledgeable, platonic guide.",
+      "Know what to expect before your first event, or attend selected San Francisco Bay Area events with Jules as a knowledgeable, platonic guide.",
     to: "/services/kink-event-accompaniment",
   },
 ];

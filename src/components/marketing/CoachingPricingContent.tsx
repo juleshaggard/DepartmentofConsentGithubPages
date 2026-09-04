@@ -24,7 +24,7 @@ const coachingOptions = [
   },
   {
     title: "Kink Coach in San Francisco",
-    body: "Work with Jules Darling online, or ask about selected in-person services in San Francisco and Oakland.",
+    body: "Work with Jules online, or ask about selected in-person services in San Francisco and Oakland.",
     cta: "Meet your San Francisco kink coach",
     to: "/services/kink-coach-san-francisco",
   },
@@ -107,7 +107,7 @@ export function CoachingPricingContent() {
           <BookingButton
             href={bookingLinks.discoveryCall}
             eventName="discovery_call_click"
-            label="Expert Coaching"
+            label="Book a coaching session"
           />
         }
       />
